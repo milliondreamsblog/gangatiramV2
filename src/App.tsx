@@ -795,3 +795,16 @@ export default function App() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      <footer className="bg-[#2D241E] text-white py-20 px-6 mt-20">
+        <div className="max-w-7xl mx-auto border-t border-white/10 pt-20">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
+            <div className="md:col-span-2">
+              <div className="flex items-center gap-2 mb-8">
+                <Waves className="text-[#3A7CA5] w-8 h-8" />
+                <span className="text-3xl font-serif font-bold tracking-tight">Ganga Tiram</span>
+              </div>
+              <p className="text-gray-400 max-w-md leading-relaxed">
+                Dedicated to the preservation, purification, and promotion of the holy river and the civilizational richness she has nurtured for millennia.
+              </p>
+            </div>
