@@ -174,3 +174,25 @@ export default function App() {
                     </div>
                   </div>
 
+                  <form onSubmit={handleOrderSubmit} className="space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                      <label className="order-field md:col-span-2">
+                        <span>Name</span>
+                        <input required value={orderForm.name} onChange={(e) => updateOrderField('name', e.target.value)} placeholder="Full name" />
+                      </label>
+                      <label className="order-field md:col-span-2">
+                        <span>Address</span>
+                        <textarea required value={orderForm.address} onChange={(e) => updateOrderField('address', e.target.value)} placeholder="House number, street, city" rows={4} />
+                      </label>
+                      <label className="order-field">
+                        <span>Pincode</span>
+                        <input required value={orderForm.pincode} onChange={(e) => updateOrderField('pincode', e.target.value)} placeholder="Postal code" inputMode="numeric" />
+                      </label>
+                      <label className="order-field">
+                        <span>Country</span>
+                        <input required value={orderForm.country} onChange={(e) => updateOrderField('country', e.target.value)} placeholder="Country" />
+                      </label>
+                      <label className="order-field">
+                        <span>State</span>
+                        <input required value={orderForm.state} onChange={(e) => updateOrderField('state', e.target.value)} placeholder="State" />
+                      </label>
