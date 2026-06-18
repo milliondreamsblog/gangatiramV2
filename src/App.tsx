@@ -688,3 +688,26 @@ export default function App() {
           <p className="text-[#5A4B3F] max-w-2xl mx-auto mb-16 text-lg">
             Mother Ganga has given us everything. It's time we reciprocate. Become a volunteer, donate to the cleaning mission, or simply spread the knowledge of her rich heritage.
           </p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-white p-10 rounded-3xl shadow-lg border border-[#E8DCC4]">
+              <HandHelping className="mx-auto text-[#D4A373] mb-6" size={48} />
+              <h4 className="text-2xl font-bold mb-4">Volunteer</h4>
+              <p className="text-[#5A4B3F] mb-8 text-sm">Join our ground-level cleaning drives and cultural preservation workshops.</p>
+              <button className="text-[#3A7CA5] font-black text-xs uppercase tracking-widest hover:underline">Apply Now</button>
+            </div>
+            <div className="bg-[#3A7CA5] p-10 rounded-3xl shadow-lg text-white transform scale-105">
+              <Heart className="mx-auto text-white mb-6 animate-pulse" size={48} fill="white" />
+              <h4 className="text-2xl font-bold mb-4">Donate</h4>
+              <p className="text-white/80 mb-8 text-sm">Your contributions fund advanced water purification and artisan support programs.</p>
+              <button className="bg-white text-[#3A7CA5] px-8 py-3 rounded-full font-bold hover:bg-[#F4EDDE] transition-all">Support Now</button>
+            </div>
+            <div className="bg-white p-10 rounded-3xl shadow-lg border border-[#E8DCC4]">
+              <Globe className="mx-auto text-[#3A7CA5] mb-6" size={48} />
+              <h4 className="text-2xl font-bold mb-4">Awareness</h4>
+              <p className="text-[#5A4B3F] mb-8 text-sm">Share the stories of the 75 places and become a digital guardian of Ganga.</p>
+              <button className="text-[#3A7CA5] font-black text-xs uppercase tracking-widest hover:underline">Share Stories</button>
+            </div>
+          </div>
+        </div>
+      </main>
