@@ -196,3 +196,22 @@ export default function App() {
                         <span>State</span>
                         <input required value={orderForm.state} onChange={(e) => updateOrderField('state', e.target.value)} placeholder="State" />
                       </label>
+                      <label className="order-field">
+                        <span>Payment Screenshot</span>
+                        <div className="upload-control">
+                          <Upload size={18} />
+                          <span>{orderForm.paymentScreenshot?.name || 'Upload image'}</span>
+                          <input
+                            required
+                            type="file"
+                            accept="image/*,.pdf"
+                            onChange={(e) => updateOrderField('paymentScreenshot', e.target.files?.[0] || null)}
+                          />
+                        </div>
+                      </label>
+                    </div>
+
+                    <button type="submit" className="w-full bg-[#2D241E] text-white py-4 rounded-full font-bold hover:bg-[#3A7CA5] transition-colors flex items-center justify-center gap-2">
+                      Submit Book Order <ChevronRight size={20} />
+                    </button>
+                  </form>
