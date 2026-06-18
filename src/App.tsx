@@ -89,3 +89,25 @@ export default function App() {
     state: '',
     paymentScreenshot: null
   });
+
+  const filteredPlaces = gangaPlaces.filter(place => 
+    place.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    place.state.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const prominentPlaces = filteredPlaces.slice(0, 6);
+
+  const goToCheckout = () => {
+    setShowCheckout(true);
+    setOrderSubmitted(false);
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  };
+
+  const updateOrderField = (field: keyof OrderForm, value: string | File | null) => {
+    setOrderForm((current) => ({ ...current, [field]: value }));
+  };
+
+  const handleOrderSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setOrderSubmitted(true);
+  };
