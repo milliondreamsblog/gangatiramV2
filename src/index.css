@@ -17,3 +17,11 @@ body {
 .book-stage {
   @apply flex justify-center lg:justify-start py-8;
 }
+
+.checkout-book-panel {
+  @apply bg-[#F4EDDE] border border-[#E8DCC4] rounded-3xl p-8 md:p-12 sticky top-28;
+}
+
+.book-chip {
+  @apply inline-flex items-center gap-2 rounded-full border border-[#E8DCC4] bg-white px-4 py-2 text-sm font-bold text-[#5A4B3F];
+}
