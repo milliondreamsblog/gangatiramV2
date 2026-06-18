@@ -62,3 +62,15 @@ body {
 .book-slider-controls > button {
   @apply w-10 h-10 rounded-full bg-white border border-[#E8DCC4] text-[#2D241E] flex items-center justify-center transition-colors hover:bg-[#3A7CA5] hover:text-white disabled:opacity-40 disabled:hover:bg-white disabled:hover:text-[#2D241E];
 }
+
+.book-slider-dots {
+  @apply flex items-center gap-2;
+}
+
+.book-slider-dots button {
+  @apply w-2.5 h-2.5 rounded-full bg-[#C9BBA4] transition-all;
+}
+
+.book-slider-dots button.active {
+  @apply w-8 bg-[#3A7CA5];
+}
