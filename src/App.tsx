@@ -817,3 +817,12 @@ export default function App() {
                 <li><a href="#" className="hover:text-white transition-colors">Culture Map</a></li>
               </ul>
             </div>
+            <div>
+              <h5 className="font-bold mb-6 text-[#D4A373]">Connect</h5>
+              <ul className="space-y-4 text-gray-400 text-sm">
+                <li><a href="#" className="hover:text-white transition-colors">Volunteer Portal</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Newsletter</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Artisan Support</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Contact Us</a></li>
+              </ul>
+            </div>
