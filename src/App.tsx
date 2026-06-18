@@ -680,3 +680,11 @@ export default function App() {
             </button>
           </div>
         </div>
+
+        {/* Action / Contribution Section */}
+        <div id="action" className="mt-32 text-center bg-[#F4EDDE] p-12 md:p-24 rounded-[3rem] border border-[#E8DCC4]">
+          <h2 className="text-[#3A7CA5] font-black text-sm uppercase tracking-[0.3em] mb-6">Make a Difference</h2>
+          <h3 className="text-4xl md:text-6xl font-serif font-bold text-[#2D241E] mb-8">Contribute to the Legacy</h3>
+          <p className="text-[#5A4B3F] max-w-2xl mx-auto mb-16 text-lg">
+            Mother Ganga has given us everything. It's time we reciprocate. Become a volunteer, donate to the cleaning mission, or simply spread the knowledge of her rich heritage.
+          </p>
