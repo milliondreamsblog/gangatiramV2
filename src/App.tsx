@@ -158,3 +158,19 @@ export default function App() {
                     Return Home
                   </button>
                 </div>
+              ) : (
+                <>
+                  <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-8 mb-10">
+                    <div className="bg-[#F4EDDE] rounded-2xl p-5 border border-[#E8DCC4]">
+                      <img src={paymentQr} alt="Payment QR code" className="w-full rounded-xl bg-white p-3" />
+                      <p className="text-center text-xs font-bold uppercase tracking-widest text-[#5A4B3F] mt-4">Scan to Pay</p>
+                    </div>
+                    <div className="flex flex-col justify-center">
+                      <p className="text-[#D4A373] text-xs font-black uppercase tracking-[0.25em] mb-3">Step 1</p>
+                      <h2 className="text-3xl font-serif font-bold mb-4">Pay for the book</h2>
+                      <p className="text-[#5A4B3F] leading-relaxed">
+                        Use any UPI app to scan the QR. After payment, take a screenshot and upload it below with your shipping address.
+                      </p>
+                    </div>
+                  </div>
+
