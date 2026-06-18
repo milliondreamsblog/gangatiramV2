@@ -421,3 +421,21 @@ export default function App() {
           >
             "A journey of 2,525 kilometers, a legacy of 5,000 years, and the heartbeat of a billion souls."
           </motion.p>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
+            className="flex flex-wrap justify-center gap-4"
+          >
+            <button 
+              onClick={() => document.getElementById('journey')?.scrollIntoView({ behavior: 'smooth' })}
+              className="bg-[#D4A373] text-white px-8 py-4 rounded-full font-bold hover:bg-[#B1895D] transition-all flex items-center gap-2 shadow-xl"
+            >
+              Start the Journey <ChevronRight size={20} />
+            </button>
+            <button onClick={goToCheckout} className="bg-white/20 backdrop-blur-md border border-white/40 text-white px-8 py-4 rounded-full font-bold hover:bg-white/30 transition-all">
+              Buy the book
+            </button>
+          </motion.div>
+        </div>
+      </section>
