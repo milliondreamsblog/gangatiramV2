@@ -522,3 +522,42 @@ export default function App() {
             <h3 className="text-4xl md:text-5xl font-serif font-bold text-[#2D241E] mb-6">The FACE of Ganga</h3>
             <p className="text-[#5A4B3F] max-w-2xl mx-auto italic">"F - Festivals, A - Arts, C - Culture, E - Environmental Preservation"</p>
           </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {contribFACE.map((item) => (
+              <motion.div 
+                key={item.letter}
+                whileHover={{ y: -10 }}
+                className="group relative bg-white h-[450px] rounded-[2rem] overflow-hidden border border-[#E8DCC4] shadow-sm hover:shadow-2xl transition-all"
+              >
+                {/* Background Image with Overlay */}
+                <img 
+                  src={(item as any).image} 
+                  alt={item.title}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1590159411986-3023021f1d1d?auto=format&fit=crop&q=80&w=600';
+                  }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent group-hover:via-black/60 transition-colors"></div>
+                
+                <div className="absolute -right-4 -top-4 text-[12rem] font-black text-white/10 select-none">
+                  {item.letter}
+                </div>
+
+                <div className="absolute bottom-0 p-8 text-white">
+                  <div className="bg-white/20 backdrop-blur-md w-14 h-14 rounded-2xl flex items-center justify-center mb-6 border border-white/30">
+                    {item.icon === 'Sparkles' && <Sparkles className="text-[#D4A373]" />}
+                    {item.icon === 'Palette' && <Palette className="text-[#3A7CA5]" />}
+                    {item.icon === 'Music' && <Music className="text-[#D4A373]" />}
+                    {item.icon === 'Leaf' && <Leaf className="text-[#3A7CA5]" />}
+                  </div>
+                  <h4 className="text-2xl font-serif font-bold mb-3">{item.title}</h4>
+                  <p className="text-white/80 text-sm leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 translate-y-4 group-hover:translate-y-0 transform">
+                    {item.description}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
