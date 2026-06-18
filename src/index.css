@@ -74,3 +74,27 @@ body {
 .book-slider-dots button.active {
   @apply w-8 bg-[#3A7CA5];
 }
+
+.book-slider.compact {
+  @apply max-w-none mb-8;
+}
+
+.book-slider.compact .book-slider-frame {
+  @apply rounded-2xl shadow-lg;
+}
+
+.book-slider.compact .book-slider-frame img {
+  @apply aspect-[5/4];
+}
+
+.book-slider.compact .book-slider-caption {
+  @apply p-4;
+}
+
+.book-slider.compact .book-slider-caption h3 {
+  @apply text-xl;
+}
+
+.book-slider.compact .book-slider-controls {
+  @apply hidden;
+}
