@@ -223,3 +223,21 @@ export default function App() {
       </div>
     );
   }
+
+  if (showAllPlaces) {
+    return (
+      <div className="min-h-screen bg-[#FDFCF8] text-[#2D241E] font-sans selection:bg-[#3A7CA5] selection:text-white">
+        <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-[#E8DCC4] px-6 py-4">
+          <div className="max-w-7xl mx-auto flex justify-between items-center">
+            <div className="flex items-center gap-2 cursor-pointer" onClick={() => setShowAllPlaces(false)}>
+              <Waves className="text-[#3A7CA5] w-8 h-8" />
+              <span className="text-2xl font-serif font-bold tracking-tight text-[#2D241E]">Ganga Tiram</span>
+            </div>
+            <button 
+              onClick={() => setShowAllPlaces(false)}
+              className="text-[#3A7CA5] font-bold flex items-center gap-2 hover:translate-x-[-4px] transition-transform"
+            >
+              <ChevronRight className="rotate-180" size={20} /> Back to Home
+            </button>
+          </div>
+        </nav>
