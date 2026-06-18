@@ -241,3 +241,13 @@ export default function App() {
             </button>
           </div>
         </nav>
+
+        <div className="max-w-7xl mx-auto px-6 pt-32 pb-20">
+          <motion.div 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mb-16 border-b border-[#E8DCC4] pb-8"
+          >
+            <h1 className="text-4xl md:text-5xl font-serif font-bold text-[#2D241E] mb-4">The Complete Sacred Path</h1>
+            <p className="text-[#5A4B3F] text-lg max-w-3xl">Explore every major landmark, heritage site, and spiritual hub along the 2,525 km journey of the holy river.</p>
+          </motion.div>
