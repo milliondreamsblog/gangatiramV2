@@ -784,3 +784,14 @@ export default function App() {
                       <p className="text-sm text-[#5A4B3F]">{selectedPlace.cuisine}</p>
                     </div>
                   </div>
+                </div>
+                
+                <div className="mt-12 pt-8 border-t border-[#E8DCC4] flex justify-between items-center">
+                  <p className="text-xs text-[#A8988A] italic">Part of the 75 Heritage Places initiative.</p>
+                  <button className="bg-[#3A7CA5] text-white px-8 py-3 rounded-full font-bold hover:bg-[#2F668A] transition-all">Plan Visit</button>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
