@@ -614,3 +614,19 @@ export default function App() {
                 ))}
               </AnimatePresence>
             </div>
+
+            {filteredPlaces.length > 6 && (
+              <motion.button 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                onClick={() => {
+                  setShowAllPlaces(true);
+                  window.scrollTo({ top: 0, behavior: 'instant' });
+                }}
+                className="mt-16 bg-[#2D241E] text-white px-12 py-5 rounded-full font-bold hover:bg-[#3A7CA5] hover:scale-105 transition-all shadow-xl flex items-center gap-3"
+              >
+                View More Places <ChevronRight size={20} />
+              </motion.button>
+            )}
+          </div>
+        </div>
