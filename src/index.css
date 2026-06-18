@@ -54,3 +54,11 @@ body {
 .book-slider-caption p {
   @apply mt-2 max-w-md text-sm text-white/80 leading-relaxed;
 }
+
+.book-slider-controls {
+  @apply mt-5 flex items-center justify-center gap-4;
+}
+
+.book-slider-controls > button {
+  @apply w-10 h-10 rounded-full bg-white border border-[#E8DCC4] text-[#2D241E] flex items-center justify-center transition-colors hover:bg-[#3A7CA5] hover:text-white disabled:opacity-40 disabled:hover:bg-white disabled:hover:text-[#2D241E];
+}
