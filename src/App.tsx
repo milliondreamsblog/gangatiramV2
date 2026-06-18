@@ -129,3 +129,16 @@ export default function App() {
             </div>
           </div>
         </nav>
+
+        <main className="max-w-7xl mx-auto px-6 pt-32 pb-20">
+          <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-12 items-start">
+            <section className="checkout-book-panel">
+              <BookSlider compact />
+              <div>
+                <p className="text-[#3A7CA5] text-xs font-black uppercase tracking-[0.25em] mb-3">Book Order</p>
+                <h1 className="text-4xl md:text-5xl font-serif font-bold mb-5">Ganga Tiram</h1>
+                <p className="text-[#5A4B3F] leading-relaxed">
+                  Scan the payment QR, complete payment, then upload the payment screenshot with your delivery details.
+                </p>
+              </div>
+            </section>
