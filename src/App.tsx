@@ -498,3 +498,16 @@ export default function App() {
                 );
               })}
             </div>
+
+            <div className="book-contents-strip">
+              <div>
+                <span>Inside</span>
+                <strong>Gomukh, Rishikesh, Haridwar, Prayagraj, Varanasi, Patna, Kolkata, Gangasagar</strong>
+              </div>
+              <button onClick={goToCheckout}>
+                Order Copy <ChevronRight size={18} />
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
