@@ -120,3 +120,10 @@ export const contribFACE = [
     icon: "Sparkles",
     image: "/images/ganga_festivals_aarti_1777100934524.png"
   },
+  {
+    letter: "A",
+    title: "Arts",
+    description: "Support the local artisans and traditional crafts like Banarasi weaving and Madhubani painting.",
+    icon: "Palette",
+    image: "/images/ganga_art_crafts_1777100912325.png"
+  },
