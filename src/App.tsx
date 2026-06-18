@@ -581,3 +581,36 @@ export default function App() {
               />
             </div>
           </div>
+
+          <div className="flex flex-col items-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center w-full">
+              <AnimatePresence>
+                {prominentPlaces.map((place) => (
+                  <motion.div 
+                    key={place.id}
+                    layout
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.9 }}
+                    whileHover={{ y: -10 }}
+                    onClick={() => setSelectedPlace(place)}
+                    className="bg-white rounded-[2.5rem] p-10 border border-[#E8DCC4] shadow-sm hover:shadow-2xl transition-all group cursor-pointer w-full max-w-[380px] h-full flex flex-col"
+                  >
+                    <div className="flex justify-between items-start mb-8">
+                      <div className="bg-[#F4F1EA] p-4 rounded-2xl group-hover:bg-[#3A7CA5] transition-colors">
+                        <MapPin className="text-[#2D241E] group-hover:text-white" size={24} />
+                      </div>
+                      <span className="text-[#D4A373] text-xs font-bold uppercase tracking-widest">{place.state}</span>
+                    </div>
+                    <h4 className="text-3xl font-serif font-bold mb-4 group-hover:text-[#3A7CA5] transition-colors">{place.name}</h4>
+                    <p className="text-[#5A4B3F] mb-10 leading-relaxed font-light flex-grow">{place.description}</p>
+                    
+                    <div className="flex flex-wrap gap-2">
+                      {place.features.slice(0, 2).map((f, i) => (
+                        <span key={i} className="text-[10px] px-3 py-1.5 bg-[#F4EDDE] rounded-full text-[#5A4B3F] font-bold uppercase tracking-wider">{f}</span>
+                      ))}
+                    </div>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </div>
