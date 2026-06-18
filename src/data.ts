@@ -134,3 +134,11 @@ export const contribFACE = [
     icon: "Music",
     image: "/images/ganga_culture_heritage_1777100835789.png"
   },
+  {
+    letter: "E",
+    title: "Environmental Preservation",
+    description: "Join the mission to clean Mother Ganga, protect river dolphins, and restore the ecosystem.",
+    icon: "Leaf",
+    image: "/images/ganga_environment_preservation_1777100892208.png"
+  }
+];
