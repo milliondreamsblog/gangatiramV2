@@ -30,3 +30,13 @@ export const gangaPlaces: GangaPlace[] = [
     art: "Wall murals",
     heritage: "Ashram culture"
   },
+  {
+    id: 3,
+    name: "Haridwar",
+    state: "Uttarakhand",
+    description: "One of the seven holiest places in Hinduism, where Ganga enters the plains.",
+    features: ["Har Ki Pauri", "Kumbh Mela", "Mansa Devi"],
+    cuisine: "Aloo Puri, Lassi",
+    art: "Handmade Diya making",
+    heritage: "Ancient Gate of the Gods"
+  },
