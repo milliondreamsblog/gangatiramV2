@@ -452,3 +452,28 @@ export default function App() {
             >
               <BookSlider />
             </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+            >
+              <p className="text-[#D4A373] font-black text-sm uppercase tracking-[0.3em] mb-5">Featured Book</p>
+              <h2 className="text-4xl md:text-6xl font-serif font-bold text-[#2D241E] mb-6">Own the Ganga Tiram Book</h2>
+              <p className="text-[#5A4B3F] text-lg leading-relaxed mb-8 max-w-2xl">
+                A visual and cultural journey across the sacred river, designed for readers who want a meaningful keepsake of Ganga's heritage.
+              </p>
+              <div className="flex flex-wrap gap-4 mb-10">
+                <span className="book-chip"><BookOpen size={16} /> Printed Edition</span>
+                <span className="book-chip"><Waves size={16} /> Heritage Journey</span>
+                <span className="book-chip"><ShoppingBag size={16} /> Direct QR Payment</span>
+              </div>
+              <button
+                onClick={goToCheckout}
+                className="bg-[#3A7CA5] text-white px-10 py-4 rounded-full font-bold hover:bg-[#2F668A] transition-all shadow-xl flex items-center gap-3 w-fit"
+              >
+                Buy Now <ChevronRight size={20} />
+              </button>
+            </motion.div>
+          </div>
