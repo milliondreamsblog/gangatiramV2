@@ -90,3 +90,13 @@ export const gangaPlaces: GangaPlace[] = [
     art: "Manjusha Art",
     heritage: "Ancient University ruins"
   },
+  {
+    id: 13,
+    name: "Murshidabad",
+    state: "West Bengal",
+    description: "The last capital of independent Bengal, famous for Hazarduari Palace.",
+    features: ["Hazarduari Palace", "Silk industry", "Terracotta temples"],
+    cuisine: "Murshidabadi Biryani",
+    art: "Ivory carving (historical)",
+    heritage: "Nawabi History"
+  },
