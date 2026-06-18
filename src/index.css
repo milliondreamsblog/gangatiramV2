@@ -146,3 +146,12 @@ body {
 .book-contents-strip button {
   @apply bg-white text-[#2D241E] px-6 py-3 rounded-full font-bold hover:bg-[#D4A373] hover:text-white transition-colors flex items-center justify-center gap-2 shrink-0;
 }
+
+.order-field {
+  @apply flex flex-col gap-2 text-sm font-bold text-[#2D241E];
+}
+
+.order-field input,
+.order-field textarea {
+  @apply w-full rounded-2xl border border-[#E8DCC4] bg-[#FDFCF8] px-4 py-3 text-base font-normal text-[#2D241E] outline-none transition-colors focus:border-[#3A7CA5];
+}
