@@ -60,3 +60,13 @@ export const gangaPlaces: GangaPlace[] = [
     art: "Banarasi Silk Weaving",
     heritage: "Living Heritage City"
   },
+  {
+    id: 6,
+    name: "Gangasagar",
+    state: "West Bengal",
+    description: "Where the holy Ganga meets the Bay of Bengal.",
+    features: ["Sagar Sangam", "Kapil Muni Temple", "Sagar Mela"],
+    cuisine: "Bengali delicacies",
+    art: "Coir craft",
+    heritage: "Ultimate Pilgrimage point"
+  },
