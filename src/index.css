@@ -9,3 +9,11 @@
 body {
   @apply font-sans antialiased;
 }
+
+.book-section {
+  @apply bg-[#F4EDDE] border-y border-[#E8DCC4] py-20 md:py-28;
+}
+
+.book-stage {
+  @apply flex justify-center lg:justify-start py-8;
+}
