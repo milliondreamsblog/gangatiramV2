@@ -360,3 +360,32 @@ export default function App() {
       </div>
     );
   }
+
+  return (
+    <div className="min-h-screen bg-[#FDFCF8] text-[#2D241E] font-sans">
+      {/* Navigation */}
+      <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-[#E8DCC4] px-6 py-4">
+        <div className="max-w-7xl mx-auto flex justify-between items-center">
+          <div className="flex items-center gap-2 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+            <Waves className="text-[#3A7CA5] w-8 h-8" />
+            <span className="text-2xl font-serif font-bold tracking-tight text-[#2D241E]">Ganga Tiram</span>
+          </div>
+          <div className="hidden md:flex gap-8 text-sm font-medium uppercase tracking-widest text-[#5A4B3F]">
+            <button onClick={() => {
+              document.getElementById('journey')?.scrollIntoView({ behavior: 'smooth' });
+              setActiveTab('journey');
+            }} className={`${activeTab === 'journey' ? 'text-[#3A7CA5] border-b-2 border-[#3A7CA5]' : ''} hover:text-[#3A7CA5] transition-colors`}>Journey</button>
+            <button onClick={() => {
+              document.getElementById('heritage')?.scrollIntoView({ behavior: 'smooth' });
+              setActiveTab('heritage');
+            }} className={`${activeTab === 'heritage' ? 'text-[#3A7CA5] border-b-2 border-[#3A7CA5]' : ''} hover:text-[#3A7CA5] transition-colors`}>Heritage</button>
+            <button onClick={() => {
+              document.getElementById('action')?.scrollIntoView({ behavior: 'smooth' });
+              setActiveTab('action');
+            }} className={`${activeTab === 'action' ? 'text-[#3A7CA5] border-b-2 border-[#3A7CA5]' : ''} hover:text-[#3A7CA5] transition-colors`}>Contribute</button>
+          </div>
+          <button onClick={goToCheckout} className="bg-[#3A7CA5] text-white px-6 py-2 rounded-full text-sm font-bold hover:bg-[#2F668A] transition-colors shadow-lg flex items-center gap-2">
+            <ShoppingBag size={16} /> Buy Book
+          </button>
+        </div>
+      </nav>
