@@ -50,3 +50,13 @@ export const gangaPlaces: GangaPlace[] = [
     art: "Kumbh Art",
     heritage: "Cultural hub of India"
   },
+  {
+    id: 5,
+    name: "Varanasi",
+    state: "Uttar Pradesh",
+    description: "One of the world's oldest continuously inhabited cities, the spiritual heart of India.",
+    features: ["Kashi Vishwanath", "84 Ghats", "Banarasi Saree"],
+    cuisine: "Banarasi Paan, Chaat, Kachori Sabzi",
+    art: "Banarasi Silk Weaving",
+    heritage: "Living Heritage City"
+  },
