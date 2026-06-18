@@ -277,3 +277,35 @@ export default function App() {
               </motion.div>
             ))}
           </div>
+        </div>
+
+        {/* Reuse the Place Detail Modal */}
+        <AnimatePresence>
+          {selectedPlace && (
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm"
+              onClick={() => setSelectedPlace(null)}
+            >
+              <motion.div 
+                initial={{ scale: 0.9, y: 20 }}
+                animate={{ scale: 1, y: 0 }}
+                exit={{ scale: 0.9, y: 20 }}
+                className="bg-white rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-y-auto"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className="relative h-64 bg-[#3A7CA5]">
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#2D241E] to-transparent"></div>
+                  <button 
+                    onClick={() => setSelectedPlace(null)}
+                    className="absolute top-6 right-6 bg-white/20 hover:bg-white/40 text-white p-2 rounded-full backdrop-blur-md"
+                  >
+                    <ChevronDown />
+                  </button>
+                  <div className="absolute bottom-8 left-8 text-white">
+                    <span className="bg-[#D4A373] text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-tighter mb-4 inline-block">{selectedPlace.state}</span>
+                    <h2 className="text-4xl font-serif font-bold">{selectedPlace.name}</h2>
+                  </div>
+                </div>
