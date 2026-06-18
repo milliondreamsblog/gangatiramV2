@@ -56,3 +56,11 @@ const bookHighlights = [
     description: 'Simple QR payment flow with delivery details and payment screenshot upload.'
   }
 ];
+
+const bookSliderSlides = [
+  {
+    image: aiBookSlider,
+    title: 'Thick hardcover edition',
+    subtitle: 'Premium 3D product view with visible cover, spine, and page depth.'
+  }
+];
