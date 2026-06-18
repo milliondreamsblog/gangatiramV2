@@ -111,3 +111,12 @@ export const gangaPlaces: GangaPlace[] = [
     heritage: "Renaissance of Bengal"
   }
 ];
+
+export const contribFACE = [
+  {
+    letter: "F",
+    title: "Festivals",
+    description: "Celebrate and promote the grand festivals like Kumbh Mela and Ganga Aarti that showcase India's soul.",
+    icon: "Sparkles",
+    image: "/images/ganga_festivals_aarti_1777100934524.png"
+  },
