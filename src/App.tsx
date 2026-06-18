@@ -439,3 +439,16 @@ export default function App() {
           </motion.div>
         </div>
       </section>
+
+      <section id="book" className="book-section">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr] gap-12 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              className="book-stage"
+            >
+              <BookSlider />
+            </motion.div>
