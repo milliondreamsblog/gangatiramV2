@@ -64,3 +64,12 @@ const bookSliderSlides = [
     subtitle: 'Premium 3D product view with visible cover, spine, and page depth.'
   }
 ];
+
+type OrderForm = {
+  name: string;
+  address: string;
+  pincode: string;
+  country: string;
+  state: string;
+  paymentScreenshot: File | null;
+};
