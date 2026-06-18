@@ -73,3 +73,19 @@ type OrderForm = {
   state: string;
   paymentScreenshot: File | null;
 };
+
+export default function App() {
+  const [activeTab, setActiveTab] = useState('journey');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedPlace, setSelectedPlace] = useState<GangaPlace | null>(null);
+  const [showAllPlaces, setShowAllPlaces] = useState(false);
+  const [showCheckout, setShowCheckout] = useState(false);
+  const [orderSubmitted, setOrderSubmitted] = useState(false);
+  const [orderForm, setOrderForm] = useState<OrderForm>({
+    name: '',
+    address: '',
+    pincode: '',
+    country: 'India',
+    state: '',
+    paymentScreenshot: null
+  });
