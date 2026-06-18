@@ -511,3 +511,14 @@ export default function App() {
           </div>
         </div>
       </section>
+
+      {/* Main Content */}
+      <main className="max-w-7xl mx-auto px-6 py-20">
+        
+        {/* FACE Framework Introduction */}
+        <div className="mb-32">
+          <div className="text-center mb-16">
+            <h2 className="text-[#3A7CA5] font-black text-sm uppercase tracking-[0.3em] mb-4">Preservation Framework</h2>
+            <h3 className="text-4xl md:text-5xl font-serif font-bold text-[#2D241E] mb-6">The FACE of Ganga</h3>
+            <p className="text-[#5A4B3F] max-w-2xl mx-auto italic">"F - Festivals, A - Arts, C - Culture, E - Environmental Preservation"</p>
+          </div>
