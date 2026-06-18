@@ -839,3 +839,29 @@ export default function App() {
     </div>
   );
 }
+
+function BookSlider({ compact = false }: { compact?: boolean }) {
+  const [activeSlide, setActiveSlide] = useState(0);
+  const slide = bookSliderSlides[activeSlide];
+  const hasMultipleSlides = bookSliderSlides.length > 1;
+
+  return (
+    <div className={compact ? 'book-slider compact' : 'book-slider'}>
+      <div className="book-slider-frame">
+        <img src={slide.image} alt="AI generated Ganga Tiram thick hardcover book product mockup" />
+        <div className="book-slider-caption">
+          <span>AI Product View</span>
+          <h3>{slide.title}</h3>
+          {!compact && <p>{slide.subtitle}</p>}
+        </div>
+      </div>
+
+      <div className="book-slider-controls">
+        <button
+          type="button"
+          disabled={!hasMultipleSlides}
+          onClick={() => setActiveSlide((activeSlide - 1 + bookSliderSlides.length) % bookSliderSlides.length)}
+          aria-label="Previous book image"
+        >
+          <ArrowLeft size={18} />
+        </button>
