@@ -742,3 +742,24 @@ export default function App() {
                   <h2 className="text-4xl font-serif font-bold">{selectedPlace.name}</h2>
                 </div>
               </div>
+              
+              <div className="p-8 md:p-12">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                  <div>
+                    <h3 className="text-[#3A7CA5] font-black text-xs uppercase tracking-widest mb-4 flex items-center gap-2">
+                      <Info size={14} /> Description
+                    </h3>
+                    <p className="text-[#5A4B3F] leading-relaxed mb-8">{selectedPlace.description}</p>
+                    
+                    <h3 className="text-[#3A7CA5] font-black text-xs uppercase tracking-widest mb-4 flex items-center gap-2">
+                      <MapPin size={14} /> Highlights
+                    </h3>
+                    <ul className="grid grid-cols-2 gap-4">
+                      {selectedPlace.features.map((f, i) => (
+                        <li key={i} className="flex items-center gap-2 text-sm text-[#5A4B3F]">
+                          <div className="w-1.5 h-1.5 bg-[#D4A373] rounded-full"></div>
+                          {f}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
