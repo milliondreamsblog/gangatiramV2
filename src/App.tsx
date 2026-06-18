@@ -630,3 +630,29 @@ export default function App() {
             )}
           </div>
         </div>
+
+        {/* Heritage & Culture Highlight */}
+        <div id="heritage" className="bg-[#2D241E] rounded-[3rem] overflow-hidden flex flex-col lg:flex-row items-stretch shadow-2xl">
+          <div className="lg:w-1/2 relative min-h-[400px]">
+            <img 
+              src="/images/ganga_culture_heritage_1777100835789.png" 
+              alt="Heritage Culture" 
+              className="absolute inset-0 w-full h-full object-cover"
+              onError={(e) => {
+                (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1548013146-72479768bbaa?auto=format&fit=crop&q=80&w=1000';
+              }}
+            />
+          </div>
+          <div className="lg:w-1/2 p-12 lg:p-20 flex flex-col justify-center text-white">
+            <h2 className="text-[#D4A373] font-bold text-sm uppercase tracking-[0.3em] mb-6">Experience the Legacy</h2>
+            <h3 className="text-4xl md:text-5xl font-serif font-bold mb-8 leading-tight">A Civilization Born of the Holy Waters</h3>
+            <div className="space-y-8">
+              <div className="flex gap-6">
+                <div className="bg-[#3A7CA5]/20 p-4 rounded-2xl shrink-0">
+                  <Palette className="text-[#3A7CA5]" size={24} />
+                </div>
+                <div>
+                  <h4 className="font-bold text-xl mb-2">Art & Craftsmanship</h4>
+                  <p className="text-gray-400 leading-relaxed">From the intricate Silk of Banaras to the vibrant Madhubani of Bihar, Ganga's banks have nurtured artistic brilliance for millennia.</p>
+                </div>
+              </div>
