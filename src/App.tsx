@@ -389,3 +389,17 @@ export default function App() {
           </button>
         </div>
       </nav>
+
+      {/* Hero Section */}
+      <section className="relative h-[80vh] flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="/images/ganga_river_hero_1777100817848.png" 
+            alt="Ganga River" 
+            className="w-full h-full object-cover brightness-75 scale-105"
+            onError={(e) => {
+              (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1590053450410-090c29188092?auto=format&fit=crop&q=80&w=2000';
+            }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-[#FDFCF8]"></div>
+        </div>
