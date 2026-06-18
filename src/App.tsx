@@ -477,3 +477,24 @@ export default function App() {
               </button>
             </motion.div>
           </div>
+
+          <div className="book-benefits">
+            <div className="book-benefits-heading">
+              <p className="text-[#3A7CA5] font-black text-xs uppercase tracking-[0.25em] mb-3">What you get</p>
+              <h3 className="text-3xl md:text-4xl font-serif font-bold text-[#2D241E]">A complete Ganga journey in one collectible book</h3>
+            </div>
+
+            <div className="book-benefit-grid">
+              {bookHighlights.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <div key={item.title} className="book-benefit-card">
+                    <div className="book-benefit-icon">
+                      <Icon size={22} />
+                    </div>
+                    <h4>{item.title}</h4>
+                    <p>{item.description}</p>
+                  </div>
+                );
+              })}
+            </div>
