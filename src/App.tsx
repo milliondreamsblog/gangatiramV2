@@ -403,3 +403,21 @@ export default function App() {
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-[#FDFCF8]"></div>
         </div>
+        
+        <div className="relative z-10 text-center px-4">
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-5xl md:text-8xl font-serif text-white mb-6 font-bold"
+          >
+            The Eternal Grace
+          </motion.h1>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-lg md:text-2xl text-[#E8DCC4] max-w-2xl mx-auto mb-10 leading-relaxed italic"
+          >
+            "A journey of 2,525 kilometers, a legacy of 5,000 years, and the heartbeat of a billion souls."
+          </motion.p>
