@@ -80,3 +80,13 @@ export const gangaPlaces: GangaPlace[] = [
     art: "Madhubani Painting (region)",
     heritage: "Imperial History"
   },
+  {
+    id: 12,
+    name: "Bhagalpur",
+    state: "Bihar",
+    description: "The Silk City, famous for its Tussar silk and as a hub for river dolphin conservation.",
+    features: ["Silk Weaving", "Vikramshila", "Dolphin Sanctuary"],
+    cuisine: "Fish curry",
+    art: "Manjusha Art",
+    heritage: "Ancient University ruins"
+  },
