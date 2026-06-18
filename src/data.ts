@@ -127,3 +127,10 @@ export const contribFACE = [
     icon: "Palette",
     image: "/images/ganga_art_crafts_1777100912325.png"
   },
+  {
+    letter: "C",
+    title: "Culture",
+    description: "Experience and preserve the diverse cuisines, music, and philosophical traditions of the Ganga basin.",
+    icon: "Music",
+    image: "/images/ganga_culture_heritage_1777100835789.png"
+  },
