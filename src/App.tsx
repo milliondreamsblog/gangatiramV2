@@ -561,3 +561,23 @@ export default function App() {
             ))}
           </div>
         </div>
+
+        {/* Journey Section */}
+        <div id="journey" className="mb-32">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+            <div>
+              <h2 className="text-[#D4A373] font-black text-sm uppercase tracking-[0.3em] mb-4">The Sacred Trail</h2>
+              <h3 className="text-4xl font-serif font-bold text-[#2D241E]">The Heritage Path</h3>
+              <p className="text-[#5A4B3F] mt-2">Exploring the major landmarks from the glaciers to the delta.</p>
+            </div>
+            <div className="relative w-full md:w-80 border-b border-[#E8DCC4] pb-2">
+              <Search className="absolute left-0 top-1/2 -translate-y-1/2 text-[#A8988A]" size={18} />
+              <input 
+                type="text" 
+                placeholder="Search sacred places..." 
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-10 pr-4 py-2 bg-transparent focus:outline-none text-[#2D241E]"
+              />
+            </div>
+          </div>
