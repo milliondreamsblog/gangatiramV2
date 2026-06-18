@@ -100,3 +100,14 @@ export const gangaPlaces: GangaPlace[] = [
     art: "Ivory carving (historical)",
     heritage: "Nawabi History"
   },
+  {
+    id: 14,
+    name: "Kolkata",
+    state: "West Bengal",
+    description: "The City of Joy, with a rich colonial and cultural history along the Hooghly.",
+    features: ["Dakshineswar", "Howrah Bridge", "Victoria Memorial"],
+    cuisine: "Rosogolla, Mishti Doi, Fish Fry",
+    art: "Kalighat Painting",
+    heritage: "Renaissance of Bengal"
+  }
+];
