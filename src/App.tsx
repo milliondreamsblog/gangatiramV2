@@ -808,3 +808,12 @@ export default function App() {
                 Dedicated to the preservation, purification, and promotion of the holy river and the civilizational richness she has nurtured for millennia.
               </p>
             </div>
+            <div>
+              <h5 className="font-bold mb-6 text-[#D4A373]">Ganga Network</h5>
+              <ul className="space-y-4 text-gray-400 text-sm">
+                <li><a href="#" className="hover:text-white transition-colors">75 Places Trail</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Namami Gange</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Clean Ganga Fund</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Culture Map</a></li>
+              </ul>
+            </div>
