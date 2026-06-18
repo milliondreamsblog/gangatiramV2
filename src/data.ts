@@ -40,3 +40,13 @@ export const gangaPlaces: GangaPlace[] = [
     art: "Handmade Diya making",
     heritage: "Ancient Gate of the Gods"
   },
+  {
+    id: 4,
+    name: "Prayagraj",
+    state: "Uttar Pradesh",
+    description: "The site of the Triveni Sangam, the confluence of Ganga, Yamuna, and the mythical Saraswati.",
+    features: ["Triveni Sangam", "Kumbh Mela", "Anand Bhawan"],
+    cuisine: "Guava (Allahabadi Surkha)",
+    art: "Kumbh Art",
+    heritage: "Cultural hub of India"
+  },
