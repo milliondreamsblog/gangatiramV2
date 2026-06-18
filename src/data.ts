@@ -70,3 +70,13 @@ export const gangaPlaces: GangaPlace[] = [
     art: "Coir craft",
     heritage: "Ultimate Pilgrimage point"
   },
+  {
+    id: 11,
+    name: "Patna",
+    state: "Bihar",
+    description: "Ancient Pataliputra, the capital of Maurya and Gupta empires.",
+    features: ["Golghar", "Gandhi Maidan", "Patna Saheb"],
+    cuisine: "Litti Chokha",
+    art: "Madhubani Painting (region)",
+    heritage: "Imperial History"
+  },
