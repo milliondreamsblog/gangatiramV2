@@ -37,3 +37,20 @@ body {
 .book-slider-frame img {
   @apply block w-full aspect-[4/3] object-cover;
 }
+
+.book-slider-caption {
+  @apply absolute inset-x-0 bottom-0 p-5 md:p-7 text-white;
+  background: linear-gradient(180deg, transparent, rgba(45, 36, 30, 0.88));
+}
+
+.book-slider-caption span {
+  @apply text-[10px] font-black uppercase tracking-[0.25em] text-[#D4A373];
+}
+
+.book-slider-caption h3 {
+  @apply mt-2 text-2xl md:text-3xl font-serif font-bold;
+}
+
+.book-slider-caption p {
+  @apply mt-2 max-w-md text-sm text-white/80 leading-relaxed;
+}
