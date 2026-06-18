@@ -114,3 +114,19 @@ body {
 .book-benefit-card {
   @apply bg-white border border-[#E8DCC4] rounded-2xl p-6 shadow-sm transition-all;
 }
+
+.book-benefit-card:hover {
+  @apply -translate-y-1 shadow-xl;
+}
+
+.book-benefit-icon {
+  @apply w-12 h-12 rounded-2xl bg-[#3A7CA5]/10 text-[#3A7CA5] flex items-center justify-center mb-5;
+}
+
+.book-benefit-card h4 {
+  @apply text-lg font-bold text-[#2D241E] mb-2;
+}
+
+.book-benefit-card p {
+  @apply text-sm leading-relaxed text-[#5A4B3F];
+}
