@@ -763,3 +763,24 @@ export default function App() {
                       ))}
                     </ul>
                   </div>
+                  
+                  <div className="space-y-8">
+                    <div className="bg-[#FDFCF8] p-6 rounded-2xl border border-[#E8DCC4]">
+                      <h4 className="font-bold flex items-center gap-2 mb-3">
+                        <Waves className="text-[#3A7CA5]" size={18} /> Heritage
+                      </h4>
+                      <p className="text-sm text-[#5A4B3F]">{selectedPlace.heritage}</p>
+                    </div>
+                    <div className="bg-[#FDFCF8] p-6 rounded-2xl border border-[#E8DCC4]">
+                      <h4 className="font-bold flex items-center gap-2 mb-3">
+                        <Palette className="text-[#3A7CA5]" size={18} /> Art & Craft
+                      </h4>
+                      <p className="text-sm text-[#5A4B3F]">{selectedPlace.art}</p>
+                    </div>
+                    <div className="bg-[#FDFCF8] p-6 rounded-2xl border border-[#E8DCC4]">
+                      <h4 className="font-bold flex items-center gap-2 mb-3">
+                        <Music className="text-[#3A7CA5]" size={18} /> Cuisine
+                      </h4>
+                      <p className="text-sm text-[#5A4B3F]">{selectedPlace.cuisine}</p>
+                    </div>
+                  </div>
