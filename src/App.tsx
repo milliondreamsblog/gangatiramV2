@@ -865,3 +865,27 @@ function BookSlider({ compact = false }: { compact?: boolean }) {
         >
           <ArrowLeft size={18} />
         </button>
+        <div className="book-slider-dots">
+          {bookSliderSlides.map((item, index) => (
+            <button
+              key={item.title}
+              type="button"
+              className={index === activeSlide ? 'active' : ''}
+              onClick={() => setActiveSlide(index)}
+              aria-label={`Show ${item.title}`}
+            />
+          ))}
+        </div>
+        <button
+          type="button"
+          disabled={!hasMultipleSlides}
+          onClick={() => setActiveSlide((activeSlide + 1) % bookSliderSlides.length)}
+          aria-label="Next book image"
+        >
+          <ChevronRight size={18} />
+        </button>
+      </div>
+    </div>
+  );
+}
+
