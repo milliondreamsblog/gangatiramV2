@@ -656,3 +656,27 @@ export default function App() {
                   <p className="text-gray-400 leading-relaxed">From the intricate Silk of Banaras to the vibrant Madhubani of Bihar, Ganga's banks have nurtured artistic brilliance for millennia.</p>
                 </div>
               </div>
+              <div className="flex gap-6">
+                <div className="bg-[#D4A373]/20 p-4 rounded-2xl shrink-0">
+                  <Music className="text-[#D4A373]" size={24} />
+                </div>
+                <div>
+                  <h4 className="font-bold text-xl mb-2">Music & Philosophy</h4>
+                  <p className="text-gray-400 leading-relaxed">The rhythmic sound of temple bells and the soulful kirtans create a spiritual melody that resonates across the river's path.</p>
+                </div>
+              </div>
+              <div className="flex gap-6">
+                <div className="bg-[#3A7CA5]/20 p-4 rounded-2xl shrink-0">
+                  <Waves className="text-[#3A7CA5]" size={24} />
+                </div>
+                <div>
+                  <h4 className="font-bold text-xl mb-2">Sustainable Living</h4>
+                  <p className="text-gray-400 leading-relaxed">Honoring the river means protecting the life she sustains, from the Gangetic dolphins to the local farming communities.</p>
+                </div>
+              </div>
+            </div>
+            <button className="mt-12 bg-white text-[#2D241E] px-10 py-4 rounded-full font-bold hover:bg-[#D4A373] hover:text-white transition-all w-fit">
+              Explore Cuisines & Art
+            </button>
+          </div>
+        </div>
