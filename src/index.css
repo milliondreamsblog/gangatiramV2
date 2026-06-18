@@ -25,3 +25,15 @@ body {
 .book-chip {
   @apply inline-flex items-center gap-2 rounded-full border border-[#E8DCC4] bg-white px-4 py-2 text-sm font-bold text-[#5A4B3F];
 }
+
+.book-slider {
+  @apply w-full max-w-xl mx-auto lg:mx-0;
+}
+
+.book-slider-frame {
+  @apply relative overflow-hidden rounded-3xl border border-[#E8DCC4] bg-white shadow-2xl;
+}
+
+.book-slider-frame img {
+  @apply block w-full aspect-[4/3] object-cover;
+}
