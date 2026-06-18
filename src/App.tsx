@@ -111,3 +111,21 @@ export default function App() {
     event.preventDefault();
     setOrderSubmitted(true);
   };
+
+  if (showCheckout) {
+    return (
+      <div className="min-h-screen bg-[#FDFCF8] text-[#2D241E] font-sans selection:bg-[#3A7CA5] selection:text-white">
+        <nav className="fixed top-0 w-full z-50 bg-white/85 backdrop-blur-md border-b border-[#E8DCC4] px-6 py-4">
+          <div className="max-w-7xl mx-auto flex justify-between items-center">
+            <button
+              onClick={() => setShowCheckout(false)}
+              className="flex items-center gap-2 text-[#2D241E] hover:text-[#3A7CA5] transition-colors font-bold"
+            >
+              <ArrowLeft size={20} /> Back
+            </button>
+            <div className="flex items-center gap-2">
+              <Waves className="text-[#3A7CA5] w-7 h-7" />
+              <span className="text-xl font-serif font-bold">Ganga Tiram</span>
+            </div>
+          </div>
+        </nav>
