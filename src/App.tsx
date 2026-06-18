@@ -142,3 +142,19 @@ export default function App() {
                 </p>
               </div>
             </section>
+
+            <section className="bg-white border border-[#E8DCC4] rounded-3xl p-6 md:p-10 shadow-xl">
+              {orderSubmitted ? (
+                <div className="min-h-[520px] flex flex-col justify-center items-center text-center">
+                  <CheckCircle2 className="text-[#3A7CA5] mb-6" size={72} />
+                  <h2 className="text-4xl font-serif font-bold mb-4">Order Details Received</h2>
+                  <p className="text-[#5A4B3F] max-w-xl mb-8">
+                    Your payment screenshot and delivery details are ready for review. Add a backend or form service before production if you need these orders stored automatically.
+                  </p>
+                  <button
+                    onClick={() => setShowCheckout(false)}
+                    className="bg-[#3A7CA5] text-white px-8 py-4 rounded-full font-bold hover:bg-[#2F668A] transition-colors"
+                  >
+                    Return Home
+                  </button>
+                </div>
