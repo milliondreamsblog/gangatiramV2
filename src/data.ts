@@ -20,3 +20,13 @@ export const gangaPlaces: GangaPlace[] = [
     art: "Natural Ice structures",
     heritage: "Purest form of the river"
   },
+  {
+    id: 2,
+    name: "Rishikesh",
+    state: "Uttarakhand",
+    description: "The Yoga Capital of the World and a gateway to the Himalayas.",
+    features: ["Yoga", "Rafting", "Ganga Aarti"],
+    cuisine: "Ayurvedic Food",
+    art: "Wall murals",
+    heritage: "Ashram culture"
+  },
