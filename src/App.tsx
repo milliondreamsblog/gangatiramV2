@@ -251,3 +251,29 @@ export default function App() {
             <h1 className="text-4xl md:text-5xl font-serif font-bold text-[#2D241E] mb-4">The Complete Sacred Path</h1>
             <p className="text-[#5A4B3F] text-lg max-w-3xl">Explore every major landmark, heritage site, and spiritual hub along the 2,525 km journey of the holy river.</p>
           </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 justify-items-center">
+            {filteredPlaces.map((place) => (
+              <motion.div 
+                key={place.id}
+                layout
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                whileHover={{ y: -5 }}
+                onClick={() => setSelectedPlace(place)}
+                className="bg-white rounded-3xl p-8 border border-[#E8DCC4] hover:shadow-xl transition-all group cursor-pointer w-full max-w-[320px]"
+              >
+                <div className="flex justify-between items-start mb-6">
+                  <span className="text-[#3A7CA5] text-[10px] font-black uppercase tracking-widest bg-[#3A7CA5]/10 px-3 py-1 rounded-full">{place.state}</span>
+                  <MapPin className="text-[#A8988A] group-hover:text-[#3A7CA5] transition-colors" size={20} />
+                </div>
+                <h4 className="text-2xl font-serif font-bold text-[#2D241E] mb-3 group-hover:text-[#3A7CA5] transition-colors">{place.name}</h4>
+                <p className="text-[#5A4B3F] text-sm leading-relaxed mb-6 line-clamp-3">{place.description}</p>
+                <div className="flex flex-wrap gap-2 mt-auto">
+                  {place.features.slice(0, 2).map((f, i) => (
+                    <span key={i} className="text-[9px] font-bold text-[#A8988A] border border-[#E8DCC4] px-2 py-1 rounded-md uppercase tracking-wider">{f}</span>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </div>
