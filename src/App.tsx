@@ -826,3 +826,13 @@ export default function App() {
                 <li><a href="#" className="hover:text-white transition-colors">Contact Us</a></li>
               </ul>
             </div>
+          </div>
+          <div className="mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-xs text-gray-500 uppercase tracking-widest font-bold">
+            <p>© 2026 Mother Ganga Heritage Preservation. All Rights Reserved.</p>
+            <div className="flex gap-8">
+              <a href="#" className="hover:text-white">Privacy Policy</a>
+              <a href="#" className="hover:text-white">Terms of Service</a>
+            </div>
+          </div>
+        </div>
+      </footer>
