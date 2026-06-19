@@ -37,31 +37,31 @@ const paymentQr = '/book/payment-qr.jpeg';
 const bookHighlights = [
   {
     icon: Route,
-    title: '75 panoramic locations',
-    description: 'A guided visual trail from Gomukh to Gangasagar across the sacred river path.'
+    title: '75 documented locations',
+    description: 'A chronological map tracing the entire 2,525 km river course through 75 documented locations.'
   },
   {
     icon: Landmark,
-    title: 'Heritage and culture',
-    description: 'Temples, ghats, stories, rituals, art, cuisine, and living traditions along Ganga.'
+    title: 'Art and living traditions',
+    description: 'Explore 15 specific riverside art styles, 45 ancient temples, and local culinary traditions.'
   },
   {
     icon: Images,
     title: 'Large visual spreads',
-    description: 'Photo-rich pages designed as a memorable coffee-table style reading experience.'
+    description: 'Features 240 high-resolution full-page photographs printed on 170 GSM matte art paper.'
   },
   {
     icon: PackageCheck,
     title: 'Direct delivery order',
-    description: 'Simple QR payment flow with delivery details and payment screenshot upload.'
+    description: 'Scan the direct UPI QR code, upload your transfer receipt, and receive tracking within 24 hours.'
   }
 ];
 
 const bookSliderSlides = [
   {
     image: aiBookSlider,
-    title: 'Thick hardcover edition',
-    subtitle: 'Premium 3D product view with visible cover, spine, and page depth.'
+    title: 'The Printed Collection',
+    subtitle: 'A tangible 300-page visual trail across 75 sacred locations.'
   }
 ];
 
@@ -261,7 +261,7 @@ export default function App() {
                 animate={{ opacity: 1, y: 0 }}
                 whileHover={{ y: -5 }}
                 onClick={() => setSelectedPlace(place)}
-                className="bg-white rounded-3xl p-8 border border-[#E8DCC4] hover:shadow-xl transition-all group cursor-pointer w-full max-w-[320px]"
+                className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 border border-[#E8DCC4]/80 shadow-[0_8px_30px_rgb(0,0,0,0.02)] hover:border-[#3A7CA5]/40 hover:shadow-[0_20px_50px_rgba(58,124,165,0.12)] transition-all duration-300 group cursor-pointer w-full max-w-[320px]"
               >
                 <div className="flex justify-between items-start mb-6">
                   <span className="text-[#3A7CA5] text-[10px] font-black uppercase tracking-widest bg-[#3A7CA5]/10 px-3 py-1 rounded-full">{place.state}</span>
@@ -409,17 +409,17 @@ export default function App() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-5xl md:text-8xl font-serif text-white mb-6 font-bold"
+            className="text-5xl md:text-7xl lg:text-8xl font-serif text-white mb-6 font-bold drop-shadow-2xl"
           >
-            The Eternal Grace
+            2,525 Kilometers<br/>of Heritage
           </motion.h1>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-lg md:text-2xl text-[#E8DCC4] max-w-2xl mx-auto mb-10 leading-relaxed italic"
+            className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto mb-10 leading-relaxed bg-black/20 p-6 rounded-3xl backdrop-blur-md border border-white/10"
           >
-            "A journey of 2,525 kilometers, a legacy of 5,000 years, and the heartbeat of a billion souls."
+            Experience the exact route of the Ganga through 75 documented sacred locations, interactive digital archives, and direct artisan support.
           </motion.p>
           <motion.div
             initial={{ opacity: 0 }}
@@ -518,9 +518,14 @@ export default function App() {
         {/* FACE Framework Introduction */}
         <div className="mb-32">
           <div className="text-center mb-16">
-            <h2 className="text-[#3A7CA5] font-black text-sm uppercase tracking-[0.3em] mb-4">Preservation Framework</h2>
+            <h2 className="text-[#3A7CA5] font-black text-sm uppercase tracking-[0.3em] mb-4">Action Framework</h2>
             <h3 className="text-4xl md:text-5xl font-serif font-bold text-[#2D241E] mb-6">The FACE of Ganga</h3>
-            <p className="text-[#5A4B3F] max-w-2xl mx-auto italic">"F - Festivals, A - Arts, C - Culture, E - Environmental Preservation"</p>
+            <div className="flex flex-wrap justify-center gap-4 text-[#5A4B3F] font-bold">
+              <span className="bg-white px-4 py-2 rounded-full border border-[#E8DCC4] shadow-sm">F: FESTIVALS (digital)</span>
+              <span className="bg-white px-4 py-2 rounded-full border border-[#E8DCC4] shadow-sm">A: Art</span>
+              <span className="bg-white px-4 py-2 rounded-full border border-[#E8DCC4] shadow-sm">C: Craft</span>
+              <span className="bg-white px-4 py-2 rounded-full border border-[#E8DCC4] shadow-sm">E: Environmental issue</span>
+            </div>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -594,7 +599,7 @@ export default function App() {
                     exit={{ opacity: 0, scale: 0.9 }}
                     whileHover={{ y: -10 }}
                     onClick={() => setSelectedPlace(place)}
-                    className="bg-white rounded-[2.5rem] p-10 border border-[#E8DCC4] shadow-sm hover:shadow-2xl transition-all group cursor-pointer w-full max-w-[380px] h-full flex flex-col"
+                    className="bg-white/90 backdrop-blur-sm rounded-[2.5rem] p-10 border border-[#E8DCC4]/80 shadow-[0_8px_30px_rgb(0,0,0,0.03)] hover:border-[#3A7CA5]/40 hover:shadow-[0_20px_50px_rgba(58,124,165,0.12)] transition-all duration-300 group cursor-pointer w-full max-w-[380px] h-full flex flex-col"
                   >
                     <div className="flex justify-between items-start mb-8">
                       <div className="bg-[#F4F1EA] p-4 rounded-2xl group-hover:bg-[#3A7CA5] transition-colors">
@@ -643,7 +648,7 @@ export default function App() {
               }}
             />
           </div>
-          <div className="lg:w-1/2 p-12 lg:p-20 flex flex-col justify-center text-white">
+          <div className="lg:w-1/2 p-12 lg:p-20 flex flex-col justify-center text-white bg-gradient-to-br from-[#2D241E] to-[#1E1814]">
             <h2 className="text-[#D4A373] font-bold text-sm uppercase tracking-[0.3em] mb-6">Experience the Legacy</h2>
             <h3 className="text-4xl md:text-5xl font-serif font-bold mb-8 leading-tight">A Civilization Born of the Holy Waters</h3>
             <div className="space-y-8">
@@ -653,7 +658,7 @@ export default function App() {
                 </div>
                 <div>
                   <h4 className="font-bold text-xl mb-2">Art & Craftsmanship</h4>
-                  <p className="text-gray-400 leading-relaxed">From the intricate Silk of Banaras to the vibrant Madhubani of Bihar, Ganga's banks have nurtured artistic brilliance for millennia.</p>
+                  <p className="text-gray-400 leading-relaxed">Sourcing Banarasi silk directly from 50 weaver looms in Kashi and supporting Madhubani canvas painters along Bihar's riverbanks.</p>
                 </div>
               </div>
               <div className="flex gap-6">
@@ -662,7 +667,7 @@ export default function App() {
                 </div>
                 <div>
                   <h4 className="font-bold text-xl mb-2">Music & Philosophy</h4>
-                  <p className="text-gray-400 leading-relaxed">The rhythmic sound of temple bells and the soulful kirtans create a spiritual melody that resonates across the river's path.</p>
+                  <p className="text-gray-400 leading-relaxed">Accessing 500+ hours of high-fidelity recordings of morning Ragas, temple bells, and Sanskrit hymns performed at the water's edge.</p>
                 </div>
               </div>
               <div className="flex gap-6">
@@ -670,8 +675,8 @@ export default function App() {
                   <Waves className="text-[#3A7CA5]" size={24} />
                 </div>
                 <div>
-                  <h4 className="font-bold text-xl mb-2">Sustainable Living</h4>
-                  <p className="text-gray-400 leading-relaxed">Honoring the river means protecting the life she sustains, from the Gangetic dolphins to the local farming communities.</p>
+                  <h4 className="font-bold text-xl mb-2">Ecological Action</h4>
+                  <p className="text-gray-400 leading-relaxed">Funding clean-water patrols to monitor the 50km Gangetic Dolphin Sanctuary and eliminating chemical waste from local farms.</p>
                 </div>
               </div>
             </div>
@@ -682,31 +687,37 @@ export default function App() {
         </div>
 
         {/* Action / Contribution Section */}
-        <div id="action" className="mt-32 text-center bg-[#F4EDDE] p-12 md:p-24 rounded-[3rem] border border-[#E8DCC4]">
-          <h2 className="text-[#3A7CA5] font-black text-sm uppercase tracking-[0.3em] mb-6">Make a Difference</h2>
-          <h3 className="text-4xl md:text-6xl font-serif font-bold text-[#2D241E] mb-8">Contribute to the Legacy</h3>
-          <p className="text-[#5A4B3F] max-w-2xl mx-auto mb-16 text-lg">
-            Mother Ganga has given us everything. It's time we reciprocate. Become a volunteer, donate to the cleaning mission, or simply spread the knowledge of her rich heritage.
+        <div id="action" className="mt-32 text-center bg-[#F4EDDE] p-12 md:p-24 rounded-[3rem] border border-[#E8DCC4] shadow-[0_8px_30px_rgb(0,0,0,0.02)]">
+          <h2 className="text-[#3A7CA5] font-black text-sm uppercase tracking-[0.3em] mb-6">Join the 75-Ghat Initiative</h2>
+          <h3 className="text-4xl md:text-6xl font-serif font-bold text-[#2D241E] mb-8">Help Preserve 2,525 km of Heritage</h3>
+          <p className="text-[#5A4B3F] max-w-2xl mx-auto mb-16 text-lg leading-relaxed">
+            Directly fund artisan livelihoods, volunteer in monthly plastic cleanups, or host digital heritage archives to ensure Ganga's culture thrives.
           </p>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white p-10 rounded-3xl shadow-lg border border-[#E8DCC4]">
-              <HandHelping className="mx-auto text-[#D4A373] mb-6" size={48} />
-              <h4 className="text-2xl font-bold mb-4">Volunteer</h4>
-              <p className="text-[#5A4B3F] mb-8 text-sm">Join our ground-level cleaning drives and cultural preservation workshops.</p>
-              <button className="text-[#3A7CA5] font-black text-xs uppercase tracking-widest hover:underline">Apply Now</button>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+            <div className="bg-white p-10 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.03)] border border-[#E8DCC4] transition-all duration-300 hover:-translate-y-3 hover:shadow-[0_20px_50px_rgba(45,36,30,0.1)] hover:border-[#D4A373]/50 flex flex-col justify-between h-full">
+              <div>
+                <HandHelping className="mx-auto text-[#D4A373] mb-6" size={48} />
+                <h4 className="text-2xl font-bold mb-4 text-[#2D241E]">Volunteer</h4>
+                <p className="text-[#5A4B3F] mb-8 text-sm leading-relaxed">Register for 3-day cleanup camps in Varanasi or teach local art preservation workshops to school children.</p>
+              </div>
+              <button className="text-[#3A7CA5] font-black text-xs uppercase tracking-widest hover:underline mt-auto">Register as Volunteer</button>
             </div>
-            <div className="bg-[#3A7CA5] p-10 rounded-3xl shadow-lg text-white transform scale-105">
-              <Heart className="mx-auto text-white mb-6 animate-pulse" size={48} fill="white" />
-              <h4 className="text-2xl font-bold mb-4">Donate</h4>
-              <p className="text-white/80 mb-8 text-sm">Your contributions fund advanced water purification and artisan support programs.</p>
-              <button className="bg-white text-[#3A7CA5] px-8 py-3 rounded-full font-bold hover:bg-[#F4EDDE] transition-all">Support Now</button>
+            <div className="bg-gradient-to-br from-[#3A7CA5] to-[#2F668A] p-10 rounded-3xl shadow-xl text-white transform md:scale-105 transition-all duration-300 hover:-translate-y-3 hover:shadow-[0_25px_55px_rgba(58,124,165,0.3)] flex flex-col justify-between h-full">
+              <div>
+                <Heart className="mx-auto text-white mb-6 animate-pulse" size={48} fill="white" />
+                <h4 className="text-2xl font-bold mb-4">Direct Support</h4>
+                <p className="text-white/80 mb-8 text-sm leading-relaxed">100% of donations go directly to buying clay for 50 potter families and cleaning supplies for riverbed teams.</p>
+              </div>
+              <button className="bg-white text-[#3A7CA5] px-8 py-3 rounded-full font-bold hover:bg-[#F4EDDE] transition-all mt-auto self-center">Fund a Family</button>
             </div>
-            <div className="bg-white p-10 rounded-3xl shadow-lg border border-[#E8DCC4]">
-              <Globe className="mx-auto text-[#3A7CA5] mb-6" size={48} />
-              <h4 className="text-2xl font-bold mb-4">Awareness</h4>
-              <p className="text-[#5A4B3F] mb-8 text-sm">Share the stories of the 75 places and become a digital guardian of Ganga.</p>
-              <button className="text-[#3A7CA5] font-black text-xs uppercase tracking-widest hover:underline">Share Stories</button>
+            <div className="bg-white p-10 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.03)] border border-[#E8DCC4] transition-all duration-300 hover:-translate-y-3 hover:shadow-[0_20px_50px_rgba(45,36,30,0.1)] hover:border-[#D4A373]/50 flex flex-col justify-between h-full">
+              <div>
+                <Globe className="mx-auto text-[#3A7CA5] mb-6" size={48} />
+                <h4 className="text-2xl font-bold mb-4 text-[#2D241E]">Share Heritage</h4>
+                <p className="text-[#5A4B3F] mb-8 text-sm leading-relaxed">Download our open-access digital heritage kit containing 75 high-res photos and maps to share with your network.</p>
+              </div>
+              <button className="text-[#3A7CA5] font-black text-xs uppercase tracking-widest hover:underline mt-auto">Download Kit</button>
             </div>
           </div>
         </div>
@@ -848,9 +859,9 @@ function BookSlider({ compact = false }: { compact?: boolean }) {
   return (
     <div className={compact ? 'book-slider compact' : 'book-slider'}>
       <div className="book-slider-frame">
-        <img src={slide.image} alt="AI generated Ganga Tiram thick hardcover book product mockup" />
+        <img src={slide.image} alt="Ganga Tiram Heritage Collection Printed Book" />
         <div className="book-slider-caption">
-          <span>AI Product View</span>
+          <span>Heritage Book</span>
           <h3>{slide.title}</h3>
           {!compact && <p>{slide.subtitle}</p>}
         </div>
