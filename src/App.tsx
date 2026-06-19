@@ -261,9 +261,14 @@ export default function App() {
                 animate={{ opacity: 1, y: 0 }}
                 whileHover={{ y: -5 }}
                 onClick={() => setSelectedPlace(place)}
-                className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 border border-[#E8DCC4]/80 shadow-[0_8px_30px_rgb(0,0,0,0.02)] hover:border-[#3A7CA5]/40 hover:shadow-[0_20px_50px_rgba(58,124,165,0.12)] transition-all duration-300 group cursor-pointer w-full max-w-[320px]"
+                className="bg-white/90 backdrop-blur-sm rounded-3xl p-6 border border-[#E8DCC4]/80 shadow-[0_8px_30px_rgb(0,0,0,0.02)] hover:border-[#3A7CA5]/40 hover:shadow-[0_20px_50px_rgba(58,124,165,0.12)] transition-all duration-300 group cursor-pointer w-full max-w-[320px] flex flex-col"
               >
-                <div className="flex justify-between items-start mb-6">
+                {place.imageUrl && (
+                  <div className="w-full h-40 mb-5 rounded-2xl overflow-hidden shrink-0">
+                    <img src={place.imageUrl} alt={place.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  </div>
+                )}
+                <div className="flex justify-between items-start mb-4">
                   <span className="text-[#3A7CA5] text-[10px] font-black uppercase tracking-widest bg-[#3A7CA5]/10 px-3 py-1 rounded-full">{place.state}</span>
                   <MapPin className="text-[#A8988A] group-hover:text-[#3A7CA5] transition-colors" size={20} />
                 </div>
@@ -296,8 +301,11 @@ export default function App() {
                 className="bg-white rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-y-auto"
                 onClick={(e) => e.stopPropagation()}
               >
-                <div className="relative h-64 bg-[#3A7CA5]">
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#2D241E] to-transparent"></div>
+                <div className="relative h-64 bg-[#3A7CA5] overflow-hidden rounded-t-3xl">
+                  {selectedPlace.imageUrl && (
+                    <img src={selectedPlace.imageUrl} alt={selectedPlace.name} className="absolute inset-0 w-full h-full object-cover" />
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#2D241E] via-[#2D241E]/40 to-transparent"></div>
                   <button 
                     onClick={() => setSelectedPlace(null)}
                     className="absolute top-6 right-6 bg-white/20 hover:bg-white/40 text-white p-2 rounded-full backdrop-blur-md"
@@ -599,9 +607,14 @@ export default function App() {
                     exit={{ opacity: 0, scale: 0.9 }}
                     whileHover={{ y: -10 }}
                     onClick={() => setSelectedPlace(place)}
-                    className="bg-white/90 backdrop-blur-sm rounded-[2.5rem] p-10 border border-[#E8DCC4]/80 shadow-[0_8px_30px_rgb(0,0,0,0.03)] hover:border-[#3A7CA5]/40 hover:shadow-[0_20px_50px_rgba(58,124,165,0.12)] transition-all duration-300 group cursor-pointer w-full max-w-[380px] h-full flex flex-col"
+                    className="bg-white/90 backdrop-blur-sm rounded-[2.5rem] p-6 border border-[#E8DCC4]/80 shadow-[0_8px_30px_rgb(0,0,0,0.03)] hover:border-[#3A7CA5]/40 hover:shadow-[0_20px_50px_rgba(58,124,165,0.12)] transition-all duration-300 group cursor-pointer w-full max-w-[380px] h-full flex flex-col overflow-hidden"
                   >
-                    <div className="flex justify-between items-start mb-8">
+                    {place.imageUrl && (
+                      <div className="w-full h-48 mb-6 rounded-2xl overflow-hidden shrink-0">
+                        <img src={place.imageUrl} alt={place.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                      </div>
+                    )}
+                    <div className="flex justify-between items-start mb-6">
                       <div className="bg-[#F4F1EA] p-4 rounded-2xl group-hover:bg-[#3A7CA5] transition-colors">
                         <MapPin className="text-[#2D241E] group-hover:text-white" size={24} />
                       </div>
@@ -740,8 +753,11 @@ export default function App() {
               className="bg-white rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-y-auto"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="relative h-64 bg-[#3A7CA5]">
-                <div className="absolute inset-0 bg-gradient-to-t from-[#2D241E] to-transparent"></div>
+              <div className="relative h-64 bg-[#3A7CA5] overflow-hidden rounded-t-3xl">
+                {selectedPlace.imageUrl && (
+                  <img src={selectedPlace.imageUrl} alt={selectedPlace.name} className="absolute inset-0 w-full h-full object-cover" />
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#2D241E] via-[#2D241E]/40 to-transparent"></div>
                 <button 
                   onClick={() => setSelectedPlace(null)}
                   className="absolute top-6 right-6 bg-white/20 hover:bg-white/40 text-white p-2 rounded-full backdrop-blur-md"
