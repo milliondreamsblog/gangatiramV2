@@ -51,3 +51,8 @@ Please read our CONTRIBUTING.md (coming soon) before making a pull request.
 
 ## ðŸ“„ License
 This project is licensed under the Apache 2.0 License. See the LICENSE file for more details. We encourage sharing and adaptation while giving appropriate credit.
+
+## ðŸ™ Credits & Acknowledgements
+- **Development & Design:** Built with passion for the Ganga Heritage.
+- **Images:** High-quality imagery curated and generated for local hosting.
+- **Artisans:** Deep gratitude to the weavers, painters, and locals who keep the traditions alive.
