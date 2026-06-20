@@ -21,3 +21,9 @@ The project is built with modern web technologies focused on performance and aes
 - **Styling:** Tailwind CSS for rapid, responsive UI development.
 - **Animations:** Framer Motion for smooth, cinematic UI transitions.
 - **Icons:** Lucide React for crisp, scalable iconography.
+
+## ðŸŒ± The Cause & Impact
+Ganga Tiram is more than a project; it's a movement.
+- **Art & Craftsmanship:** Supporting Banarasi silk weavers and Madhubani painters.
+- **Environmental Preservation:** Funding clean-water patrols and plastic waste removal (5,000 kg monthly).
+- **Ecological Action:** Monitoring the Gangetic Dolphin Sanctuary and eliminating chemical waste.
