@@ -8,3 +8,9 @@ Welcome to the **Ganga Tiram** project repository. This platform is a digital an
 
 ## ðŸ“– Overview
 Ganga Tiram is an immersive web experience and heritage collection that documents 75 sacred locations along the 2,525 km course of the Ganga river. Our goal is to preserve the rich cultural, spiritual, and ecological legacy of the river and present it to the world.
+
+## âœ¨ Key Features
+- **Interactive Map:** Trace the exact route of the Ganga through 75 documented locations.
+- **Cultural Archives:** Explore local art forms, music, and traditions.
+- **Heritage Book Collection:** Purchase a tangible 300-page visual trail across sacred locations.
+- **Ecological Action:** Direct support for environmental preservation efforts along the river.
