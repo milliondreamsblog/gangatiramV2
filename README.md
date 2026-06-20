@@ -27,3 +27,18 @@ Ganga Tiram is more than a project; it's a movement.
 - **Art & Craftsmanship:** Supporting Banarasi silk weavers and Madhubani painters.
 - **Environmental Preservation:** Funding clean-water patrols and plastic waste removal (5,000 kg monthly).
 - **Ecological Action:** Monitoring the Gangetic Dolphin Sanctuary and eliminating chemical waste.
+
+## ðŸš€ Getting Started (Local Development)
+To run this project locally, you will need Node.js installed.
+
+1. Clone the repository.
+2. Install dependencies:
+   `ash
+   npm install
+   `
+3. Create a .env.local file and add your configuration (e.g., GEMINI_API_KEY if applicable).
+4. Start the development server:
+   `ash
+   npm run dev
+   `
+5. Open http://localhost:5173 (or the port specified in your terminal) in your browser.
