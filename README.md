@@ -42,3 +42,9 @@ To run this project locally, you will need Node.js installed.
    npm run dev
    `
 5. Open http://localhost:5173 (or the port specified in your terminal) in your browser.
+
+## ðŸ¤ Open Source & Contributing
+We believe in the power of community. **Ganga Tiram is open source**, and we welcome contributions from developers, designers, historians, and environmentalists.
+- **Code:** Submit PRs for bug fixes, performance improvements, or new features.
+- **Content:** Help us document more locations, stories, or art forms.
+Please read our CONTRIBUTING.md (coming soon) before making a pull request.
