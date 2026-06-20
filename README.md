@@ -14,3 +14,10 @@ Ganga Tiram is an immersive web experience and heritage collection that document
 - **Cultural Archives:** Explore local art forms, music, and traditions.
 - **Heritage Book Collection:** Purchase a tangible 300-page visual trail across sacred locations.
 - **Ecological Action:** Direct support for environmental preservation efforts along the river.
+
+## ðŸ—ï¸ Architecture & Tech Stack
+The project is built with modern web technologies focused on performance and aesthetic design:
+- **Frontend Framework:** React 18 with TypeScript and Vite.
+- **Styling:** Tailwind CSS for rapid, responsive UI development.
+- **Animations:** Framer Motion for smooth, cinematic UI transitions.
+- **Icons:** Lucide React for crisp, scalable iconography.
