@@ -27,7 +27,9 @@ import {
   Route,
   Landmark,
   Images,
-  PackageCheck
+  PackageCheck,
+  Menu,
+  X
 } from 'lucide-react';
 import { gangaPlaces, contribFACE, GangaPlace } from './data';
 
@@ -74,6 +76,40 @@ type OrderForm = {
   paymentScreenshot: File | null;
 };
 
+const heritageImages = [
+  "./images/ganga_art_new.png",
+  "./images/ganga_music_new.png",
+  "./images/ganga_environment_new.png"
+];
+
+function HeritageImageSlider() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % heritageImages.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <div className="absolute inset-0 w-full h-full overflow-hidden bg-[#2D241E]">
+      <AnimatePresence>
+        <motion.img
+          key={currentIndex}
+          src={heritageImages[currentIndex]}
+          initial={{ opacity: 0, scale: 1.05 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1.5, ease: "easeInOut" }}
+          className="absolute inset-0 w-full h-full object-cover"
+          alt="Heritage & Culture"
+        />
+      </AnimatePresence>
+    </div>
+  );
+}
+
 export default function App() {
   const [activeTab, setActiveTab] = useState('journey');
   const [searchQuery, setSearchQuery] = useState('');
@@ -89,6 +125,7 @@ export default function App() {
     state: '',
     paymentScreenshot: null
   });
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const filteredPlaces = gangaPlaces.filter(place => 
     place.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -130,7 +167,7 @@ export default function App() {
           </div>
         </nav>
 
-        <main className="max-w-7xl mx-auto px-6 pt-32 pb-20">
+        <main className="max-w-7xl mx-auto px-4 sm:px-6 pt-24 md:pt-32 pb-16 md:pb-20">
           <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-12 items-start">
             <section className="checkout-book-panel">
               <BookSlider compact />
@@ -242,7 +279,7 @@ export default function App() {
           </div>
         </nav>
 
-        <div className="max-w-7xl mx-auto px-6 pt-32 pb-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-24 md:pt-32 pb-16 md:pb-20">
           <motion.div 
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -291,17 +328,17 @@ export default function App() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm"
+              className="fixed inset-0 z-[100] flex items-center justify-center p-0 md:p-4 bg-black/40 backdrop-blur-sm"
               onClick={() => setSelectedPlace(null)}
             >
               <motion.div 
                 initial={{ scale: 0.9, y: 20 }}
                 animate={{ scale: 1, y: 0 }}
                 exit={{ scale: 0.9, y: 20 }}
-                className="bg-white rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-y-auto"
+                className="bg-white w-full h-[100dvh] rounded-none md:h-auto md:max-h-[90vh] md:rounded-3xl max-w-3xl overflow-y-auto"
                 onClick={(e) => e.stopPropagation()}
               >
-                <div className="relative h-64 bg-[#3A7CA5] overflow-hidden rounded-t-3xl">
+                <div className="relative h-64 bg-[#3A7CA5] overflow-hidden rounded-t-none md:rounded-t-3xl">
                   {selectedPlace.imageUrl && (
                     <img src={selectedPlace.imageUrl} alt={selectedPlace.name} className="absolute inset-0 w-full h-full object-cover" />
                   )}
@@ -370,7 +407,7 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[#FDFCF8] text-[#2D241E] font-sans">
+    <div className="min-h-screen bg-[#FDFCF8] text-[#2D241E] font-sans pb-24 md:pb-0">
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-[#E8DCC4] px-6 py-4">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
@@ -392,60 +429,151 @@ export default function App() {
               setActiveTab('action');
             }} className={`${activeTab === 'action' ? 'text-[#3A7CA5] border-b-2 border-[#3A7CA5]' : ''} hover:text-[#3A7CA5] transition-colors`}>Contribute</button>
           </div>
-          <button onClick={goToCheckout} className="bg-[#3A7CA5] text-white px-6 py-2 rounded-full text-sm font-bold hover:bg-[#2F668A] transition-colors shadow-lg flex items-center gap-2">
-            <ShoppingBag size={16} /> Buy Book
-          </button>
+          <div className="flex items-center gap-4">
+            <button onClick={goToCheckout} className="bg-[#3A7CA5] text-white px-5 md:px-6 py-2.5 rounded-full text-sm font-bold hover:bg-[#2F668A] transition-colors shadow-lg flex items-center gap-2 min-h-[44px]">
+              <ShoppingBag size={18} /> <span className="hidden sm:inline">Buy Book</span>
+            </button>
+            <button 
+              className="md:hidden p-2 text-[#2D241E] min-h-[44px] min-w-[44px] flex items-center justify-center"
+              onClick={() => setIsMobileMenuOpen(true)}
+            >
+              <Menu size={28} />
+            </button>
+          </div>
         </div>
       </nav>
 
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="fixed inset-0 z-[100] bg-[#FDFCF8] flex flex-col items-center justify-center"
+          >
+            <button 
+              className="absolute top-6 right-6 p-2 text-[#2D241E] min-h-[44px] min-w-[44px] flex items-center justify-center"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              <X size={32} />
+            </button>
+            <div className="flex flex-col gap-10 text-3xl font-serif font-bold text-[#2D241E] items-center">
+              <button onClick={() => {
+                setIsMobileMenuOpen(false);
+                document.getElementById('journey')?.scrollIntoView({ behavior: 'smooth' });
+                setActiveTab('journey');
+              }} className="hover:text-[#3A7CA5] transition-colors">The Journey</button>
+              <button onClick={() => {
+                setIsMobileMenuOpen(false);
+                document.getElementById('heritage')?.scrollIntoView({ behavior: 'smooth' });
+                setActiveTab('heritage');
+              }} className="hover:text-[#3A7CA5] transition-colors">Heritage</button>
+              <button onClick={() => {
+                setIsMobileMenuOpen(false);
+                document.getElementById('action')?.scrollIntoView({ behavior: 'smooth' });
+                setActiveTab('action');
+              }} className="hover:text-[#3A7CA5] transition-colors">Contribute</button>
+            </div>
+            
+            <button onClick={() => {
+              setIsMobileMenuOpen(false);
+              goToCheckout();
+            }} className="absolute bottom-12 bg-[#3A7CA5] text-white px-8 py-4 rounded-full font-bold shadow-xl flex items-center gap-3">
+              <ShoppingBag size={20} /> Buy the Book
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Hero Section */}
-      <section className="relative h-[80vh] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
+      <section className="relative h-[90vh] flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 z-0 bg-[#EAEAEA]">
           <img 
-            src="/images/ganga_river_hero_1777100817848.png" 
-            alt="Ganga River" 
-            className="w-full h-full object-cover brightness-75 scale-105"
-            onError={(e) => {
-              (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1590053450410-090c29188092?auto=format&fit=crop&q=80&w=2000';
-            }}
+            src="./images/hero_background_new.png" 
+            alt="Ganga River at Varanasi" 
+            className="w-full h-full object-cover brightness-[0.65] scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-[#FDFCF8]"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/30 to-[#FDFCF8]"></div>
         </div>
         
-        <div className="relative z-10 text-center px-4">
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-5xl md:text-7xl lg:text-8xl font-serif text-white mb-6 font-bold drop-shadow-2xl"
+        {/* Floating Images for Header (Polaroid Style) */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+          <motion.div 
+            initial={{ opacity: 0, x: -50, y: 20, rotate: -15 }}
+            animate={{ opacity: 1, x: 0, y: 0, rotate: -8 }}
+            transition={{ duration: 1.2, delay: 0.3 }}
+            className="absolute top-24 md:top-32 left-[-2%] sm:left-[2%] md:left-[8%] p-2 sm:p-3 bg-white rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.5)] origin-top-left"
           >
-            2,525 Kilometers<br/>of Heritage
-          </motion.h1>
+            <img src="./images/haridwar_floating_new.png" className="w-24 sm:w-32 md:w-56 aspect-[3/4] object-cover rounded-sm" alt="Haridwar Aarti" />
+          </motion.div>
+          
+          <motion.div 
+            initial={{ opacity: 0, x: 50, y: 20, rotate: 15 }}
+            animate={{ opacity: 1, x: 0, y: 0, rotate: 8 }}
+            transition={{ duration: 1.2, delay: 0.5 }}
+            className="absolute bottom-28 md:bottom-32 right-[-2%] sm:right-[2%] md:right-[8%] p-2 sm:p-3 bg-white rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.5)] origin-bottom-right"
+          >
+            <img src="./images/varanasi_floating_new.png" className="w-28 sm:w-36 md:w-64 aspect-[4/5] object-cover rounded-sm" alt="Varanasi Ghats" />
+          </motion.div>
+          
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.8, y: -20, rotate: 5 }}
+            animate={{ opacity: 1, scale: 1, y: 0, rotate: -2 }}
+            transition={{ duration: 1.2, delay: 0.7 }}
+            className="absolute top-32 right-[20%] p-2.5 bg-white rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.5)] hidden lg:block"
+          >
+            <img src="./images/ganga_craft_new.png" className="w-32 md:w-48 aspect-square object-cover rounded-sm" alt="Riverside Craft" />
+          </motion.div>
+        </div>
+        
+        <div className="relative z-10 text-center px-4 mt-8 w-full">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+          >
+            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-serif text-white mb-6 font-bold drop-shadow-[0_4px_4px_rgba(0,0,0,0.5)]">
+              2,525 Kilometers<br/><span className="text-[#D4A373] italic font-medium">of Heritage</span>
+            </h1>
+          </motion.div>
+          
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto mb-10 leading-relaxed bg-black/20 p-6 rounded-3xl backdrop-blur-md border border-white/10"
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="text-base sm:text-lg md:text-xl text-white/95 max-w-2xl mx-auto mb-10 leading-relaxed bg-black/30 p-5 sm:p-6 rounded-3xl backdrop-blur-md border border-white/20 shadow-xl"
           >
             Experience the exact route of the Ganga through 75 documented sacred locations, interactive digital archives, and direct artisan support.
           </motion.p>
+          
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-            className="flex flex-wrap justify-center gap-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="flex flex-col sm:flex-row flex-wrap justify-center gap-4 sm:gap-5 px-2"
           >
             <button 
               onClick={() => document.getElementById('journey')?.scrollIntoView({ behavior: 'smooth' })}
-              className="bg-[#D4A373] text-white px-8 py-4 rounded-full font-bold hover:bg-[#B1895D] transition-all flex items-center gap-2 shadow-xl"
+              className="bg-[#D4A373] text-white px-8 py-4 rounded-full font-bold hover:bg-[#B1895D] hover:scale-105 transition-all flex items-center justify-center gap-2 shadow-[0_10px_20px_rgba(212,163,115,0.3)] w-full sm:w-auto min-h-[56px]"
             >
               Start the Journey <ChevronRight size={20} />
             </button>
-            <button onClick={goToCheckout} className="bg-white/20 backdrop-blur-md border border-white/40 text-white px-8 py-4 rounded-full font-bold hover:bg-white/30 transition-all">
-              Buy the book
+            <button onClick={goToCheckout} className="bg-[#3A7CA5] text-white px-8 py-4 rounded-full font-bold hover:bg-[#2F668A] hover:scale-105 transition-all flex items-center justify-center gap-2 shadow-[0_10px_20px_rgba(58,124,165,0.3)] w-full sm:w-auto min-h-[56px]">
+              <ShoppingBag size={20} /> Buy the Book Now
             </button>
           </motion.div>
         </div>
+
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5, duration: 1 }}
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white/60 hover:text-white animate-bounce cursor-pointer z-20 transition-colors"
+          onClick={() => document.getElementById('journey')?.scrollIntoView({ behavior: 'smooth' })}
+        >
+          <ChevronDown size={36} />
+        </motion.div>
       </section>
 
       <section id="book" className="book-section">
@@ -521,10 +649,10 @@ export default function App() {
       </section>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-6 py-20">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 py-16 md:py-20">
         
         {/* FACE Framework Introduction */}
-        <div className="mb-32">
+        <div className="mb-20 md:mb-32">
           <div className="text-center mb-16">
             <h2 className="text-[#3A7CA5] font-black text-sm uppercase tracking-[0.3em] mb-4">Action Framework</h2>
             <h3 className="text-4xl md:text-5xl font-serif font-bold text-[#2D241E] mb-6">The FACE of Ganga</h3>
@@ -536,21 +664,18 @@ export default function App() {
             </div>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar md:grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 pb-4 -mx-4 px-4 md:mx-0 md:px-0">
             {contribFACE.map((item) => (
               <motion.div 
                 key={item.letter}
                 whileHover={{ y: -10 }}
-                className="group relative bg-white h-[450px] rounded-[2rem] overflow-hidden border border-[#E8DCC4] shadow-sm hover:shadow-2xl transition-all"
+                className="group relative bg-white h-[400px] md:h-[450px] min-w-[85vw] md:min-w-0 snap-center shrink-0 rounded-[2rem] overflow-hidden border border-[#E8DCC4] shadow-sm hover:shadow-2xl transition-all"
               >
                 {/* Background Image with Overlay */}
                 <img 
                   src={(item as any).image} 
                   alt={item.title}
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1590159411986-3023021f1d1d?auto=format&fit=crop&q=80&w=600';
-                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent group-hover:via-black/60 transition-colors"></div>
                 
@@ -566,7 +691,7 @@ export default function App() {
                     {item.icon === 'Leaf' && <Leaf className="text-[#3A7CA5]" />}
                   </div>
                   <h4 className="text-2xl font-serif font-bold mb-3">{item.title}</h4>
-                  <p className="text-white/80 text-sm leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 translate-y-4 group-hover:translate-y-0 transform">
+                  <p className="text-white/80 text-sm leading-relaxed opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-500 translate-y-0 md:translate-y-4 md:group-hover:translate-y-0 transform">
                     {item.description}
                   </p>
                 </div>
@@ -576,7 +701,7 @@ export default function App() {
         </div>
 
         {/* Journey Section */}
-        <div id="journey" className="mb-32">
+        <div id="journey" className="mb-20 md:mb-32">
           <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
             <div>
               <h2 className="text-[#D4A373] font-black text-sm uppercase tracking-[0.3em] mb-4">The Sacred Trail</h2>
@@ -596,7 +721,7 @@ export default function App() {
           </div>
 
           <div className="flex flex-col items-center">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center w-full">
+            <div className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 justify-items-center w-full pb-4 -mx-4 px-4 md:mx-0 md:px-0">
               <AnimatePresence>
                 {prominentPlaces.map((place) => (
                   <motion.div 
@@ -607,7 +732,7 @@ export default function App() {
                     exit={{ opacity: 0, scale: 0.9 }}
                     whileHover={{ y: -10 }}
                     onClick={() => setSelectedPlace(place)}
-                    className="bg-white/90 backdrop-blur-sm rounded-[2.5rem] p-6 border border-[#E8DCC4]/80 shadow-[0_8px_30px_rgb(0,0,0,0.03)] hover:border-[#3A7CA5]/40 hover:shadow-[0_20px_50px_rgba(58,124,165,0.12)] transition-all duration-300 group cursor-pointer w-full max-w-[380px] h-full flex flex-col overflow-hidden"
+                    className="bg-white/90 backdrop-blur-sm rounded-[2.5rem] p-6 border border-[#E8DCC4]/80 shadow-[0_8px_30px_rgb(0,0,0,0.03)] hover:border-[#3A7CA5]/40 hover:shadow-[0_20px_50px_rgba(58,124,165,0.12)] transition-all duration-300 group cursor-pointer w-full min-w-[85vw] md:min-w-0 md:max-w-[380px] snap-center shrink-0 flex flex-col overflow-hidden h-auto min-h-[480px] md:min-h-0 md:h-full"
                   >
                     {place.imageUrl && (
                       <div className="w-full h-48 mb-6 rounded-2xl overflow-hidden shrink-0">
@@ -650,57 +775,56 @@ export default function App() {
         </div>
 
         {/* Heritage & Culture Highlight */}
-        <div id="heritage" className="bg-[#2D241E] rounded-[3rem] overflow-hidden flex flex-col lg:flex-row items-stretch shadow-2xl">
-          <div className="lg:w-1/2 relative min-h-[400px]">
-            <img 
-              src="/images/ganga_culture_heritage_1777100835789.png" 
-              alt="Heritage Culture" 
-              className="absolute inset-0 w-full h-full object-cover"
-              onError={(e) => {
-                (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1548013146-72479768bbaa?auto=format&fit=crop&q=80&w=1000';
-              }}
-            />
+        <div id="heritage" className="bg-[#2D241E] rounded-[2rem] md:rounded-[3rem] overflow-hidden flex flex-col lg:flex-row items-stretch shadow-2xl">
+          <div className="lg:w-1/2 relative min-h-[300px] md:min-h-[400px]">
+            <HeritageImageSlider />
           </div>
-          <div className="lg:w-1/2 p-12 lg:p-20 flex flex-col justify-center text-white bg-gradient-to-br from-[#2D241E] to-[#1E1814]">
-            <h2 className="text-[#D4A373] font-bold text-sm uppercase tracking-[0.3em] mb-6">Experience the Legacy</h2>
-            <h3 className="text-4xl md:text-5xl font-serif font-bold mb-8 leading-tight">A Civilization Born of the Holy Waters</h3>
-            <div className="space-y-8">
-              <div className="flex gap-6">
-                <div className="bg-[#3A7CA5]/20 p-4 rounded-2xl shrink-0">
-                  <Palette className="text-[#3A7CA5]" size={24} />
+          <div className="lg:w-1/2 p-6 md:p-12 lg:p-20 flex flex-col justify-center text-white bg-gradient-to-br from-[#2D241E] to-[#16110D]">
+            <h2 className="text-[#D4A373] font-bold text-sm uppercase tracking-[0.3em] mb-4 flex items-center gap-2">
+              <Sparkles size={16} /> Experience the Legacy
+            </h2>
+            <h3 className="text-5xl md:text-6xl font-serif font-bold mb-12 leading-tight drop-shadow-lg">A Civilization Born of the Holy Waters</h3>
+            
+            <div className="space-y-10">
+              <div className="flex gap-8 items-start group">
+                <div className="bg-[#3A7CA5]/10 p-5 rounded-2xl shrink-0 border border-[#3A7CA5]/20 group-hover:bg-[#3A7CA5]/20 group-hover:scale-110 transition-all duration-300">
+                  <Palette className="text-[#3A7CA5]" size={28} />
                 </div>
                 <div>
-                  <h4 className="font-bold text-xl mb-2">Art & Craftsmanship</h4>
-                  <p className="text-gray-400 leading-relaxed">Sourcing Banarasi silk directly from 50 weaver looms in Kashi and supporting Madhubani canvas painters along Bihar's riverbanks.</p>
+                  <h4 className="font-bold text-2xl mb-3 text-white/95">Art & Craftsmanship</h4>
+                  <p className="text-gray-300 leading-relaxed text-lg">Sourcing authentic <span className="text-[#D4A373] font-semibold">Banarasi silk</span> directly from 50 weaver looms in ancient Kashi, and supporting traditional <span className="text-[#D4A373] font-semibold">Madhubani canvas painters</span> along Bihar's sacred riverbanks.</p>
                 </div>
               </div>
-              <div className="flex gap-6">
-                <div className="bg-[#D4A373]/20 p-4 rounded-2xl shrink-0">
-                  <Music className="text-[#D4A373]" size={24} />
+              
+              <div className="flex gap-8 items-start group">
+                <div className="bg-[#D4A373]/10 p-5 rounded-2xl shrink-0 border border-[#D4A373]/20 group-hover:bg-[#D4A373]/20 group-hover:scale-110 transition-all duration-300">
+                  <Music className="text-[#D4A373]" size={28} />
                 </div>
                 <div>
-                  <h4 className="font-bold text-xl mb-2">Music & Philosophy</h4>
-                  <p className="text-gray-400 leading-relaxed">Accessing 500+ hours of high-fidelity recordings of morning Ragas, temple bells, and Sanskrit hymns performed at the water's edge.</p>
+                  <h4 className="font-bold text-2xl mb-3 text-white/95">Music & Philosophy</h4>
+                  <p className="text-gray-300 leading-relaxed text-lg">Immerse in 500+ hours of high-fidelity recordings featuring <span className="text-[#D4A373] font-semibold">morning Ragas</span>, resonant temple bells, and transcendent <span className="text-[#D4A373] font-semibold">Sanskrit hymns</span> performed right at the water's edge.</p>
                 </div>
               </div>
-              <div className="flex gap-6">
-                <div className="bg-[#3A7CA5]/20 p-4 rounded-2xl shrink-0">
-                  <Waves className="text-[#3A7CA5]" size={24} />
+              
+              <div className="flex gap-8 items-start group">
+                <div className="bg-[#3A7CA5]/10 p-5 rounded-2xl shrink-0 border border-[#3A7CA5]/20 group-hover:bg-[#3A7CA5]/20 group-hover:scale-110 transition-all duration-300">
+                  <Waves className="text-[#3A7CA5]" size={28} />
                 </div>
                 <div>
-                  <h4 className="font-bold text-xl mb-2">Ecological Action</h4>
-                  <p className="text-gray-400 leading-relaxed">Funding clean-water patrols to monitor the 50km Gangetic Dolphin Sanctuary and eliminating chemical waste from local farms.</p>
+                  <h4 className="font-bold text-2xl mb-3 text-white/95">Ecological Action</h4>
+                  <p className="text-gray-300 leading-relaxed text-lg">Funding crucial clean-water patrols to monitor the 50km <span className="text-[#D4A373] font-semibold">Gangetic Dolphin Sanctuary</span> and aggressively eliminating harmful chemical waste from local farmlands.</p>
                 </div>
               </div>
             </div>
-            <button className="mt-12 bg-white text-[#2D241E] px-10 py-4 rounded-full font-bold hover:bg-[#D4A373] hover:text-white transition-all w-fit">
-              Explore Cuisines & Art
+            
+            <button className="mt-14 bg-[#D4A373] text-white px-10 py-5 rounded-full font-bold hover:bg-[#B1895D] hover:scale-105 transition-all w-fit flex items-center gap-3 shadow-[0_10px_20px_rgba(212,163,115,0.2)]">
+              Explore Cuisines & Art <ChevronRight size={20} />
             </button>
           </div>
         </div>
 
         {/* Action / Contribution Section */}
-        <div id="action" className="mt-32 text-center bg-[#F4EDDE] p-12 md:p-24 rounded-[3rem] border border-[#E8DCC4] shadow-[0_8px_30px_rgb(0,0,0,0.02)]">
+        <div id="action" className="mt-20 md:mt-32 text-center bg-[#F4EDDE] p-8 md:p-12 lg:p-24 rounded-[2rem] md:rounded-[3rem] border border-[#E8DCC4] shadow-[0_8px_30px_rgb(0,0,0,0.02)]">
           <h2 className="text-[#3A7CA5] font-black text-sm uppercase tracking-[0.3em] mb-6">Join the 75-Ghat Initiative</h2>
           <h3 className="text-4xl md:text-6xl font-serif font-bold text-[#2D241E] mb-8">Help Preserve 2,525 km of Heritage</h3>
           <p className="text-[#5A4B3F] max-w-2xl mx-auto mb-16 text-lg leading-relaxed">
@@ -863,6 +987,18 @@ export default function App() {
           </div>
         </div>
       </footer>
+
+      {/* Sticky Bottom CTA for Mobile */}
+      {(!showCheckout && !showAllPlaces) && (
+        <div className="fixed bottom-0 left-0 right-0 z-40 bg-white/80 backdrop-blur-md border-t border-[#E8DCC4] p-4 md:hidden pb-safe">
+          <button 
+            onClick={goToCheckout} 
+            className="w-full bg-[#3A7CA5] text-white px-8 py-4 rounded-full font-bold shadow-xl flex items-center justify-center gap-3 active:scale-95 transition-all"
+          >
+            <ShoppingBag size={20} /> Buy the Book Now
+          </button>
+        </div>
+      )}
     </div>
   );
 }
