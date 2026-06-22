@@ -56,3 +56,8 @@ This project is licensed under the Apache 2.0 License. See the LICENSE file for 
 - **Development & Design:** Built with passion for the Ganga Heritage.
 - **Images:** High-quality imagery curated and generated for local hosting.
 - **Artisans:** Deep gratitude to the weavers, painters, and locals who keep the traditions alive.
+
+---
+<div align="center">
+Made with â¤ï¸ in India.
+</div>
