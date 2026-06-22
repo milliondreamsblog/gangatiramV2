@@ -76,6 +76,15 @@ type OrderForm = {
   paymentScreenshot: File | null;
 };
 
+type VolunteerForm = {
+  name: string;
+  email: string;
+  place: string;
+  interest: string;
+  availability: string;
+  message: string;
+};
+
 const heritageImages = [
   "./images/ganga_art_new.png",
   "./images/ganga_music_new.png",
@@ -126,6 +135,25 @@ export default function App() {
     paymentScreenshot: null
   });
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [showVolunteerForm, setShowVolunteerForm] = useState(false);
+  const [volunteerFormSubmitted, setVolunteerFormSubmitted] = useState(false);
+  const [volunteerFormState, setVolunteerFormState] = useState<VolunteerForm>({
+    name: '',
+    email: '',
+    place: '',
+    interest: 'Cleanup Drives',
+    availability: 'Weekends',
+    message: ''
+  });
+
+  const updateVolunteerField = (field: keyof VolunteerForm, value: string) => {
+    setVolunteerFormState((current) => ({ ...current, [field]: value }));
+  };
+
+  const handleVolunteerSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setVolunteerFormSubmitted(true);
+  };
 
   const filteredPlaces = gangaPlaces.filter(place => 
     place.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -838,7 +866,7 @@ export default function App() {
                 <h4 className="text-2xl font-bold mb-4 text-[#2D241E]">Volunteer</h4>
                 <p className="text-[#5A4B3F] mb-8 text-sm leading-relaxed">Preservation workshops to school children.</p>
               </div>
-              <button className="text-[#3A7CA5] font-black text-xs uppercase tracking-widest hover:underline mt-auto">Register as Volunteer</button>
+              <button onClick={() => { setShowVolunteerForm(true); setVolunteerFormSubmitted(false); }} className="text-[#3A7CA5] font-black text-xs uppercase tracking-widest hover:underline mt-auto">Register as Volunteer</button>
             </div>
             <div className="bg-gradient-to-br from-[#3A7CA5] to-[#2F668A] p-10 rounded-3xl shadow-xl text-white transform md:scale-105 transition-all duration-300 hover:-translate-y-3 hover:shadow-[0_25px_55px_rgba(58,124,165,0.3)] flex flex-col justify-between h-full">
               <div>
@@ -941,6 +969,104 @@ export default function App() {
                   <p className="text-xs text-[#A8988A] italic">Part of the 75 Heritage Places initiative.</p>
                   <button className="bg-[#3A7CA5] text-white px-8 py-3 rounded-full font-bold hover:bg-[#2F668A] transition-all">Plan Visit</button>
                 </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Volunteer Form Modal */}
+      <AnimatePresence>
+        {showVolunteerForm && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm"
+            onClick={() => setShowVolunteerForm(false)}
+          >
+            <motion.div 
+              initial={{ scale: 0.9, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.9, y: 20 }}
+              className="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="relative p-8 md:p-12 border-b border-[#E8DCC4] bg-[#FDFCF8] rounded-t-3xl">
+                <button 
+                  onClick={() => setShowVolunteerForm(false)}
+                  className="absolute top-6 right-6 text-[#A8988A] hover:text-[#2D241E] p-2"
+                >
+                  <X />
+                </button>
+                <div className="flex items-center gap-3 mb-4">
+                  <HandHelping className="text-[#D4A373]" size={32} />
+                  <h2 className="text-3xl font-serif font-bold text-[#2D241E]">Volunteer with Us</h2>
+                </div>
+                <p className="text-[#5A4B3F] leading-relaxed">
+                  Join our mission to preserve and protect the sacred river. Fill out the form below to get involved in our upcoming activities.
+                </p>
+              </div>
+              
+              <div className="p-8 md:p-12">
+                {volunteerFormSubmitted ? (
+                  <div className="text-center py-12">
+                    <CheckCircle2 className="mx-auto text-[#3A7CA5] mb-6" size={64} />
+                    <h3 className="text-2xl font-serif font-bold mb-4">Thank you for registering!</h3>
+                    <p className="text-[#5A4B3F] mb-8">Our volunteer coordinator will get in touch with you shortly.</p>
+                    <button 
+                      onClick={() => setShowVolunteerForm(false)}
+                      className="bg-[#3A7CA5] text-white px-8 py-3 rounded-full font-bold hover:bg-[#2F668A] transition-all"
+                    >
+                      Close
+                    </button>
+                  </div>
+                ) : (
+                  <form onSubmit={handleVolunteerSubmit} className="space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <label className="flex flex-col gap-2 md:col-span-2">
+                        <span className="text-sm font-bold text-[#2D241E]">Full Name</span>
+                        <input required value={volunteerFormState.name} onChange={(e) => updateVolunteerField('name', e.target.value)} placeholder="Enter your full name" className="px-4 py-3 rounded-xl border border-[#E8DCC4] focus:outline-none focus:border-[#3A7CA5] bg-[#FDFCF8]" />
+                      </label>
+                      <label className="flex flex-col gap-2">
+                        <span className="text-sm font-bold text-[#2D241E]">Email Address</span>
+                        <input required type="email" value={volunteerFormState.email} onChange={(e) => updateVolunteerField('email', e.target.value)} placeholder="your@email.com" className="px-4 py-3 rounded-xl border border-[#E8DCC4] focus:outline-none focus:border-[#3A7CA5] bg-[#FDFCF8]" />
+                      </label>
+                      <label className="flex flex-col gap-2">
+                        <span className="text-sm font-bold text-[#2D241E]">City / Location</span>
+                        <input required value={volunteerFormState.place} onChange={(e) => updateVolunteerField('place', e.target.value)} placeholder="e.g., Varanasi" className="px-4 py-3 rounded-xl border border-[#E8DCC4] focus:outline-none focus:border-[#3A7CA5] bg-[#FDFCF8]" />
+                      </label>
+                      <label className="flex flex-col gap-2">
+                        <span className="text-sm font-bold text-[#2D241E]">Area of Interest</span>
+                        <select value={volunteerFormState.interest} onChange={(e) => updateVolunteerField('interest', e.target.value)} className="px-4 py-3 rounded-xl border border-[#E8DCC4] focus:outline-none focus:border-[#3A7CA5] bg-[#FDFCF8]">
+                          <option>Cleanup Drives</option>
+                          <option>Art & Craft Workshops</option>
+                          <option>Digital Archiving</option>
+                          <option>Teaching / Education</option>
+                          <option>Other</option>
+                        </select>
+                      </label>
+                      <label className="flex flex-col gap-2">
+                        <span className="text-sm font-bold text-[#2D241E]">Availability</span>
+                        <select value={volunteerFormState.availability} onChange={(e) => updateVolunteerField('availability', e.target.value)} className="px-4 py-3 rounded-xl border border-[#E8DCC4] focus:outline-none focus:border-[#3A7CA5] bg-[#FDFCF8]">
+                          <option>Weekends</option>
+                          <option>Weekdays</option>
+                          <option>Full-time for Camps</option>
+                          <option>Remote Support</option>
+                        </select>
+                      </label>
+                      <label className="flex flex-col gap-2 md:col-span-2">
+                        <span className="text-sm font-bold text-[#2D241E]">Brief Message (Optional)</span>
+                        <textarea value={volunteerFormState.message} onChange={(e) => updateVolunteerField('message', e.target.value)} placeholder="How else can you contribute?" rows={3} className="px-4 py-3 rounded-xl border border-[#E8DCC4] focus:outline-none focus:border-[#3A7CA5] bg-[#FDFCF8]" />
+                      </label>
+                    </div>
+                    <div className="pt-4 flex justify-end">
+                      <button type="submit" className="bg-[#D4A373] text-white px-8 py-4 rounded-full font-bold hover:bg-[#B1895D] transition-all shadow-lg flex items-center gap-2">
+                        Submit Registration
+                      </button>
+                    </div>
+                  </form>
+                )}
               </div>
             </motion.div>
           </motion.div>
