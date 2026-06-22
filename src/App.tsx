@@ -836,7 +836,7 @@ export default function App() {
               <div>
                 <HandHelping className="mx-auto text-[#D4A373] mb-6" size={48} />
                 <h4 className="text-2xl font-bold mb-4 text-[#2D241E]">Volunteer</h4>
-                <p className="text-[#5A4B3F] mb-8 text-sm leading-relaxed">Register for 3-day cleanup camps in Varanasi or teach local art preservation workshops to school children.</p>
+                <p className="text-[#5A4B3F] mb-8 text-sm leading-relaxed">Preservation workshops to school children.</p>
               </div>
               <button className="text-[#3A7CA5] font-black text-xs uppercase tracking-widest hover:underline mt-auto">Register as Volunteer</button>
             </div>
@@ -844,7 +844,7 @@ export default function App() {
               <div>
                 <Heart className="mx-auto text-white mb-6 animate-pulse" size={48} fill="white" />
                 <h4 className="text-2xl font-bold mb-4">Direct Support</h4>
-                <p className="text-white/80 mb-8 text-sm leading-relaxed">100% of donations go directly to buying clay for 50 potter families and cleaning supplies for riverbed teams.</p>
+                <p className="text-white/80 mb-8 text-sm leading-relaxed">Cleaning supplies for riverbed teams.</p>
               </div>
               <button className="bg-white text-[#3A7CA5] px-8 py-3 rounded-full font-bold hover:bg-[#F4EDDE] transition-all mt-auto self-center">Fund a Family</button>
             </div>
