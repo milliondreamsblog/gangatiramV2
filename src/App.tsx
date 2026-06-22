@@ -846,7 +846,7 @@ export default function App() {
                 <h4 className="text-2xl font-bold mb-4">Direct Support</h4>
                 <p className="text-white/80 mb-8 text-sm leading-relaxed">Cleaning supplies for riverbed teams.</p>
               </div>
-              <button className="bg-white text-[#3A7CA5] px-8 py-3 rounded-full font-bold hover:bg-[#F4EDDE] transition-all mt-auto self-center">Fund a Family</button>
+              <button className="bg-white text-[#3A7CA5] px-8 py-3 rounded-full font-bold hover:bg-[#F4EDDE] transition-all mt-auto self-center">Contribute</button>
             </div>
             <div className="bg-white p-10 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.03)] border border-[#E8DCC4] transition-all duration-300 hover:-translate-y-3 hover:shadow-[0_20px_50px_rgba(45,36,30,0.1)] hover:border-[#D4A373]/50 flex flex-col justify-between h-full">
               <div>
