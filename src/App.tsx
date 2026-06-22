@@ -76,6 +76,14 @@ type OrderForm = {
   paymentScreenshot: File | null;
 };
 
+type ContributeForm = {
+  name: string;
+  email: string;
+  amount: string;
+  paymentMethod: string;
+  message: string;
+};
+
 type VolunteerForm = {
   name: string;
   email: string;
@@ -137,6 +145,25 @@ export default function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [showVolunteerForm, setShowVolunteerForm] = useState(false);
   const [volunteerFormSubmitted, setVolunteerFormSubmitted] = useState(false);
+  const [showContributeForm, setShowContributeForm] = useState(false);
+  const [contributeFormSubmitted, setContributeFormSubmitted] = useState(false);
+  const [contributeFormState, setContributeFormState] = useState<ContributeForm>({
+    name: '',
+    email: '',
+    amount: 'INR 1000',
+    paymentMethod: 'UPI',
+    message: ''
+  });
+
+  const updateContributeField = (field: keyof ContributeForm, value: string) => {
+    setContributeFormState((current) => ({ ...current, [field]: value }));
+  };
+
+  const handleContributeSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setContributeFormSubmitted(true);
+  };
+
   const [volunteerFormState, setVolunteerFormState] = useState<VolunteerForm>({
     name: '',
     email: '',
@@ -874,7 +901,7 @@ export default function App() {
                 <h4 className="text-2xl font-bold mb-4">Direct Support</h4>
                 <p className="text-white/80 mb-8 text-sm leading-relaxed">Cleaning supplies for riverbed teams.</p>
               </div>
-              <button className="bg-white text-[#3A7CA5] px-8 py-3 rounded-full font-bold hover:bg-[#F4EDDE] transition-all mt-auto self-center">Contribute</button>
+              <button onClick={() => { setShowContributeForm(true); setContributeFormSubmitted(false); }} className="bg-white text-[#3A7CA5] px-8 py-3 rounded-full font-bold hover:bg-[#F4EDDE] transition-all mt-auto self-center">Contribute</button>
             </div>
             <div className="bg-white p-10 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.03)] border border-[#E8DCC4] transition-all duration-300 hover:-translate-y-3 hover:shadow-[0_20px_50px_rgba(45,36,30,0.1)] hover:border-[#D4A373]/50 flex flex-col justify-between h-full">
               <div>
@@ -1063,6 +1090,99 @@ export default function App() {
                     <div className="pt-4 flex justify-end">
                       <button type="submit" className="bg-[#D4A373] text-white px-8 py-4 rounded-full font-bold hover:bg-[#B1895D] transition-all shadow-lg flex items-center gap-2">
                         Submit Registration
+                      </button>
+                    </div>
+                  </form>
+                )}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Contribute Form Modal */}
+      <AnimatePresence>
+        {showContributeForm && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm"
+            onClick={() => setShowContributeForm(false)}
+          >
+            <motion.div 
+              initial={{ scale: 0.9, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.9, y: 20 }}
+              className="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="relative p-8 md:p-12 border-b border-[#E8DCC4] bg-[#FDFCF8] rounded-t-3xl">
+                <button 
+                  onClick={() => setShowContributeForm(false)}
+                  className="absolute top-6 right-6 text-[#A8988A] hover:text-[#2D241E] p-2"
+                >
+                  <X />
+                </button>
+                <div className="flex items-center gap-3 mb-4">
+                  <Heart className="text-[#3A7CA5]" size={32} />
+                  <h2 className="text-3xl font-serif font-bold text-[#2D241E]">Direct Contribution</h2>
+                </div>
+                <p className="text-[#5A4B3F] leading-relaxed">
+                  Your financial support directly helps in cleaning the riverbed and supporting local potter families.
+                </p>
+              </div>
+              
+              <div className="p-8 md:p-12">
+                {contributeFormSubmitted ? (
+                  <div className="text-center py-12">
+                    <CheckCircle2 className="mx-auto text-[#3A7CA5] mb-6" size={64} />
+                    <h3 className="text-2xl font-serif font-bold mb-4">Thank you for your generosity!</h3>
+                    <p className="text-[#5A4B3F] mb-8">We will send you details for completing your contribution shortly.</p>
+                    <button 
+                      onClick={() => setShowContributeForm(false)}
+                      className="bg-[#3A7CA5] text-white px-8 py-3 rounded-full font-bold hover:bg-[#2F668A] transition-all"
+                    >
+                      Close
+                    </button>
+                  </div>
+                ) : (
+                  <form onSubmit={handleContributeSubmit} className="space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <label className="flex flex-col gap-2 md:col-span-2">
+                        <span className="text-sm font-bold text-[#2D241E]">Full Name</span>
+                        <input required value={contributeFormState.name} onChange={(e) => updateContributeField('name', e.target.value)} placeholder="Enter your full name" className="px-4 py-3 rounded-xl border border-[#E8DCC4] focus:outline-none focus:border-[#3A7CA5] bg-[#FDFCF8]" />
+                      </label>
+                      <label className="flex flex-col gap-2 md:col-span-2">
+                        <span className="text-sm font-bold text-[#2D241E]">Email Address</span>
+                        <input required type="email" value={contributeFormState.email} onChange={(e) => updateContributeField('email', e.target.value)} placeholder="your@email.com" className="px-4 py-3 rounded-xl border border-[#E8DCC4] focus:outline-none focus:border-[#3A7CA5] bg-[#FDFCF8]" />
+                      </label>
+                      <label className="flex flex-col gap-2">
+                        <span className="text-sm font-bold text-[#2D241E]">Contribution Amount</span>
+                        <select value={contributeFormState.amount} onChange={(e) => updateContributeField('amount', e.target.value)} className="px-4 py-3 rounded-xl border border-[#E8DCC4] focus:outline-none focus:border-[#3A7CA5] bg-[#FDFCF8]">
+                          <option>INR 500</option>
+                          <option>INR 1000</option>
+                          <option>INR 2500</option>
+                          <option>INR 5000</option>
+                          <option>Other Amount</option>
+                        </select>
+                      </label>
+                      <label className="flex flex-col gap-2">
+                        <span className="text-sm font-bold text-[#2D241E]">Preferred Payment Method</span>
+                        <select value={contributeFormState.paymentMethod} onChange={(e) => updateContributeField('paymentMethod', e.target.value)} className="px-4 py-3 rounded-xl border border-[#E8DCC4] focus:outline-none focus:border-[#3A7CA5] bg-[#FDFCF8]">
+                          <option>UPI</option>
+                          <option>Credit/Debit Card</option>
+                          <option>Net Banking</option>
+                        </select>
+                      </label>
+                      <label className="flex flex-col gap-2 md:col-span-2">
+                        <span className="text-sm font-bold text-[#2D241E]">Message (Optional)</span>
+                        <textarea value={contributeFormState.message} onChange={(e) => updateContributeField('message', e.target.value)} placeholder="Leave a message for the community" rows={3} className="px-4 py-3 rounded-xl border border-[#E8DCC4] focus:outline-none focus:border-[#3A7CA5] bg-[#FDFCF8]" />
+                      </label>
+                    </div>
+                    <div className="pt-4 flex justify-end">
+                      <button type="submit" className="bg-[#3A7CA5] text-white px-8 py-4 rounded-full font-bold hover:bg-[#2F668A] transition-all shadow-lg flex items-center gap-2">
+                        Proceed to Payment
                       </button>
                     </div>
                   </form>
