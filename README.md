@@ -48,3 +48,6 @@ We believe in the power of community. **Ganga Tiram is open source**, and we wel
 - **Code:** Submit PRs for bug fixes, performance improvements, or new features.
 - **Content:** Help us document more locations, stories, or art forms.
 Please read our CONTRIBUTING.md (coming soon) before making a pull request.
+
+## ðŸ“„ License
+This project is licensed under the Apache 2.0 License. See the LICENSE file for more details. We encourage sharing and adaptation while giving appropriate credit.
