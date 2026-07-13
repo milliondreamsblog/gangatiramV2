@@ -911,7 +911,7 @@ export default function App() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="text-base sm:text-lg md:text-xl text-white/95 max-w-2xl mx-auto mb-10 leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]"
           >
-            Experience the exact route of the Ganga through 75 documented sacred locations, interactive digital archives, and direct artisan support.
+            Her exact route, told through 75 sacred places — in a printed book that funds the mission to keep her alive.
           </motion.p>
 
           <motion.div
@@ -955,7 +955,7 @@ export default function App() {
       {/* Her Three Gifts — Soul · Body · Mind */}
       <section id="gifts" className="max-w-7xl mx-auto px-4 sm:px-6 py-20 md:py-28">
         <div className="text-center mb-14">
-          <h2 className="text-[#3A7CA5] font-black text-sm uppercase tracking-[0.3em] mb-4">Her Three Gifts</h2>
+          <span className="section-tag mb-5">Her three gifts</span>
           <h3 className="text-4xl md:text-5xl font-serif font-bold text-[#2D241E] mb-4">One river. Soul, body, and mind.</h3>
           <p className="text-[#5A4B3F] max-w-2xl mx-auto">
             History and nourishment in three currents — what she has given every civilization that rose on her banks.
@@ -1025,7 +1025,7 @@ export default function App() {
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
             >
-              <p className="text-[#D4A373] font-black text-sm uppercase tracking-[0.3em] mb-5">The Book</p>
+              <span className="section-tag tag-gold mb-5">The book</span>
               <h2 className="text-4xl md:text-6xl font-serif font-bold text-[#2D241E] mb-6">Hold all 2,525 kilometers in your hands</h2>
               <p className="text-[#5A4B3F] text-lg leading-relaxed mb-8 max-w-2xl">
                 Seventy-five panoramic locations from Gomukh to Gangasagar — her glaciers, aartis, festivals, looms, and people — photographed and told place by place.
@@ -1051,7 +1051,7 @@ export default function App() {
           <div className="mt-20 md:mt-24">
             <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
               <div>
-                <p className="text-[#3A7CA5] font-black text-xs uppercase tracking-[0.25em] mb-3">Look inside</p>
+                <span className="section-tag mb-4">Look inside</span>
                 <h3 className="text-3xl md:text-4xl font-serif font-bold text-[#2D241E]">Six spreads from the journey</h3>
               </div>
               <p className="text-[#5A4B3F] text-sm max-w-sm md:text-right">Real pages from the printed edition — swipe through the river’s course.</p>
@@ -1085,7 +1085,7 @@ export default function App() {
             transition={{ duration: 0.8 }}
             className="mt-20 md:mt-24 max-w-3xl mx-auto text-center"
           >
-            <p className="text-[#D4A373] font-black text-[10px] uppercase tracking-[0.3em] mb-6">From the opening page</p>
+            <span className="section-tag tag-gold mb-6">From the opening page</span>
             <p className="font-serif italic text-xl md:text-2xl text-[#5A4B3F] leading-relaxed mb-6">
               “I am very much satisfied with your austerities and am now prepared to give you benedictions as you desire.”
             </p>
@@ -1114,7 +1114,7 @@ export default function App() {
         {/* FACE Framework Introduction */}
         <div className="mb-20 md:mb-32">
           <div className="text-center mb-16">
-            <h2 className="text-[#3A7CA5] font-black text-sm uppercase tracking-[0.3em] mb-4">The Mission</h2>
+            <span className="section-tag mb-5">The mission</span>
             <h3 className="text-4xl md:text-5xl font-serif font-bold text-[#2D241E] mb-6">The FACE of Ganga</h3>
             <p className="text-[#5A4B3F] max-w-2xl mx-auto text-lg">
               FACE is how we serve her — <strong>F</strong>estivals, <strong>A</strong>rt, <strong>C</strong>raft, <strong>E</strong>nvironment. Four promises, kept every month.
@@ -1168,9 +1168,9 @@ export default function App() {
         <div id="journey" className="mb-20 md:mb-32 scroll-mt-24">
           <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
             <div>
-              <h2 className="text-[#D4A373] font-black text-sm uppercase tracking-[0.3em] mb-4">The Sacred Trail</h2>
+              <span className="section-tag tag-gold mb-4">The sacred trail</span>
               <h3 className="text-4xl font-serif font-bold text-[#2D241E]">The Heritage Path</h3>
-              <p className="text-[#5A4B3F] mt-2">Exploring the major landmarks from the glaciers to the delta.</p>
+              <p className="text-[#5A4B3F] mt-2">75 places across 2,525 km, told as eight chapters of one life.</p>
             </div>
             <div className="relative w-full md:w-80 border-b border-[#E8DCC4] pb-2">
               <Search className="absolute left-0 top-1/2 -translate-y-1/2 text-[#A8988A]" size={18} />
@@ -1186,7 +1186,7 @@ export default function App() {
 
           {/* Eight stations of the river's life */}
           <div className="mb-12">
-            <p className="text-[#3A7CA5] font-black text-xs uppercase tracking-[0.25em] mb-6">Eight chapters of her life — tap one to follow it</p>
+            <span className="section-tag mb-6">Eight chapters of her life — tap one to follow it</span>
             <div className="relative">
               <div className="absolute left-0 right-0 top-[8px] h-0.5 bg-gradient-to-r from-[#8FBFBF] via-[#3A7CA5] to-[#C97B4A] opacity-40 rounded-full hidden lg:block" aria-hidden="true"></div>
               <div className="flex overflow-x-auto hide-scrollbar gap-8 lg:gap-2 lg:grid lg:grid-cols-8 pb-2 -mx-4 px-4 lg:mx-0 lg:px-0">
@@ -1292,7 +1292,7 @@ export default function App() {
                 }}
                 className="mt-16 bg-[#2D241E] text-white px-12 py-5 rounded-full font-bold hover:bg-[#3A7CA5] hover:scale-105 transition-all shadow-xl flex items-center gap-3"
               >
-                View More Places <ChevronRight size={20} />
+                See all 75 places <ChevronRight size={20} />
               </motion.button>
             )}
           </div>
@@ -1304,9 +1304,7 @@ export default function App() {
             <HeritageImageSlider />
           </div>
           <div className="lg:w-1/2 p-6 md:p-12 lg:p-20 flex flex-col justify-center text-white bg-gradient-to-br from-[#2D241E] to-[#16110D]">
-            <h2 className="text-[#D4A373] font-bold text-sm uppercase tracking-[0.3em] mb-4 flex items-center gap-2">
-              <Sparkles size={16} /> Experience the Legacy
-            </h2>
+            <span className="section-tag tag-dark tag-gold mb-5 w-fit">Experience the legacy</span>
             <h3 className="text-4xl sm:text-5xl md:text-6xl font-serif font-bold mb-8 md:mb-12 leading-tight drop-shadow-lg">A Civilization Born of the Holy Waters</h3>
             
             <div className="space-y-10">
@@ -1345,7 +1343,7 @@ export default function App() {
               onClick={() => { setShowAllPlaces(true); window.scrollTo({ top: 0, behavior: 'instant' }); }}
               className="mt-14 bg-[#3A7CA5] text-white px-10 py-5 rounded-full font-bold hover:bg-[#2F668A] hover:scale-105 transition-all w-fit flex items-center gap-3 shadow-[0_10px_20px_rgba(58,124,165,0.2)]"
             >
-              Explore Cuisines & Art <ChevronRight size={20} />
+              Explore art & cuisine of 75 places <ChevronRight size={20} />
             </button>
           </div>
         </div>
@@ -1359,7 +1357,7 @@ export default function App() {
           transition={{ duration: 1 }}
           className="mt-20 md:mt-32 bg-[#2D241E] rounded-[2rem] md:rounded-[3rem] px-8 md:px-16 py-16 md:py-24 text-center shadow-2xl"
         >
-          <h2 className="text-[#C97B4A] font-black text-xs uppercase tracking-[0.3em] mb-6">The Wound</h2>
+          <span className="section-tag tag-dark tag-amber mb-6">The wound</span>
           <h3 className="text-3xl md:text-5xl font-serif font-bold text-white/95 max-w-3xl mx-auto mb-14 leading-tight">
             “Here we put her in chains; the river that was a river begins to thin.”
           </h3>
@@ -1382,7 +1380,7 @@ export default function App() {
 
         {/* Action / Contribution Section */}
         <div id="action" className="scroll-mt-24 mt-8 md:mt-12 text-center bg-[#F4EDDE] p-8 md:p-12 lg:p-24 rounded-[2rem] md:rounded-[3rem] border border-[#E8DCC4] shadow-[0_8px_30px_rgb(0,0,0,0.02)]">
-          <h2 className="text-[#3A7CA5] font-black text-sm uppercase tracking-[0.3em] mb-6">Take a Sankalp — a vow to her</h2>
+          <span className="section-tag mb-6">Take a Sankalp — a vow to her</span>
           <h3 className="text-4xl md:text-6xl font-serif font-bold text-[#2D241E] mb-8">Which part of her life will you keep alive?</h3>
           <p className="text-[#5A4B3F] max-w-2xl mx-auto mb-12 text-lg leading-relaxed">
             Volunteer on your stretch of the river, contribute to the monthly work, or share her story onward.
