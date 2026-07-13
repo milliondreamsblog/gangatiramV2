@@ -112,21 +112,21 @@ const threeGifts = [
     label: 'Soul',
     headline: 'She carries the soul home.',
     body: 'A single dip at Har Ki Pauri is said to wash lifetimes. At Kashi, to die beside her is liberation itself.',
-    image: './images/ganga_festivals_aarti_1777100934524.png',
+    image: './images/haridwar_aarti_1781868296149.png',
     places: ['Haridwar', 'Varanasi']
   },
   {
     label: 'Body',
     headline: 'She feeds four in ten Indians.',
     body: 'Her silt raises the grain of the plains; her current turns looms, nets, and wheels from the hills to the sea.',
-    image: './images/ganga_river_hero_1777100817848.png',
+    image: './images/patna_river_1781868354310.png',
     places: ['Patna', 'Bhagalpur']
   },
   {
     label: 'Mind',
     headline: 'On her banks, India learned to think.',
     body: 'Three thousand years of scholars, ragas, and verse rose beside her — from Rishikesh’s retreats to Nabadwip’s logicians.',
-    image: './images/ganga_culture_heritage_1777100835789.png',
+    image: './images/rishikesh_river_1781868284118.png',
     places: ['Rishikesh', 'Nabadwip']
   }
 ];
