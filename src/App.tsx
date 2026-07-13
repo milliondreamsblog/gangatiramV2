@@ -1148,13 +1148,11 @@ export default function App() {
 
                   {/* Collapsed cover: the full form, written vertically on desktop */}
                   <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${isActive ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
-                    <span className="hidden md:inline-flex items-center gap-4 text-white [writing-mode:vertical-rl]">
-                      <span className="font-serif font-bold text-3xl">{item.letter}</span>
-                      <span className="text-xs font-black uppercase tracking-[0.35em] text-white/80">{item.title}</span>
+                    <span className="hidden md:block text-white font-serif font-bold uppercase text-3xl lg:text-4xl tracking-[0.15em] [writing-mode:vertical-rl]">
+                      {item.title}
                     </span>
-                    <span className="md:hidden inline-flex items-center gap-3 text-white">
-                      <span className="font-serif font-bold text-xl">{item.letter}</span>
-                      <span className="text-[11px] font-black uppercase tracking-[0.3em] text-white/80">{item.title}</span>
+                    <span className="md:hidden text-white font-serif font-bold uppercase text-lg tracking-[0.25em]">
+                      {item.title}
                     </span>
                   </div>
 
