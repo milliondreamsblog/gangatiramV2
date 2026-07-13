@@ -853,6 +853,18 @@ export const gangaPlaces: GangaPlace[
     art: "",
     heritage: "Nityananda Prabhu's holy preaching dham",
     imageUrl: ""
+  },
+  {
+    id: 71,
+    name: "Panihati",
+    state: "West Bengal",
+    stage: 8,
+    description: "Serene Ganga ghat near Kolkata where, since 1512, the Dahicira Utsav has fed curd and beaten rice to tens of thousands of devotees.",
+    features: ["Dahicira Utsav Festival", "Panihati Ganga Ghat", "Raghav Pandit's Residence"],
+    cuisine: "Dahi-Chira Curd And Beaten Rice",
+    art: "",
+    heritage: "Nityananda's Dahicira festival since 1512",
+    imageUrl: ""
   }
 ];
 
