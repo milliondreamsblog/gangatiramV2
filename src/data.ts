@@ -673,6 +673,30 @@ export const gangaPlaces: GangaPlace[
     art: "Baluchari Silk Saree Weaving",
     heritage: "Narottama Thakur's mystical disappearance site",
     imageUrl: ""
+  },
+  {
+    id: 56,
+    name: "Ranibhabani Ghat",
+    state: "West Bengal",
+    stage: 8,
+    description: "At Baranagar in Murshidabad, Rani Bhabani set out to recreate Varanasi with 108 temples, their terracotta panels depicting Ramayana and Mahabharata episodes.",
+    features: ["Char Bangla Temple Complex", "Bhavaniswar Temple Lotus Dome", "River Boat Rides"],
+    cuisine: "",
+    art: "Terracotta And Stucco Temple Art",
+    heritage: "Rani Bhabani's eighteenth-century temple city",
+    imageUrl: "./images/murshidabad_palace_1781868377694.png"
+  },
+  {
+    id: 57,
+    name: "Agradwip",
+    state: "West Bengal",
+    stage: 8,
+    description: "A Bhagirathi-bank village where, for over 450 years, Lord Gopinath himself is said to perform the annual last rites of his devotee Gobindo Ghosh.",
+    features: ["Agradwip Gopinath Temple", "Punya Tithi Festival", "Svayambhu Gopinath Murtis"],
+    cuisine: "",
+    art: "Gobindo Ghosh Kirtan Style",
+    heritage: "Site of Gopinath's eternal last rites",
+    imageUrl: ""
   }
 ];
 
