@@ -601,6 +601,30 @@ export const gangaPlaces: GangaPlace[
     art: "",
     heritage: "Where Jahnu released Ganga as Jahnavi",
     imageUrl: ""
+  },
+  {
+    id: 50,
+    name: "Bhagalpur",
+    state: "Bihar",
+    stage: 6,
+    description: "The 50km river stretch where rare blind Gangetic dolphins surface, next to weaver looms weaving textured golden Tussar silk.",
+    features: ["Dolphin Sanctuary", "Vikramshila University", "Tussar Silk Looms"],
+    cuisine: "Traditional Fish Curry & Rice",
+    art: "Generational Manjusha Folk Art",
+    heritage: "8th-Century Buddhist Seat",
+    imageUrl: "./images/bhagalpur_dolphins_1781868364980.png"
+  },
+  {
+    id: 51,
+    name: "Sahibganj",
+    state: "Jharkhand",
+    stage: 7,
+    description: "Jharkhand's only Ganga district, where Maan Singh's Rajmahal forts overlook Siberian cranes at Udhwa Lake and Mandro's fossil park holds India's oldest plant fossils.",
+    features: ["Rajmahal Hills And Forts", "Udhwa Lake Bird Sanctuary", "Mandro Fossil Park"],
+    cuisine: "Fresh River Fish And Pitha",
+    art: "Sohrai And Kumbh Tribal Paintings",
+    heritage: "Historic Ganges port with Rajmahal forts",
+    imageUrl: ""
   }
 ];
 
