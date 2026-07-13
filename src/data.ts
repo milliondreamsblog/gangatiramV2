@@ -25,6 +25,30 @@ export const gangaPlaces: GangaPlace[
     art: "Sculpted Ice Caves",
     heritage: "Gangotri Temple Shrine",
     imageUrl: "./images/gomukh_glacier_1781868272124.png"
+  },
+  {
+    id: 2,
+    name: "Gangotri",
+    state: "Uttarakhand",
+    stage: 1,
+    description: "Chota Char Dham shrine where King Bhagiratha's penance brought Ganga to earth; the present temple was raised in the early 18th century by Gorkha commander Amar Singh Thapa.",
+    features: ["Bhagirathi Shila", "Gartang Gali Bridge", "Ganga Dussehra Festival"],
+    cuisine: "Kafuli, Phaanu & Arsa",
+    art: "Woollen Shawls & Tibetan Artifacts",
+    heritage: "Chota Char Dham Pilgrimage Shrine",
+    imageUrl: ""
+  },
+  {
+    id: 3,
+    name: "Mukhba",
+    state: "Uttarakhand",
+    stage: 1,
+    description: "Harsil-valley village that becomes Goddess Ganga's winter home when her deity arrives each Diwali in a flower-decorated palanquin escorted by priests and folk musicians.",
+    features: ["Ganga Winter Temple", "Diwali Palanquin Procession", "Janaktal Trek"],
+    cuisine: "Sisunak Saag & Gahat Dal",
+    art: "Mukhota Wooden Mask Making",
+    heritage: "Winter Abode Of Goddess Ganga",
+    imageUrl: ""
   }
 ];
 
