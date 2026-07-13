@@ -721,6 +721,18 @@ export const gangaPlaces: GangaPlace[
     art: "",
     heritage: "Birthplace of Chaitanya Mahaprabhu",
     imageUrl: ""
+  },
+  {
+    id: 60,
+    name: "Rajapur",
+    state: "West Bengal",
+    stage: 8,
+    description: "Village near Mayapur where 500-year-old wooden Jagannath deities, once dug intact from a cobra-guarded ant hill, ride chariots to Mayapur's ISKCON temple each Ratha Yatra.",
+    features: ["Rajapur Jagannath Temple", "Ratha Yatra To Mayapur", "Snana Yatra Bathing Ceremony"],
+    cuisine: "",
+    art: "",
+    heritage: "Ancient Jagannath temple of Simantadvipa",
+    imageUrl: ""
   }
 ];
 
