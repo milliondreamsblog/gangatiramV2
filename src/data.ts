@@ -841,6 +841,18 @@ export const gangaPlaces: GangaPlace[
     art: "",
     heritage: "Danish colonial town, Indian printing pioneer",
     imageUrl: ""
+  },
+  {
+    id: 70,
+    name: "Kardah",
+    state: "West Bengal",
+    stage: 8,
+    description: "A palace stone that smiled at Birbhadra Goswami floated 180 kilometers down the Ganga to Shyam-er Ghat, becoming the Shyamsundar deity 450 years ago.",
+    features: ["Radha Shyamsundar Temple", "Shyam-er Ghat", "Raas Purnima Fair"],
+    cuisine: "",
+    art: "",
+    heritage: "Nityananda Prabhu's holy preaching dham",
+    imageUrl: ""
   }
 ];
 
