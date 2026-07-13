@@ -120,7 +120,7 @@ export default function AdminPanel() {
       </nav>
 
       <main className="max-w-6xl mx-auto px-6 py-10">
-        <div className="flex gap-3 mb-8">
+        <div className="flex flex-wrap gap-3 mb-8">
           {(['orders', 'volunteers', 'contributions'] as Tab[]).map((t) => (
             <button
               key={t}

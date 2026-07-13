@@ -10,6 +10,11 @@ body {
   @apply font-sans antialiased;
 }
 
+/* Keep the mobile sticky CTA above the iOS home-indicator bar */
+@utility pb-safe {
+  padding-bottom: calc(1rem + env(safe-area-inset-bottom));
+}
+
 .book-section {
   @apply bg-[#F4EDDE] border-y border-[#E8DCC4] py-20 md:py-28;
 }

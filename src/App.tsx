@@ -633,7 +633,7 @@ export default function App() {
                   >
                     <ChevronDown />
                   </button>
-                  <div className="absolute bottom-8 left-8 text-white">
+                  <div className="absolute bottom-8 left-8 right-8 text-white">
                     <span className="bg-[#D4A373] text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-tighter mb-4 inline-block">{selectedPlace.state}</span>
                     <h2 className="text-4xl font-serif font-bold">{selectedPlace.name}</h2>
                   </div>
@@ -706,7 +706,7 @@ export default function App() {
             <Waves className="text-[#3A7CA5] w-8 h-8" />
             <span className="text-2xl font-serif font-bold tracking-tight text-[#2D241E]">Ganga Tiram</span>
           </div>
-          <div className="hidden md:flex gap-8 text-sm font-medium uppercase tracking-widest text-[#5A4B3F]">
+          <div className="hidden md:flex gap-5 lg:gap-8 text-sm font-medium uppercase tracking-widest text-[#5A4B3F]">
             <button onClick={() => {
               document.getElementById('journey')?.scrollIntoView({ behavior: 'smooth' });
               setActiveTab('journey');
@@ -877,7 +877,7 @@ export default function App() {
           </p>
         </div>
 
-        <div className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar md:grid md:grid-cols-3 gap-6 md:gap-8 pb-4 -mx-4 px-4 md:mx-0 md:px-0">
+        <div className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar lg:grid lg:grid-cols-3 gap-6 lg:gap-8 pb-4 -mx-4 px-4 lg:mx-0 lg:px-0">
           {threeGifts.map((gift, index) => (
             <motion.div
               key={gift.label}
@@ -885,7 +885,7 @@ export default function App() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.15 }}
-              className="group relative h-[440px] md:h-[500px] min-w-[85vw] md:min-w-0 snap-center shrink-0 rounded-[2rem] overflow-hidden border border-[#E8DCC4] shadow-sm hover:shadow-2xl transition-all"
+              className="group relative h-[440px] lg:h-[500px] min-w-[85vw] sm:min-w-[420px] lg:min-w-0 snap-center shrink-0 rounded-[2rem] overflow-hidden border border-[#E8DCC4] shadow-sm hover:shadow-2xl transition-all"
             >
               <img
                 src={gift.image}
@@ -1047,7 +1047,7 @@ export default function App() {
             </p>
           </div>
 
-          <div className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar md:grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 pb-4 -mx-4 px-4 md:mx-0 md:px-0">
+          <div className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar md:grid md:grid-cols-2 xl:grid-cols-4 gap-6 md:gap-8 pb-4 -mx-4 px-4 md:mx-0 md:px-0">
             {contribFACE.map((item) => (
               <motion.div
                 key={item.letter}
@@ -1091,7 +1091,7 @@ export default function App() {
         </div>
 
         {/* Journey Section */}
-        <div id="journey" className="mb-20 md:mb-32">
+        <div id="journey" className="mb-20 md:mb-32 scroll-mt-24">
           <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
             <div>
               <h2 className="text-[#D4A373] font-black text-sm uppercase tracking-[0.3em] mb-4">The Sacred Trail</h2>
@@ -1114,8 +1114,8 @@ export default function App() {
           <div className="mb-12">
             <p className="text-[#3A7CA5] font-black text-xs uppercase tracking-[0.25em] mb-6">Eight chapters of her life — tap one to follow it</p>
             <div className="relative">
-              <div className="absolute left-0 right-0 top-[8px] h-0.5 bg-gradient-to-r from-[#8FBFBF] via-[#3A7CA5] to-[#C97B4A] opacity-40 rounded-full hidden md:block" aria-hidden="true"></div>
-              <div className="flex overflow-x-auto hide-scrollbar gap-8 md:gap-2 md:grid md:grid-cols-8 pb-2 -mx-4 px-4 md:mx-0 md:px-0">
+              <div className="absolute left-0 right-0 top-[8px] h-0.5 bg-gradient-to-r from-[#8FBFBF] via-[#3A7CA5] to-[#C97B4A] opacity-40 rounded-full hidden lg:block" aria-hidden="true"></div>
+              <div className="flex overflow-x-auto hide-scrollbar gap-8 lg:gap-2 lg:grid lg:grid-cols-8 pb-2 -mx-4 px-4 lg:mx-0 lg:px-0">
                 {journeyStages.map((s) => {
                   const isActive = selectedStage === s.stage;
                   return (
@@ -1222,7 +1222,7 @@ export default function App() {
         </div>
 
         {/* Heritage & Culture Highlight */}
-        <div id="heritage" className="bg-[#2D241E] rounded-[2rem] md:rounded-[3rem] overflow-hidden flex flex-col lg:flex-row items-stretch shadow-2xl">
+        <div id="heritage" className="scroll-mt-24 bg-[#2D241E] rounded-[2rem] md:rounded-[3rem] overflow-hidden flex flex-col lg:flex-row items-stretch shadow-2xl">
           <div className="lg:w-1/2 relative min-h-[300px] md:min-h-[400px]">
             <HeritageImageSlider />
           </div>
@@ -1230,7 +1230,7 @@ export default function App() {
             <h2 className="text-[#D4A373] font-bold text-sm uppercase tracking-[0.3em] mb-4 flex items-center gap-2">
               <Sparkles size={16} /> Experience the Legacy
             </h2>
-            <h3 className="text-5xl md:text-6xl font-serif font-bold mb-12 leading-tight drop-shadow-lg">A Civilization Born of the Holy Waters</h3>
+            <h3 className="text-4xl sm:text-5xl md:text-6xl font-serif font-bold mb-8 md:mb-12 leading-tight drop-shadow-lg">A Civilization Born of the Holy Waters</h3>
             
             <div className="space-y-10">
               <div className="flex gap-8 items-start group">
@@ -1304,7 +1304,7 @@ export default function App() {
         </motion.div>
 
         {/* Action / Contribution Section */}
-        <div id="action" className="mt-8 md:mt-12 text-center bg-[#F4EDDE] p-8 md:p-12 lg:p-24 rounded-[2rem] md:rounded-[3rem] border border-[#E8DCC4] shadow-[0_8px_30px_rgb(0,0,0,0.02)]">
+        <div id="action" className="scroll-mt-24 mt-8 md:mt-12 text-center bg-[#F4EDDE] p-8 md:p-12 lg:p-24 rounded-[2rem] md:rounded-[3rem] border border-[#E8DCC4] shadow-[0_8px_30px_rgb(0,0,0,0.02)]">
           <h2 className="text-[#3A7CA5] font-black text-sm uppercase tracking-[0.3em] mb-6">Take a Sankalp — a vow to her</h2>
           <h3 className="text-4xl md:text-6xl font-serif font-bold text-[#2D241E] mb-8">Which part of her life will you keep alive?</h3>
           <p className="text-[#5A4B3F] max-w-2xl mx-auto mb-12 text-lg leading-relaxed">
@@ -1327,7 +1327,7 @@ export default function App() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
-            <div className="bg-white p-10 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.03)] border border-[#E8DCC4] transition-all duration-300 hover:-translate-y-3 hover:shadow-[0_20px_50px_rgba(45,36,30,0.1)] hover:border-[#D4A373]/50 flex flex-col justify-between h-full">
+            <div className="bg-white p-8 lg:p-10 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.03)] border border-[#E8DCC4] transition-all duration-300 hover:-translate-y-3 hover:shadow-[0_20px_50px_rgba(45,36,30,0.1)] hover:border-[#D4A373]/50 flex flex-col justify-between h-full">
               <div>
                 <HandHelping className="mx-auto text-[#D4A373] mb-6" size={48} />
                 <h4 className="text-2xl font-bold mb-4 text-[#2D241E]">Volunteer</h4>
@@ -1335,7 +1335,7 @@ export default function App() {
               </div>
               <button onClick={() => { setShowVolunteerForm(true); setVolunteerFormSubmitted(false); }} className="text-[#3A7CA5] font-black text-xs uppercase tracking-widest hover:underline mt-auto">Register as Volunteer</button>
             </div>
-            <div className="bg-gradient-to-br from-[#3A7CA5] to-[#2F668A] p-10 rounded-3xl shadow-xl text-white transform md:scale-105 transition-all duration-300 hover:-translate-y-3 hover:shadow-[0_25px_55px_rgba(58,124,165,0.3)] flex flex-col justify-between h-full">
+            <div className="bg-gradient-to-br from-[#3A7CA5] to-[#2F668A] p-8 lg:p-10 rounded-3xl shadow-xl text-white transform md:scale-105 transition-all duration-300 hover:-translate-y-3 hover:shadow-[0_25px_55px_rgba(58,124,165,0.3)] flex flex-col justify-between h-full">
               <div>
                 <Heart className="mx-auto text-white mb-6 animate-pulse" size={48} fill="white" />
                 <h4 className="text-2xl font-bold mb-4">Direct Support</h4>
@@ -1343,7 +1343,7 @@ export default function App() {
               </div>
               <button onClick={() => { setShowContributeForm(true); setContributeFormSubmitted(false); }} className="bg-white text-[#3A7CA5] px-8 py-3 rounded-full font-bold hover:bg-[#F4EDDE] transition-all mt-auto self-center">Contribute</button>
             </div>
-            <div className="bg-white p-10 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.03)] border border-[#E8DCC4] transition-all duration-300 hover:-translate-y-3 hover:shadow-[0_20px_50px_rgba(45,36,30,0.1)] hover:border-[#D4A373]/50 flex flex-col justify-between h-full">
+            <div className="bg-white p-8 lg:p-10 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.03)] border border-[#E8DCC4] transition-all duration-300 hover:-translate-y-3 hover:shadow-[0_20px_50px_rgba(45,36,30,0.1)] hover:border-[#D4A373]/50 flex flex-col justify-between h-full">
               <div>
                 <Globe className="mx-auto text-[#3A7CA5] mb-6" size={48} />
                 <h4 className="text-2xl font-bold mb-4 text-[#2D241E]">Share Heritage</h4>
