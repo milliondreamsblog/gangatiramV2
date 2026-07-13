@@ -577,6 +577,30 @@ export const gangaPlaces: GangaPlace[
     art: "",
     heritage: "King Janak's Treta-yuga Kalpavas tapobhumi",
     imageUrl: ""
+  },
+  {
+    id: 48,
+    name: "Munger",
+    state: "Bihar",
+    stage: 6,
+    description: "Ancient Moda-giri where Sita Kund's hot spring holds the heat of Sita's Agni-pariksha and the Bihar School of Yoga draws seekers worldwide.",
+    features: ["Sita Kund Hot Spring", "Bihar School Of Yoga", "Kasta Harini Ghat"],
+    cuisine: "",
+    art: "Sohani And Samdaun Folk Music",
+    heritage: "Ramayana bathing site, Jarasandha's Mahabharata seat",
+    imageUrl: ""
+  },
+  {
+    id: 49,
+    name: "Jahnu Giri",
+    state: "Bihar",
+    stage: 6,
+    description: "Sacred Sultanganj stretch where sage Jahnu swallowed the flooding Ganga and released her through his ear, with the Ajgaivinath Shiva temple rising mid-river on a rocky mound.",
+    features: ["Ajgaivinath Island Temple", "Shravani Mela Kanwar Yatra", "Gangetic River Dolphins"],
+    cuisine: "",
+    art: "",
+    heritage: "Where Jahnu released Ganga as Jahnavi",
+    imageUrl: ""
   }
 ];
 
