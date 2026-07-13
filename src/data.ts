@@ -73,6 +73,30 @@ export const gangaPlaces: GangaPlace[
     art: "Deodar & Walnut Wood Carving",
     heritage: "Kashi Of The North",
     imageUrl: ""
+  },
+  {
+    id: 6,
+    name: "Guptkashi",
+    state: "Uttarakhand",
+    stage: 1,
+    description: "'Hidden Kashi' where Shiva vanished from the Pandavas as a bull, and the Manikarnika Kund inside Vishwanath Temple unites waters of Ganga and Yamuna.",
+    features: ["Vishwanath Temple", "Manikarnika Kund", "Tungnath Trek Base"],
+    cuisine: "",
+    art: "Pashmina Shawls & Aipan Art",
+    heritage: "Hidden Kashi Of Panch Kedar Legend",
+    imageUrl: ""
+  },
+  {
+    id: 7,
+    name: "Ukhimath",
+    state: "Uttarakhand",
+    stage: 1,
+    description: "Winter seat of the Kedarnath and Madhyamaheshwar deities on the Mandakini, with serene viewpoints of the Chaukhamba peaks and emperor Mandhata's Omkareshwar Temple.",
+    features: ["Omkareshwar Temple", "Deoria Tal Trek", "Chaukhamba Peak Views"],
+    cuisine: "",
+    art: "Aipan Murals & Wood Carving",
+    heritage: "Kedarnath Deity's Winter Abode",
+    imageUrl: ""
   }
 ];
 
