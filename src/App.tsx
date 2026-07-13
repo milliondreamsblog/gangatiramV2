@@ -8,26 +8,31 @@ import { motion, AnimatePresence, useScroll, useSpring, useTransform, useReduced
 import {
   Waves,
   MapPin,
-  Sparkles,
-  Palette,
-  Music,
-  Leaf,
-  Heart,
   ChevronRight,
   ChevronDown,
   Search,
-  Globe,
-  HandHelping,
   Info,
   BookOpen,
   ShoppingBag,
   ArrowLeft,
   Upload,
   CheckCircle2,
-  Scissors,
   Menu,
   X
 } from 'lucide-react';
+import {
+  Confetti,
+  PaintBrush,
+  Scissors,
+  Leaf,
+  MusicNotes,
+  BowlFood,
+  Bank,
+  Plant,
+  HandHeart,
+  Heart,
+  ShareNetwork
+} from '@phosphor-icons/react';
 import { gangaPlaces, contribFACE, GangaPlace } from './data';
 import AdminPanel from './AdminPanel';
 import Logo from './Logo';
@@ -732,7 +737,7 @@ export default function App() {
                       {selectedPlace.heritage && (
                         <div className="bg-[#FDFCF8] p-6 rounded-2xl border border-[#E8DCC4]">
                           <h4 className="font-bold flex items-center gap-2 mb-3">
-                            <Waves className="text-[#3A7CA5]" size={18} /> Heritage
+                            <Bank size={18} weight="duotone" className="text-[#3A7CA5]" /> Heritage
                           </h4>
                           <p className="text-sm text-[#5A4B3F]">{selectedPlace.heritage}</p>
                         </div>
@@ -740,7 +745,7 @@ export default function App() {
                       {selectedPlace.art && (
                         <div className="bg-[#FDFCF8] p-6 rounded-2xl border border-[#E8DCC4]">
                           <h4 className="font-bold flex items-center gap-2 mb-3">
-                            <Palette className="text-[#3A7CA5]" size={18} /> Art & Craft
+                            <PaintBrush size={18} weight="duotone" className="text-[#3A7CA5]" /> Art & Craft
                           </h4>
                           <p className="text-sm text-[#5A4B3F]">{selectedPlace.art}</p>
                         </div>
@@ -748,7 +753,7 @@ export default function App() {
                       {selectedPlace.cuisine && (
                         <div className="bg-[#FDFCF8] p-6 rounded-2xl border border-[#E8DCC4]">
                           <h4 className="font-bold flex items-center gap-2 mb-3">
-                            <Music className="text-[#3A7CA5]" size={18} /> Cuisine
+                            <BowlFood size={18} weight="duotone" className="text-[#3A7CA5]" /> Cuisine
                           </h4>
                           <p className="text-sm text-[#5A4B3F]">{selectedPlace.cuisine}</p>
                         </div>
@@ -1164,10 +1169,10 @@ export default function App() {
                   <div className={`absolute bottom-0 p-6 md:p-8 text-white w-full transition-all duration-500 ${isActive ? 'opacity-100 translate-y-0 delay-200' : 'opacity-0 translate-y-4 pointer-events-none'}`}>
                     <div className="flex items-center gap-3 mb-4">
                       <div className="bg-white/20 backdrop-blur-md w-11 h-11 rounded-xl flex items-center justify-center border border-white/30 shrink-0">
-                        {item.icon === 'Sparkles' && <Sparkles size={20} className="text-[#D4A373]" />}
-                        {item.icon === 'Palette' && <Palette size={20} className="text-[#D4A373]" />}
-                        {item.icon === 'Scissors' && <Scissors size={20} className="text-[#D4A373]" />}
-                        {item.icon === 'Leaf' && <Leaf size={20} className="text-[#D4A373]" />}
+                        {item.icon === 'Confetti' && <Confetti size={22} weight="duotone" className="text-[#D4A373]" />}
+                        {item.icon === 'PaintBrush' && <PaintBrush size={22} weight="duotone" className="text-[#D4A373]" />}
+                        {item.icon === 'Scissors' && <Scissors size={22} weight="duotone" className="text-[#D4A373]" />}
+                        {item.icon === 'Leaf' && <Leaf size={22} weight="duotone" className="text-[#D4A373]" />}
                       </div>
                       <span className="text-[10px] font-black uppercase tracking-[0.25em] text-white/70">{item.letter} — {item.title}</span>
                     </div>
@@ -1332,7 +1337,7 @@ export default function App() {
             <div className="space-y-10">
               <div className="flex gap-8 items-start group">
                 <div className="bg-[#3A7CA5]/10 p-5 rounded-2xl shrink-0 border border-[#3A7CA5]/20 group-hover:bg-[#3A7CA5]/20 group-hover:scale-110 transition-all duration-300">
-                  <Palette className="text-[#3A7CA5]" size={28} />
+                  <PaintBrush size={28} weight="duotone" className="text-[#3A7CA5]" />
                 </div>
                 <div>
                   <h4 className="font-bold text-2xl mb-3 text-white/95">Art & Craftsmanship</h4>
@@ -1342,7 +1347,7 @@ export default function App() {
               
               <div className="flex gap-8 items-start group">
                 <div className="bg-[#D4A373]/10 p-5 rounded-2xl shrink-0 border border-[#D4A373]/20 group-hover:bg-[#D4A373]/20 group-hover:scale-110 transition-all duration-300">
-                  <Music className="text-[#D4A373]" size={28} />
+                  <MusicNotes size={28} weight="duotone" className="text-[#D4A373]" />
                 </div>
                 <div>
                   <h4 className="font-bold text-2xl mb-3 text-white/95">Music & Philosophy</h4>
@@ -1352,7 +1357,7 @@ export default function App() {
               
               <div className="flex gap-8 items-start group">
                 <div className="bg-[#3A7CA5]/10 p-5 rounded-2xl shrink-0 border border-[#3A7CA5]/20 group-hover:bg-[#3A7CA5]/20 group-hover:scale-110 transition-all duration-300">
-                  <Waves className="text-[#3A7CA5]" size={28} />
+                  <Plant size={28} weight="duotone" className="text-[#3A7CA5]" />
                 </div>
                 <div>
                   <h4 className="font-bold text-2xl mb-3 text-white/95">Ecological Action</h4>
@@ -1426,7 +1431,7 @@ export default function App() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
             <div className="bg-white p-8 lg:p-10 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.03)] border border-[#E8DCC4] transition-all duration-300 hover:-translate-y-3 hover:shadow-[0_20px_50px_rgba(45,36,30,0.1)] hover:border-[#D4A373]/50 flex flex-col justify-between h-full">
               <div>
-                <HandHelping className="mx-auto text-[#D4A373] mb-6" size={48} />
+                <HandHeart size={48} weight="duotone" className="mx-auto text-[#D4A373] mb-6" />
                 <h4 className="text-2xl font-bold mb-4 text-[#2D241E]">Volunteer</h4>
                 <p className="text-[#5A4B3F] mb-8 text-sm leading-relaxed">Cleanups, workshops, archiving — on your own stretch of the river.</p>
               </div>
@@ -1434,7 +1439,7 @@ export default function App() {
             </div>
             <div className="bg-gradient-to-br from-[#3A7CA5] to-[#2F668A] p-8 lg:p-10 rounded-3xl shadow-xl text-white transform md:scale-105 transition-all duration-300 hover:-translate-y-3 hover:shadow-[0_25px_55px_rgba(58,124,165,0.3)] flex flex-col justify-between h-full">
               <div>
-                <Heart className="mx-auto text-white mb-6 animate-pulse" size={48} fill="white" />
+                <Heart size={48} weight="fill" className="mx-auto text-white mb-6 animate-pulse" />
                 <h4 className="text-2xl font-bold mb-4">Direct Support</h4>
                 <p className="text-white/80 mb-8 text-sm leading-relaxed">Cleaning supplies for riverbed teams.</p>
               </div>
@@ -1442,7 +1447,7 @@ export default function App() {
             </div>
             <div className="bg-white p-8 lg:p-10 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.03)] border border-[#E8DCC4] transition-all duration-300 hover:-translate-y-3 hover:shadow-[0_20px_50px_rgba(45,36,30,0.1)] hover:border-[#D4A373]/50 flex flex-col justify-between h-full">
               <div>
-                <Globe className="mx-auto text-[#3A7CA5] mb-6" size={48} />
+                <ShareNetwork size={48} weight="duotone" className="mx-auto text-[#3A7CA5] mb-6" />
                 <h4 className="text-2xl font-bold mb-4 text-[#2D241E]">Share Heritage</h4>
                 <p className="text-[#5A4B3F] mb-8 text-sm leading-relaxed">Send her story onward — every retelling recruits another pair of hands for the river.</p>
               </div>
@@ -1511,7 +1516,7 @@ export default function App() {
                     {selectedPlace.heritage && (
                       <div className="bg-[#FDFCF8] p-6 rounded-2xl border border-[#E8DCC4]">
                         <h4 className="font-bold flex items-center gap-2 mb-3">
-                          <Waves className="text-[#3A7CA5]" size={18} /> Heritage
+                          <Bank size={18} weight="duotone" className="text-[#3A7CA5]" /> Heritage
                         </h4>
                         <p className="text-sm text-[#5A4B3F]">{selectedPlace.heritage}</p>
                       </div>
@@ -1519,7 +1524,7 @@ export default function App() {
                     {selectedPlace.art && (
                       <div className="bg-[#FDFCF8] p-6 rounded-2xl border border-[#E8DCC4]">
                         <h4 className="font-bold flex items-center gap-2 mb-3">
-                          <Palette className="text-[#3A7CA5]" size={18} /> Art & Craft
+                          <PaintBrush size={18} weight="duotone" className="text-[#3A7CA5]" /> Art & Craft
                         </h4>
                         <p className="text-sm text-[#5A4B3F]">{selectedPlace.art}</p>
                       </div>
@@ -1527,7 +1532,7 @@ export default function App() {
                     {selectedPlace.cuisine && (
                       <div className="bg-[#FDFCF8] p-6 rounded-2xl border border-[#E8DCC4]">
                         <h4 className="font-bold flex items-center gap-2 mb-3">
-                          <Music className="text-[#3A7CA5]" size={18} /> Cuisine
+                          <BowlFood size={18} weight="duotone" className="text-[#3A7CA5]" /> Cuisine
                         </h4>
                         <p className="text-sm text-[#5A4B3F]">{selectedPlace.cuisine}</p>
                       </div>
@@ -1577,7 +1582,7 @@ export default function App() {
                   <X />
                 </button>
                 <div className="flex items-center gap-3 mb-4">
-                  <HandHelping className="text-[#D4A373]" size={32} />
+                  <HandHeart size={32} weight="duotone" className="text-[#D4A373]" />
                   <h2 className="text-3xl font-serif font-bold text-[#2D241E]">Volunteer with Us</h2>
                 </div>
                 <p className="text-[#5A4B3F] leading-relaxed">
@@ -1681,7 +1686,7 @@ export default function App() {
                   <X />
                 </button>
                 <div className="flex items-center gap-3 mb-4">
-                  <Heart className="text-[#3A7CA5]" size={32} />
+                  <Heart size={32} weight="duotone" className="text-[#3A7CA5]" />
                   <h2 className="text-3xl font-serif font-bold text-[#2D241E]">Direct Contribution</h2>
                 </div>
                 <p className="text-[#5A4B3F] leading-relaxed">
@@ -1794,7 +1799,7 @@ export default function App() {
               onClick={() => document.getElementById('action')?.scrollIntoView({ behavior: 'smooth' })}
               className="w-full bg-[#3A7CA5] text-white px-8 py-4 rounded-full font-bold shadow-xl flex items-center justify-center gap-3 active:scale-95 transition-all"
             >
-              <HandHelping size={20} /> Join the Mission
+              <HandHeart size={20} weight="bold" /> Join the Mission
             </button>
           ) : (
             <button
