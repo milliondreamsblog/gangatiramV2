@@ -169,6 +169,30 @@ export const gangaPlaces: GangaPlace[
     art: "",
     heritage: "Gateway To Kedarnath Pilgrimage",
     imageUrl: ""
+  },
+  {
+    id: 14,
+    name: "Rudraprayag",
+    state: "Uttarakhand",
+    stage: 1,
+    description: "Panch Prayag town at the Alaknanda-Mandakini confluence, named for the fearsome Rudra form in which Shiva appeared to bless sage Narada's penance.",
+    features: ["Alaknanda-Mandakini Sangam", "Koteshwar Mahadev Temple", "Kartikswami Temple"],
+    cuisine: "Bhatt Ki Churkani & Bal Mithai",
+    art: "Wood Carving & Kumaoni Textiles",
+    heritage: "Shiva's Rudra Form Blessed Narada",
+    imageUrl: ""
+  },
+  {
+    id: 15,
+    name: "Devprayag",
+    state: "Uttarakhand",
+    stage: 2,
+    description: "Where the turquoise Alaknanda merges with the Bhagirathi and the united river first becomes Ganga, beginning her 1000-mile journey to Gangasagar.",
+    features: ["Raghunathji Temple", "Ram Kunda Footprints", "Nakshatra Veda Shala Observatory"],
+    cuisine: "Singori & Mandua Ki Roti",
+    art: "",
+    heritage: "Where River Ganga Begins Her Name",
+    imageUrl: ""
   }
 ];
 
