@@ -6,3 +6,6 @@ coverage/
 *.log
 .env*
 !.env.example
+research/agency-scraper/debug/
+.vercel
+.env*.local
