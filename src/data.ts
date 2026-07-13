@@ -481,6 +481,30 @@ export const gangaPlaces: GangaPlace[
     art: "Two-Century Rasra Ramleela",
     heritage: "Sage Bhrigu's hermitage; 1942 revolutionary town",
     imageUrl: ""
+  },
+  {
+    id: 40,
+    name: "Buxar",
+    state: "Bihar",
+    stage: 6,
+    description: "Where the Ganga enters Bihar at sage Vishwamitra's Siddhashram, site of Ram's weapons initiation and the decisive 1764 battle that handed Bengal to the East India Company.",
+    features: ["Ramrekha Ghat", "Siddhashram Of Vishwamitra", "Chhath Puja"],
+    cuisine: "",
+    art: "Terracotta And Embroidery Crafts",
+    heritage: "Vishwamitra's Siddhashram and 1764 battlefield",
+    imageUrl: ""
+  },
+  {
+    id: 41,
+    name: "Arrah",
+    state: "Bihar",
+    stage: 6,
+    description: "Forest-named town ('Aranya') where the Sone meets the Ganges, home to Veer Kunwar Singh's Jagdishpur fort and blackbuck roaming the Kaimur hills.",
+    features: ["Aranya Devi Temple", "Jagdishpur Fort", "Tarari Sun Temple"],
+    cuisine: "",
+    art: "Bidesia Folk Theatre",
+    heritage: "1857 rebellion hub of Veer Kunwar Singh",
+    imageUrl: ""
   }
 ];
 
