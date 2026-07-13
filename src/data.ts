@@ -49,6 +49,30 @@ export const gangaPlaces: GangaPlace[
     art: "Mukhota Wooden Mask Making",
     heritage: "Winter Abode Of Goddess Ganga",
     imageUrl: ""
+  },
+  {
+    id: 4,
+    name: "Harshil",
+    state: "Uttarakhand",
+    stage: 1,
+    description: "Deodar-forested valley of apple orchards where Vishnu turned to stone to calm two feuding rivers, and Frederick Wilson introduced apples and rajma in the mid-19th century.",
+    features: ["Apple Festival", "Lamkhaga Pass Trek", "Hari Ka Shila Rock"],
+    cuisine: "Kafuli & Mandua Ki Roti",
+    art: "Bhotia Handwoven Woolens",
+    heritage: "Vishnu's Rock On Gangotri Route",
+    imageUrl: ""
+  },
+  {
+    id: 5,
+    name: "Uttarkashi",
+    state: "Uttarakhand",
+    stage: 1,
+    description: "The 'Kashi of the North' on the Bhagirathi, where January's Magh Mela draws tens of thousands for holy dips as local deities parade in decorated palanquins.",
+    features: ["Vishwanath Temple", "Magh Mela Fair", "Budhi Diwali Festival"],
+    cuisine: "Aloo Ke Gutke & Jhangora Kheer",
+    art: "Deodar & Walnut Wood Carving",
+    heritage: "Kashi Of The North",
+    imageUrl: ""
   }
 ];
 
