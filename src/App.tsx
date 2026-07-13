@@ -138,6 +138,8 @@ type VolunteerForm = {
   message: string;
 };
 
+const tickerPlaces = gangaPlaces.filter((p) => p.imageUrl);
+
 const heritageImages = [
   "./images/ganga_art_new.png",
   "./images/ganga_music_new.png",
@@ -866,47 +868,27 @@ export default function App() {
       </AnimatePresence>
 
       {/* Hero Section */}
-      <section className="relative h-[90vh] flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-screen flex flex-col justify-center overflow-hidden pb-10">
         <div className="absolute inset-0 z-0 bg-[#EAEAEA]">
-          <img 
-            src="./images/hero_background_new.png" 
-            alt="Ganga River at Varanasi" 
-            className="w-full h-full object-cover brightness-[0.65] scale-105"
+          <img
+            src="./images/hero_background_new.png"
+            alt="Ganga River at Varanasi"
+            className="w-full h-full object-cover brightness-[0.6] scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/30 to-[#FDFCF8]"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/35 to-[#FDFCF8]"></div>
         </div>
-        
-        {/* Floating Images for Header (Polaroid Style) */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-          <motion.div 
-            initial={{ opacity: 0, x: -50, y: 20, rotate: -15 }}
-            animate={{ opacity: 1, x: 0, y: 0, rotate: -8 }}
-            transition={{ duration: 1.2, delay: 0.3 }}
-            className="absolute top-24 md:top-32 left-[-2%] sm:left-[2%] md:left-[8%] p-2 sm:p-3 bg-white rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.5)] origin-top-left"
+
+        <div className="relative z-10 text-center px-4 w-full pt-32 md:pt-36">
+          <motion.button
+            initial={{ opacity: 0, y: -12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            onClick={goToCheckout}
+            className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/25 text-white/90 text-[11px] font-black uppercase tracking-[0.2em] px-5 py-2.5 rounded-full mb-8 transition-colors"
           >
-            <img src="./images/haridwar_floating_new.png" className="w-24 sm:w-32 md:w-56 aspect-[3/4] object-cover rounded-sm" alt="Haridwar Aarti" />
-          </motion.div>
-          
-          <motion.div 
-            initial={{ opacity: 0, x: 50, y: 20, rotate: 15 }}
-            animate={{ opacity: 1, x: 0, y: 0, rotate: 8 }}
-            transition={{ duration: 1.2, delay: 0.5 }}
-            className="absolute bottom-28 md:bottom-32 right-[-2%] sm:right-[2%] md:right-[8%] p-2 sm:p-3 bg-white rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.5)] origin-bottom-right"
-          >
-            <img src="./images/varanasi_floating_new.png" className="w-28 sm:w-36 md:w-64 aspect-[4/5] object-cover rounded-sm" alt="Varanasi Ghats" />
-          </motion.div>
-          
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.8, y: -20, rotate: 5 }}
-            animate={{ opacity: 1, scale: 1, y: 0, rotate: -2 }}
-            transition={{ duration: 1.2, delay: 0.7 }}
-            className="absolute top-32 right-[20%] p-2.5 bg-white rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.5)] hidden lg:block"
-          >
-            <img src="./images/ganga_craft_new.png" className="w-32 md:w-48 aspect-square object-cover rounded-sm" alt="Riverside Craft" />
-          </motion.div>
-        </div>
-        
-        <div className="relative z-10 text-center px-4 mt-8 w-full">
+            <BookOpen size={14} className="text-[#D4A373]" /> The printed book is out — ₹999 <ChevronRight size={13} />
+          </motion.button>
+
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -916,42 +898,51 @@ export default function App() {
               2,525 Kilometers<br/><span className="text-[#D4A373] italic font-medium">of Heritage</span>
             </h1>
           </motion.div>
-          
-          <motion.p 
+
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-base sm:text-lg md:text-xl text-white/95 max-w-2xl mx-auto mb-10 leading-relaxed bg-black/30 p-5 sm:p-6 rounded-3xl backdrop-blur-md border border-white/20 shadow-xl"
+            className="text-base sm:text-lg md:text-xl text-white/95 max-w-2xl mx-auto mb-10 leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]"
           >
             Experience the exact route of the Ganga through 75 documented sacred locations, interactive digital archives, and direct artisan support.
           </motion.p>
-          
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
             className="flex flex-col sm:flex-row flex-wrap justify-center gap-4 sm:gap-5 px-2"
           >
-            <button 
+            <button onClick={goToCheckout} className="bg-[#D4A373] text-white px-8 py-4 rounded-full font-bold hover:bg-[#B1895D] hover:scale-105 transition-all flex items-center justify-center gap-2 shadow-[0_10px_20px_rgba(212,163,115,0.35)] w-full sm:w-auto min-h-[56px]">
+              <ShoppingBag size={20} /> Buy the Book — ₹999
+            </button>
+            <button
               onClick={() => document.getElementById('journey')?.scrollIntoView({ behavior: 'smooth' })}
-              className="bg-[#D4A373] text-white px-8 py-4 rounded-full font-bold hover:bg-[#B1895D] hover:scale-105 transition-all flex items-center justify-center gap-2 shadow-[0_10px_20px_rgba(212,163,115,0.3)] w-full sm:w-auto min-h-[56px]"
+              className="bg-white/10 backdrop-blur-md border border-white/40 text-white px-8 py-4 rounded-full font-bold hover:bg-white/20 hover:scale-105 transition-all flex items-center justify-center gap-2 w-full sm:w-auto min-h-[56px]"
             >
               Start the Journey <ChevronRight size={20} />
-            </button>
-            <button onClick={goToCheckout} className="bg-[#3A7CA5] text-white px-8 py-4 rounded-full font-bold hover:bg-[#2F668A] hover:scale-105 transition-all flex items-center justify-center gap-2 shadow-[0_10px_20px_rgba(58,124,165,0.3)] w-full sm:w-auto min-h-[56px]">
-              <ShoppingBag size={20} /> Buy the Book Now
             </button>
           </motion.div>
         </div>
 
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5, duration: 1 }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white/60 hover:text-white animate-bounce cursor-pointer z-20 transition-colors"
-          onClick={() => document.getElementById('journey')?.scrollIntoView({ behavior: 'smooth' })}
+        {/* Place-photo ticker — the river scrolls past */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.9 }}
+          className="relative z-10 mt-14 md:mt-16"
         >
-          <ChevronDown size={36} />
+          <div className="hero-ticker">
+            <div className="hero-ticker-track">
+              {[...tickerPlaces, ...tickerPlaces].map((place, i) => (
+                <div key={`${place.id}-${i}`} className="hero-ticker-card">
+                  <img src={place.imageUrl} alt={place.name} loading="lazy" />
+                  <span>{place.name}</span>
+                </div>
+              ))}
+            </div>
+          </div>
         </motion.div>
       </section>
 
