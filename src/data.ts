@@ -889,6 +889,18 @@ export const gangaPlaces: GangaPlace[
     art: "",
     heritage: "Where Shiva merged into Ganga",
     imageUrl: ""
+  },
+  {
+    id: 74,
+    name: "Gangasagar",
+    state: "West Bengal",
+    stage: 8,
+    description: "The vast delta junction where the river empties into the ocean, hosting 5 million pilgrims who bathe in the cold sea every January.",
+    features: ["Sagar Sangam Bath", "Kapil Muni Ashram", "Sagar Island Lighthouse"],
+    cuisine: "Nolen Gur Sandesh & Khichuri",
+    art: "Sundarbans Coir & Clay Dolls",
+    heritage: "Kapil Muni Vedic Legend",
+    imageUrl: "./images/gangasagar_delta_1781868342707.png"
   }
 ];
 
