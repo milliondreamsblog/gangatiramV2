@@ -145,6 +145,30 @@ export const gangaPlaces: GangaPlace[
     art: "Thulma Blankets & Aipan Art",
     heritage: "Karna's Penance To The Sun God",
     imageUrl: ""
+  },
+  {
+    id: 12,
+    name: "Kedarnath",
+    state: "Uttarakhand",
+    stage: 1,
+    description: "One of twelve Jyotirlingas, reached by a tough 16 km trek from Gaurikund, where the Pandavas found Shiva's hump and the Mandakini springs from Chorabari glacier.",
+    features: ["Jyotirlinga Shrine", "Gaurikund Trek", "Vasuki Tal Lake"],
+    cuisine: "",
+    art: "Pandav Lila Folk Dance",
+    heritage: "Jyotirlinga Built By The Pandavas",
+    imageUrl: ""
+  },
+  {
+    id: 13,
+    name: "Sonprayag",
+    state: "Uttarakhand",
+    stage: 1,
+    description: "Sangam of the Mandakini and Basuki rivers near Triyuginarayan Temple, where the flame lit at Shiva and Parvati's divine wedding still burns today.",
+    features: ["Mandakini-Basuki Sangam", "Triyuginarayan Temple", "Gauri Mata Hot Spring"],
+    cuisine: "",
+    art: "",
+    heritage: "Gateway To Kedarnath Pilgrimage",
+    imageUrl: ""
   }
 ];
 
