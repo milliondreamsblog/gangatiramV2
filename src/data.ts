@@ -313,6 +313,30 @@ export const gangaPlaces: GangaPlace[
     art: "",
     heritage: "Shakti Peeth Risen from the Earth",
     imageUrl: ""
+  },
+  {
+    id: 26,
+    name: "Vidur Ashram",
+    state: "Uttar Pradesh",
+    stage: 3,
+    description: "The exile retreat where Vidura served Lord Krishna simple lentils — the same lentil variety still grows here, plucked by pilgrims to plant at home.",
+    features: ["Krishna's Lentil Legend", "Budhi Ganga Ghats", "Vidura Pilgrimage Site"],
+    cuisine: "Awadhi-Rohilkhandi Breads & Curries",
+    art: "Nagina Wood Carving",
+    heritage: "Exile Home of Sage Vidura",
+    imageUrl: ""
+  },
+  {
+    id: 27,
+    name: "Hardoi",
+    state: "Uttar Pradesh",
+    stage: 3,
+    description: "Demon king Hiranyakashyapu's fabled capital, where the pool of Holika Dahan still exists and the Sandi Bird Sanctuary 20 km away hosts over 150 bird species.",
+    features: ["Holika Dahan Pool", "Sandi Bird Sanctuary", "Winter Migratory Waterfowl"],
+    cuisine: "Fragrant Kala Namak Rice",
+    art: "Chikankari & Zardozi Embroidery",
+    heritage: "Legendary City of Prahlad and Holika",
+    imageUrl: ""
   }
 ];
 
