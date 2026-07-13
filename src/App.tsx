@@ -271,10 +271,12 @@ export default function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedStage, setSelectedStage] = useState<number | null>(null);
   const [pastWound, setPastWound] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [shareCopied, setShareCopied] = useState(false);
 
   useEffect(() => {
     const onScroll = () => {
+      setScrolled(window.scrollY > 60);
       const wound = document.getElementById('wound');
       if (!wound) return;
       setPastWound(wound.getBoundingClientRect().bottom < window.innerHeight * 0.5);
@@ -282,6 +284,23 @@ export default function App() {
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
     return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  // Scroll-spy: highlight the nav item for the section currently in view.
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActiveTab(entry.target.id);
+        });
+      },
+      { rootMargin: '-35% 0px -55% 0px' }
+    );
+    ['journey', 'heritage', 'action'].forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
   }, []);
 
   const handleShare = async () => {
@@ -738,36 +757,66 @@ export default function App() {
   return (
     <div className="relative min-h-screen bg-gradient-to-b from-[#F5FAF9] via-[#FDFCF8] to-[#FBF2E7] text-[#2D241E] font-sans pb-24 md:pb-0">
       <RiverLine />
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-[#E8DCC4] px-6 py-4">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <div className="flex items-center gap-2 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-            <Waves className="text-[#3A7CA5] w-8 h-8" />
-            <span className="text-2xl font-serif font-bold tracking-tight text-[#2D241E]">Ganga Tiram</span>
+      {/* Navigation — transparent over the hero, floating dark pill once scrolled */}
+      <nav className="fixed top-0 inset-x-0 z-50 flex justify-center pointer-events-none">
+        <div
+          className={`pointer-events-auto flex items-center transition-all duration-500 ease-out ${
+            scrolled
+              ? 'mt-3 gap-1 md:gap-2 bg-[#2D241E]/90 backdrop-blur-xl rounded-full py-2 pl-4 pr-2 shadow-2xl border border-white/10'
+              : 'w-full max-w-7xl justify-between px-6 py-5 mx-auto'
+          }`}
+        >
+          <button
+            className="flex items-center gap-2 shrink-0"
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            aria-label="Back to top"
+          >
+            <Waves className={scrolled ? 'text-[#8FBFBF] w-6 h-6' : 'text-white w-8 h-8 drop-shadow'} />
+            <span className={`font-serif font-bold tracking-tight text-white transition-all ${scrolled ? 'text-lg hidden sm:inline' : 'text-2xl drop-shadow'}`}>
+              Ganga Tiram
+            </span>
+          </button>
+
+          <div className={`hidden md:flex items-center ${scrolled ? 'gap-1 mx-2' : 'gap-2 lg:gap-4'}`}>
+            {[
+              { id: 'journey', label: 'Journey' },
+              { id: 'heritage', label: 'Heritage' },
+              { id: 'action', label: 'Contribute' }
+            ].map((item) => (
+              <button
+                key={item.id}
+                onClick={() => document.getElementById(item.id)?.scrollIntoView({ behavior: 'smooth' })}
+                className={`relative px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest transition-colors ${
+                  activeTab === item.id ? 'text-white' : scrolled ? 'text-white/60 hover:text-white' : 'text-white/75 hover:text-white'
+                }`}
+              >
+                {activeTab === item.id && (
+                  <motion.span
+                    layoutId="nav-active"
+                    className={`absolute inset-0 rounded-full ${scrolled ? 'bg-white/15' : 'bg-white/20 backdrop-blur-sm'}`}
+                    transition={{ type: 'spring', stiffness: 350, damping: 30 }}
+                  />
+                )}
+                <span className="relative">{item.label}</span>
+              </button>
+            ))}
           </div>
-          <div className="hidden md:flex gap-5 lg:gap-8 text-sm font-medium uppercase tracking-widest text-[#5A4B3F]">
-            <button onClick={() => {
-              document.getElementById('journey')?.scrollIntoView({ behavior: 'smooth' });
-              setActiveTab('journey');
-            }} className={`${activeTab === 'journey' ? 'text-[#3A7CA5] border-b-2 border-[#3A7CA5]' : ''} hover:text-[#3A7CA5] transition-colors`}>Journey</button>
-            <button onClick={() => {
-              document.getElementById('heritage')?.scrollIntoView({ behavior: 'smooth' });
-              setActiveTab('heritage');
-            }} className={`${activeTab === 'heritage' ? 'text-[#3A7CA5] border-b-2 border-[#3A7CA5]' : ''} hover:text-[#3A7CA5] transition-colors`}>Heritage</button>
-            <button onClick={() => {
-              document.getElementById('action')?.scrollIntoView({ behavior: 'smooth' });
-              setActiveTab('action');
-            }} className={`${activeTab === 'action' ? 'text-[#3A7CA5] border-b-2 border-[#3A7CA5]' : ''} hover:text-[#3A7CA5] transition-colors`}>Contribute</button>
-          </div>
-          <div className="flex items-center gap-4">
-            <button onClick={goToCheckout} className="bg-[#3A7CA5] text-white px-5 md:px-6 py-2.5 rounded-full text-sm font-bold hover:bg-[#2F668A] transition-colors shadow-lg flex items-center gap-2 min-h-[44px]">
-              <ShoppingBag size={18} /> <span className="hidden sm:inline">Buy Book</span>
-            </button>
-            <button 
-              className="md:hidden p-2 text-[#2D241E] min-h-[44px] min-w-[44px] flex items-center justify-center"
-              onClick={() => setIsMobileMenuOpen(true)}
+
+          <div className="flex items-center gap-2">
+            <button
+              onClick={goToCheckout}
+              className={`bg-[#D4A373] text-white rounded-full font-bold hover:bg-[#B1895D] transition-all shadow-lg flex items-center gap-2 min-h-[44px] ${
+                scrolled ? 'px-4 py-2 text-xs' : 'px-5 md:px-6 py-2.5 text-sm'
+              }`}
             >
-              <Menu size={28} />
+              <ShoppingBag size={16} /> <span>{scrolled ? '₹999' : 'Buy Book'}</span>
+            </button>
+            <button
+              className={`md:hidden min-h-[44px] min-w-[44px] flex items-center justify-center text-white`}
+              onClick={() => setIsMobileMenuOpen(true)}
+              aria-label="Open menu"
+            >
+              <Menu size={scrolled ? 22 : 28} />
             </button>
           </div>
         </div>
