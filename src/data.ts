@@ -433,6 +433,30 @@ export const gangaPlaces: GangaPlace[
     art: "Kumbh Festival Sand Sculptures",
     heritage: "Gupta Era Patalpuri Temple",
     imageUrl: "./images/prayagraj_sangam_1781868310911.png"
+  },
+  {
+    id: 36,
+    name: "Mirzapur",
+    state: "Uttar Pradesh",
+    stage: 4,
+    description: "A 1600s East India Company trading post turned carpet capital, whose handmade woolen carpets are exported worldwide and whose hills hide the Lakhania Dari waterfalls.",
+    features: ["Vindhyachal Temple", "Lakhania Dari Waterfalls", "Ashtabhuja Temple"],
+    cuisine: "",
+    art: "Handmade Woolen Carpet Weaving",
+    heritage: "Carpet Capital of India",
+    imageUrl: ""
+  },
+  {
+    id: 37,
+    name: "Vindhyachal Temple",
+    state: "Uttar Pradesh",
+    stage: 4,
+    description: "A Shakti Peetha of Goddess Durga on the Ganga's banks, where the infant who slipped from Kamsa's grasp revealed her true form and foretold his death.",
+    features: ["Vindhyavasini Devi Shrine", "Nine-Day Navratri Celebrations", "Vindhya Forest Birdwatching"],
+    cuisine: "Pedas & Jalebis",
+    art: "Stone Carving & Brassware",
+    heritage: "One of the Foremost Shakti Peethas",
+    imageUrl: ""
   }
 ];
 
