@@ -12,8 +12,7 @@ export interface GangaPlace {
 }
 
 // All 75 places from the Ganga Tiram book, in downstream order (Gomukh -> Sweta Ganga).
-export const gangaPlaces: GangaPlace[
-  ] = [
+export const gangaPlaces: GangaPlace[] = [
   {
     id: 1,
     name: "Gomukh",
@@ -901,6 +900,18 @@ export const gangaPlaces: GangaPlace[
     art: "Sundarbans Coir & Clay Dolls",
     heritage: "Kapil Muni Vedic Legend",
     imageUrl: "./images/gangasagar_delta_1781868342707.png"
+  },
+  {
+    id: 75,
+    name: "Sweta Ganga",
+    state: "Odisha",
+    stage: 8,
+    description: "A holy tank beside Puri's Sweta Madhava temple whose single droplet grants Vaikuntha, and whose waters are held non-different from the Ganga.",
+    features: ["Sweta Madhava Temple", "Sweta Ganga Holy Tank", "Daily Mahaprasad Distribution"],
+    cuisine: "Jagannath Temple Mahaprasad",
+    art: "",
+    heritage: "Puri tank non-different from Ganga",
+    imageUrl: ""
   }
 ];
 
