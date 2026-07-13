@@ -241,6 +241,30 @@ export const gangaPlaces: GangaPlace[
     art: "Clay Diya & Flower Basket Craft",
     heritage: "Footprint of Lord Vishnu",
     imageUrl: "./images/haridwar_aarti_1781868296149.png"
+  },
+  {
+    id: 20,
+    name: "Shukratal",
+    state: "Uttar Pradesh",
+    stage: 3,
+    description: "Under the still-standing Akshayavat banyan, sage Sukhdev Goswami recited the 18,000-verse Srimad Bhagavatam to Emperor Parikshit, who had been cursed to die within seven days.",
+    features: ["Akshayavat Banyan Tree", "Kartika Poornima Holy Dip", "Srimad Bhagavatam Recital Site"],
+    cuisine: "",
+    art: "",
+    heritage: "Where Srimad Bhagavatam Was First Spoken",
+    imageUrl: ""
+  },
+  {
+    id: 21,
+    name: "Meerut",
+    state: "Uttar Pradesh",
+    stage: 3,
+    description: "Trigger point of the 1857 rebellion, with the Mahabharata's Lakshagraha palace under excavation at Barnava village on the Ganga, 32 km away.",
+    features: ["Augharnath Temple", "Nauchandi Mela", "Shahid Smarak Memorial"],
+    cuisine: "",
+    art: "Musical Instruments & Engraved Woodwork",
+    heritage: "First Flashpoint of 1857 Rebellion",
+    imageUrl: ""
   }
 ];
 
