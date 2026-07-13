@@ -31,16 +31,20 @@ import {
 import { gangaPlaces, contribFACE, GangaPlace } from './data';
 import AdminPanel from './AdminPanel';
 
-const bookCover = '/book/ganga-tiram-front.jpg';
 const paymentQr = '/book/payment-qr.jpeg';
 
-const bookSliderSlides = [
-  {
-    image: bookCover,
-    title: 'The Printed Collection',
-    subtitle: 'A tangible 300-page visual trail across 75 sacred locations.'
-  }
-];
+function Book3D({ compact = false }: { compact?: boolean }) {
+  return (
+    <div className={compact ? 'book3d-stage compact' : 'book3d-stage'}>
+      <div className="book3d">
+        <img className="book3d-front" src="/book/ganga-tiram-front.jpg" alt="Ganga Tiram book — front cover" />
+        <img className="book3d-back" src="/book/ganga-tiram-back.jpg" alt="" aria-hidden="true" />
+        <img className="book3d-spine" src="/book/ganga-tiram-spine.jpg" alt="" aria-hidden="true" />
+        <div className="book3d-pages" aria-hidden="true"></div>
+      </div>
+    </div>
+  );
+}
 
 const bookSpreads = [
   {
@@ -440,7 +444,9 @@ export default function App() {
         <main className="max-w-7xl mx-auto px-4 sm:px-6 pt-24 md:pt-32 pb-16 md:pb-20">
           <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-12 items-start">
             <section className="checkout-book-panel">
-              <BookSlider compact />
+              <div className="flex justify-center mb-10">
+                <Book3D compact />
+              </div>
               <div>
                 <p className="text-[#3A7CA5] text-xs font-black uppercase tracking-[0.25em] mb-3">Book Order</p>
                 <h1 className="text-4xl md:text-5xl font-serif font-bold mb-5">Ganga Tiram</h1>
@@ -931,18 +937,7 @@ export default function App() {
               transition={{ duration: 0.7 }}
               className="book-stage"
             >
-              <motion.div
-                whileHover={{ rotate: -1.5, scale: 1.03 }}
-                transition={{ type: 'spring', stiffness: 200, damping: 18 }}
-                className="relative w-full max-w-md"
-              >
-                <div className="absolute inset-0 translate-x-3 translate-y-4 rounded-2xl bg-[#2D241E]/15 blur-xl" aria-hidden="true"></div>
-                <img
-                  src={bookCover}
-                  alt="Ganga Tiram book — front cover"
-                  className="relative w-full rounded-2xl border border-[#E8DCC4] shadow-2xl"
-                />
-              </motion.div>
+              <Book3D />
             </motion.div>
 
             <motion.div
@@ -1713,52 +1708,4 @@ export default function App() {
   );
 }
 
-function BookSlider({ compact = false }: { compact?: boolean }) {
-  const [activeSlide, setActiveSlide] = useState(0);
-  const slide = bookSliderSlides[activeSlide];
-  const hasMultipleSlides = bookSliderSlides.length > 1;
-
-  return (
-    <div className={compact ? 'book-slider compact' : 'book-slider'}>
-      <div className="book-slider-frame">
-        <img src={slide.image} alt="Ganga Tiram Heritage Collection Printed Book" />
-        <div className="book-slider-caption">
-          <span>Heritage Book</span>
-          <h3>{slide.title}</h3>
-          {!compact && <p>{slide.subtitle}</p>}
-        </div>
-      </div>
-
-      <div className="book-slider-controls">
-        <button
-          type="button"
-          disabled={!hasMultipleSlides}
-          onClick={() => setActiveSlide((activeSlide - 1 + bookSliderSlides.length) % bookSliderSlides.length)}
-          aria-label="Previous book image"
-        >
-          <ArrowLeft size={18} />
-        </button>
-        <div className="book-slider-dots">
-          {bookSliderSlides.map((item, index) => (
-            <button
-              key={item.title}
-              type="button"
-              className={index === activeSlide ? 'active' : ''}
-              onClick={() => setActiveSlide(index)}
-              aria-label={`Show ${item.title}`}
-            />
-          ))}
-        </div>
-        <button
-          type="button"
-          disabled={!hasMultipleSlides}
-          onClick={() => setActiveSlide((activeSlide + 1) % bookSliderSlides.length)}
-          aria-label="Next book image"
-        >
-          <ChevronRight size={18} />
-        </button>
-      </div>
-    </div>
-  );
-}
 

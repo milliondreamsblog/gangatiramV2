@@ -31,77 +31,107 @@ body {
   @apply inline-flex items-center gap-2 rounded-full border border-[#E8DCC4] bg-white px-4 py-2 text-sm font-bold text-[#5A4B3F];
 }
 
-.book-slider {
-  @apply w-full max-w-xl mx-auto lg:mx-0;
+/* --- 3D book (front + spine + page edges) --- */
+.book3d-stage {
+  position: relative;
+  perspective: 1400px;
+  animation: book-float 6s ease-in-out infinite;
 }
 
-.book-slider-frame {
-  @apply relative overflow-hidden rounded-3xl border border-[#E8DCC4] bg-white shadow-2xl;
+.book3d-stage::after {
+  content: '';
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  bottom: -28px;
+  height: 26px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(45, 36, 30, 0.28), transparent 70%);
+  filter: blur(6px);
 }
 
-.book-slider-frame img {
-  @apply block w-full aspect-[4/3] object-cover;
+.book3d {
+  --w: 260px;
+  --h: 267px;
+  --d: 32px;
+  position: relative;
+  width: var(--w);
+  height: var(--h);
+  transform-style: preserve-3d;
+  transform: rotateY(28deg);
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.book-slider-caption {
-  @apply absolute inset-x-0 bottom-0 p-5 md:p-7 text-white;
-  background: linear-gradient(180deg, transparent, rgba(45, 36, 30, 0.88));
+@media (min-width: 640px) {
+  .book3d {
+    --w: 360px;
+    --h: 370px;
+    --d: 40px;
+  }
 }
 
-.book-slider-caption span {
-  @apply text-[10px] font-black uppercase tracking-[0.25em] text-[#D4A373];
+.book3d-stage:hover .book3d {
+  transform: rotateY(12deg) scale(1.03);
 }
 
-.book-slider-caption h3 {
-  @apply mt-2 text-2xl md:text-3xl font-serif font-bold;
+.book3d > * {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  backface-visibility: hidden;
 }
 
-.book-slider-caption p {
-  @apply mt-2 max-w-md text-sm text-white/80 leading-relaxed;
+.book3d-front,
+.book3d-back {
+  width: var(--w);
+  height: var(--h);
+  object-fit: cover;
 }
 
-.book-slider-controls {
-  @apply mt-5 flex items-center justify-center gap-4;
+.book3d-front {
+  transform: translate(-50%, -50%) translateZ(calc(var(--d) / 2));
+  border-radius: 4px 14px 14px 4px;
 }
 
-.book-slider-controls > button {
-  @apply w-10 h-10 rounded-full bg-white border border-[#E8DCC4] text-[#2D241E] flex items-center justify-center transition-colors hover:bg-[#3A7CA5] hover:text-white disabled:opacity-40 disabled:hover:bg-white disabled:hover:text-[#2D241E];
+.book3d-back {
+  transform: translate(-50%, -50%) rotateY(180deg) translateZ(calc(var(--d) / 2));
+  border-radius: 14px 4px 4px 14px;
 }
 
-.book-slider-dots {
-  @apply flex items-center gap-2;
+.book3d-spine {
+  width: var(--d);
+  height: var(--h);
+  object-fit: cover;
+  transform: translate(-50%, -50%) rotateY(-90deg) translateZ(calc(var(--w) / 2));
+  border-radius: 3px;
 }
 
-.book-slider-dots button {
-  @apply w-2.5 h-2.5 rounded-full bg-[#C9BBA4] transition-all;
+.book3d-pages {
+  width: var(--d);
+  height: calc(var(--h) - 8px);
+  transform: translate(-50%, -50%) rotateY(90deg) translateZ(calc(var(--w) / 2 - 2px));
+  background: repeating-linear-gradient(to right, #f7f2e6 0 2px, #e3dac6 2px 3px);
+  border-radius: 2px;
 }
 
-.book-slider-dots button.active {
-  @apply w-8 bg-[#3A7CA5];
+.book3d-stage.compact {
+  animation: none;
 }
 
-.book-slider.compact {
-  @apply max-w-none mb-8;
+.book3d-stage.compact .book3d {
+  --w: 220px;
+  --h: 226px;
+  --d: 26px;
 }
 
-.book-slider.compact .book-slider-frame {
-  @apply rounded-2xl shadow-lg;
+@keyframes book-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
-.book-slider.compact .book-slider-frame img {
-  @apply aspect-[5/4];
-}
-
-.book-slider.compact .book-slider-caption {
-  @apply p-4;
-}
-
-.book-slider.compact .book-slider-caption h3 {
-  @apply text-xl;
-}
-
-.book-slider.compact .book-slider-controls {
-  @apply hidden;
+@media (prefers-reduced-motion: reduce) {
+  .book3d-stage { animation: none; }
+  .book3d { transition: none; }
 }
 
 .book-contents-strip {
