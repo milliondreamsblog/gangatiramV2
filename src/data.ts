@@ -817,6 +817,18 @@ export const gangaPlaces: GangaPlace[
     art: "Dokra And Shola Pith Craft",
     heritage: "One of India's five sacred sangams",
     imageUrl: ""
+  },
+  {
+    id: 68,
+    name: "Adisaptagram",
+    state: "West Bengal",
+    stage: 8,
+    description: "Medieval muslin-trading port on the now-silted Saraswati, linked to seven sages' villages and the birthplace of saints Raghunath Das Goswami and Uddharan Thakur.",
+    features: ["Old Port Ruins", "Bandel Church Nearby", "Durga Puja Melas"],
+    cuisine: "",
+    art: "Muslin Weaving Legacy",
+    heritage: "Medieval Bengal's great port of commerce",
+    imageUrl: ""
   }
 ];
 
