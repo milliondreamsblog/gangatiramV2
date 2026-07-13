@@ -625,6 +625,30 @@ export const gangaPlaces: GangaPlace[
     art: "Sohrai And Kumbh Tribal Paintings",
     heritage: "Historic Ganges port with Rajmahal forts",
     imageUrl: ""
+  },
+  {
+    id: 52,
+    name: "Kanai Natshala",
+    state: "Jharkhand",
+    stage: 7,
+    description: "The Gupt Vrindavan where Chaitanya Mahaprabhu's mystical darshan launched his Sankirtan movement, dancing roughly 300 km to Mayapur, his resting tree still standing.",
+    features: ["Gupt Vrindavan Raas Sthali", "Chaitanya's Resting Tree", "Sarhul And Karam Festivals"],
+    cuisine: "Dhuska And Chilka Roti",
+    art: "Dhokra And Kohbar Art",
+    heritage: "Birthplace of Chaitanya's Sankirtan movement",
+    imageUrl: ""
+  },
+  {
+    id: 53,
+    name: "Ramkeli",
+    state: "West Bengal",
+    stage: 7,
+    description: "Malda pilgrimage site where ministers Rupa and Sanatana Goswami renounced palaces after meeting Chaitanya, whose 600-year-old Kadamba resting tree stands among eight sacred Gopi kundas.",
+    features: ["Madan Mohan Temple", "Eight Sacred Gopi Kundas", "Ramkeli Mela"],
+    cuisine: "",
+    art: "",
+    heritage: "Where the Goswami brothers joined Chaitanya",
+    imageUrl: ""
   }
 ];
 
