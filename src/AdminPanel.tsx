@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Waves, LogOut, RefreshCw } from 'lucide-react';
+import { LogOut, RefreshCw } from 'lucide-react';
+import Logo from './Logo';
 
 type Order = {
   id: number; name: string; address: string; pincode: string; country: string;
@@ -78,7 +79,7 @@ export default function AdminPanel() {
       <div className="min-h-screen bg-[#FDFCF8] flex items-center justify-center p-6">
         <form onSubmit={handleLogin} className="bg-white border border-[#E8DCC4] rounded-3xl p-10 shadow-xl w-full max-w-sm">
           <div className="flex items-center gap-2 mb-8 justify-center">
-            <Waves className="text-[#3A7CA5] w-7 h-7" />
+            <Logo size={28} />
             <span className="text-2xl font-serif font-bold text-[#2D241E]">Ganga Tiram Admin</span>
           </div>
           <label className="flex flex-col gap-2 mb-4">
@@ -109,7 +110,7 @@ export default function AdminPanel() {
       <nav className="bg-white/85 backdrop-blur-md border-b border-[#E8DCC4] px-6 py-4">
         <div className="max-w-6xl mx-auto flex justify-between items-center">
           <div className="flex items-center gap-2">
-            <Waves className="text-[#3A7CA5] w-7 h-7" />
+            <Logo size={28} />
             <span className="text-xl font-serif font-bold">Ganga Tiram Admin</span>
           </div>
           <div className="flex items-center gap-3">
