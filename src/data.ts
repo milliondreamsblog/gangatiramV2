@@ -265,6 +265,30 @@ export const gangaPlaces: GangaPlace[
     art: "Musical Instruments & Engraved Woodwork",
     heritage: "First Flashpoint of 1857 Rebellion",
     imageUrl: ""
+  },
+  {
+    id: 22,
+    name: "Haiderpur Wetland",
+    state: "Uttar Pradesh",
+    stage: 3,
+    description: "A man-made wetland formed by the 1984 Madhya Ganga Barrage — India's 47th Ramsar Site — sheltering over 300 bird species on the Central Asian Flyway.",
+    features: ["300+ Bird Species", "Eco Hut Wetland Trails", "Endangered Gharial Habitat"],
+    cuisine: "",
+    art: "",
+    heritage: "India's 47th Ramsar Site",
+    imageUrl: ""
+  },
+  {
+    id: 23,
+    name: "Hastinapur Forest Reserve",
+    state: "Uttar Pradesh",
+    stage: 3,
+    description: "The Kauravas' cursed capital turned dense forest, where Draupadi's bathing ghats survive and gharials and Gangetic dolphins still swim the Ganga.",
+    features: ["Draupadi's Bathing Ghats", "Pandava Tila Excavations", "Gangetic Dolphin Spotting"],
+    cuisine: "Simple Jain Vegetarian Food",
+    art: "Painted Grey Ware Pottery",
+    heritage: "Ancient Capital of the Kauravas",
+    imageUrl: ""
   }
 ];
 
