@@ -829,6 +829,18 @@ export const gangaPlaces: GangaPlace[
     art: "Muslin Weaving Legacy",
     heritage: "Medieval Bengal's great port of commerce",
     imageUrl: ""
+  },
+  {
+    id: 69,
+    name: "Serampur",
+    state: "West Bengal",
+    stage: 8,
+    description: "Once Danish Fredriksnagore, its six-century-old Mahesh Rath Yatra hauls a fifty-foot, twelve-wheeled steel chariot built by Martin Burn Company in 1885.",
+    features: ["Mahesh Rath Yatra", "St. Olav's Church", "Serampore College"],
+    cuisine: "",
+    art: "",
+    heritage: "Danish colonial town, Indian printing pioneer",
+    imageUrl: ""
   }
 ];
 
