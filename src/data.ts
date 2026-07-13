@@ -733,6 +733,18 @@ export const gangaPlaces: GangaPlace[
     art: "",
     heritage: "Ancient Jagannath temple of Simantadvipa",
     imageUrl: ""
+  },
+  {
+    id: 61,
+    name: "Katwa",
+    state: "West Bengal",
+    stage: 8,
+    description: "At the Bhagirathi-Ajay confluence, a 600-year-old banyan still shades where 24-year-old Chaitanya Mahaprabhu shaved his head and accepted sannyasa in 1510.",
+    features: ["Gouranga Bari Temple", "600-Year-Old Banyan Tree", "Sannyasa Lila Utsav"],
+    cuisine: "",
+    art: "",
+    heritage: "Where Chaitanya accepted sannyasa in 1510",
+    imageUrl: ""
   }
 ];
 
