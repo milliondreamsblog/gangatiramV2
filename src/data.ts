@@ -217,6 +217,30 @@ export const gangaPlaces: GangaPlace[
     art: "",
     heritage: "Lord Ram's Silent Penance Site",
     imageUrl: ""
+  },
+  {
+    id: 18,
+    name: "Rishikesh",
+    state: "Uttarakhand",
+    stage: 2,
+    description: "Where the clear Ganga flows rapidly over boulders past 200+ ashrams, offering Grade IV white-water rapids.",
+    features: ["White-Water Rafting", "Beatles Ashram", "Lakshman Jhula"],
+    cuisine: "Organic Ayurvedic Herbal Tea",
+    art: "Riverside Ghat Wall Murals",
+    heritage: "Yoga & Meditation Retreats",
+    imageUrl: "./images/rishikesh_river_1781868284118.png"
+  },
+  {
+    id: 19,
+    name: "Haridwar",
+    state: "Uttarakhand",
+    stage: 3,
+    description: "The gateway where the river exits the mountains, illuminated by 1,000 floating leaf-lamps at Har Ki Pauri every evening.",
+    features: ["Har Ki Pauri Aarti", "Mansa Devi Ropeway", "Kumbh Mela Site"],
+    cuisine: "Aloo Puri & Kulhad Lassi",
+    art: "Clay Diya & Flower Basket Craft",
+    heritage: "Footprint of Lord Vishnu",
+    imageUrl: "./images/haridwar_aarti_1781868296149.png"
   }
 ];
 
