@@ -757,6 +757,18 @@ export const gangaPlaces: GangaPlace[
     art: "",
     heritage: "Village of exalted Krishna devotees",
     imageUrl: ""
+  },
+  {
+    id: 63,
+    name: "Sakhai Bazaar",
+    state: "West Bengal",
+    stage: 8,
+    description: "Bangle-and-garland market at Uddharanapur where two hands rose from the Ganga holding the Saakha bangles Mother Ganga had bought with five gold coins.",
+    features: ["Sakhai Bazaar Ghat", "Uddharan Thakur's Samadhi", "Bangle And Garland Market"],
+    cuisine: "",
+    art: "Saakha Bangles And Garlands",
+    heritage: "Where Mother Ganga bought bangles",
+    imageUrl: ""
   }
 ];
 
