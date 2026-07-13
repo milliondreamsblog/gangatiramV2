@@ -385,6 +385,30 @@ export const gangaPlaces: GangaPlace[
     art: "",
     heritage: "Karna's Gifted Land, Karnapur",
     imageUrl: ""
+  },
+  {
+    id: 32,
+    name: "Bithoor",
+    state: "Uttar Pradesh",
+    stage: 3,
+    description: "Where Lord Brahma created the first human, Valmiki penned the Ramayana, Sita raised Lav and Kush, and freedom icon Rani Laxmi Bai was born.",
+    features: ["Valmiki Ashram", "Brahmghat", "Dhruva Teela"],
+    cuisine: "",
+    art: "",
+    heritage: "Brahmavarta, Cradle of the Ramayana",
+    imageUrl: ""
+  },
+  {
+    id: 33,
+    name: "Jajmau",
+    state: "Uttar Pradesh",
+    stage: 3,
+    description: "An ancient Vedic sacrifice site whose 2-acre mound, said to be King Yayati's fort, has yielded artifacts dating back to 1300-1200 BCE.",
+    features: ["Siddhanath Ghat", "Siddha Devi Temple", "King Yayati's Fort Mound"],
+    cuisine: "",
+    art: "",
+    heritage: "Vedic Sacrifice Site Called Siddhapuri",
+    imageUrl: ""
   }
 ];
 
