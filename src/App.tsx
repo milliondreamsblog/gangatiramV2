@@ -30,6 +30,7 @@ import {
 } from 'lucide-react';
 import { gangaPlaces, contribFACE, GangaPlace } from './data';
 import AdminPanel from './AdminPanel';
+import Logo from './Logo';
 
 const paymentQr = '/book/payment-qr.jpeg';
 
@@ -490,7 +491,7 @@ export default function App() {
               <ArrowLeft size={20} /> Back
             </button>
             <div className="flex items-center gap-2">
-              <Waves className="text-[#3A7CA5] w-7 h-7" />
+              <Logo size={28} />
               <span className="text-xl font-serif font-bold">Ganga Tiram</span>
             </div>
           </div>
@@ -604,7 +605,7 @@ export default function App() {
         <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-[#E8DCC4] px-6 py-4">
           <div className="max-w-7xl mx-auto flex justify-between items-center">
             <div className="flex items-center gap-2 cursor-pointer" onClick={() => setShowAllPlaces(false)}>
-              <Waves className="text-[#3A7CA5] w-8 h-8" />
+              <Logo size={30} />
               <span className="text-2xl font-serif font-bold tracking-tight text-[#2D241E]">Ganga Tiram</span>
             </div>
             <button 
@@ -780,7 +781,7 @@ export default function App() {
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             aria-label="Back to top"
           >
-            <Waves className={scrolled ? 'text-[#8FBFBF] w-6 h-6' : 'text-white w-8 h-8 drop-shadow'} />
+            <Logo size={scrolled ? 26 : 34} onDark />
             <span className={`font-serif font-bold tracking-tight text-white transition-all ${scrolled ? 'text-lg hidden sm:inline' : 'text-2xl drop-shadow'}`}>
               Ganga Tiram
             </span>
@@ -1754,7 +1755,7 @@ export default function App() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
             <div className="md:col-span-2">
               <div className="flex items-center gap-2 mb-8">
-                <Waves className="text-[#3A7CA5] w-8 h-8" />
+                <Logo size={34} onDark />
                 <span className="text-3xl font-serif font-bold tracking-tight">Ganga Tiram</span>
               </div>
               <p className="text-gray-400 max-w-md leading-relaxed">
