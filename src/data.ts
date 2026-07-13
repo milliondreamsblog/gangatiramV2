@@ -697,6 +697,30 @@ export const gangaPlaces: GangaPlace[
     art: "Gobindo Ghosh Kirtan Style",
     heritage: "Site of Gopinath's eternal last rites",
     imageUrl: ""
+  },
+  {
+    id: 58,
+    name: "Nabadwip",
+    state: "West Bengal",
+    stage: 8,
+    description: "Nine islands personifying nine forms of bhakti, birthplace of Chaitanya Mahaprabhu and 12th-century Sena capital, circled yearly by thousands on the Mandal Parikrama.",
+    features: ["Navadwip Mandal Parikrama", "Gour Purnima Festival", "Nine Islands Of Bhakti"],
+    cuisine: "",
+    art: "Dokra Casting And Clay Dolls",
+    heritage: "Cradle of the Sankirtan movement",
+    imageUrl: ""
+  },
+  {
+    id: 59,
+    name: "Mayapur",
+    state: "West Bengal",
+    stage: 8,
+    description: "At the Ganga-Jalangi confluence, the 600-year-old Neem tree beneath which Chaitanya Mahaprabhu was born still stands beside ISKCON's rising Temple of the Vedic Planetarium.",
+    features: ["600-Year-Old Neem Tree", "Temple Of The Vedic Planetarium", "Gaura Purnima Festival"],
+    cuisine: "Vegetarian ISKCON Prasadam",
+    art: "",
+    heritage: "Birthplace of Chaitanya Mahaprabhu",
+    imageUrl: ""
   }
 ];
 
