@@ -649,6 +649,30 @@ export const gangaPlaces: GangaPlace[
     art: "",
     heritage: "Where the Goswami brothers joined Chaitanya",
     imageUrl: ""
+  },
+  {
+    id: 54,
+    name: "Kheturi Dham",
+    state: "Rajshahi Division, Bangladesh",
+    stage: 7,
+    description: "Ancestral birthplace of saint Narottama Dasa Thakura, where a waterbody formed from thousands of devotees' tears at the first Gaur Purnima festival still remains.",
+    features: ["Narottama Das Thakura Temple", "Tirobhav Mahotsava Festival", "Wetland Openbill Storks"],
+    cuisine: "",
+    art: "Garanhati Kirtan Tradition",
+    heritage: "Birthplace of saint Narottama Dasa Thakura",
+    imageUrl: ""
+  },
+  {
+    id: 55,
+    name: "Dudha Ghat",
+    state: "West Bengal",
+    stage: 8,
+    description: "The ghat where saint Narottama Das Thakur's body melted into milky liquid and flowed into the Ganga, his samadhi nearby at Gambhila near Jiaganj.",
+    features: ["Narottama's Disappearance Ghat", "Gambhila Samadhi Shrine", "Terracotta Temples"],
+    cuisine: "",
+    art: "Baluchari Silk Saree Weaving",
+    heritage: "Narottama Thakur's mystical disappearance site",
+    imageUrl: ""
   }
 ];
 
