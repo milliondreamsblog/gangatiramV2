@@ -361,6 +361,30 @@ export const gangaPlaces: GangaPlace[
     art: "",
     heritage: "Western UP's 'Ardh Kumbh' Fair",
     imageUrl: ""
+  },
+  {
+    id: 30,
+    name: "Kannauj",
+    state: "Uttar Pradesh",
+    stage: 3,
+    description: "India's GI-tagged perfume capital, where Deg-Bhapka copper stills condense riverbed clay into Mitti Attar that captures the scent of the first rain.",
+    features: ["Mehendi Ghat", "Lakh Bahosi Wildlife Sanctuary", "Emperor Harsha's Fort Ruins"],
+    cuisine: "",
+    art: "Deg-Bhapka Attar Perfumery",
+    heritage: "Ancient Kanyakubja, Harsha's Capital",
+    imageUrl: ""
+  },
+  {
+    id: 31,
+    name: "Kanpur",
+    state: "Uttar Pradesh",
+    stage: 3,
+    description: "Once Karnapur, Duryodhana's gift to Karna, its circular Jagannath 'Rain Temple' at Behta Bujurg, 32 km away, seeps water days before the monsoon begins.",
+    features: ["Behta Bujurg Rain Temple", "Brahmavarta Ghat", "Site of 1857 Uprising"],
+    cuisine: "",
+    art: "",
+    heritage: "Karna's Gifted Land, Karnapur",
+    imageUrl: ""
   }
 ];
 
