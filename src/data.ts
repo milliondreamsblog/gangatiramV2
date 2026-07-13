@@ -97,6 +97,30 @@ export const gangaPlaces: GangaPlace[
     art: "Aipan Murals & Wood Carving",
     heritage: "Kedarnath Deity's Winter Abode",
     imageUrl: ""
+  },
+  {
+    id: 8,
+    name: "Badrinath",
+    state: "Uttarakhand",
+    stage: 1,
+    description: "Char Dham shrine on the Alaknanda where Lakshmi became a berry tree to shield meditating Vishnu; pilgrims cleanse sins in the Tapt Kund hot spring.",
+    features: ["Tapt Kund Hot Spring", "Mana Village Vyasa Cave", "Vasudhara Falls Trek"],
+    cuisine: "Thechwani Potato-Radish Preparation",
+    art: "",
+    heritage: "Char Dham Restored By Shankaracharya",
+    imageUrl: ""
+  },
+  {
+    id: 9,
+    name: "Vishnuprayag",
+    state: "Uttarakhand",
+    stage: 1,
+    description: "First of the Panch Prayags, where the Dhauliganga meets the Alaknanda, and gateway to the Valley of Flowers with over 600 species of exotic blooms.",
+    features: ["Alaknanda-Dhauliganga Sangam", "Valley Of Flowers Trek", "Kagbhusandi Lake Trek"],
+    cuisine: "",
+    art: "",
+    heritage: "First Panch Prayag, Narada's Penance Site",
+    imageUrl: ""
   }
 ];
 
