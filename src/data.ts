@@ -745,6 +745,18 @@ export const gangaPlaces: GangaPlace[
     art: "",
     heritage: "Where Chaitanya accepted sannyasa in 1510",
     imageUrl: ""
+  },
+  {
+    id: 62,
+    name: "Srikhanda",
+    state: "West Bengal",
+    stage: 8,
+    description: "Village near Katwa where Lord Gopinath ate half a laddoo from child Raghunandan, and Locana Das Thakur wrote the Chaitanya Mangal beneath a still-standing tree.",
+    features: ["Chaitanya Mangal Writing Tree", "Gopinath Laddoo Miracle Site", "Home Of Narahari Sarkar"],
+    cuisine: "",
+    art: "",
+    heritage: "Village of exalted Krishna devotees",
+    imageUrl: ""
   }
 ];
 
