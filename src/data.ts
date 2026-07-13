@@ -289,6 +289,30 @@ export const gangaPlaces: GangaPlace[
     art: "Painted Grey Ware Pottery",
     heritage: "Ancient Capital of the Kauravas",
     imageUrl: ""
+  },
+  {
+    id: 24,
+    name: "Garhmukteswar",
+    state: "Uttar Pradesh",
+    stage: 3,
+    description: "Riverside town of about 50,000 where Ganga took human form to wed King Santanu, and pilgrims camp in tents for the Kartik Purnima Garh Ganga Fair.",
+    features: ["Mukteshwar Mahadev Temple", "Brij Ghat", "Garh Ganga Fair"],
+    cuisine: "",
+    art: "",
+    heritage: "Where Ganga Wed King Santanu",
+    imageUrl: ""
+  },
+  {
+    id: 25,
+    name: "Belon Devi",
+    state: "Uttar Pradesh",
+    stage: 3,
+    description: "Shakti Peeth temple 5 km from Narora's nuclear plant, built by Rao Bhup Singh after the goddess, buried deep in the earth, appeared in his dream.",
+    features: ["Sarva Mangala Devi Temple", "Navratri Festival", "Kartik Purnima Gatherings"],
+    cuisine: "",
+    art: "",
+    heritage: "Shakti Peeth Risen from the Earth",
+    imageUrl: ""
   }
 ];
 
