@@ -33,15 +33,48 @@ import AdminPanel from './AdminPanel';
 
 const paymentQr = '/book/payment-qr.jpeg';
 
+const BOOK_VIEWS = { front: 28, spine: 90, back: 152 } as const;
+type BookView = keyof typeof BOOK_VIEWS;
+
 function Book3D({ compact = false }: { compact?: boolean }) {
+  const reduceMotion = useReducedMotion();
+  const [view, setView] = useState<BookView>('front');
+  const [autoTour, setAutoTour] = useState(!compact);
+
+  useEffect(() => {
+    if (!autoTour || reduceMotion) return;
+    const order: BookView[] = ['front', 'spine', 'back'];
+    const timer = setInterval(() => {
+      setView((current) => order[(order.indexOf(current) + 1) % order.length]);
+    }, 3500);
+    return () => clearInterval(timer);
+  }, [autoTour, reduceMotion]);
+
   return (
-    <div className={compact ? 'book3d-stage compact' : 'book3d-stage'}>
-      <div className="book3d">
-        <img className="book3d-front" src="/book/ganga-tiram-front.jpg" alt="Ganga Tiram book — front cover" />
-        <img className="book3d-back" src="/book/ganga-tiram-back.jpg" alt="" aria-hidden="true" />
-        <img className="book3d-spine" src="/book/ganga-tiram-spine.jpg" alt="" aria-hidden="true" />
-        <div className="book3d-pages" aria-hidden="true"></div>
+    <div>
+      <div className={compact ? 'book3d-stage compact' : 'book3d-stage'}>
+        <div className="book3d" style={{ transform: `rotateY(${BOOK_VIEWS[view]}deg)` }}>
+          <img className="book3d-front" src="/book/ganga-tiram-front.jpg" alt="Ganga Tiram book — front cover" />
+          <img className="book3d-back" src="/book/ganga-tiram-back.jpg" alt="Ganga Tiram book — back cover" />
+          <img className="book3d-spine" src="/book/ganga-tiram-spine.jpg" alt="" aria-hidden="true" />
+          <div className="book3d-pages" aria-hidden="true"></div>
+        </div>
       </div>
+      {!compact && (
+        <div className="book3d-views">
+          {(Object.keys(BOOK_VIEWS) as BookView[]).map((v) => (
+            <button
+              key={v}
+              type="button"
+              aria-pressed={view === v}
+              className={view === v ? 'active' : ''}
+              onClick={() => { setAutoTour(false); setView(v); }}
+            >
+              {v}
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

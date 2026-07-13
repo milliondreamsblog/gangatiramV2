@@ -70,8 +70,16 @@ body {
   }
 }
 
-.book3d-stage:hover .book3d {
-  transform: rotateY(12deg) scale(1.03);
+.book3d-views {
+  @apply mt-12 flex justify-center gap-2;
+}
+
+.book3d-views button {
+  @apply px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest border border-[#E8DCC4] bg-white text-[#A8988A] transition-colors hover:border-[#3A7CA5] hover:text-[#3A7CA5];
+}
+
+.book3d-views button.active {
+  @apply bg-[#3A7CA5] border-[#3A7CA5] text-white;
 }
 
 .book3d > * {
