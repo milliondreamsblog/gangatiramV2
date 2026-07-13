@@ -1,0 +1,36 @@
+# Extraction review notes
+
+- Gomukh: Book gives the altitude as 4,023 m; no local cuisine or craft is mentioned for Gomukh itself.
+- Harshil: Book spells the name both Harsil and Harshil.
+- Guptkashi: No local cuisine is mentioned in the text for Guptkashi.
+- Ukhimath: Book titles the section 'Ukimath'; no cuisine is mentioned.
+- Vishnuprayag: Temple was rebuilt by Rani Ahilya Bai of Indore per the text; no cuisine or craft mentioned.
+- Kedarnath: Text notes the valley's harsh climate is unsuited to agriculture; no cuisine mentioned.
+- Sonprayag: Text is brief and focuses on the confluence, temples, and environmental concerns.
+- Brahmapuri: Book text for Brahmapuri is very brief, covering only the temple legend; no cuisine, art, or trek details given.
+- Haridwar: Text spells the temple 'Mansi Devi' (commonly Mansa Devi); no local cuisine is mentioned.
+- Shukratal: Book spells it Shukratal; the Ganga has shifted about a kilometre away from the site.
+- Meerut: The Ganga does not flow through the city itself; Meerut sits in the Ganga-Yamuna doab.
+- Garhmukteswar: Vyasa composing the Mahabharata at Vyasa Gaddi is attributed to local folklore in the text.
+- Vidur Ashram: Main Ganga channel is a short walk away; the ghats sit on the Budhi Ganga tributary.
+- Hardoi: The Ganga only borders the district's southern edge rather than flowing through the city.
+- Manasi Ganga: Not on the Ganga itself; the text says its sanctity comes from invoked Ganga water, and the lake is severely polluted.
+- Tigri: The book covers mainly the annual mela; details on the town itself are thin.
+- Kanpur: Book text focuses heavily on tannery pollution; tourism detail is sparse.
+- Bithoor: Book spells it Bithoor.
+- Vindhyachal Temple: Book spells it Vindhyachal (Vindhyavasini Devi Temple).
+- Ballia: Rasra Ramleela is a performance tradition rather than a craft; listed under art for want of one.
+- Saran: Book section is brief; no temples, cuisine, or crafts are named.
+- Begusarai: Text notes Mithila culture broadly but names no specific craft.
+- Munger: The cuisine heading in the book names no dishes; the fortress is spelled 'Meyer Fort' as printed.
+- Kanai Natshala: Cuisine, art, and wildlife details in the book describe Jharkhand state generally, not the site itself.
+- Kheturi Dham: Located in Bangladesh, not India, per the text.
+- Dudha Ghat: District not stated in text; inferred from Jiaganj, Murshidabad reference.
+- Ranibhabani Ghat: Won Best Tourism Village in Agri-Tourism 2024 per the text.
+- Nabadwip: Book credits both Nabadwip and Mayapur as Chaitanya's birthplace.
+- Ambika Kalna: Text's stray mention of Nabadwip in the temple section appears to be an editing slip.
+- Tribeni Sangam: The Saraswati and Jamuna are described as practically dead from siltation.
+- Adisaptagram: Text also names it the ancestral place of ISKCON founder Srila Prabhupada.
+- Ambulinga Chowbhaga: The Bhagirathi shifted course away from this area about a century ago.
+- Gangasagar: The Kapil Muni temple is the seventh version, earlier ones lost to the sea.
+- Sweta Ganga: Located in Jagannath Puri, Odisha, not on the Ganga's course.
