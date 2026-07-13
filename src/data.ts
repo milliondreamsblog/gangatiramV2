@@ -769,6 +769,18 @@ export const gangaPlaces: GangaPlace[
     art: "Saakha Bangles And Garlands",
     heritage: "Where Mother Ganga bought bangles",
     imageUrl: ""
+  },
+  {
+    id: 64,
+    name: "Santipur",
+    state: "West Bengal",
+    stage: 8,
+    description: "Nadia weaving town where Advaita Acharya daily offered tulsi and Ganga water to Saligram Silas, still present in the Adwaita Acharya Vat Temple.",
+    features: ["Adwaita Acharya Vat Temple", "Dol Purnima Celebrations", "Madhavendra Puri Commemoration Feast"],
+    cuisine: "",
+    art: "Tant And Jamdani Weaving",
+    heritage: "Advaita Acharya's home and hermitage",
+    imageUrl: ""
   }
 ];
 
