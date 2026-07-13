@@ -865,6 +865,18 @@ export const gangaPlaces: GangaPlace[
     art: "",
     heritage: "Nityananda's Dahicira festival since 1512",
     imageUrl: ""
+  },
+  {
+    id: 72,
+    name: "Kolkata",
+    state: "West Bengal",
+    stage: 8,
+    description: "Where the Hooghly river flows under the cantilevered Howrah Bridge, passing the Dakshineswar Temple's 12 shrines.",
+    features: ["Dakshineswar Temple", "Howrah Cantilever Bridge", "Victoria Memorial"],
+    cuisine: "Rosogolla & Smoked Hilsa Fish",
+    art: "Kalighat Patachitra Painting",
+    heritage: "Bengal Renaissance Center",
+    imageUrl: "./images/kolkata_howrah_1781868389303.png"
   }
 ];
 
