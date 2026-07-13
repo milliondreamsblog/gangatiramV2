@@ -529,6 +529,30 @@ export const gangaPlaces: GangaPlace[
     art: "",
     heritage: "Sage Dadhichi's ancient sacrifice ground",
     imageUrl: ""
+  },
+  {
+    id: 44,
+    name: "Sonepur Mela",
+    state: "Bihar",
+    stage: 6,
+    description: "Centuries-old Kartik fair at the Ganga-Gandak confluence trading elephants, horses, and cattle beside the Harihar Nath Temple built by Lord Ram.",
+    features: ["Harihar Nath Temple", "Kartik Animal Fair", "Ganga-Gandak Confluence"],
+    cuisine: "Shahi Halwa-Paratha, Baskail Pickle",
+    art: "Madhubani Folk Paintings",
+    heritage: "Vedic-era fair with Mauryan elephant stables",
+    imageUrl: ""
+  },
+  {
+    id: 45,
+    name: "Patna",
+    state: "Bihar",
+    stage: 6,
+    description: "The flat plains capital where the Ganga spreads up to 5 kilometers wide, sitting on ruins of the Maurya dynasty's 80-pillared hall.",
+    features: ["Golghar Granary", "Patna Museum", "Takht Sri Patna Sahib"],
+    cuisine: "Litti Chokha & Sattu Sharbat",
+    art: "Handmade Madhubani Paper Art",
+    heritage: "Maurya Empire Throne Ruins",
+    imageUrl: "./images/patna_river_1781868354310.png"
   }
 ];
 
