@@ -934,7 +934,7 @@ export const contribFACE: FacePillar[] = [
     stat: "A digital 4K archive — the Kumbh Mela and the daily aartis of 84 ghats.",
     cta: "Watch her festivals",
     action: "festivals",
-    icon: "Sparkles",
+    icon: "Confetti",
     image: "./images/ganga_festival_new.png"
   },
   {
@@ -944,7 +944,7 @@ export const contribFACE: FacePillar[] = [
     stat: "Madhubani, Kalighat, and Patachitra artists funded along her banks.",
     cta: "Meet the painters",
     action: "art",
-    icon: "Palette",
+    icon: "PaintBrush",
     image: "./images/ganga_art_new.png"
   },
   {
