@@ -337,6 +337,30 @@ export const gangaPlaces: GangaPlace[
     art: "Chikankari & Zardozi Embroidery",
     heritage: "Legendary City of Prahlad and Holika",
     imageUrl: ""
+  },
+  {
+    id: 28,
+    name: "Manasi Ganga",
+    state: "Uttar Pradesh",
+    stage: 3,
+    description: "A lake on Govardhan Hill created by Krishna with invoked Ganga water after slaying the calf-demon Vatsasura; bathing here is said to bestow Prem Bhakti.",
+    features: ["Govardhan Parikrama Start", "Kusum Sarovar", "Radha Kund & Shyam Kund"],
+    cuisine: "Govardhan Prasad Offerings",
+    art: "",
+    heritage: "Krishna's Self-Created Ganga Lake",
+    imageUrl: ""
+  },
+  {
+    id: 29,
+    name: "Tigri",
+    state: "Uttar Pradesh",
+    stage: 3,
+    description: "Since Shravan Kumar bathed here with his blind parents in Treta Yuga, millions camp for a week on sandy banks each Kartik Purnima for Ganga Snan.",
+    features: ["Tigri Ganga Mela", "Kartik Purnima Holy Dip", "Riverside Tent Camping"],
+    cuisine: "",
+    art: "",
+    heritage: "Western UP's 'Ardh Kumbh' Fair",
+    imageUrl: ""
   }
 ];
 
