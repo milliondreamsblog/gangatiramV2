@@ -793,6 +793,18 @@ export const gangaPlaces: GangaPlace[
     art: "",
     heritage: "Bhagiratha's chariot legend and Jagannath shrine",
     imageUrl: ""
+  },
+  {
+    id: 66,
+    name: "Ambika Kalna",
+    state: "West Bengal",
+    stage: 8,
+    description: "Bengal's 'Temple Town', where 108 Shiva temples built in 1809 stand in two concentric circles like a rosary among terracotta-carved Aatchala shrines.",
+    features: ["108 Shiva Temple Circles", "Rajbari Temple Complex", "Pratapeswar Aatchala Temple"],
+    cuisine: "",
+    art: "Terracotta And Shola Pith Craft",
+    heritage: "Terracotta temple town of Bengal",
+    imageUrl: ""
   }
 ];
 
