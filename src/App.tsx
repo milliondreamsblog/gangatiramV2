@@ -635,30 +635,36 @@ export default function App() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 justify-items-center">
             {filteredPlaces.map((place) => (
-              <motion.div 
+              <motion.div
                 key={place.id}
                 layout
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                whileHover={{ y: -5 }}
                 onClick={() => setSelectedPlace(place)}
-                className="bg-white/90 backdrop-blur-sm rounded-3xl p-6 border border-[#E8DCC4]/80 shadow-[0_8px_30px_rgb(0,0,0,0.02)] hover:border-[#3A7CA5]/40 hover:shadow-[0_20px_50px_rgba(58,124,165,0.12)] transition-all duration-300 group cursor-pointer w-full max-w-[320px] flex flex-col"
+                className="group bg-white rounded-3xl p-3 border border-[#E8DCC4] hover:border-[#2D241E]/20 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(45,36,30,0.1)] transition-all duration-300 cursor-pointer w-full max-w-[320px] flex flex-col"
               >
-                {place.imageUrl && (
-                  <div className="w-full h-40 mb-5 rounded-2xl overflow-hidden shrink-0">
+                {place.imageUrl ? (
+                  <div className="w-full h-40 rounded-2xl overflow-hidden shrink-0">
                     <img src={place.imageUrl} alt={place.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                   </div>
+                ) : (
+                  <div className="w-full h-20 rounded-2xl bg-[#F4EDDE] shrink-0 flex items-center justify-center">
+                    <Waves className="text-[#C9BBA4]" size={24} />
+                  </div>
                 )}
-                <div className="flex justify-between items-start mb-4">
-                  <span className="text-[#3A7CA5] text-[10px] font-black uppercase tracking-widest bg-[#3A7CA5]/10 px-3 py-1 rounded-full">{place.state}</span>
-                  <MapPin className="text-[#A8988A] group-hover:text-[#3A7CA5] transition-colors" size={20} />
-                </div>
-                <h4 className="text-2xl font-serif font-bold text-[#2D241E] mb-3 group-hover:text-[#3A7CA5] transition-colors">{place.name}</h4>
-                <p className="text-[#5A4B3F] text-sm leading-relaxed mb-6 line-clamp-3">{place.description}</p>
-                <div className="flex flex-wrap gap-2 mt-auto">
-                  {place.features.slice(0, 2).map((f, i) => (
-                    <span key={i} className="text-[9px] font-bold text-[#A8988A] border border-[#E8DCC4] px-2 py-1 rounded-md uppercase tracking-wider">{f}</span>
-                  ))}
+                <div className="flex flex-col flex-grow p-4">
+                  <div className="flex flex-wrap gap-2 mb-3">
+                    <span className="place-tag">{place.state}</span>
+                    <span className="place-tag">{journeyStages[place.stage - 1].name}</span>
+                  </div>
+                  <h4 className="text-xl font-serif font-bold text-[#2D241E] mb-2">{place.name}</h4>
+                  <p className="text-[#5A4B3F] text-sm leading-relaxed mb-5 line-clamp-3 flex-grow">{place.description}</p>
+                  <div className="flex items-center justify-between mt-auto">
+                    <span className="text-[9px] font-bold uppercase tracking-wider text-[#A8988A]">{place.features[0]}</span>
+                    <span className="w-8 h-8 rounded-full border border-[#E8DCC4] flex items-center justify-center text-[#2D241E] group-hover:bg-[#3A7CA5] group-hover:border-[#3A7CA5] group-hover:text-white transition-colors shrink-0">
+                      <ChevronRight size={14} />
+                    </span>
+                  </div>
                 </div>
               </motion.div>
             ))}
@@ -1239,34 +1245,37 @@ export default function App() {
             <div className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 justify-items-center w-full pb-4 -mx-4 px-4 md:mx-0 md:px-0">
               <AnimatePresence>
                 {prominentPlaces.map((place) => (
-                  <motion.div 
+                  <motion.div
                     key={place.id}
                     layout
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.9 }}
-                    whileHover={{ y: -10 }}
                     onClick={() => setSelectedPlace(place)}
-                    className="bg-white/90 backdrop-blur-sm rounded-[2.5rem] p-6 border border-[#E8DCC4]/80 shadow-[0_8px_30px_rgb(0,0,0,0.03)] hover:border-[#3A7CA5]/40 hover:shadow-[0_20px_50px_rgba(58,124,165,0.12)] transition-all duration-300 group cursor-pointer w-full min-w-[85vw] md:min-w-0 md:max-w-[380px] snap-center shrink-0 flex flex-col overflow-hidden h-auto min-h-[480px] md:min-h-0 md:h-full"
+                    className="group bg-white rounded-3xl p-3 border border-[#E8DCC4] hover:border-[#2D241E]/20 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(45,36,30,0.1)] transition-all duration-300 cursor-pointer w-full min-w-[85vw] md:min-w-0 md:max-w-[380px] snap-center shrink-0 flex flex-col"
                   >
-                    {place.imageUrl && (
-                      <div className="w-full h-48 mb-6 rounded-2xl overflow-hidden shrink-0">
-                        <img src={place.imageUrl} alt={place.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                    {place.imageUrl ? (
+                      <div className="w-full h-52 rounded-2xl overflow-hidden shrink-0">
+                        <img src={place.imageUrl} alt={place.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                      </div>
+                    ) : (
+                      <div className="w-full h-24 rounded-2xl bg-[#F4EDDE] shrink-0 flex items-center justify-center">
+                        <Waves className="text-[#C9BBA4]" size={28} />
                       </div>
                     )}
-                    <div className="flex justify-between items-start mb-6">
-                      <div className="bg-[#F4F1EA] p-4 rounded-2xl group-hover:bg-[#3A7CA5] transition-colors">
-                        <MapPin className="text-[#2D241E] group-hover:text-white" size={24} />
+                    <div className="flex flex-col flex-grow p-4 md:p-5">
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        <span className="place-tag">{place.state}</span>
+                        <span className="place-tag">{journeyStages[place.stage - 1].name}</span>
                       </div>
-                      <span className="text-[#D4A373] text-xs font-bold uppercase tracking-widest">{place.state}</span>
-                    </div>
-                    <h4 className="text-3xl font-serif font-bold mb-4 group-hover:text-[#3A7CA5] transition-colors">{place.name}</h4>
-                    <p className="text-[#5A4B3F] mb-10 leading-relaxed font-light flex-grow">{place.description}</p>
-                    
-                    <div className="flex flex-wrap gap-2">
-                      {place.features.slice(0, 2).map((f, i) => (
-                        <span key={i} className="text-[10px] px-3 py-1.5 bg-[#F4EDDE] rounded-full text-[#5A4B3F] font-bold uppercase tracking-wider">{f}</span>
-                      ))}
+                      <h4 className="text-2xl font-serif font-bold text-[#2D241E] mb-2">{place.name}</h4>
+                      <p className="text-[#5A4B3F] text-sm leading-relaxed line-clamp-3 mb-6 flex-grow">{place.description}</p>
+                      <div className="flex items-center justify-between mt-auto">
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-[#A8988A]">{place.features[0]}</span>
+                        <span className="w-9 h-9 rounded-full border border-[#E8DCC4] flex items-center justify-center text-[#2D241E] group-hover:bg-[#3A7CA5] group-hover:border-[#3A7CA5] group-hover:text-white transition-colors shrink-0">
+                          <ChevronRight size={16} />
+                        </span>
+                      </div>
                     </div>
                   </motion.div>
                 ))}
