@@ -121,6 +121,30 @@ export const gangaPlaces: GangaPlace[
     art: "",
     heritage: "First Panch Prayag, Narada's Penance Site",
     imageUrl: ""
+  },
+  {
+    id: 10,
+    name: "Nandprayag",
+    state: "Uttarakhand",
+    stage: 1,
+    description: "Second Panch Prayag at 1,358 meters, where the Nandakini joins the Alaknanda beside the slab on which Nanda Maharaj performed his great yagna.",
+    features: ["Nanda Temple", "Alaknanda-Nandakini Sangam", "Nanda Devi Raj Jat"],
+    cuisine: "",
+    art: "Cane & Bamboo Weaving",
+    heritage: "Site Of Nanda Maharaj's Sacred Yagna",
+    imageUrl: ""
+  },
+  {
+    id: 11,
+    name: "Karnaprayag",
+    state: "Uttarakhand",
+    stage: 1,
+    description: "At 1,451 meters on the Alaknanda-Pindar confluence, a town of 16 ancient temples where Karna's arduous penance won the Sun God's blessing.",
+    features: ["Uma Devi Temple", "Adi Badri Temple", "Roopkund Trek Base"],
+    cuisine: "",
+    art: "Thulma Blankets & Aipan Art",
+    heritage: "Karna's Penance To The Sun God",
+    imageUrl: ""
   }
 ];
 
