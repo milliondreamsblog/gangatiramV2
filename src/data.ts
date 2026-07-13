@@ -781,6 +781,18 @@ export const gangaPlaces: GangaPlace[
     art: "Tant And Jamdani Weaving",
     heritage: "Advaita Acharya's home and hermitage",
     imageUrl: ""
+  },
+  {
+    id: 65,
+    name: "Chakdah",
+    state: "West Bengal",
+    stage: 8,
+    description: "Named for King Bhagiratha's chariot wheel stuck in mud, its 500-year-old temple keeps the Puri Jagannath deity and the stick Jagadish Pandit carried it with for 600 kilometers.",
+    features: ["Chakdaha Jagannath Temple", "500-Year-Old Rath Yatra", "Jagadish Pandit's Preserved Stick"],
+    cuisine: "",
+    art: "",
+    heritage: "Bhagiratha's chariot legend and Jagannath shrine",
+    imageUrl: ""
   }
 ];
 
