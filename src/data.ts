@@ -505,6 +505,30 @@ export const gangaPlaces: GangaPlace[
     art: "Bidesia Folk Theatre",
     heritage: "1857 rebellion hub of Veer Kunwar Singh",
     imageUrl: ""
+  },
+  {
+    id: 42,
+    name: "Chappra",
+    state: "Bihar",
+    stage: 6,
+    description: "At the Ganga-Ghaghara sangam Lord Ram freed Ahalya from her stone form, near Aami village's Ambika Bhawani Shakti Peeth of Puranic Gaj-Grah fame.",
+    features: ["Ambika Bhawani Shakti Peeth", "Mahendranath Temple", "Ganga-Ghaghara Sangam"],
+    cuisine: "",
+    art: "Madhubani Paintings",
+    heritage: "Ramayana site of Ahalya's liberation",
+    imageUrl: ""
+  },
+  {
+    id: 43,
+    name: "Saran",
+    state: "Bihar",
+    stage: 6,
+    description: "Riverine district ringed by the Ganges, Gandak, and Ghaghara, where sage Dadhichi surrendered his bones to forge the weapon that slew the demon Vritra.",
+    features: ["Sage Dadhichi's Hermitage", "Three-River Fertile Plains", "Ancient Kosala Heritage"],
+    cuisine: "",
+    art: "",
+    heritage: "Sage Dadhichi's ancient sacrifice ground",
+    imageUrl: ""
   }
 ];
 
