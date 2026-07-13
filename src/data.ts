@@ -553,6 +553,30 @@ export const gangaPlaces: GangaPlace[
     art: "Handmade Madhubani Paper Art",
     heritage: "Maurya Empire Throne Ruins",
     imageUrl: "./images/patna_river_1781868354310.png"
+  },
+  {
+    id: 46,
+    name: "Vaishali",
+    state: "Bihar",
+    stage: 6,
+    description: "Birthplace of Mahavira and site of Buddha's final sermon, where Licchavi kings were crowned at the Abhishek Pushkarani tank beside Ashoka's pillar.",
+    features: ["Ashoka Pillar", "Vishwa Shanti Stupa", "Abhishek Pushkarani Tank"],
+    cuisine: "",
+    art: "Sikki Grass And Lacquer Craft",
+    heritage: "Mahavira's birthplace, Buddha's final sermon",
+    imageUrl: ""
+  },
+  {
+    id: 47,
+    name: "Begusarai",
+    state: "Bihar",
+    stage: 6,
+    description: "Bihar's industrial capital where King Janak performed Kartik Kalpavas at Simariya Ghat and Asia's largest freshwater ox-bow lake shelters 394 recorded animal species.",
+    features: ["Simariya Ghat Kalpavas Mela", "Kanwar Lake Bird Sanctuary", "Naulakha Temple"],
+    cuisine: "Dahi-Chura And Tilkut",
+    art: "",
+    heritage: "King Janak's Treta-yuga Kalpavas tapobhumi",
+    imageUrl: ""
   }
 ];
 
