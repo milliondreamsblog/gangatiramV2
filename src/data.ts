@@ -193,6 +193,30 @@ export const gangaPlaces: GangaPlace[
     art: "",
     heritage: "Where River Ganga Begins Her Name",
     imageUrl: ""
+  },
+  {
+    id: 16,
+    name: "Vashistha Gufa",
+    state: "Uttarakhand",
+    stage: 2,
+    description: "Descend 200 steps off the Rishikesh-Badrinath highway to the riverside cave where sage Vashistha meditated for decades, a small Shiva Linga at its inner end.",
+    features: ["Vashistha Meditation Cave", "Arundhati Cave", "Pristine Ganga Beach"],
+    cuisine: "",
+    art: "",
+    heritage: "Meditation Cave Of Saptarishi Vashistha",
+    imageUrl: ""
+  },
+  {
+    id: 17,
+    name: "Brahmapuri",
+    state: "Uttarakhand",
+    stage: 2,
+    description: "Riverside spot where Ganga, honoring Lord Ram's penance, still flows slow and silent along a 600-700 metre stretch past the old Sri Ram Tapaswali ashram.",
+    features: ["Sri Ram Tapaswali Ashram", "Silent Ganga Stretch", "Lord Ram Penance Site"],
+    cuisine: "",
+    art: "",
+    heritage: "Lord Ram's Silent Penance Site",
+    imageUrl: ""
   }
 ];
 
