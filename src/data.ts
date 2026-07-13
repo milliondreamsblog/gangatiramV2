@@ -409,6 +409,30 @@ export const gangaPlaces: GangaPlace[
     art: "",
     heritage: "Vedic Sacrifice Site Called Siddhapuri",
     imageUrl: ""
+  },
+  {
+    id: 34,
+    name: "Soron",
+    state: "Uttar Pradesh",
+    stage: 3,
+    description: "Sacred Shukarkshetra where Lord Varaha appeared and poet Tulsidas was born, its October fair still auctioning horses and camels beside the Ganga's bathing ghats.",
+    features: ["Varaha Temples", "Margashirsh Ekadashi Mela", "Kachhla Bridge Ghats"],
+    cuisine: "",
+    art: "Zari-Zardozi Embroidery",
+    heritage: "Seat of Lord Varaha, Tulsidas's Birthplace",
+    imageUrl: ""
+  },
+  {
+    id: 35,
+    name: "Prayagraj",
+    state: "Uttar Pradesh",
+    stage: 4,
+    description: "Where the muddy Ganga merges with the deep blue Yamuna, hosting 120 million pilgrims during the Kumbh Mela.",
+    features: ["Triveni Sangam", "Kumbh Mela Grounds", "Akshayavat Tree"],
+    cuisine: "Allahabadi Surkha Guava & Chaat",
+    art: "Kumbh Festival Sand Sculptures",
+    heritage: "Gupta Era Patalpuri Temple",
+    imageUrl: "./images/prayagraj_sangam_1781868310911.png"
   }
 ];
 
