@@ -274,6 +274,7 @@ export default function App() {
   const [selectedStage, setSelectedStage] = useState<number | null>(null);
   const [pastWound, setPastWound] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeFace, setActiveFace] = useState('F');
   const [shareCopied, setShareCopied] = useState(false);
 
   useEffect(() => {
@@ -1121,46 +1122,68 @@ export default function App() {
             </p>
           </div>
 
-          <div className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar md:grid md:grid-cols-2 xl:grid-cols-4 gap-6 md:gap-8 pb-4 -mx-4 px-4 md:mx-0 md:px-0">
-            {contribFACE.map((item) => (
-              <motion.div
-                key={item.letter}
-                whileHover={{ y: -10 }}
-                className="group relative bg-white h-[420px] md:h-[470px] min-w-[85vw] md:min-w-0 snap-center shrink-0 rounded-[2rem] overflow-hidden border border-[#E8DCC4] shadow-sm hover:shadow-2xl transition-all"
-              >
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  loading="lazy"
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-transparent group-hover:via-black/60 transition-colors"></div>
+          <div className="flex flex-col md:flex-row gap-3 md:gap-4 md:h-[540px]">
+            {contribFACE.map((item) => {
+              const isActive = activeFace === item.letter;
+              return (
+                <div
+                  key={item.letter}
+                  role="button"
+                  tabIndex={0}
+                  aria-expanded={isActive}
+                  onMouseEnter={() => setActiveFace(item.letter)}
+                  onFocus={() => setActiveFace(item.letter)}
+                  onClick={() => setActiveFace(item.letter)}
+                  className={`group relative rounded-[2rem] overflow-hidden border border-[#E8DCC4] cursor-pointer transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                    isActive ? 'h-[440px] md:h-full md:flex-[3]' : 'h-16 md:h-full md:flex-[1]'
+                  }`}
+                >
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    loading="lazy"
+                    className={`absolute inset-0 w-full h-full object-cover transition-transform duration-700 ${isActive ? 'scale-100' : 'scale-110'}`}
+                  />
+                  <div className={`absolute inset-0 transition-colors duration-500 ${isActive ? 'bg-gradient-to-t from-black/90 via-black/40 to-transparent' : 'bg-black/55'}`}></div>
 
-                <div className="absolute -right-4 -top-4 text-[12rem] font-black text-white/10 select-none">
-                  {item.letter}
-                </div>
-
-                <div className="absolute bottom-0 p-8 text-white w-full">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="bg-white/20 backdrop-blur-md w-11 h-11 rounded-xl flex items-center justify-center border border-white/30 shrink-0">
-                      {item.icon === 'Sparkles' && <Sparkles size={20} className="text-[#D4A373]" />}
-                      {item.icon === 'Palette' && <Palette size={20} className="text-[#D4A373]" />}
-                      {item.icon === 'Scissors' && <Scissors size={20} className="text-[#D4A373]" />}
-                      {item.icon === 'Leaf' && <Leaf size={20} className="text-[#D4A373]" />}
-                    </div>
-                    <span className="text-[10px] font-black uppercase tracking-[0.25em] text-white/70">{item.letter} — {item.title}</span>
+                  {/* Collapsed cover: the full form, written vertically on desktop */}
+                  <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${isActive ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
+                    <span className="hidden md:inline-flex items-center gap-4 text-white [writing-mode:vertical-rl]">
+                      <span className="font-serif font-bold text-3xl">{item.letter}</span>
+                      <span className="text-xs font-black uppercase tracking-[0.35em] text-white/80">{item.title}</span>
+                    </span>
+                    <span className="md:hidden inline-flex items-center gap-3 text-white">
+                      <span className="font-serif font-bold text-xl">{item.letter}</span>
+                      <span className="text-[11px] font-black uppercase tracking-[0.3em] text-white/80">{item.title}</span>
+                    </span>
                   </div>
-                  <h4 className="text-2xl font-serif font-bold mb-3 leading-snug">{item.headline}</h4>
-                  <p className="text-white/75 text-sm leading-relaxed mb-5">{item.stat}</p>
-                  <button
-                    onClick={() => handleFaceAction(item.action)}
-                    className="inline-flex items-center gap-1.5 text-[11px] font-black uppercase tracking-widest text-white bg-white/15 hover:bg-[#3A7CA5] border border-white/25 px-4 py-2 rounded-full transition-colors"
-                  >
-                    {item.cta} <ChevronRight size={13} />
-                  </button>
+
+                  {/* Expanded content */}
+                  <div className={`absolute -right-4 -top-4 text-[10rem] font-black text-white/10 select-none transition-opacity duration-500 ${isActive ? 'opacity-100' : 'opacity-0'}`}>
+                    {item.letter}
+                  </div>
+                  <div className={`absolute bottom-0 p-6 md:p-8 text-white w-full transition-all duration-500 ${isActive ? 'opacity-100 translate-y-0 delay-200' : 'opacity-0 translate-y-4 pointer-events-none'}`}>
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="bg-white/20 backdrop-blur-md w-11 h-11 rounded-xl flex items-center justify-center border border-white/30 shrink-0">
+                        {item.icon === 'Sparkles' && <Sparkles size={20} className="text-[#D4A373]" />}
+                        {item.icon === 'Palette' && <Palette size={20} className="text-[#D4A373]" />}
+                        {item.icon === 'Scissors' && <Scissors size={20} className="text-[#D4A373]" />}
+                        {item.icon === 'Leaf' && <Leaf size={20} className="text-[#D4A373]" />}
+                      </div>
+                      <span className="text-[10px] font-black uppercase tracking-[0.25em] text-white/70">{item.letter} — {item.title}</span>
+                    </div>
+                    <h4 className="text-2xl md:text-3xl font-serif font-bold mb-3 leading-snug">{item.headline}</h4>
+                    <p className="text-white/75 text-sm leading-relaxed mb-5 max-w-md">{item.stat}</p>
+                    <button
+                      onClick={(e) => { e.stopPropagation(); handleFaceAction(item.action); }}
+                      className="inline-flex items-center gap-1.5 text-[11px] font-black uppercase tracking-widest text-white bg-white/15 hover:bg-[#3A7CA5] border border-white/25 px-4 py-2 rounded-full transition-colors"
+                    >
+                      {item.cta} <ChevronRight size={13} />
+                    </button>
+                  </div>
                 </div>
-              </motion.div>
-            ))}
+              );
+            })}
           </div>
         </div>
 
