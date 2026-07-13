@@ -457,6 +457,30 @@ export const gangaPlaces: GangaPlace[
     art: "Stone Carving & Brassware",
     heritage: "One of the Foremost Shakti Peethas",
     imageUrl: ""
+  },
+  {
+    id: 38,
+    name: "Varanasi",
+    state: "Uttar Pradesh",
+    stage: 5,
+    description: "A 3,000-year-old crescent city where 84 stone steps (ghats) lead down to the river for daily wood-fire cremations and prayers.",
+    features: ["Kashi Vishwanath Temple", "84 Ghats Boat Ride", "Subah-e-Banaras"],
+    cuisine: "Tamatar Chaat & Banarasi Paan",
+    art: "Generational Banarasi Silk Weaving",
+    heritage: "Oldest Living City in the World",
+    imageUrl: "./images/varanasi_ghats_1781868324109.png"
+  },
+  {
+    id: 39,
+    name: "Ballia",
+    state: "Uttar Pradesh",
+    stage: 5,
+    description: "Revolutionary town at the Ganga-Ghaghara sangam that declared independence in 1942, where Surha Taal's sanctuary hosts millions of migratory birds flying in from Siberia each winter.",
+    features: ["Jay Prakash Narayan Bird Sanctuary", "Bhrigu Ashram", "Dadri Cattle Fair"],
+    cuisine: "Bhojpuri Litti Chokha",
+    art: "Two-Century Rasra Ramleela",
+    heritage: "Sage Bhrigu's hermitage; 1942 revolutionary town",
+    imageUrl: ""
   }
 ];
 
