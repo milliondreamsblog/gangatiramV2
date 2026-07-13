@@ -805,6 +805,18 @@ export const gangaPlaces: GangaPlace[
     art: "Terracotta And Shola Pith Craft",
     heritage: "Terracotta temple town of Bengal",
     imageUrl: ""
+  },
+  {
+    id: 67,
+    name: "Tribeni Sangam",
+    state: "West Bengal",
+    stage: 8,
+    description: "One of India's five sacred sangams, where the silted Saraswati and Jamuna met the Hooghly beside Bengal's earliest Muslim monument, the Zafar Khan Ghazi Mosque.",
+    features: ["Zafar Khan Ghazi Mosque", "Makar Sankranti Mela", "Three-River Confluence"],
+    cuisine: "",
+    art: "Dokra And Shola Pith Craft",
+    heritage: "One of India's five sacred sangams",
+    imageUrl: ""
   }
 ];
 
