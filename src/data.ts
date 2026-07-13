@@ -877,6 +877,18 @@ export const gangaPlaces: GangaPlace[
     art: "Kalighat Patachitra Painting",
     heritage: "Bengal Renaissance Center",
     imageUrl: "./images/kolkata_howrah_1781868389303.png"
+  },
+  {
+    id: 73,
+    name: "Ambulinga Chowbhaga",
+    state: "West Bengal",
+    stage: 8,
+    description: "Ancient river port where Lord Shiva melted into Ganga's waters, and where Chaitanya with thousands of devotees bathed and stayed overnight in 1510 en route to Puri.",
+    features: ["Barashi Shiv Temple", "Ambulinga Ghat", "Tripura Sundari Shakti Peeth"],
+    cuisine: "",
+    art: "",
+    heritage: "Where Shiva merged into Ganga",
+    imageUrl: ""
   }
 ];
 
