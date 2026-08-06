@@ -6,13 +6,103 @@
   --font-serif: "Crimson Pro", "Playfair Display", serif;
 }
 
+/* Keeps a scrolled-to section clear of the floating nav pill.
+   Deliberately no `scroll-behavior: smooth` here: every scroll in the app already
+   passes `behavior` explicitly, and in Chrome the global rule also animates
+   keyboard and scrollbar scrolling, which reads as lag. */
+html {
+  scroll-padding-top: 96px;
+}
+
 body {
   @apply font-sans antialiased;
+}
+
+/* --- Scroll progress rail: how far down her course you are --- */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 60;
+  transform-origin: 0 50%;
+  pointer-events: none;
+  will-change: transform;
+  background: linear-gradient(
+    to right,
+    #8FBFBF,
+    #3A7CA5 32%,
+    #2F668A 58%,
+    #8A5A3B 84%,
+    #C97B4A
+  );
+}
+
+/* --- Back to the source --- */
+.back-to-top {
+  position: fixed;
+  right: 26px;
+  bottom: 26px;
+  z-index: 45;
+  height: 54px;
+  width: 54px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: rgba(45, 36, 30, 0.9);
+  color: #fff;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 12px 30px rgba(45, 36, 30, 0.3);
+  transition: background-color 0.3s ease;
+}
+
+.back-to-top:hover {
+  background: #3A7CA5;
+}
+
+.back-to-top-ring {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
 }
 
 /* Keep the mobile sticky CTA above the iOS home-indicator bar */
 @utility pb-safe {
   padding-bottom: calc(1rem + env(safe-area-inset-bottom));
+}
+
+/* Show-from-breakpoint helpers.
+   In this Tailwind build `hidden md:flex` resolves to display:none at every
+   width — the plain `.hidden` rule wins over the responsive display variant —
+   so anything that must appear only on larger screens uses these instead. */
+.show-sm-inline,
+.show-md-flex,
+.show-md-block,
+.show-lg-block {
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .show-sm-inline { display: inline; }
+}
+
+@media (min-width: 768px) {
+  .show-md-flex { display: flex; }
+  .show-md-block { display: block; }
+}
+
+@media (min-width: 1024px) {
+  .show-lg-block { display: block; }
+}
+
+/* Visible keyboard focus everywhere — several controls clear the UA outline. */
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid #3A7CA5;
+  outline-offset: 3px;
+  border-radius: 6px;
 }
 
 .book-section {
@@ -31,9 +121,9 @@ body {
   @apply inline-flex items-center gap-2 rounded-full border border-[#E8DCC4] bg-white px-4 py-2 text-sm font-bold text-[#5A4B3F];
 }
 
-/* Bricx-style section eyebrow: quiet pill with a colored dot, sentence case */
+/* Bricx-style section eyebrow: quiet tinted pill with a colored dot, sentence case */
 .section-tag {
-  @apply inline-flex items-center gap-2 rounded-full border border-[#E8DCC4] bg-white px-4 py-1.5 text-xs font-semibold text-[#5A4B3F];
+  @apply inline-flex items-center gap-2 rounded-full bg-[#F4EDDE] px-4 py-2 text-[13px] font-semibold tracking-tight text-[#5A4B3F];
 }
 
 .section-tag::before {
@@ -53,8 +143,23 @@ body {
   @apply border-white/20 bg-white/10 text-white/85 backdrop-blur-sm;
 }
 
+/* Quiet tinted tag, no border — reads calmer than an outlined chip at small sizes */
 .place-tag {
-  @apply inline-flex items-center rounded-full border border-[#E8DCC4] bg-[#FDFCF8] px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-[#5A4B3F];
+  @apply inline-flex items-center rounded-full bg-[#F4EDDE] px-3 py-1 text-[11px] font-semibold tracking-tight text-[#5A4B3F];
+}
+
+/* Card affordance: outlined circle + up-right arrow, filling in on hover */
+.card-arrow {
+  @apply flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#E8DCC4] text-[#2D241E] transition-colors;
+}
+
+.group:hover .card-arrow {
+  @apply border-[#2D241E] bg-[#2D241E] text-white;
+}
+
+/* Second line of a two-part display heading — full contrast, then muted */
+.headline-muted {
+  @apply text-[#A8988A];
 }
 
 /* --- Hero photo ticker (marquee of place photos) --- */
@@ -69,6 +174,8 @@ body {
   display: flex;
   width: max-content;
   animation: hero-ticker 45s linear infinite;
+  /* Promote once: this marquee runs continuously behind everything else */
+  will-change: transform;
 }
 
 .hero-ticker:hover .hero-ticker-track {
@@ -83,6 +190,8 @@ body {
   border-radius: 14px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.25);
+  /* the hero gradient is near-white by this point — without a shadow the cards dissolve into it */
+  box-shadow: 0 6px 16px rgba(45, 36, 30, 0.22);
   flex-shrink: 0;
 }
 
@@ -100,7 +209,18 @@ body {
   object-fit: cover;
 }
 
+/* Scrim so the place name stays readable over bright photos */
+.hero-ticker-card::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 55%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  pointer-events: none;
+}
+
 .hero-ticker-card span {
+  z-index: 1;
   position: absolute;
   left: 10px;
   bottom: 8px;
@@ -247,6 +367,111 @@ body {
   @apply bg-white text-[#2D241E] px-6 py-3 rounded-full font-bold hover:bg-[#D4A373] hover:text-white transition-colors flex items-center justify-center gap-2 shrink-0;
 }
 
+/* Numbered "what happens next" list in the checkout summary panel */
+.checkout-steps {
+  @apply space-y-3 text-sm leading-relaxed text-[#5A4B3F];
+  counter-reset: checkout-step;
+}
+
+.checkout-steps li {
+  @apply relative pl-9;
+  counter-increment: checkout-step;
+}
+
+.checkout-steps li::before {
+  content: counter(checkout-step);
+  @apply absolute left-0 top-[-1px] flex h-6 w-6 items-center justify-center rounded-full bg-[#3A7CA5] text-[11px] font-black text-white;
+}
+
+/* --- Checkout payment step --- */
+/* self-start so the card hugs the QR instead of stretching down the grid row */
+.qr-card {
+  @apply self-start rounded-2xl border border-[#E8DCC4] bg-white p-4;
+}
+
+.qr-zoom-trigger {
+  @apply relative block w-full cursor-zoom-in overflow-hidden rounded-xl transition-transform hover:scale-[1.02];
+}
+
+.qr-card img,
+.qr-lightbox-panel img {
+  @apply w-full rounded-xl;
+  image-rendering: pixelated; /* keep module edges crisp when the QR is upscaled */
+}
+
+.qr-zoom-badge {
+  @apply absolute bottom-2 right-2 flex h-7 w-7 items-center justify-center rounded-lg bg-[#2D241E]/85 text-white backdrop-blur-sm transition-colors;
+}
+
+.qr-zoom-trigger:hover .qr-zoom-badge {
+  @apply bg-[#3A7CA5];
+}
+
+.qr-card figcaption {
+  @apply mt-3 text-center text-[10px] font-black uppercase tracking-[0.18em] text-[#A8988A];
+}
+
+/* --- Enlarged QR lightbox --- */
+.qr-lightbox {
+  @apply fixed inset-0 z-[120] flex cursor-zoom-out items-center justify-center bg-[#2D241E]/70 p-4 backdrop-blur-sm;
+}
+
+.qr-lightbox-panel {
+  @apply relative cursor-default rounded-3xl bg-white p-5 sm:p-7 shadow-2xl;
+}
+
+.qr-lightbox-panel img {
+  width: min(78vw, 58vh, 420px);
+  aspect-ratio: 1;
+  height: auto;
+}
+
+.qr-lightbox-close {
+  @apply absolute -top-3 -right-3 flex h-11 w-11 items-center justify-center rounded-full border border-[#E8DCC4] bg-white text-[#2D241E] shadow-lg transition-colors hover:bg-[#2D241E] hover:text-white;
+}
+
+.qr-lightbox-meta {
+  @apply mt-5 text-center;
+}
+
+.qr-lightbox-meta span {
+  @apply block text-[10px] font-black uppercase tracking-[0.2em] text-[#A8988A];
+}
+
+.qr-lightbox-meta strong {
+  @apply mt-1.5 block font-serif text-2xl font-bold text-[#2D241E];
+}
+
+.qr-lightbox-meta p {
+  @apply mt-1 font-mono text-xs font-bold text-[#3A7CA5];
+}
+
+/* Always stacked: this sits in a narrow column, so a full-width UPI-ID
+   button is both easier to read and a bigger tap target than a side-by-side row. */
+.payee-card {
+  @apply flex flex-col gap-4 rounded-2xl border border-[#E8DCC4] bg-[#FDFCF8] p-5;
+}
+
+.payee-card span {
+  @apply block text-[10px] font-black uppercase tracking-[0.2em] text-[#A8988A];
+}
+
+.payee-card strong {
+  @apply mt-1 block font-serif text-xl font-bold text-[#2D241E];
+}
+
+.payee-card p {
+  @apply mt-0.5 text-xs font-semibold text-[#5A4B3F];
+}
+
+.payee-card button {
+  @apply flex w-full shrink-0 items-center justify-between gap-2 rounded-full border border-[#E8DCC4] bg-white px-5 py-3 font-mono text-sm font-bold text-[#3A7CA5] transition-colors hover:border-[#3A7CA5] hover:bg-[#3A7CA5] hover:text-white;
+}
+
+.upi-open-btn {
+  @apply mt-5 min-h-[52px] items-center justify-center gap-2 rounded-full bg-[#2D241E] px-6 font-bold text-white transition-colors active:bg-[#3A7CA5];
+}
+
 .order-field {
   @apply flex flex-col gap-2 text-sm font-bold text-[#2D241E];
 }
@@ -270,6 +495,44 @@ body {
   }
 }
 
+/* --- Delta footer --- */
+.site-footer {
+  @apply relative overflow-hidden bg-[#2D241E] text-white pt-20 md:pt-28 pb-12 px-6 mt-24;
+}
+
+.footer-statement {
+  @apply font-serif font-bold tracking-[-0.02em] leading-[1.12] text-[clamp(1.9rem,4.2vw,3.25rem)] mb-10 max-w-xl;
+}
+
+.site-footer .headline-muted {
+  @apply text-white/40;
+}
+
+.footer-cta {
+  @apply inline-flex items-center gap-2 rounded-full bg-[#D4A373] px-7 py-3.5 font-bold text-white transition-colors hover:bg-[#B1895D];
+}
+
+.footer-col-head {
+  @apply mb-5 text-[13px] font-bold tracking-tight text-white;
+}
+
+.footer-links {
+  @apply space-y-3.5 text-sm text-white/55;
+}
+
+.footer-links button {
+  @apply text-left transition-colors hover:text-white;
+}
+
+/* Wordmark bled off the bottom edge, barely lighter than the footer itself */
+.footer-watermark {
+  @apply pointer-events-none absolute left-1/2 -translate-x-1/2 select-none font-serif font-bold text-white/[0.045] whitespace-nowrap;
+  bottom: -0.28em;
+  font-size: clamp(4rem, 15vw, 15rem);
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
 /* Custom scrollbar */
 .hide-scrollbar {
   -ms-overflow-style: none;  /* IE and Edge */
@@ -280,13 +543,19 @@ body {
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 12px;
 }
 
 ::-webkit-scrollbar-track {
   @apply bg-[#F4EDDE];
 }
 
+/* 2px of border either side keeps a 8px thumb — the old 4px border left a hairline */
 ::-webkit-scrollbar-thumb {
-  @apply bg-[#D4A373] rounded-full border-4 border-[#F4EDDE];
+  @apply bg-[#C9A981] rounded-full border-2 border-[#F4EDDE];
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-[#B1895D];
 }
