@@ -7,11 +7,14 @@
 }
 
 /* Keeps a scrolled-to section clear of the floating nav pill.
-   Deliberately no `scroll-behavior: smooth` here: every scroll in the app already
-   passes `behavior` explicitly, and in Chrome the global rule also animates
-   keyboard and scrollbar scrolling, which reads as lag. */
+   Deliberately no `scroll-behavior: smooth` here: Lenis (see smooth-scroll.tsx)
+   eases wheel and programmatic scrolling on the rAF loop, and a CSS smooth
+   rule underneath it would double-animate every jump.
+   scrollbar-gutter reserves the scrollbar's lane permanently so the page
+   doesn't shift sideways when an open dialog locks scrolling. */
 html {
   scroll-padding-top: 96px;
+  scrollbar-gutter: stable;
 }
 
 body {

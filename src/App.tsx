@@ -51,6 +51,7 @@ import {
 import { gangaPlaces, contribFACE, GangaPlace } from './data';
 import AdminPanel from './AdminPanel';
 import Logo from './Logo';
+import { useSmoothScrollTo, useScrollLock } from './smooth-scroll';
 
 const paymentQr = '/book/payment-qr.png';
 
@@ -150,6 +151,7 @@ function ScrollProgress() {
 
 /** Return to the source — desktop only, since the phone has the sticky CTA down there. */
 function BackToTop() {
+  const scrollTo = useSmoothScrollTo();
   const { scrollYProgress } = useScroll();
   const ring = useSpring(scrollYProgress, { stiffness: 400, damping: 45, restDelta: 0.001 });
   const [visible, setVisible] = useState(false);
@@ -174,7 +176,7 @@ function BackToTop() {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.7 }}
           transition={{ duration: 0.3, ease: EASE_OUT }}
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          onClick={() => scrollTo(0)}
           className="back-to-top show-md-flex"
           aria-label="Back to the top of the page"
         >
@@ -670,17 +672,12 @@ export default function App() {
   const [upiCopied, setUpiCopied] = useState(false);
   const [qrZoomed, setQrZoomed] = useState(false);
 
-  // Escape closes the enlarged QR, and the page behind it stays put while it is open.
+  // Escape closes the enlarged QR — the scroll lock below keeps the page still behind it.
   useEffect(() => {
     if (!qrZoomed) return;
     const onKeyDown = (e: KeyboardEvent) => { if (e.key === 'Escape') setQrZoomed(false); };
     window.addEventListener('keydown', onKeyDown);
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-    return () => {
-      window.removeEventListener('keydown', onKeyDown);
-      document.body.style.overflow = previousOverflow;
-    };
+    return () => window.removeEventListener('keydown', onKeyDown);
   }, [qrZoomed]);
 
   const copyUpiId = async () => {
@@ -780,6 +777,13 @@ export default function App() {
   const [contributeSubmitting, setContributeSubmitting] = useState(false);
   const [contributeError, setContributeError] = useState('');
 
+  const scrollTo = useSmoothScrollTo();
+
+  /* The mobile menu is deliberately not in this list: it is a full-screen
+     opaque overlay whose buttons navigate the page behind it — locking would
+     swallow those scrolls. */
+  useScrollLock(Boolean(selectedPlace) || showVolunteerForm || showContributeForm || qrZoomed);
+
   const updateContributeField = (field: keyof ContributeForm, value: string) => {
     setContributeFormState((current) => ({ ...current, [field]: value }));
   };
@@ -853,7 +857,7 @@ export default function App() {
   const goToCheckout = () => {
     setShowCheckout(true);
     setOrderSubmitted(false);
-    window.scrollTo({ top: 0, behavior: 'instant' });
+    scrollTo(0, { immediate: true });
   };
 
   const updateOrderField = (field: keyof OrderForm, value: string | File | null) => {
@@ -888,7 +892,7 @@ export default function App() {
   const handleFaceAction = (action: string) => {
     if (action === 'festivals') {
       setSelectedStage(4);
-      document.getElementById('journey')?.scrollIntoView({ behavior: 'smooth' });
+      scrollTo('journey');
     } else if (action === 'art') {
       const place = gangaPlaces.find((p) => p.name === 'Patna');
       if (place) setSelectedPlace(place);
@@ -896,7 +900,7 @@ export default function App() {
       const place = gangaPlaces.find((p) => p.name === 'Varanasi');
       if (place) setSelectedPlace(place);
     } else {
-      document.getElementById('action')?.scrollIntoView({ behavior: 'smooth' });
+      scrollTo('action');
     }
   };
 
@@ -1184,6 +1188,7 @@ export default function App() {
                 initial={{ scale: 0.9, y: 20 }}
                 animate={{ scale: 1, y: 0 }}
                 exit={{ scale: 0.9, y: 20 }}
+                data-lenis-prevent
                 className="bg-white w-full h-[100dvh] rounded-none md:h-auto md:max-h-[90vh] md:rounded-3xl max-w-3xl overflow-y-auto"
                 onClick={(e) => e.stopPropagation()}
               >
@@ -1277,7 +1282,7 @@ export default function App() {
         >
           <button
             className="flex items-center gap-2 shrink-0"
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            onClick={() => scrollTo(0)}
             aria-label="Back to top"
           >
             <Logo size={scrolled ? 26 : 34} onDark />
@@ -1295,7 +1300,7 @@ export default function App() {
             ].map((item) => (
               <button
                 key={item.id}
-                onClick={() => document.getElementById(item.id)?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={() => scrollTo(item.id)}
                 className={`relative px-4 py-2 rounded-full text-[13px] font-semibold tracking-tight transition-colors ${
                   activeTab === item.id ? 'text-[#2D241E]' : 'text-white/70 hover:text-white'
                 }`}
@@ -1350,17 +1355,17 @@ export default function App() {
             <div className="flex flex-col gap-10 text-3xl font-serif font-bold text-[#2D241E] items-center">
               <button onClick={() => {
                 setIsMobileMenuOpen(false);
-                document.getElementById('journey')?.scrollIntoView({ behavior: 'smooth' });
+                scrollTo('journey');
                 setActiveTab('journey');
               }} className="hover:text-[#3A7CA5] transition-colors">The Journey</button>
               <button onClick={() => {
                 setIsMobileMenuOpen(false);
-                document.getElementById('heritage')?.scrollIntoView({ behavior: 'smooth' });
+                scrollTo('heritage');
                 setActiveTab('heritage');
               }} className="hover:text-[#3A7CA5] transition-colors">Heritage</button>
               <button onClick={() => {
                 setIsMobileMenuOpen(false);
-                document.getElementById('action')?.scrollIntoView({ behavior: 'smooth' });
+                scrollTo('action');
                 setActiveTab('action');
               }} className="hover:text-[#3A7CA5] transition-colors">Contribute</button>
             </div>
@@ -1377,7 +1382,7 @@ export default function App() {
 
       <HeroSection
         onBuy={goToCheckout}
-        onStartJourney={() => document.getElementById('journey')?.scrollIntoView({ behavior: 'smooth' })}
+        onStartJourney={() => scrollTo('journey')}
       />
 
       {/* Her Three Gifts — Soul · Body · Mind */}
@@ -1715,7 +1720,7 @@ export default function App() {
                 animate={{ opacity: 1 }}
                 onClick={() => {
                   setShowAllPlaces(true);
-                  window.scrollTo({ top: 0, behavior: 'instant' });
+                  scrollTo(0, { immediate: true });
                 }}
                 className="mt-16 bg-[#2D241E] text-white px-12 py-5 rounded-full font-bold hover:bg-[#3A7CA5] transition-all flex items-center gap-3"
               >
@@ -1770,7 +1775,7 @@ export default function App() {
 
             <Reveal delay={0.28}>
               <button
-                onClick={() => { setShowAllPlaces(true); window.scrollTo({ top: 0, behavior: 'instant' }); }}
+                onClick={() => { setShowAllPlaces(true); scrollTo(0, { immediate: true }); }}
                 className="mt-14 bg-[#3A7CA5] text-white px-10 py-5 rounded-full font-bold hover:bg-[#2F668A] transition-all w-fit flex items-center gap-3"
               >
                 Explore art & cuisine of 75 places <ChevronRight size={20} />
@@ -1880,6 +1885,7 @@ export default function App() {
               initial={{ scale: 0.9, y: 20 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.9, y: 20 }}
+              data-lenis-prevent
               className="bg-white rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-y-auto"
               onClick={(e) => e.stopPropagation()}
             >
@@ -1980,6 +1986,7 @@ export default function App() {
               initial={{ scale: 0.9, y: 20 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.9, y: 20 }}
+              data-lenis-prevent
               className="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
               onClick={(e) => e.stopPropagation()}
             >
@@ -2084,6 +2091,7 @@ export default function App() {
               initial={{ scale: 0.9, y: 20 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.9, y: 20 }}
+              data-lenis-prevent
               className="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
               onClick={(e) => e.stopPropagation()}
             >
@@ -2189,9 +2197,9 @@ export default function App() {
               <div>
                 <h5 className="footer-col-head">The River</h5>
                 <ul className="footer-links">
-                  <li><button onClick={() => { setShowAllPlaces(true); window.scrollTo({ top: 0, behavior: 'instant' }); }}>All 75 Places</button></li>
-                  <li><button onClick={() => document.getElementById('journey')?.scrollIntoView({ behavior: 'smooth' })}>The Journey</button></li>
-                  <li><button onClick={() => document.getElementById('heritage')?.scrollIntoView({ behavior: 'smooth' })}>Heritage</button></li>
+                  <li><button onClick={() => { setShowAllPlaces(true); scrollTo(0, { immediate: true }); }}>All 75 Places</button></li>
+                  <li><button onClick={() => scrollTo('journey')}>The Journey</button></li>
+                  <li><button onClick={() => scrollTo('heritage')}>Heritage</button></li>
                   <li><button onClick={goToCheckout}>Get the Book</button></li>
                 </ul>
               </div>
@@ -2219,7 +2227,7 @@ export default function App() {
         <div className="fixed bottom-0 left-0 right-0 z-40 bg-white/80 backdrop-blur-md border-t border-[#E8DCC4] p-4 md:hidden pb-safe">
           {pastWound ? (
             <button
-              onClick={() => document.getElementById('action')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={() => scrollTo('action')}
               className="w-full bg-[#3A7CA5] text-white px-8 py-4 rounded-full font-bold flex items-center justify-center gap-3 active:scale-95 transition-all"
             >
               <HandHeart size={20} weight="bold" /> Join the Mission
