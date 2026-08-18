@@ -1,0 +1,630 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-sans);
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-heading: var(--font-sans);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+
+  /* Bricx semantic palette — unified from the 38 inline hexes (Phase 0). */
+  --color-surface: #fafafa;        /* chips/pills/muted card bg (was #fafafa ×27) */
+  --color-surface-hover: #efefef;  /* hover bg (unifies #efefef/#f0f0f0) */
+  --color-surface-input: #f5f5f5;  /* input/search bg (unifies #f5f5f5/#f4f4f5/#f4f4f4) */
+  --color-line: #dcdde0;           /* default border (unifies #dcdde0/#d9d9d9) */
+  --color-line-soft: #e5e5e5;      /* table/soft border (unifies #e5e5e5/#e7e7e7/#e3e3e3) */
+  --color-ink: #121212;            /* primary dark text/surfaces (unifies #121212/#101010) */
+  --color-ink-strong: #070707;     /* near-black headings */
+  --color-ink-muted: #3f3f3f;      /* secondary text (unifies #3f3f3f/#3a3a3a) */
+  --color-ink-faint: #808080;      /* tertiary/placeholder (unifies #808080/#6b6b6b) */
+  --color-panel: #16191c;          /* dark panel (mega menu / dark cards) */
+  --color-panel-2: #242424;        /* dark panel 2 (unifies #242424/#262626) */
+  --color-brand: #5615b8;          /* promo/announcement purple */
+  --color-cta-ink: #45311e;        /* book-a-call button text (brown) */
+  --color-success: #2fd45e;        /* status green */
+
+  /* Thrust case study (/work/thrust) — brand palette from Figma Bricx-v7. */
+  --color-thrust-blue: #0077ff;        /* THE Thrust accent (Figma #07f) */
+  --color-thrust-blue-press: #0a66e0;  /* pressed/darker button state */
+  --color-thrust-grey: #f2f2f2;        /* light app-showcase band bg */
+  --color-thrust-black: #000000;       /* dark section bg */
+  --color-thrust-card-dark: #0e0f11;   /* dark UI card bg */
+  --color-thrust-violet: #6d3bf5;      /* Pre-Launch progress card */
+  --color-thrust-scene: #2d3648;       /* mean of the hero mockup's 3D backdrop —
+                                          the hero band sits on this, not on blue,
+                                          so any frame the WebGL embed hasn't
+                                          painted reads as the scene rather than
+                                          a flash of #0077FF */
+}
+
+:root {
+  /* Figma base tokens: light bg #fbfcfc, dark foreground #121212 */
+  --background: #fbfcfc;
+  --foreground: #121212;
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+}
+
+/* Testimonials marquee — the track holds two identical sets of cards and
+   slides left by exactly half its width, so the loop is seamless. */
+@keyframes testimonial-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Entrance: a one-off leftward nudge layered on top of the steady loop (on a
+   parent element, so the transforms compose). ease-out makes it start fast and
+   decelerate to zero, so the combined motion eases from a quick burst down to
+   the marquee's normal cruising pace. */
+@keyframes testimonial-marquee-intro {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-170px);
+  }
+}
+
+/* Service rows animate into view on larger screens. On phones they must stay
+   visible even if an IntersectionObserver is delayed or never fires. */
+@media (max-width: 767px) {
+  .service-row {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Mega-menu rows: soft fade + rise + focus-in (text starts blurred and sharpens).
+   Replays on category switch (the list is keyed by the active category), so items
+   re-stagger in each time. */
+@keyframes mm-row-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mm-anim {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Scroll reveals — the house "fade + rise + focus-in" idiom (see `mm-row-in`),
+   tuned gentler and slower for content entering on scroll rather than on click.
+   `RevealOnView` marks a group with `data-reveal` and flips `data-inview` once
+   it enters the viewport, so a cascade always plays from its first beat instead
+   of being caught half-finished.
+
+   Two levels: `.reveal-card` for surfaces, `.reveal-item` for what sits inside
+   them. Cards carry `--i`; items inherit that `--i` from their card and add
+   their own `--j`, so an item's delay is derived from its card's — the contents
+   settle a beat after the surface they belong to lands, and the whole group
+   reads as one motion rather than two.
+
+   Timing is deliberately languid — long durations against a modest stagger, so
+   each beat still has ~1s to run when the next one starts. Heavy overlap is what
+   makes the group read as one continuous wave instead of four separate pops; a
+   short duration with the same stagger is what makes a cascade feel choppy.
+
+   Easing is `easeOutCubic`, not the sharper `cubic-bezier(0.22, 1, 0.36, 1)`
+   used by `page-enter`. A strong ease-out spends most of its distance in the
+   first fraction of the duration and then crawls — punchy for a click response,
+   but over a second-long entrance it reads as a lurch followed by a stall.
+   Cubic distributes the movement more evenly, which is what "smooth" means here.
+
+   Everything is scoped to `no-preference`: under reduced motion no opacity is
+   ever zeroed, so the content is simply present. */
+@media (prefers-reduced-motion: no-preference) {
+  [data-reveal]:not([data-inview]) .reveal-card,
+  [data-reveal]:not([data-inview]) .reveal-item {
+    opacity: 0;
+  }
+
+  [data-inview] .reveal-card {
+    animation: reveal-card-in 1100ms cubic-bezier(0.33, 1, 0.68, 1) backwards;
+    animation-delay: calc(var(--i, 0) * 110ms);
+  }
+
+  [data-inview] .reveal-item {
+    animation: reveal-item-in 800ms cubic-bezier(0.33, 1, 0.68, 1) backwards;
+    animation-delay: calc(var(--i, 0) * 110ms + 260ms + var(--j, 0) * 70ms);
+  }
+}
+
+/* `backwards` (and no `forwards`) on purpose: the delayed first frame shows the
+   hidden state with no flash, and once it ends the element drops back to a clean
+   slate — no lingering `blur(0)`, which would otherwise leave a containing block
+   behind and trap the fixed navbar. Same reasoning as `page-enter` below. */
+/* The blur is held to 4px and cleared by the halfway mark. `filter` is the one
+   property here that can't ride the compositor for free — blurring a 738px-wide
+   card forces a re-raster every frame, and the hero's WebGL scene is still
+   rendering further up the page, competing for the same GPU. Front-loading the
+   blur into the first half keeps the focus-in that makes the entrance feel soft
+   while leaving the long tail of the animation as pure transform + opacity. */
+@keyframes reveal-card-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.98);
+    filter: blur(4px);
+  }
+  50% {
+    filter: blur(0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+}
+
+/* Contents move less and never blur — the surface carries the focus-in, the
+   text just settles onto it. Keeps four big blurred layers from becoming a
+   dozen. */
+@keyframes reveal-item-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Lenis smooth scroll */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Page transitions — each freshly-loaded page gently sharpens into focus:
+   content starts faded + blurred and eases to clear over ~0.9s. Works on every
+   full-page navigation in every browser (plain CSS animation, no View
+   Transition API). `backwards` fill shows the blurred first frame with no flash;
+   with no `forwards`, the element returns to a clean state (no lingering filter,
+   so it never creates a stray containing block for the fixed nav/overlay). */
+@media (prefers-reduced-motion: no-preference) {
+  .page-enter {
+    animation: page-enter 900ms cubic-bezier(0.22, 1, 0.36, 1) backwards;
+  }
+}
+
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    filter: blur(7px);
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   Thrust component kit (S5) — motion
+   ─────────────────────────────────────────────────────────────────────────
+   The kit is a specimen wall: pills, a back chevron, a "New" sparkle and a
+   like button. Everything here is CSS rather than JS because this page decodes
+   ~15MB of imagery while scrolling, and CSS animations keep running off the
+   main thread when it is busy.
+
+   Distances are in `em`. The kit's root font-size is `calc(100cqi / 1392)`, so
+   1em === 1 Figma px and every value below scales with the band.
+
+   CAUTION: never put these transforms on an SVG <path> that carries a
+   `transform` ATTRIBUTE — the CSS property replaces the attribute outright and
+   silently drops the translate, sliding the icon off its anchor. Every moving
+   icon below is therefore wrapped in a <g> (or animated at <svg> level) so the
+   attribute and the animation live on different elements.                     */
+
+.thrust-kit-pill {
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease,
+    color 150ms ease;
+}
+
+/* Hover only where there is a real pointer — touch taps fire :hover too. */
+@media (hover: hover) and (pointer: fine) {
+  .thrust-kit-pill--join:hover {
+    background-color: #0077ff;
+  }
+  .thrust-kit-pill--view:hover {
+    background-color: #e0e0e0;
+  }
+  .thrust-kit-pill--outline:hover {
+    border-color: #d0d0d0;
+    background-color: rgba(0, 0, 0, 0.02);
+  }
+  .thrust-kit-pill--chevron:hover {
+    background-color: #efefef;
+  }
+}
+
+/* ── Back chevron ──────────────────────────────────────────────────────────
+   A continuous horizontal ping-pong. Deliberately no hover takeover: pausing a
+   never-resting animation reads as a stall, and a paused animation still wins
+   over a transition on the same property, so it could not glide anywhere
+   anyway. The pill's own background carries the hover state instead.         */
+
+@media (prefers-reduced-motion: no-preference) {
+  .thrust-kit-chevron {
+    animation: thrust-chevron-pingpong 750ms ease-in-out infinite alternate;
+  }
+}
+
+/* Swings either side of centre rather than only rightwards: with no rest in the
+   cycle the glyph's average position IS its resting position, so centring the
+   travel is what keeps it optically where the design puts it. `alternate` plus
+   ease-in-out gives the pendulum turnaround; a wrapped 0->6->0 keyframe would
+   snap at the ends. */
+@keyframes thrust-chevron-pingpong {
+  from {
+    transform: translateX(-3em);
+  }
+  to {
+    transform: translateX(3em);
+  }
+}
+
+/* ── "New" sparkle ─────────────────────────────────────────────────────────
+   Two four-point stars twinkling out of phase. The class sits on a <g>, not
+   the path: `fill-box` then scales each star about its own centre while the
+   path keeps its positioning attribute.                                      */
+.thrust-kit-star {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .thrust-kit-star--lg {
+    animation: thrust-star-twinkle 2400ms ease-in-out infinite;
+  }
+  .thrust-kit-star--sm {
+    animation: thrust-star-twinkle 2400ms ease-in-out 400ms infinite;
+  }
+}
+
+@keyframes thrust-star-twinkle {
+  0%,
+  55%,
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  18% {
+    transform: scale(1.18) rotate(12deg);
+    opacity: 1;
+  }
+  36% {
+    transform: scale(0.9) rotate(0deg);
+    opacity: 0.72;
+  }
+}
+
+/* ── Like button ───────────────────────────────────────────────────────────
+   Resting state is UNLIKED, so the first click is the satisfying one. The
+   nudge is a double heartbeat — unmistakably "press me", and thematically the
+   only pulse a heart could have. It stops for good once liked: the hint has
+   done its job.
+
+   Two layers so they compose instead of fighting: the <svg> carries hover and
+   press (transitions, interruptible), the inner <g> carries the heartbeat
+   (keyframes). One element cannot do both — a running animation wins over a
+   transition on the same property.                                            */
+.thrust-kit-heart {
+  transition: transform 220ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.thrust-kit-heart path {
+  transition:
+    fill 200ms ease,
+    stroke 200ms ease;
+}
+
+.thrust-kit-heart-pulse {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .thrust-kit-heart-btn:hover .thrust-kit-heart {
+    transform: scale(1.08);
+  }
+}
+
+/* After :hover — equal specificity, so source order decides, and a press that
+   happens while hovering (i.e. every mouse press) must win. */
+.thrust-kit-heart-btn:active .thrust-kit-heart {
+  transform: scale(0.82);
+  transition-duration: 100ms;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .thrust-kit-heart-pulse--hint {
+    animation: thrust-heart-hint 3000ms ease-in-out infinite;
+  }
+  /* The pop that sells the like. :active alone would only cover mouse presses;
+     this fires on keyboard and touch activation too. */
+  .thrust-kit-heart-pulse--pop {
+    animation: thrust-heart-pop 340ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .thrust-kit-heart-btn:hover .thrust-kit-heart-pulse--hint,
+  .thrust-kit-heart-btn:active .thrust-kit-heart-pulse--hint {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes thrust-heart-pop {
+  0% {
+    transform: scale(0.86);
+  }
+  45% {
+    transform: scale(1.16);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes thrust-heart-hint {
+  0%,
+  22%,
+  100% {
+    transform: scale(1);
+  }
+  6% {
+    transform: scale(1.13);
+  }
+  12% {
+    transform: scale(1);
+  }
+  17% {
+    transform: scale(1.08);
+  }
+}
+
+/* Burst — one-shot, so keyframes are right here. The element is re-keyed on
+   every like, which restarts it cleanly, and it paints *behind* the heart so
+   the heart pops through it rather than being covered. Nothing starts from
+   scale(0): the ring opens at 0.55 (already wider than the heart) and the
+   particles at 0.3, launched from outside the heart's silhouette. */
+.thrust-kit-burst-ring {
+  animation: thrust-burst-ring 480ms cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+@keyframes thrust-burst-ring {
+  0% {
+    transform: scale(0.62);
+    border-width: 8em;
+    border-color: #f4723a;
+    opacity: 0.95;
+  }
+  45% {
+    border-color: #ffd05b;
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1.5);
+    border-width: 0em;
+    border-color: #ffd05b;
+    opacity: 0;
+  }
+}
+
+.thrust-kit-burst-dot {
+  animation: thrust-burst-dot 560ms cubic-bezier(0.23, 1, 0.32, 1) 90ms both;
+}
+
+@keyframes thrust-burst-dot {
+  0% {
+    transform: rotate(var(--a)) translateY(-38em) scale(0.3);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(var(--a)) translateY(calc(-1 * var(--d))) scale(0.4);
+    opacity: 0;
+  }
+}
+
+/* Footer play chip. Visibility is pure CSS on purpose: deriving it from a JS
+   media-query hook meant the server rendered the chip hidden and it only
+   appeared once React hydrated, so on phones where hydration was slow — or
+   where the browser reports `hover: hover`, as several Android ones do — the
+   play button was never findable. Mobile-first: the chip is visible by default
+   and only hides behind hover where a real pointing device exists. A phone's
+   primary pointer is always coarse, so it can never match. */
+.play-chip {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+.play-chip-touch {
+  display: inline;
+}
+.play-chip-pointer {
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .play-chip {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+  .group:hover .play-chip,
+  .group:focus-visible .play-chip {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  .play-chip-touch {
+    display: none;
+  }
+  .play-chip-pointer {
+    display: inline;
+  }
+}
+
+/* While the game is running the chip is gone regardless of input device. */
+.play-chip-hidden,
+.group:hover .play-chip-hidden {
+  opacity: 0;
+}
+
+/* 3D book — gentle idle float for the catalogue section. */
+@keyframes book-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+
+/* River band — layers breathe vertically while drifting horizontally. */
+@keyframes river-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* The Gangetic dolphin's leap: long underwater pause, then a clean arc —
+   nose-up on the rise, level at the apex, nose-down diving back in. */
+@keyframes dolphin-leap {
+  0%   { transform: translate(0px, 120px) rotate(-38deg); opacity: 0; }
+  72%  { transform: translate(0px, 120px) rotate(-38deg); opacity: 0; }
+  75%  { transform: translate(18px, 52px) rotate(-26deg); opacity: 1; }
+  81%  { transform: translate(58px, -34px) rotate(-8deg); opacity: 1; }
+  86%  { transform: translate(92px, -56px) rotate(6deg); opacity: 1; }
+  91%  { transform: translate(126px, -30px) rotate(24deg); opacity: 1; }
+  97%  { transform: translate(168px, 66px) rotate(46deg); opacity: 1; }
+  100% { transform: translate(182px, 122px) rotate(52deg); opacity: 0; }
+}
