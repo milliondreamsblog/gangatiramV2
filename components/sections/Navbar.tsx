@@ -91,7 +91,9 @@ export function Navbar({ variant = "overlay" }: { variant?: "overlay" | "solid" 
         {/* Right: contact + CTA (desktop) */}
         <div className="hidden items-center gap-0.5 md:flex">
           <a
-            href="#whatsapp-group-link"
+            href="https://chat.whatsapp.com/DEAiLhWV0Yh3pHhUe8XqwS"
+            target="_blank"
+            rel="noopener noreferrer"
             aria-label="Chat on WhatsApp"
             className={cn(
               "grid size-8 place-items-center rounded-full backdrop-blur-md transition-colors",

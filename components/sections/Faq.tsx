@@ -44,7 +44,7 @@ export function Faq() {
               <p className="text-lg font-medium tracking-[-0.01em]">{faqHelp.title}</p>
               <p className="text-sm leading-[1.4] text-black/60">
                 {faqHelp.emailIntro}
-                <a href="#whatsapp-group-link" className="font-medium text-black underline-offset-2 hover:underline">
+                <a href="https://chat.whatsapp.com/DEAiLhWV0Yh3pHhUe8XqwS" target="_blank" rel="noopener noreferrer" className="font-medium text-black underline-offset-2 hover:underline">
                   {faqHelp.email}
                 </a>
                 {faqHelp.emailOutro}

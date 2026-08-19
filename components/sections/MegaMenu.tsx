@@ -164,7 +164,9 @@ export function MegaMenu({
 
         <div className="hidden items-center gap-0.5 md:flex">
           <a
-            href="#whatsapp-group-link"
+            href="https://chat.whatsapp.com/DEAiLhWV0Yh3pHhUe8XqwS"
+            target="_blank"
+            rel="noopener noreferrer"
             aria-label="Chat with us"
             className="grid size-8 place-items-center rounded-full bg-white/[0.06] transition-colors hover:bg-white/[0.14]"
           >

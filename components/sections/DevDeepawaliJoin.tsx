@@ -95,6 +95,8 @@ export function JoinBlock() {
 
       <a
         href={whatsappHref}
+        target="_blank"
+        rel="noopener noreferrer"
         onMouseEnter={() => hoverFeedback("cta")}
         className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-black/15 bg-white px-6 text-sm font-medium text-black transition-colors hover:border-black/40"
       >
