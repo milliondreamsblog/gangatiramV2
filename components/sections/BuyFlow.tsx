@@ -6,7 +6,7 @@ import { ArrowUpRight, Check, Copy, Maximize2, X } from "lucide-react";
 import { hoverFeedback } from "@/lib/feedback";
 
 const BOOK_PRICE = 999;
-const SHIPPING_PRICE = 145;
+const SHIPPING_PRICE = 0;
 const ORDER_TOTAL = BOOK_PRICE + SHIPPING_PRICE;
 const UPI_ID = "9830181700@sbi";
 const UPI_PAYEE = "Rakesh Mahapatra";
@@ -108,7 +108,7 @@ export function BuyFlow() {
             </div>
             <div className="flex justify-between border-t border-black/5 py-2.5">
               <dt className="text-black/55">Shipping (pan-India)</dt>
-              <dd className="font-medium">{inr(SHIPPING_PRICE)}</dd>
+              <dd className="font-medium">{SHIPPING_PRICE === 0 ? "Free" : inr(SHIPPING_PRICE)}</dd>
             </div>
             <div className="flex justify-between border-t border-black/10 py-3">
               <dt className="font-medium">Total to pay</dt>

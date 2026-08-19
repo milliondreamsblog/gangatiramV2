@@ -15,7 +15,7 @@ export const faqs = [
   {
     question: "How does the book reach me?",
     answer:
-      "₹999 for the book plus ₹145 shipping, paid by direct UPI. Your tracking number arrives within 24 hours, and we ship across India. 300 pages, 240 photographs, 75 places in river order.",
+      "₹999 all-inclusive — shipping anywhere in India is free, paid by direct UPI. Your tracking number arrives within 24 hours. 300 pages, 240 photographs, 75 places in river order.",
   },
   {
     question: "What does my ₹999 actually fund?",

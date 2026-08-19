@@ -37,7 +37,7 @@ type Contribution = {
 
 type Tab = "orders" | "volunteers" | "contributions";
 
-const ORDER_TOTAL = 1144;
+const ORDER_TOTAL = 999;
 const PAGE_SIZE = 20;
 const STATUSES = ["new", "verified", "shipped"] as const;
 

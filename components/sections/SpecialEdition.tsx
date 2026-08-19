@@ -40,7 +40,7 @@ export function SpecialEdition() {
               Get the Book — ₹999
             </a>
             <p className="text-[11px] uppercase tracking-[0.08em] text-ink-faint">
-              + ₹145 shipping · direct UPI · tracking in 24 hours
+              free shipping pan-India · direct UPI · tracking in 24 hours
             </p>
           </div>
         </div>

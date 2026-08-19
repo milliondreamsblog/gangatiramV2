@@ -7,7 +7,7 @@ export const bookBlurb =
   "Not a photo album — a pilgrimage. The author walks her whole length, Gomukh to Gangasagar, and tells the journey place by place: the people met, the festivals stumbled into, the stories the river gave up along the way — carried by 240 photographs of 75 places.";
 
 export const bookPrice = "₹999";
-export const bookShippingNote = "+ ₹145 shipping · direct UPI · tracking in 24 hours";
+export const bookShippingNote = "free shipping pan-India · direct UPI · tracking in 24 hours";
 export const bookBuyHref = "/buy";
 
 export const bookViews = [
