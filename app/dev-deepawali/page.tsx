@@ -4,26 +4,32 @@ import { PageShell } from "@/components/layout/PageShell";
 import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/sections/PageHero";
 import { EventCountdown, JoinBlock } from "@/components/sections/DevDeepawaliJoin";
+import { LampStory } from "@/components/sections/lamp/LampStory";
+import { LampOffer } from "@/components/sections/lamp/LampOffer";
+import { LampReturns } from "@/components/sections/lamp/LampReturns";
+import { DiyaProcession } from "@/components/sections/lamp/DiyaProcession";
 
 export const metadata: Metadata = {
-  title: "Dev Deepawali — 24 November 2026",
+  title: "Dev Deepawali — a diya with your name on the ghats of Kashi",
   description:
-    "On Kartik Purnima, Varanasi lights all 84 ghats with lakhs of lamps. Join the Ganga Tiram community's first online gathering — watch the night live and light a lamp from wherever you are.",
+    "On 24 November 2026, Varanasi lights all 84 ghats with lakhs of lamps. For ₹10, a priest lights a diya carrying your name on the ghat — streamed live, your clip sent to you — and the same ten rupees cleans the river when the festival ends.",
   alternates: { canonical: "/dev-deepawali" },
 };
 
-const MOMENTS = [
+/** "Where ten rupees goes" — centered heading over three quiet text columns.
+ *  (Layout: Bricx Website v7, node 581:6267 — the centered testimonial grid.) */
+const DUTIES = [
   {
-    title: "Watch her burn bright",
-    body: "The ghats, the aartis, the lamps — live, as the night unfolds over the river.",
+    title: "The lamp",
+    body: "A hand-thrown earthen diya, oil, a wick, and a priest to light it — placed on the ghat with your name beside the flame.",
   },
   {
-    title: "Light a lamp from where you are",
-    body: "One diya at your window. Send a photo — we thread the community's lamps into one stream.",
+    title: "The witness",
+    body: "The night is streamed live. Within three days, a clip of your own diya burning reaches your phone — proof, not a promise.",
   },
   {
-    title: "Meet the people keeping her alive",
-    body: "Painters, weavers, and cleanup crews from the FACE mission join the gathering.",
+    title: "The morning",
+    body: "When Kashi wakes, the same coin returns to the river: gloves, sacks, hands on the steps — and a published account of what was lifted.",
   },
 ];
 
@@ -33,55 +39,74 @@ export default function DevDeepawaliPage() {
       <PageHero
         variant="photo"
         image="/event/lamps-varanasi.png"
-        eyebrow="First online gathering · 24 November 2026"
-        headline="The night the gods come down to the ghats."
+        eyebrow="Dev Deepawali · 24 November 2026 · Kashi"
+        headline="Your name, burning on the ghats of Kashi."
       />
 
       {/* Countdown */}
       <section className="bg-white px-5 py-14 md:px-10 md:py-20">
         <Container padded={false} className="flex flex-col items-start justify-between gap-8 md:flex-row md:items-end">
-          <div className="flex max-w-[520px] flex-col gap-3">
+          <div className="flex max-w-[520px] flex-col items-start gap-4">
             <p className="text-xs uppercase tracking-[0.14em] text-black/50">
-              Kartik Purnima — the full moon of Kartik
+              Kartik Purnima — the night the gods come down to the ghats
             </p>
             <h2 className="text-3xl font-medium tracking-[-0.02em] md:text-4xl">
               One night. Eighty-four ghats.
               <br />
-              <span className="text-black/40">Lakhs of lamps.</span>
+              <span className="text-black/40">One of the lamps can be yours.</span>
             </h2>
+            <a
+              href="#offer"
+              className="mt-1 rounded-full bg-black px-6 py-3 text-sm font-medium text-white transition-transform hover:scale-[1.02]"
+            >
+              Light my lamp — ₹10
+            </a>
           </div>
           <EventCountdown />
         </Container>
       </section>
 
-      {/* What it is */}
-      <section className="bg-[#f7f7f7] px-5 py-14 md:px-10 md:py-20">
-        <Container padded={false} className="flex flex-col gap-12 md:flex-row md:items-start md:justify-between">
-          <div className="max-w-[560px]">
-            <p className="text-lg leading-[1.6] tracking-[-0.01em] text-black/70">
-              Fifteen days after Diwali, on the full moon of Kartik, Varanasi turns its
-              riverfront into a sky. All 84 ghats are lit with lakhs of earthen lamps —
-              for one night, the city holds a Diwali for the gods themselves.
-            </p>
-            <p className="mt-5 text-lg leading-[1.6] tracking-[-0.01em] text-black">
-              Most people will never stand on those steps. This year, our community
-              gathers online — so the river&rsquo;s greatest night belongs to everyone
-              on her side.
-            </p>
-          </div>
-          <div className="flex w-full max-w-[440px] flex-col gap-7">
-            {MOMENTS.map((m, i) => (
-              <div key={m.title} className="flex gap-4 border-t border-black/10 pt-5">
+      {/* The two offerings — node 581:6338 layout */}
+      <LampStory />
+
+      {/* Where ten rupees goes — node 581:6267 layout */}
+      <section className="bg-white px-5 py-16 md:px-10 md:py-24">
+        <Container padded={false} className="flex flex-col items-center">
+          <span className="inline-flex items-center gap-2 rounded-full border border-[#b08d57]/40 bg-white px-3 py-1.5 text-xs uppercase tracking-[0.14em] text-[#8a6c3f]">
+            <span aria-hidden className="size-1.5 rounded-full bg-[#b08d57]" />
+            Where ten rupees goes
+          </span>
+          <h2 className="mt-5 text-center text-3xl font-medium tracking-[-0.02em] md:text-5xl md:leading-[1.05]">
+            One coin.
+            <br />
+            <span className="font-serif italic text-black/60">Three duties.</span>
+          </h2>
+
+          <div className="mt-12 grid w-full max-w-[1100px] grid-cols-1 gap-10 md:mt-16 md:grid-cols-3 md:gap-12">
+            {DUTIES.map((d, i) => (
+              <div key={d.title} className="flex flex-col">
                 <span className="text-sm text-black/40">0{i + 1}</span>
-                <div>
-                  <h3 className="text-lg font-medium tracking-[-0.01em]">{m.title}</h3>
-                  <p className="mt-1 text-[15px] leading-relaxed text-black/55">{m.body}</p>
-                </div>
+                <h3 className="mt-2 text-xl font-medium tracking-[-0.01em]">{d.title}</h3>
+                <p className="mt-2.5 text-[15px] leading-[1.65] text-black/55">{d.body}</p>
               </div>
             ))}
           </div>
+
+          <p className="mt-12 max-w-[560px] text-center text-sm leading-relaxed text-black/45">
+            Lamps, priest, stream, cleanup — one pool, split by need, accounted
+            in public after the festival.
+          </p>
         </Container>
       </section>
+
+      {/* The offering — node 581:6367 layout */}
+      <LampOffer />
+
+      {/* Ten rupees, five returns — ServiceProcess step-list layout */}
+      <LampReturns />
+
+      {/* The procession — conveyor choreography, node 1907:17535 */}
+      <DiyaProcession />
 
       {/* Join */}
       <section className="bg-white px-5 py-14 md:px-10 md:py-20">
