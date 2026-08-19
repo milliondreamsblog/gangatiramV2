@@ -8,7 +8,7 @@ export async function GET(request: Request): Promise<Response> {
     const sql = getSql();
     const [orders, volunteers, contributions] = await Promise.all([
       sql`
-        SELECT id, name, address, pincode, country, state, screenshot_filename, status, created_at
+        SELECT id, name, address, pincode, country, state, screenshot_filename, status, email_sent, whatsapp_sent, created_at
         FROM book_orders ORDER BY created_at DESC LIMIT 500
       `,
       sql`

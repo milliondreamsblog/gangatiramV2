@@ -11,6 +11,8 @@ type Order = {
   state: string;
   screenshot_filename: string | null;
   status: string | null;
+  email_sent: boolean;
+  whatsapp_sent: boolean;
   created_at: string;
 };
 type Volunteer = {
@@ -181,7 +183,7 @@ export function AdminPanel() {
           <table className="w-full min-w-[900px] text-left text-sm">
             <thead className="border-b border-black/10 text-xs uppercase tracking-[0.1em] text-black/45">
               <tr>
-                {["#", "Name", "Address", "State", "Pincode", "Country", "Status", "Payment proof", "Placed"].map((h) => (
+                {["#", "Name", "Address", "State", "Pincode", "Country", "Status", "Alerts", "Payment proof", "Placed"].map((h) => (
                   <th key={h} className="px-4 py-3 font-medium">{h}</th>
                 ))}
               </tr>
@@ -198,6 +200,28 @@ export function AdminPanel() {
                   <td className="px-4 py-3">
                     <span className="rounded-full bg-black/5 px-2.5 py-1 text-xs font-medium">
                       {o.status || "new"}
+                    </span>
+                  </td>
+                  <td className="whitespace-nowrap px-4 py-3">
+                    <span
+                      title={o.email_sent ? "Email alert sent" : "Email alert NOT sent"}
+                      className={
+                        o.email_sent
+                          ? "mr-1 rounded-full bg-black/5 px-2 py-1 text-xs font-medium"
+                          : "mr-1 rounded-full bg-red-100 px-2 py-1 text-xs font-medium text-red-700"
+                      }
+                    >
+                      Mail {o.email_sent ? "OK" : "—"}
+                    </span>
+                    <span
+                      title={o.whatsapp_sent ? "WhatsApp alert sent" : "WhatsApp alert NOT sent"}
+                      className={
+                        o.whatsapp_sent
+                          ? "rounded-full bg-black/5 px-2 py-1 text-xs font-medium"
+                          : "rounded-full bg-red-100 px-2 py-1 text-xs font-medium text-red-700"
+                      }
+                    >
+                      WA {o.whatsapp_sent ? "OK" : "—"}
                     </span>
                   </td>
                   <td className="px-4 py-3">
