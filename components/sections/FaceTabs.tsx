@@ -34,7 +34,7 @@ export function FaceTabs() {
           <div
             role="tablist"
             aria-label="The FACE of Ganga"
-            className="flex shrink-0 gap-2 overflow-x-auto [scrollbar-width:none] lg:w-[240px] lg:flex-col lg:gap-4 [&::-webkit-scrollbar]:hidden"
+            className="flex shrink-0 gap-2 overflow-x-auto [scrollbar-width:none] lg:w-[310px] lg:flex-col lg:gap-4 [&::-webkit-scrollbar]:hidden"
           >
             {faceWings.map((w, i) => {
               const selected = i === active;
