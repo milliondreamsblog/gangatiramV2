@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState, type FormEvent } from "react";
+import { useCallback, useEffect, useMemo, useState, type FormEvent } from "react";
 
 type Order = {
   id: number;
@@ -37,6 +37,17 @@ type Contribution = {
 
 type Tab = "orders" | "volunteers" | "contributions";
 
+const ORDER_TOTAL = 1144;
+const PAGE_SIZE = 20;
+const STATUSES = ["new", "verified", "shipped"] as const;
+
+const STATUS_STYLE: Record<string, string> = {
+  new: "bg-amber-100 text-amber-800",
+  verified: "bg-sky-100 text-sky-800",
+  shipped: "bg-emerald-100 text-emerald-800",
+};
+
+const inr = (n: number) => `₹${n.toLocaleString("en-IN")}`;
 const fmt = (iso: string) =>
   new Date(iso).toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short" });
 
@@ -50,6 +61,10 @@ export function AdminPanel() {
   const [volunteers, setVolunteers] = useState<Volunteer[]>([]);
   const [contributions, setContributions] = useState<Contribution[]>([]);
   const [loading, setLoading] = useState(false);
+  const [query, setQuery] = useState("");
+  const [page, setPage] = useState(1);
+  const [confirmDelete, setConfirmDelete] = useState<number | null>(null);
+  const [busyId, setBusyId] = useState<number | null>(null);
 
   const loadData = useCallback(async () => {
     setLoading(true);
@@ -99,6 +114,61 @@ export function AdminPanel() {
     setContributions([]);
   };
 
+  const setStatus = async (id: number, status: string) => {
+    setBusyId(id);
+    const prev = orders;
+    setOrders((os) => os.map((o) => (o.id === id ? { ...o, status } : o)));
+    const res = await fetch("/api/admin/order-status", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id, status }),
+    });
+    if (!res.ok) setOrders(prev);
+    setBusyId(null);
+  };
+
+  const deleteOrder = async (id: number) => {
+    setBusyId(id);
+    const res = await fetch("/api/admin/order-delete", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id }),
+    });
+    if (res.ok) setOrders((os) => os.filter((o) => o.id !== id));
+    setConfirmDelete(null);
+    setBusyId(null);
+  };
+
+  const filtered = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    if (!q) return orders;
+    return orders.filter((o) =>
+      [String(o.id), o.name, o.address, o.state, o.pincode, o.country, o.status ?? "new"]
+        .join(" ")
+        .toLowerCase()
+        .includes(q)
+    );
+  }, [orders, query]);
+
+  const pages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+  const safePage = Math.min(page, pages);
+  const pageRows = filtered.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE);
+  const pendingCount = orders.filter((o) => (o.status ?? "new") === "new").length;
+
+  const exportCsv = () => {
+    const header = ["id", "name", "address", "pincode", "state", "country", "status", "email_sent", "whatsapp_sent", "created_at"];
+    const esc = (v: unknown) => `"${String(v ?? "").replace(/"/g, '""')}"`;
+    const csv = [
+      header.join(","),
+      ...filtered.map((o) => header.map((h) => esc((o as unknown as Record<string, unknown>)[h])).join(",")),
+    ].join("\n");
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([csv], { type: "text/csv" }));
+    a.download = "gangatiram-orders.csv";
+    a.click();
+    URL.revokeObjectURL(a.href);
+  };
+
   if (authed === null) {
     return <p className="p-10 text-sm text-black/50">Checking session…</p>;
   }
@@ -143,8 +213,8 @@ export function AdminPanel() {
   ];
 
   return (
-    <div className="mx-auto w-full max-w-[1400px] px-5 py-10 md:px-10">
-      <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
+    <div className="mx-auto w-full max-w-[1480px] px-5 py-10 md:px-10">
+      <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
         <h1 className="font-serif text-3xl tracking-tight">Ganga Tiram — Admin</h1>
         <div className="flex items-center gap-2">
           <button
@@ -178,73 +248,175 @@ export function AdminPanel() {
         ))}
       </div>
 
-      <div className="overflow-x-auto rounded-2xl bg-white">
-        {tab === "orders" && (
-          <table className="w-full min-w-[900px] text-left text-sm">
-            <thead className="border-b border-black/10 text-xs uppercase tracking-[0.1em] text-black/45">
-              <tr>
-                {["#", "Name", "Address", "State", "Pincode", "Country", "Status", "Alerts", "Payment proof", "Placed"].map((h) => (
-                  <th key={h} className="px-4 py-3 font-medium">{h}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {orders.map((o) => (
-                <tr key={o.id} className="border-b border-black/5 align-top">
-                  <td className="px-4 py-3 font-medium">{o.id}</td>
-                  <td className="px-4 py-3">{o.name}</td>
-                  <td className="max-w-[280px] px-4 py-3 text-black/70">{o.address}</td>
-                  <td className="px-4 py-3">{o.state}</td>
-                  <td className="px-4 py-3">{o.pincode}</td>
-                  <td className="px-4 py-3">{o.country}</td>
-                  <td className="px-4 py-3">
-                    <span className="rounded-full bg-black/5 px-2.5 py-1 text-xs font-medium">
-                      {o.status || "new"}
-                    </span>
-                  </td>
-                  <td className="whitespace-nowrap px-4 py-3">
-                    <span
-                      title={o.email_sent ? "Email alert sent" : "Email alert NOT sent"}
-                      className={
-                        o.email_sent
-                          ? "mr-1 rounded-full bg-black/5 px-2 py-1 text-xs font-medium"
-                          : "mr-1 rounded-full bg-red-100 px-2 py-1 text-xs font-medium text-red-700"
-                      }
-                    >
-                      Mail {o.email_sent ? "OK" : "—"}
-                    </span>
-                    <span
-                      title={o.whatsapp_sent ? "WhatsApp alert sent" : "WhatsApp alert NOT sent"}
-                      className={
-                        o.whatsapp_sent
-                          ? "rounded-full bg-black/5 px-2 py-1 text-xs font-medium"
-                          : "rounded-full bg-red-100 px-2 py-1 text-xs font-medium text-red-700"
-                      }
-                    >
-                      WA {o.whatsapp_sent ? "OK" : "—"}
-                    </span>
-                  </td>
-                  <td className="px-4 py-3">
-                    <a
-                      href={`/api/admin/screenshot?id=${o.id}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="font-medium underline underline-offset-4"
-                    >
-                      View
-                    </a>
-                  </td>
-                  <td className="whitespace-nowrap px-4 py-3 text-black/55">{fmt(o.created_at)}</td>
-                </tr>
-              ))}
-              {!orders.length && (
-                <tr><td colSpan={9} className="px-4 py-8 text-center text-black/45">No orders yet.</td></tr>
-              )}
-            </tbody>
-          </table>
-        )}
+      {tab === "orders" && (
+        <>
+          {/* Stats */}
+          <div className="mb-6 grid grid-cols-1 gap-3 sm:grid-cols-3">
+            <div className="rounded-2xl bg-white p-5">
+              <p className="text-xs uppercase tracking-[0.12em] text-black/45">Total orders</p>
+              <p className="mt-1 font-serif text-3xl tracking-tight">{orders.length}</p>
+            </div>
+            <div className="rounded-2xl bg-white p-5">
+              <p className="text-xs uppercase tracking-[0.12em] text-black/45">Total value</p>
+              <p className="mt-1 font-serif text-3xl tracking-tight">{inr(orders.length * ORDER_TOTAL)}</p>
+            </div>
+            <div className="rounded-2xl bg-white p-5">
+              <p className="text-xs uppercase tracking-[0.12em] text-black/45">Awaiting verification</p>
+              <p className="mt-1 font-serif text-3xl tracking-tight">{pendingCount}</p>
+            </div>
+          </div>
 
-        {tab === "volunteers" && (
+          {/* Toolbar */}
+          <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+            <input
+              value={query}
+              onChange={(e) => {
+                setQuery(e.target.value);
+                setPage(1);
+              }}
+              placeholder="Search name, address, state, pincode, #id…"
+              className="min-h-11 w-full max-w-[420px] rounded-full border border-black/15 bg-white px-5 text-sm outline-none focus:border-black/50"
+            />
+            <button
+              onClick={exportCsv}
+              className="min-h-11 rounded-full bg-black/5 px-5 text-sm font-medium transition-colors hover:bg-black/10"
+            >
+              Export CSV
+            </button>
+          </div>
+
+          {/* Table */}
+          <div className="overflow-x-auto rounded-2xl bg-white">
+            <table className="w-full min-w-[1050px] text-left text-sm">
+              <thead className="border-b border-black/10 text-xs uppercase tracking-[0.1em] text-black/45">
+                <tr>
+                  {["#", "Name", "Address", "State", "Pincode", "Status", "Alerts", "Proof", "Placed", ""].map((h, i) => (
+                    <th key={i} className="px-4 py-3 font-medium">{h}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {pageRows.map((o) => {
+                  const status = o.status ?? "new";
+                  return (
+                    <tr key={o.id} className="border-b border-black/5 align-top">
+                      <td className="px-4 py-3 font-medium">{o.id}</td>
+                      <td className="px-4 py-3">{o.name}</td>
+                      <td className="max-w-[260px] px-4 py-3 text-black/70">{o.address}</td>
+                      <td className="px-4 py-3">{o.state}</td>
+                      <td className="px-4 py-3">{o.pincode}</td>
+                      <td className="px-4 py-3">
+                        <select
+                          value={status}
+                          disabled={busyId === o.id}
+                          onChange={(e) => setStatus(o.id, e.target.value)}
+                          className={`cursor-pointer rounded-full border-0 px-2.5 py-1.5 text-xs font-medium outline-none ${STATUS_STYLE[status] ?? "bg-black/5"}`}
+                        >
+                          {STATUSES.map((s) => (
+                            <option key={s} value={s}>{s}</option>
+                          ))}
+                        </select>
+                      </td>
+                      <td className="whitespace-nowrap px-4 py-3">
+                        <span
+                          title={o.email_sent ? "Email alert sent" : "Email alert NOT sent"}
+                          className={
+                            o.email_sent
+                              ? "mr-1 rounded-full bg-black/5 px-2 py-1 text-xs font-medium"
+                              : "mr-1 rounded-full bg-red-100 px-2 py-1 text-xs font-medium text-red-700"
+                          }
+                        >
+                          Mail {o.email_sent ? "OK" : "—"}
+                        </span>
+                        <span
+                          title={o.whatsapp_sent ? "WhatsApp alert sent" : "WhatsApp alert NOT sent"}
+                          className={
+                            o.whatsapp_sent
+                              ? "rounded-full bg-black/5 px-2 py-1 text-xs font-medium"
+                              : "rounded-full bg-red-100 px-2 py-1 text-xs font-medium text-red-700"
+                          }
+                        >
+                          WA {o.whatsapp_sent ? "OK" : "—"}
+                        </span>
+                      </td>
+                      <td className="px-4 py-3">
+                        <a
+                          href={`/api/admin/screenshot?id=${o.id}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-medium underline underline-offset-4"
+                        >
+                          View
+                        </a>
+                      </td>
+                      <td className="whitespace-nowrap px-4 py-3 text-black/55">{fmt(o.created_at)}</td>
+                      <td className="whitespace-nowrap px-4 py-3 text-right">
+                        {confirmDelete === o.id ? (
+                          <span className="inline-flex gap-1">
+                            <button
+                              onClick={() => deleteOrder(o.id)}
+                              disabled={busyId === o.id}
+                              className="rounded-full bg-red-600 px-3 py-1.5 text-xs font-medium text-white"
+                            >
+                              {busyId === o.id ? "…" : "Confirm"}
+                            </button>
+                            <button
+                              onClick={() => setConfirmDelete(null)}
+                              className="rounded-full bg-black/5 px-3 py-1.5 text-xs font-medium"
+                            >
+                              Keep
+                            </button>
+                          </span>
+                        ) : (
+                          <button
+                            onClick={() => setConfirmDelete(o.id)}
+                            className="rounded-full bg-black/5 px-3 py-1.5 text-xs font-medium text-black/60 transition-colors hover:bg-red-100 hover:text-red-700"
+                          >
+                            Delete
+                          </button>
+                        )}
+                      </td>
+                    </tr>
+                  );
+                })}
+                {!pageRows.length && (
+                  <tr><td colSpan={10} className="px-4 py-10 text-center text-black/45">
+                    {query ? "No orders match the search." : "No orders yet — the table is clean and waiting for #1."}
+                  </td></tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Pagination */}
+          <div className="mt-4 flex flex-wrap items-center justify-between gap-3 text-sm text-black/55">
+            <span>
+              Showing {filtered.length ? (safePage - 1) * PAGE_SIZE + 1 : 0}–{Math.min(safePage * PAGE_SIZE, filtered.length)} of {filtered.length}
+              {query && ` (filtered from ${orders.length})`}
+            </span>
+            <span className="inline-flex items-center gap-2">
+              <button
+                onClick={() => setPage((p) => Math.max(1, p - 1))}
+                disabled={safePage <= 1}
+                className="min-h-9 rounded-full bg-black/5 px-4 font-medium disabled:opacity-40"
+              >
+                Prev
+              </button>
+              Page {safePage} of {pages}
+              <button
+                onClick={() => setPage((p) => Math.min(pages, p + 1))}
+                disabled={safePage >= pages}
+                className="min-h-9 rounded-full bg-black/5 px-4 font-medium disabled:opacity-40"
+              >
+                Next
+              </button>
+            </span>
+          </div>
+        </>
+      )}
+
+      {tab === "volunteers" && (
+        <div className="overflow-x-auto rounded-2xl bg-white">
           <table className="w-full min-w-[800px] text-left text-sm">
             <thead className="border-b border-black/10 text-xs uppercase tracking-[0.1em] text-black/45">
               <tr>
@@ -271,9 +443,11 @@ export function AdminPanel() {
               )}
             </tbody>
           </table>
-        )}
+        </div>
+      )}
 
-        {tab === "contributions" && (
+      {tab === "contributions" && (
+        <div className="overflow-x-auto rounded-2xl bg-white">
           <table className="w-full min-w-[700px] text-left text-sm">
             <thead className="border-b border-black/10 text-xs uppercase tracking-[0.1em] text-black/45">
               <tr>
@@ -299,8 +473,8 @@ export function AdminPanel() {
               )}
             </tbody>
           </table>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 }
