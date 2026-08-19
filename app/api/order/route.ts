@@ -9,7 +9,7 @@ const ALLOWED_MIME = /^(image\/(png|jpe?g|webp|heic|heif)|application\/pdf)$/i;
  * Order flow, durability-first:
  *   1. validate
  *   2. compress the payment screenshot (images → ≤1200px JPEG, ~10x smaller,
- *      so free-tier Postgres holds thousands of orders)
+ *      so free-tier Postgres holds many thousands of orders)
  *   3. INSERT into Neon — the source of truth; only this decides success
  *   4. notify (email with proof attached, WhatsApp ping) — fail-soft
  *   5. record which alerts went out on the order row
@@ -51,8 +51,8 @@ export async function POST(request: Request): Promise<Response> {
       bytes = Buffer.from(
         await sharp(bytes)
           .rotate() // respect EXIF orientation from phone cameras
-          .resize({ width: 1200, height: 1200, fit: "inside", withoutEnlargement: true })
-          .jpeg({ quality: 80, mozjpeg: true })
+          .resize({ width: 1000, height: 1000, fit: "inside", withoutEnlargement: true })
+          .jpeg({ quality: 72, mozjpeg: true })
           .toBuffer()
       );
       mime = "image/jpeg";
