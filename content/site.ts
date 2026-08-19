@@ -87,7 +87,7 @@ export const footerColumns = [
     links: [
       { label: "Festivals", href: "/#work" },
       { label: "Art", href: "/#work" },
-      { label: "Craft", href: "/#work" },
+      { label: "Craft & Cuisine", href: "/#work" },
       { label: "Environment", href: "/#work" },
     ],
   },

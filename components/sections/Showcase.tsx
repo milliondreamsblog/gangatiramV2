@@ -15,7 +15,7 @@ export function Showcase() {
             The FACE <span className="text-black/35">of Ganga</span>
           </h2>
           <p className="text-sm text-ink-faint">
-            Festivals · Art · Craft · Environment — four promises, kept monthly
+            Festivals · Art · Craft & Cuisine · Environment — four promises, kept monthly
           </p>
         </div>
 

@@ -10,7 +10,7 @@ export const teamParagraphs = [
 export const teamMembers = [
   { name: "Festivals — 84 ghats archived", avatar: "/team/avatars/festivals.png" },
   { name: "Art — 150 painters", avatar: "/team/avatars/art.png" },
-  { name: "Craft — 50 looms", avatar: "/team/avatars/craft.png" },
+  { name: "Craft & Cuisine — 50 looms", avatar: "/team/avatars/craft.png" },
   { name: "Environment — 5,000 kg a month", avatar: "/team/avatars/environment.png" },
   { name: "Music — 500 hours recorded", avatar: "/team/avatars/music.png" },
 ] as const;
