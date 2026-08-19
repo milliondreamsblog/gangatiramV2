@@ -1,6 +1,6 @@
 # Ganga Tiram
 
-The home of **Ganga Tiram** — 2,525 kilometres of heritage, told through 75 sacred places from Gomukh to Gangasagar. A printed book, the FACE mission (Festivals · Art · Craft · Environment), and a community gathering around the river — starting with **Dev Deepawali, 24 November 2026**.
+The home of **Ganga Tiram** — 2,525 kilometres of heritage, told through 75 sacred places from Gomukh to Gangasagar. A printed book, the FACE mission (Festivals · Art · Craft & Cuisine · Environment), and a community gathering around the river — starting with **Dev Deepawali, 24 November 2026**.
 
 ## What lives here
 

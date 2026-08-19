@@ -25,7 +25,7 @@ export const faqs = [
   {
     question: "What is the Dev Deepawali online gathering?",
     answer:
-      "On 24 November 2026 — Kartik Purnima — Varanasi lights all 84 ghats with lakhs of lamps. Our community gathers online that night: the aartis and lamps live, a diya lit at your own window, and the painters, weavers, and cleanup crews of the mission with us. Join from anywhere.",
+      "On 24 November 2026 — Kartik Purnima — Varanasi lights all 84 ghats with lakhs of lamps. Our community gathers online that night — and for ₹10, a priest lights a diya carrying your name on the ghat itself: streamed live, your clip sent within three days, and the same coin cleans the river when the festival ends.",
   },
   {
     question: "Can I join a ghat cleanup in person?",
