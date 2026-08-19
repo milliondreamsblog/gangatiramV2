@@ -14,7 +14,7 @@ export type FaceWing = {
 
 export const faceHeading = ["The FACE", "of Ganga"];
 export const faceIntro =
-  "FACE is how we serve her — Festivals, Art, Craft, Environment. Four promises, kept every month.";
+  "FACE is how we serve her — Festivals, Art, Craft & Cuisine, Environment. Four promises, kept every month.";
 
 export const faceWings: FaceWing[] = [
   {
@@ -37,10 +37,10 @@ export const faceWings: FaceWing[] = [
   },
   {
     letter: "C",
-    name: "Craft",
-    claim: "50 looms still weave her.",
-    body: "Banarasi and Tussar silk families, sourced directly — no middlemen between the maker and you.",
-    image: "/work/cards/craft.png",
+    name: "Craft & Cuisine",
+    claim: "50 looms weave her. Her kitchens feed her.",
+    body: "Banarasi silk sourced straight from weaver families — and her table kept alive: kulhad chai, malaiyo, prasad, the recipes her ghats have always served.",
+    image: "/work/cards/craft-cuisine.png",
     ctaLabel: "See the chapters",
     ctaHref: "/#services",
   },
