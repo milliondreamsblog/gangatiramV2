@@ -35,16 +35,40 @@ type Contribution = {
   created_at: string;
 };
 
-type Tab = "orders" | "volunteers" | "contributions";
+type Lamp = {
+  id: number;
+  name_on_lamp: string;
+  dedication: string | null;
+  email: string;
+  whatsapp: string | null;
+  screenshot_filename: string | null;
+  status: string | null;
+  email_sent: boolean;
+  whatsapp_sent: boolean;
+  created_at: string;
+};
+
+type Tab = "orders" | "lamps" | "volunteers" | "contributions";
 
 const ORDER_TOTAL = 999;
+const LAMP_PRICE = 10;
 const PAGE_SIZE = 20;
 const STATUSES = ["new", "verified", "shipped"] as const;
+const LAMP_STATUSES = ["received", "lit", "clip_sent"] as const;
 
 const STATUS_STYLE: Record<string, string> = {
   new: "bg-amber-100 text-amber-800",
   verified: "bg-sky-100 text-sky-800",
   shipped: "bg-emerald-100 text-emerald-800",
+  received: "bg-amber-100 text-amber-800",
+  lit: "bg-orange-100 text-orange-800",
+  clip_sent: "bg-emerald-100 text-emerald-800",
+};
+
+const LAMP_STATUS_LABEL: Record<string, string> = {
+  received: "received",
+  lit: "lit on ghat",
+  clip_sent: "clip sent",
 };
 
 const inr = (n: number) => `₹${n.toLocaleString("en-IN")}`;
@@ -58,6 +82,7 @@ export function AdminPanel() {
   const [loginError, setLoginError] = useState("");
   const [tab, setTab] = useState<Tab>("orders");
   const [orders, setOrders] = useState<Order[]>([]);
+  const [lamps, setLamps] = useState<Lamp[]>([]);
   const [volunteers, setVolunteers] = useState<Volunteer[]>([]);
   const [contributions, setContributions] = useState<Contribution[]>([]);
   const [loading, setLoading] = useState(false);
@@ -77,6 +102,7 @@ export function AdminPanel() {
       const data = await res.json();
       if (data.ok) {
         setOrders(data.orders ?? []);
+        setLamps(data.lamps ?? []);
         setVolunteers(data.volunteers ?? []);
         setContributions(data.contributions ?? []);
         setAuthed(true);
@@ -110,8 +136,34 @@ export function AdminPanel() {
     await fetch("/api/admin/logout", { method: "POST" });
     setAuthed(false);
     setOrders([]);
+    setLamps([]);
     setVolunteers([]);
     setContributions([]);
+  };
+
+  const setLampStatus = async (id: number, status: string) => {
+    setBusyId(id);
+    const prev = lamps;
+    setLamps((ls) => ls.map((l) => (l.id === id ? { ...l, status } : l)));
+    const res = await fetch("/api/admin/lamp-status", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id, status }),
+    });
+    if (!res.ok) setLamps(prev);
+    setBusyId(null);
+  };
+
+  const deleteLamp = async (id: number) => {
+    setBusyId(id);
+    const res = await fetch("/api/admin/lamp-delete", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id }),
+    });
+    if (res.ok) setLamps((ls) => ls.filter((l) => l.id !== id));
+    setConfirmDelete(null);
+    setBusyId(null);
   };
 
   const setStatus = async (id: number, status: string) => {
@@ -154,6 +206,36 @@ export function AdminPanel() {
   const safePage = Math.min(page, pages);
   const pageRows = filtered.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE);
   const pendingCount = orders.filter((o) => (o.status ?? "new") === "new").length;
+
+  const lampFiltered = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    if (!q) return lamps;
+    return lamps.filter((l) =>
+      [String(l.id), l.name_on_lamp, l.dedication ?? "", l.email, l.whatsapp ?? "", l.status ?? "received"]
+        .join(" ")
+        .toLowerCase()
+        .includes(q)
+    );
+  }, [lamps, query]);
+
+  const lampPages = Math.max(1, Math.ceil(lampFiltered.length / PAGE_SIZE));
+  const lampSafePage = Math.min(page, lampPages);
+  const lampPageRows = lampFiltered.slice((lampSafePage - 1) * PAGE_SIZE, lampSafePage * PAGE_SIZE);
+  const lampPendingCount = lamps.filter((l) => (l.status ?? "received") === "received").length;
+
+  const exportLampCsv = () => {
+    const header = ["id", "name_on_lamp", "dedication", "email", "whatsapp", "status", "email_sent", "created_at"];
+    const esc = (v: unknown) => `"${String(v ?? "").replace(/"/g, '""')}"`;
+    const csv = [
+      header.join(","),
+      ...lampFiltered.map((l) => header.map((h) => esc((l as unknown as Record<string, unknown>)[h])).join(",")),
+    ].join("\n");
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([csv], { type: "text/csv" }));
+    a.download = "gangatiram-diyas.csv";
+    a.click();
+    URL.revokeObjectURL(a.href);
+  };
 
   const exportCsv = () => {
     const header = ["id", "name", "address", "pincode", "state", "country", "status", "email_sent", "whatsapp_sent", "created_at"];
@@ -208,6 +290,7 @@ export function AdminPanel() {
 
   const tabs: { key: Tab; label: string; count: number }[] = [
     { key: "orders", label: "Book Orders", count: orders.length },
+    { key: "lamps", label: "Diya Offerings", count: lamps.length },
     { key: "volunteers", label: "Volunteers", count: volunteers.length },
     { key: "contributions", label: "Contributions", count: contributions.length },
   ];
@@ -236,7 +319,12 @@ export function AdminPanel() {
         {tabs.map((t) => (
           <button
             key={t.key}
-            onClick={() => setTab(t.key)}
+            onClick={() => {
+              setTab(t.key);
+              setQuery("");
+              setPage(1);
+              setConfirmDelete(null);
+            }}
             className={
               tab === t.key
                 ? "min-h-10 rounded-full bg-black px-5 text-sm font-medium text-white"
@@ -406,6 +494,173 @@ export function AdminPanel() {
               <button
                 onClick={() => setPage((p) => Math.min(pages, p + 1))}
                 disabled={safePage >= pages}
+                className="min-h-9 rounded-full bg-black/5 px-4 font-medium disabled:opacity-40"
+              >
+                Next
+              </button>
+            </span>
+          </div>
+        </>
+      )}
+
+      {tab === "lamps" && (
+        <>
+          {/* Stats */}
+          <div className="mb-6 grid grid-cols-1 gap-3 sm:grid-cols-3">
+            <div className="rounded-2xl bg-white p-5">
+              <p className="text-xs uppercase tracking-[0.12em] text-black/45">Total diyas</p>
+              <p className="mt-1 font-serif text-3xl tracking-tight">{lamps.length}</p>
+            </div>
+            <div className="rounded-2xl bg-white p-5">
+              <p className="text-xs uppercase tracking-[0.12em] text-black/45">Total value</p>
+              <p className="mt-1 font-serif text-3xl tracking-tight">{inr(lamps.length * LAMP_PRICE)}</p>
+            </div>
+            <div className="rounded-2xl bg-white p-5">
+              <p className="text-xs uppercase tracking-[0.12em] text-black/45">Awaiting verification</p>
+              <p className="mt-1 font-serif text-3xl tracking-tight">{lampPendingCount}</p>
+            </div>
+          </div>
+
+          {/* Toolbar */}
+          <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+            <input
+              value={query}
+              onChange={(e) => {
+                setQuery(e.target.value);
+                setPage(1);
+              }}
+              placeholder="Search name, email, WhatsApp, #id…"
+              className="min-h-11 w-full max-w-[420px] rounded-full border border-black/15 bg-white px-5 text-sm outline-none focus:border-black/50"
+            />
+            <button
+              onClick={exportLampCsv}
+              className="min-h-11 rounded-full bg-black/5 px-5 text-sm font-medium transition-colors hover:bg-black/10"
+            >
+              Export CSV
+            </button>
+          </div>
+
+          {/* Table */}
+          <div className="overflow-x-auto rounded-2xl bg-white">
+            <table className="w-full min-w-[1100px] text-left text-sm">
+              <thead className="border-b border-black/10 text-xs uppercase tracking-[0.1em] text-black/45">
+                <tr>
+                  {["#", "Name on diya", "Dedication", "Email", "WhatsApp", "Status", "Alerts", "Proof", "Card", "Placed", ""].map((h, i) => (
+                    <th key={i} className="px-4 py-3 font-medium">{h}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {lampPageRows.map((l) => {
+                  const status = l.status ?? "received";
+                  return (
+                    <tr key={l.id} className="border-b border-black/5 align-top">
+                      <td className="px-4 py-3 font-medium">{l.id}</td>
+                      <td className="px-4 py-3">{l.name_on_lamp}</td>
+                      <td className="max-w-[220px] px-4 py-3 text-black/70">{l.dedication}</td>
+                      <td className="px-4 py-3">{l.email}</td>
+                      <td className="px-4 py-3">{l.whatsapp}</td>
+                      <td className="px-4 py-3">
+                        <select
+                          value={status}
+                          disabled={busyId === l.id}
+                          onChange={(e) => setLampStatus(l.id, e.target.value)}
+                          className={`cursor-pointer rounded-full border-0 px-2.5 py-1.5 text-xs font-medium outline-none ${STATUS_STYLE[status] ?? "bg-black/5"}`}
+                        >
+                          {LAMP_STATUSES.map((s) => (
+                            <option key={s} value={s}>{LAMP_STATUS_LABEL[s]}</option>
+                          ))}
+                        </select>
+                      </td>
+                      <td className="whitespace-nowrap px-4 py-3">
+                        <span
+                          title={l.email_sent ? "Email alert sent" : "Email alert NOT sent"}
+                          className={
+                            l.email_sent
+                              ? "rounded-full bg-black/5 px-2 py-1 text-xs font-medium"
+                              : "rounded-full bg-red-100 px-2 py-1 text-xs font-medium text-red-700"
+                          }
+                        >
+                          Mail {l.email_sent ? "OK" : "—"}
+                        </span>
+                      </td>
+                      <td className="px-4 py-3">
+                        <a
+                          href={`/api/admin/screenshot?id=${l.id}&kind=lamp`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-medium underline underline-offset-4"
+                        >
+                          View
+                        </a>
+                      </td>
+                      <td className="px-4 py-3">
+                        <a
+                          href={`/diya-card/${l.id}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-medium underline underline-offset-4"
+                        >
+                          Card
+                        </a>
+                      </td>
+                      <td className="whitespace-nowrap px-4 py-3 text-black/55">{fmt(l.created_at)}</td>
+                      <td className="whitespace-nowrap px-4 py-3 text-right">
+                        {confirmDelete === l.id ? (
+                          <span className="inline-flex gap-1">
+                            <button
+                              onClick={() => deleteLamp(l.id)}
+                              disabled={busyId === l.id}
+                              className="rounded-full bg-red-600 px-3 py-1.5 text-xs font-medium text-white"
+                            >
+                              {busyId === l.id ? "…" : "Confirm"}
+                            </button>
+                            <button
+                              onClick={() => setConfirmDelete(null)}
+                              className="rounded-full bg-black/5 px-3 py-1.5 text-xs font-medium"
+                            >
+                              Keep
+                            </button>
+                          </span>
+                        ) : (
+                          <button
+                            onClick={() => setConfirmDelete(l.id)}
+                            className="rounded-full bg-black/5 px-3 py-1.5 text-xs font-medium text-black/60 transition-colors hover:bg-red-100 hover:text-red-700"
+                          >
+                            Delete
+                          </button>
+                        )}
+                      </td>
+                    </tr>
+                  );
+                })}
+                {!lampPageRows.length && (
+                  <tr><td colSpan={11} className="px-4 py-10 text-center text-black/45">
+                    {query ? "No diyas match the search." : "No diya offerings yet — the ghat is waiting for its first name."}
+                  </td></tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Pagination */}
+          <div className="mt-4 flex flex-wrap items-center justify-between gap-3 text-sm text-black/55">
+            <span>
+              Showing {lampFiltered.length ? (lampSafePage - 1) * PAGE_SIZE + 1 : 0}–{Math.min(lampSafePage * PAGE_SIZE, lampFiltered.length)} of {lampFiltered.length}
+              {query && ` (filtered from ${lamps.length})`}
+            </span>
+            <span className="inline-flex items-center gap-2">
+              <button
+                onClick={() => setPage((p) => Math.max(1, p - 1))}
+                disabled={lampSafePage <= 1}
+                className="min-h-9 rounded-full bg-black/5 px-4 font-medium disabled:opacity-40"
+              >
+                Prev
+              </button>
+              Page {lampSafePage} of {lampPages}
+              <button
+                onClick={() => setPage((p) => Math.min(lampPages, p + 1))}
+                disabled={lampSafePage >= lampPages}
                 className="min-h-9 rounded-full bg-black/5 px-4 font-medium disabled:opacity-40"
               >
                 Next
