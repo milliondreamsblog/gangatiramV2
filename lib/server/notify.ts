@@ -83,3 +83,47 @@ export async function sendOrderWhatsApp(order: OrderInfo): Promise<boolean> {
     return false;
   }
 }
+
+export async function sendLampEmail(
+  info: { firstId: number; names: string[]; dedication: string; email: string; whatsapp: string },
+  screenshot: { buffer: Buffer; mime: string; filename: string }
+): Promise<boolean> {
+  const key = process.env.RESEND_API_KEY;
+  const to = process.env.ORDER_NOTIFY_EMAIL;
+  if (!key || !to) return false;
+
+  try {
+    const res = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
+      body: JSON.stringify({
+        from: "Ganga Tiram Diyas <onboarding@resend.dev>",
+        to: [to],
+        subject: `Diya #${info.firstId}${info.names.length > 1 ? ` +${info.names.length - 1} more` : ""} — ${info.names[0]}`,
+        text: [
+          `New Dev Deepawali diya offering on gangatiram.in`,
+          ``,
+          `Diyas    ${info.names.length} × ₹10 = ₹${info.names.length * 10}`,
+          `Names    ${info.names.join(" · ")}`,
+          info.dedication ? `Dedication  ${info.dedication}` : ``,
+          `Email    ${info.email}`,
+          `WhatsApp ${info.whatsapp || "—"}`,
+          ``,
+          `Payment screenshot attached. Statuses: received → lit → clip sent.`,
+          `Admin: https://gangatiram.in/admin`,
+        ].filter(Boolean).join("\n"),
+        attachments: [
+          {
+            filename: screenshot.filename || `diya-${info.firstId}-proof.jpg`,
+            content: screenshot.buffer.toString("base64"),
+          },
+        ],
+      }),
+    });
+    if (!res.ok) console.error("lamp email rejected", res.status, await res.text().catch(() => ""));
+    return res.ok;
+  } catch (error) {
+    console.error("lamp email failed", error);
+    return false;
+  }
+}
