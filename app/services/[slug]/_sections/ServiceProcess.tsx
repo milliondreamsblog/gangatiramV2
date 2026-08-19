@@ -8,10 +8,10 @@ import { hoverFeedback } from "@/lib/feedback";
 import { Container } from "@/components/ui/Container";
 
 /**
- * ServiceProcess — Figma node 801:20502. Section heading + an interactive step
- * list on the left; clicking a step swaps the detail card on the right (week
- * pill, title, description and typical outputs). "Product Audit" is transcribed
- * from the frame; the remaining weeks follow the same shape.
+ * ServiceProcess — "How a place enters the book." The five stages every
+ * chapter goes through before it is printed, told as an interactive step
+ * list: clicking a stage swaps the detail card (stage pill, title,
+ * description, and what each stage brings back).
  */
 type Step = {
   step: string;
@@ -23,68 +23,68 @@ type Step = {
 
 const STEPS: Step[] = [
   {
-    step: "Product Audit",
-    week: "Week 1",
-    title: "Product audit",
+    step: "Reach the place",
+    week: "Stage 1",
+    title: "Reach the place",
     description:
-      "We review the current product, users, flows, competitors, business goals, analytics if available, and the places where people get stuck.",
+      "Every place is met in river order, by her bank. We arrive slow, stay close to the water, and let the place set the pace before a camera comes out.",
     outputs: [
-      "Product audit",
-      "Competitor review",
-      "Flow notes & UX issues",
-      "Product sprint priorities",
+      "Days spent on the bank",
+      "The river-order route",
+      "First conversations",
+      "The place's own pace",
     ],
   },
   {
-    step: "User flows + IA",
-    week: "Week 2",
-    title: "User flows + IA",
+    step: "Meet the witness",
+    week: "Stage 2",
+    title: "Meet the witness",
     description:
-      "We map the core journeys and information architecture so every screen has a clear job and users always know where they are and where to go next.",
+      "Each chapter stands on one named person — a boatman, a dyer, a sweeper of ghats — whose labour or memory carries the truth of the place.",
     outputs: [
-      "Journey maps",
-      "Site / app map",
-      "Information architecture",
-      "Prioritised user flows",
+      "One named witness",
+      "Consent on record",
+      "Their words, kept verbatim",
+      "A truth no other place repeats",
     ],
   },
   {
-    step: "Wireframes + UX",
-    week: "Week 3",
-    title: "Wireframes + UX",
+    step: "Photograph the periphery",
+    week: "Stage 3",
+    title: "Photograph the periphery",
     description:
-      "We turn flows into low-fi wireframes and pressure-test the UX — layout, hierarchy and interaction — before any visual polish goes in.",
+      "The postcard shot is banned. We photograph the edges — hands, preparation, aftermath, available light — where the real life of a place actually happens.",
     outputs: [
-      "Low-fi wireframes",
-      "Key screen layouts",
-      "Interaction notes",
-      "Early usability checks",
+      "The periphery, not the postcard",
+      "Available light only",
+      "The worn and the human",
+      "One frame that stays",
     ],
   },
   {
-    step: "Product UI",
-    week: "Week 4",
-    title: "Product UI",
+    step: "Verify every number",
+    week: "Stage 4",
+    title: "Verify every number",
     description:
-      "We design the high-fidelity UI on a scalable design system — components, states and responsive layouts that look premium and stay consistent.",
+      "Specificity is the anti-cliché. The glacier's retreat in metres, the river-kilometre, the date — every claim is checked, and generic poetry is cut.",
     outputs: [
-      "High-fidelity UI",
-      "Design system",
-      "Component states",
-      "Responsive layouts",
+      "Dates and distances, checked",
+      "Sources on file",
+      "At least one hard number",
+      "No generic devotion",
     ],
   },
   {
-    step: "Handoff + QA",
-    week: "Week 5",
-    title: "Handoff + QA",
+    step: "Give it back",
+    week: "Stage 5",
+    title: "Give it back",
     description:
-      "We package the work for engineering — specs, tokens and assets — and QA the build so what ships matches the design pixel for pixel.",
+      "Nothing is only taken. Part of every copy sold returns to the place through the FACE mission — cleanups, looms, archives — with the work published monthly.",
     outputs: [
-      "Dev-ready handoff",
-      "Design tokens & assets",
-      "Redlines & specs",
-      "Build QA review",
+      "A FACE wing assigned",
+      "Work funded on the ground",
+      "Accounts published monthly",
+      "The place, kept alive",
     ],
   },
 ];
@@ -97,15 +97,15 @@ export function ServiceProcess() {
     <section className="bg-white px-5 py-16 md:px-10 md:py-20">
       <Container padded={false}>
         <h2 className="max-w-[900px] text-[clamp(1.75rem,3vw,40px)] font-normal leading-[1.1] tracking-[-0.02em]">
-          <span className="text-black/40">From messy flow to </span>
-          product experience ready to build.
+          <span className="text-black/40">How a place </span>
+          enters the book.
         </h2>
 
         <div className="mt-10 flex flex-col gap-8 lg:flex-row lg:gap-14">
-          {/* Step tabs */}
+          {/* Stage tabs */}
           <ul
             role="tablist"
-            aria-label="Design process steps"
+            aria-label="How a place enters the book"
             className="flex shrink-0 flex-col gap-4 lg:w-[302px]"
           >
             {STEPS.map((s, i) => {
@@ -142,8 +142,8 @@ export function ServiceProcess() {
           <div className="flex flex-col overflow-hidden rounded-2xl border border-black/10 lg:flex-1 lg:flex-row">
             <div className="relative aspect-[527/412] shrink-0 bg-[#f4f4f5] lg:aspect-auto lg:w-[527px]">
               <Image
-                src="/services/process-visual.png"
-                alt="Camb AI app icon and colour system"
+                src="/work/cards/art.png"
+                alt="A painter at work on the river's bank"
                 fill
                 sizes="(max-width: 1024px) 100vw, 527px"
                 className="object-cover"
@@ -165,7 +165,7 @@ export function ServiceProcess() {
                 </p>
               </div>
               <div>
-                <p className="text-base text-black/45">Typical outputs:</p>
+                <p className="text-base text-black/45">What comes back:</p>
                 <div className="mt-3 flex flex-col gap-2.5">
                   {current.outputs.map((o) => (
                     <p key={o} className="text-base font-medium tracking-[-0.01em]">
