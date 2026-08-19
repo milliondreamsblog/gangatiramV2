@@ -6,7 +6,7 @@ export async function GET(request: Request): Promise<Response> {
 
   try {
     const sql = getSql();
-    const [orders, volunteers, contributions] = await Promise.all([
+    const [orders, volunteers, contributions, lamps] = await Promise.all([
       sql`
         SELECT id, name, address, pincode, country, state, screenshot_filename, status, email_sent, whatsapp_sent, created_at
         FROM book_orders ORDER BY created_at DESC LIMIT 500
@@ -19,8 +19,12 @@ export async function GET(request: Request): Promise<Response> {
         SELECT id, name, email, amount, payment_method, message, created_at
         FROM contributions ORDER BY created_at DESC LIMIT 500
       `,
+      sql`
+        SELECT id, name_on_lamp, dedication, email, whatsapp, screenshot_filename, status, email_sent, whatsapp_sent, created_at
+        FROM lamp_offerings ORDER BY created_at DESC LIMIT 1000
+      `,
     ]);
-    return json({ ok: true, orders, volunteers, contributions });
+    return json({ ok: true, orders, volunteers, contributions, lamps });
   } catch (error) {
     console.error("admin data fetch failed", error);
     return json({ ok: false, error: "Could not load data." }, 500);
