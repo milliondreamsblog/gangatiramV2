@@ -21,7 +21,14 @@ const STYLES = {
   },
 } as const;
 
-export function HeroCtas({ variant }: { variant: "home" | "photo" | "light" }) {
+export function HeroCtas({
+  variant,
+  secondary,
+}: {
+  variant: "home" | "photo" | "light";
+  /** Replaces the white "Dev Deepawali" pill — used on pages that ARE the event. */
+  secondary?: { label: string; href: string };
+}) {
   const s = STYLES[variant];
   return (
     <div className={s.wrapper}>
@@ -33,11 +40,11 @@ export function HeroCtas({ variant }: { variant: "home" | "photo" | "light" }) {
         Get the Book — ₹999
       </a>
       <a
-        href={bookACallHref}
+        href={secondary?.href ?? bookACallHref}
         onMouseEnter={() => hoverFeedback("cta")}
         className={s.book}
       >
-        Dev Deepawali — 24 Nov
+        {secondary?.label ?? "Dev Deepawali — 24 Nov"}
       </a>
     </div>
   );

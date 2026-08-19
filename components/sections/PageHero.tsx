@@ -17,7 +17,13 @@ import heroBg from "@/public/hero/hero-bg.png";
 
 type PageHeroProps =
   | { variant: "home" }
-  | { variant: "photo"; image: string; eyebrow: string; headline: string }
+  | {
+      variant: "photo";
+      image: string;
+      eyebrow: string;
+      headline: string;
+      cta?: { label: string; href: string };
+    }
   | {
       variant: "light";
       eyebrow: React.ReactNode;
@@ -73,10 +79,12 @@ function PhotoHero({
   image,
   eyebrow,
   headline,
+  cta,
 }: {
   image: string;
   eyebrow: string;
   headline: string;
+  cta?: { label: string; href: string };
 }) {
   return (
     <section className="relative aspect-[1440/900] max-h-svh min-h-[560px] w-full overflow-hidden bg-black">
@@ -99,7 +107,7 @@ function PhotoHero({
             <h1 className="mt-6 text-[clamp(2.25rem,4.7vw,58px)] font-normal leading-[1.02] tracking-[-0.02em] text-white">
               {headline}
             </h1>
-            <HeroCtas variant="photo" />
+            <HeroCtas variant="photo" secondary={cta} />
           </div>
         </div>
       </div>

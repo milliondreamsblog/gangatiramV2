@@ -41,6 +41,7 @@ export default function DevDeepawaliPage() {
         image="/event/lamps-varanasi.png"
         eyebrow="Dev Deepawali · 24 November 2026 · Kashi"
         headline="Your name, burning on the ghats of Kashi."
+        cta={{ label: "Light my lamp — ₹10", href: "#offer" }}
       />
 
       {/* Countdown */}
