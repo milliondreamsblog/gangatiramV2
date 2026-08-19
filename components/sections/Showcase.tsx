@@ -47,7 +47,7 @@ export function Showcase() {
                   src={card.mockup}
                   alt=""
                   aria-hidden
-                  className="absolute inset-0 size-full object-cover transition-transform duration-[600ms] group-hover:scale-110"
+                  className="photo-grade absolute inset-0 size-full object-cover transition-transform duration-[600ms] group-hover:scale-110"
                 />
               )}
 

@@ -628,3 +628,10 @@ html.lenis body {
   97%  { transform: translate(168px, 66px) rotate(46deg); opacity: 1; }
   100% { transform: translate(182px, 122px) rotate(52deg); opacity: 0; }
 }
+
+/* Photo grade — the unified image treatment (per the design reference):
+   a touch more contrast and saturation, slightly deepened, so photographs
+   read rich and intentional instead of flat. */
+.photo-grade {
+  filter: saturate(1.07) contrast(1.045) brightness(0.965);
+}

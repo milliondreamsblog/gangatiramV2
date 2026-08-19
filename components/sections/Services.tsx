@@ -52,7 +52,7 @@ export function Services() {
                     alt={`${service.title} preview`}
                     fill
                     sizes="(max-width: 767px) calc(100vw - 40px), 300px"
-                    className="object-cover"
+                    className="photo-grade object-cover"
                   />
                 </div>
               </div>

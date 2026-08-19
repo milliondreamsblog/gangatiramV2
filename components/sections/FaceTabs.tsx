@@ -87,7 +87,7 @@ export function FaceTabs() {
                   alt={wing.name}
                   fill
                   sizes="(max-width: 1023px) calc(100vw - 40px), 70vw"
-                  className="object-cover"
+                  className="photo-grade object-cover"
                 />
                 <div
                   aria-hidden

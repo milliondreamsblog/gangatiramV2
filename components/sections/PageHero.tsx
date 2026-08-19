@@ -86,7 +86,7 @@ function PhotoHero({
         fill
         priority
         sizes="100vw"
-        className="object-cover"
+        className="photo-grade object-cover"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-black/10" />
 
@@ -131,7 +131,7 @@ function HomeHero() {
           priority
           placeholder="blur"
           sizes="100vw"
-          className={cn("object-cover object-bottom", !reduced && "scale-[1.24]")}
+          className={cn("photo-grade object-cover object-bottom", !reduced && "scale-[1.24]")}
         />
       </motion.div>
       <div aria-hidden className="absolute inset-0 bg-black/15" />

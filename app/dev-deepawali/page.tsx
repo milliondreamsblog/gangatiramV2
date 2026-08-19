@@ -105,7 +105,7 @@ export default function DevDeepawaliPage() {
           aria-hidden
           fill
           sizes="100vw"
-          className="object-cover"
+          className="photo-grade object-cover"
         />
         <div aria-hidden className="absolute inset-0 bg-black/55" />
         <Container padded={false} className="relative flex flex-col items-start gap-6">
