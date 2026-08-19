@@ -58,6 +58,7 @@ export async function sendOrderEmail(
         ],
       }),
     });
+    if (!res.ok) console.error("order email rejected", res.status, await res.text().catch(() => ""));
     return res.ok;
   } catch (error) {
     console.error("order email failed", error);
