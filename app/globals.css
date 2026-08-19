@@ -635,3 +635,33 @@ html.lenis body {
 .photo-grade {
   filter: saturate(1.07) contrast(1.045) brightness(0.965);
 }
+
+/* Diya procession belt — choreography from the Bricx conveyor asset
+   (Figma node 1907:17535): one step = 1000ms eased move + 1200ms dwell,
+   8 steps per 17600ms loop. Content is duplicated once, so the full loop
+   travels exactly -50% in 8 equal stops of 6.25%. */
+@keyframes belt-advance {
+  0%      { transform: translateX(0); }
+  5.68%   { transform: translateX(-6.25%); }
+  12.5%   { transform: translateX(-6.25%); }
+  18.18%  { transform: translateX(-12.5%); }
+  25%     { transform: translateX(-12.5%); }
+  30.68%  { transform: translateX(-18.75%); }
+  37.5%   { transform: translateX(-18.75%); }
+  43.18%  { transform: translateX(-25%); }
+  50%     { transform: translateX(-25%); }
+  55.68%  { transform: translateX(-31.25%); }
+  62.5%   { transform: translateX(-31.25%); }
+  68.18%  { transform: translateX(-37.5%); }
+  75%     { transform: translateX(-37.5%); }
+  80.68%  { transform: translateX(-43.75%); }
+  87.5%   { transform: translateX(-43.75%); }
+  93.18%  { transform: translateX(-50%); }
+  100%    { transform: translateX(-50%); }
+}
+
+@keyframes flame-flicker {
+  0%, 100% { transform: scale(1) translateY(0); opacity: 0.95; }
+  28%      { transform: scale(0.92) translateY(0.4px); opacity: 0.8; }
+  62%      { transform: scale(1.05) translateY(-0.4px); opacity: 1; }
+}
