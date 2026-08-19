@@ -6,6 +6,12 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: __dirname,
   },
+  // The order route compresses payment screenshots with sharp. File tracing
+  // misses libvips' native .so files on Vercel, so force-include the platform
+  // packages for that function.
+  outputFileTracingIncludes: {
+    "/api/order": ["./node_modules/@img/**/*", "./node_modules/sharp/**/*"],
+  },
   // Dev only. Next blocks cross-origin requests for dev assets, and the server
   // boots on localhost — so opening the site from a phone on the LAN
   // (http://<your-ip>:3000) served the HTML but not the client bundle, leaving
