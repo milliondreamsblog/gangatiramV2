@@ -11,6 +11,7 @@ const nextConfig: NextConfig = {
   // packages for that function.
   outputFileTracingIncludes: {
     "/api/order": ["./node_modules/@img/**/*", "./node_modules/sharp/**/*"],
+    "/api/lamp": ["./node_modules/@img/**/*", "./node_modules/sharp/**/*"],
   },
   // Dev only. Next blocks cross-origin requests for dev assets, and the server
   // boots on localhost — so opening the site from a phone on the LAN
