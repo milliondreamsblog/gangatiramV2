@@ -40,7 +40,7 @@ export const faceWings: FaceWing[] = [
     name: "Craft & Cuisine",
     claim: "50 looms weave her. Her kitchens feed her.",
     body: "Banarasi silk sourced straight from weaver families — and her table kept alive: kulhad chai, malaiyo, prasad, the recipes her ghats have always served.",
-    image: "/work/cards/craft-cuisine.png",
+    image: "/work/cards/craft-cuisine.jpg",
     ctaLabel: "See the chapters",
     ctaHref: "/#services",
   },

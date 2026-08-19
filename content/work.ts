@@ -41,7 +41,7 @@ export const work: WorkItem[] = [
     title: "Craft & Cuisine",
     subtitle: "50 looms weave her — and her kitchens feed her",
     logo: "/work/logos/craft.svg",
-    mockup: "/work/cards/craft-cuisine.png",
+    mockup: "/work/cards/craft-cuisine.jpg",
     href: "/#services",
     video: "",
     dark: false,
