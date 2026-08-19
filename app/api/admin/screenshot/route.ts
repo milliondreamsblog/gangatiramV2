@@ -4,16 +4,22 @@ import { isAuthed, unauthorized } from "@/lib/server/auth";
 export async function GET(request: Request): Promise<Response> {
   if (!isAuthed(request)) return unauthorized();
 
-  const id = Number(new URL(request.url).searchParams.get("id"));
+  const url = new URL(request.url);
+  const id = Number(url.searchParams.get("id"));
+  const kind = url.searchParams.get("kind") === "lamp" ? "lamp" : "order";
   if (!Number.isInteger(id) || id <= 0) {
     return json({ ok: false, error: "Invalid order id." }, 400);
   }
 
   try {
     const sql = getSql();
-    const rows = (await sql`
-      SELECT screenshot, screenshot_mime, screenshot_filename FROM book_orders WHERE id = ${id}
-    `) as { screenshot: unknown; screenshot_mime: string | null; screenshot_filename: string | null }[];
+    const rows = (await (kind === "lamp"
+      ? sql`SELECT screenshot, screenshot_mime, screenshot_filename FROM lamp_offerings WHERE id = ${id}`
+      : sql`SELECT screenshot, screenshot_mime, screenshot_filename FROM book_orders WHERE id = ${id}`)) as {
+      screenshot: unknown;
+      screenshot_mime: string | null;
+      screenshot_filename: string | null;
+    }[];
     if (!rows.length || !rows[0].screenshot) {
       return json({ ok: false, error: "No screenshot for that order." }, 404);
     }
