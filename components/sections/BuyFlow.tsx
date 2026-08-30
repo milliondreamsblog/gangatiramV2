@@ -174,6 +174,20 @@ export function BuyFlow() {
           <input name="name" required maxLength={200} placeholder="Who the book ships to" className={FIELD} />
         </label>
         <label className="flex flex-col gap-1.5 text-sm font-medium">
+          Phone number
+          <input
+            name="phone"
+            type="tel"
+            required
+            inputMode="tel"
+            maxLength={20}
+            pattern="[0-9+\-\s()]{10,20}"
+            title="A 10-digit mobile number (country code optional)"
+            placeholder="We call or WhatsApp you about delivery"
+            className={FIELD}
+          />
+        </label>
+        <label className="flex flex-col gap-1.5 text-sm font-medium">
           Address
           <textarea
             name="address"

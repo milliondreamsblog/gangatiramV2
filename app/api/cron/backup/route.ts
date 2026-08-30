@@ -18,12 +18,12 @@ export async function GET(request: Request): Promise<Response> {
   try {
     const sql = getSql();
     const rows = (await sql`
-      SELECT id, name, address, pincode, state, country, status, email_sent, whatsapp_sent, created_at
+      SELECT id, name, phone, address, pincode, state, country, status, email_sent, whatsapp_sent, created_at
       FROM book_orders ORDER BY id
     `) as Record<string, unknown>[];
 
     const esc = (v: unknown) => `"${String(v ?? "").replace(/"/g, '""')}"`;
-    const header = "id,name,address,pincode,state,country,status,email_sent,whatsapp_sent,created_at";
+    const header = "id,name,phone,address,pincode,state,country,status,email_sent,whatsapp_sent,created_at";
     const csv = [
       header,
       ...rows.map((r) => header.split(",").map((c) => esc(r[c])).join(",")),

@@ -14,6 +14,7 @@
 type OrderInfo = {
   orderId: number;
   name: string;
+  phone: string;
   address: string;
   pincode: string;
   state: string;
@@ -41,6 +42,7 @@ export async function sendOrderEmail(
           ``,
           `Order    #${order.orderId}`,
           `Name     ${order.name}`,
+          `Phone    ${order.phone}`,
           `Address  ${order.address}`,
           `Pincode  ${order.pincode}`,
           `State    ${order.state}`,
@@ -72,7 +74,7 @@ export async function sendOrderWhatsApp(order: OrderInfo): Promise<boolean> {
   if (!phone || !apikey) return false;
 
   try {
-    const text = `Ganga Tiram: new book order #${order.orderId} — ${order.name}, ${order.state} (${order.pincode}). ₹999 paid by UPI. Check Gmail for the payment proof.`;
+    const text = `Ganga Tiram: new book order #${order.orderId} — ${order.name} (${order.phone}), ${order.state} (${order.pincode}). ₹999 paid by UPI. Check Gmail for the payment proof.`;
     const url =
       `https://api.callmebot.com/whatsapp.php?phone=${encodeURIComponent(phone)}` +
       `&apikey=${encodeURIComponent(apikey)}&text=${encodeURIComponent(text)}`;

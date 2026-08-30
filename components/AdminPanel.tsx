@@ -5,6 +5,7 @@ import { useCallback, useEffect, useMemo, useState, type FormEvent } from "react
 type Order = {
   id: number;
   name: string;
+  phone: string | null;
   address: string;
   pincode: string;
   country: string;
@@ -195,7 +196,7 @@ export function AdminPanel() {
     const q = query.trim().toLowerCase();
     if (!q) return orders;
     return orders.filter((o) =>
-      [String(o.id), o.name, o.address, o.state, o.pincode, o.country, o.status ?? "new"]
+      [String(o.id), o.name, o.phone ?? "", o.address, o.state, o.pincode, o.country, o.status ?? "new"]
         .join(" ")
         .toLowerCase()
         .includes(q)
@@ -238,7 +239,7 @@ export function AdminPanel() {
   };
 
   const exportCsv = () => {
-    const header = ["id", "name", "address", "pincode", "state", "country", "status", "email_sent", "whatsapp_sent", "created_at"];
+    const header = ["id", "name", "phone", "address", "pincode", "state", "country", "status", "email_sent", "whatsapp_sent", "created_at"];
     const esc = (v: unknown) => `"${String(v ?? "").replace(/"/g, '""')}"`;
     const csv = [
       header.join(","),
@@ -362,7 +363,7 @@ export function AdminPanel() {
                 setQuery(e.target.value);
                 setPage(1);
               }}
-              placeholder="Search name, address, state, pincode, #id…"
+              placeholder="Search name, phone, address, state, pincode, #id…"
               className="min-h-11 w-full max-w-[420px] rounded-full border border-black/15 bg-white px-5 text-sm outline-none focus:border-black/50"
             />
             <button
@@ -378,7 +379,7 @@ export function AdminPanel() {
             <table className="w-full min-w-[1050px] text-left text-sm">
               <thead className="border-b border-black/10 text-xs uppercase tracking-[0.1em] text-black/45">
                 <tr>
-                  {["#", "Name", "Address", "State", "Pincode", "Status", "Alerts", "Proof", "Placed", ""].map((h, i) => (
+                  {["#", "Name", "Phone", "Address", "State", "Pincode", "Status", "Alerts", "Proof", "Placed", ""].map((h, i) => (
                     <th key={i} className="px-4 py-3 font-medium">{h}</th>
                   ))}
                 </tr>
@@ -390,6 +391,13 @@ export function AdminPanel() {
                     <tr key={o.id} className="border-b border-black/5 align-top">
                       <td className="px-4 py-3 font-medium">{o.id}</td>
                       <td className="px-4 py-3">{o.name}</td>
+                      <td className="whitespace-nowrap px-4 py-3">
+                        {o.phone ? (
+                          <a href={`tel:${o.phone}`} className="underline-offset-4 hover:underline">{o.phone}</a>
+                        ) : (
+                          <span className="text-black/35">—</span>
+                        )}
+                      </td>
                       <td className="max-w-[260px] px-4 py-3 text-black/70">{o.address}</td>
                       <td className="px-4 py-3">{o.state}</td>
                       <td className="px-4 py-3">{o.pincode}</td>
@@ -468,7 +476,7 @@ export function AdminPanel() {
                   );
                 })}
                 {!pageRows.length && (
-                  <tr><td colSpan={10} className="px-4 py-10 text-center text-black/45">
+                  <tr><td colSpan={11} className="px-4 py-10 text-center text-black/45">
                     {query ? "No orders match the search." : "No orders yet — the table is clean and waiting for #1."}
                   </td></tr>
                 )}

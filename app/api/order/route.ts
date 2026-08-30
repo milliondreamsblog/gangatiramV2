@@ -23,6 +23,7 @@ export async function POST(request: Request): Promise<Response> {
   }
 
   const name = fieldStr(form.get("name"), 200);
+  const phone = fieldStr(form.get("phone"), 20);
   const address = fieldStr(form.get("address"));
   const pincode = fieldStr(form.get("pincode"), 20);
   const country = fieldStr(form.get("country"), 100);
@@ -31,6 +32,9 @@ export async function POST(request: Request): Promise<Response> {
 
   if (!name || !address || !pincode || !country || !state) {
     return badRequest("All delivery fields are required.");
+  }
+  if (!/^\d{10,15}$/.test(phone.replace(/[^\d]/g, ""))) {
+    return badRequest("A working phone number is required — we use it for delivery updates.");
   }
   if (!(screenshot instanceof File) || screenshot.size === 0) {
     return badRequest("Payment screenshot is required.");
@@ -67,8 +71,8 @@ export async function POST(request: Request): Promise<Response> {
   try {
     const sql = getSql();
     const rows = (await sql`
-      INSERT INTO book_orders (name, address, pincode, country, state, screenshot_filename, screenshot_mime, screenshot)
-      VALUES (${name}, ${address}, ${pincode}, ${country}, ${state}, ${filename}, ${mime}, ${"\\x" + bytes.toString("hex")})
+      INSERT INTO book_orders (name, phone, address, pincode, country, state, screenshot_filename, screenshot_mime, screenshot)
+      VALUES (${name}, ${phone}, ${address}, ${pincode}, ${country}, ${state}, ${filename}, ${mime}, ${"\\x" + bytes.toString("hex")})
       RETURNING id
     `) as { id: number }[];
     orderId = rows[0].id;
@@ -78,7 +82,7 @@ export async function POST(request: Request): Promise<Response> {
   }
 
   // Notifications — fail-soft, flags recorded for the admin panel.
-  const order = { orderId, name, address, pincode, state, country };
+  const order = { orderId, name, phone, address, pincode, state, country };
   const [emailSent, whatsappSent] = await Promise.all([
     sendOrderEmail(order, { buffer: bytes, mime, filename }),
     sendOrderWhatsApp(order),
