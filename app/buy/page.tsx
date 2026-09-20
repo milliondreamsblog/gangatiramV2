@@ -7,7 +7,7 @@ import { BuyFlow } from "@/components/sections/BuyFlow";
 export const metadata: Metadata = {
   title: "Get the Book — ₹999",
   description:
-    "Order the Ganga Tiram book — 300 pages, 240 photographs, 75 places from Gomukh to Gangasagar. Pay by UPI, upload the confirmation, and your copy ships with tracking in 24 hours.",
+    "Order the Ganga Tiram book — 300 pages, 75 photographs, 75 places from Gomukh to Gangasagar. Pay by UPI, upload the confirmation, and your copy ships with tracking in 24 hours.",
   alternates: { canonical: "/buy" },
 };
 

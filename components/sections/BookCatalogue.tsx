@@ -167,7 +167,7 @@ export function BookCatalogue() {
                 {bookBlurb}
               </p>
               <p className="text-xs uppercase tracking-[0.14em] text-white/60">
-                300 pages · 240 photographs · 75 places · Gomukh → Gangasagar
+                300 pages · 75 photographs · 75 places · Gomukh → Gangasagar
               </p>
 
               <div className="mt-1 flex flex-wrap items-center gap-4">

@@ -152,7 +152,7 @@ function HomeHero() {
           {/* Left: rating + headline */}
           <div className="flex flex-col items-start gap-5">
             <div className="flex h-7 items-center rounded-full bg-black/15 px-3 backdrop-blur-sm">
-              <span className="text-sm tracking-[-0.01em]">300 pages · 240 photographs · 75 places</span>
+              <span className="text-sm tracking-[-0.01em]">300 pages · 75 photographs · 75 places</span>
             </div>
             <h1 className="max-w-[820px] text-[clamp(2.25rem,10.25vw,4.5rem)] font-medium leading-[0.98] tracking-[-0.02em] md:text-[clamp(2.5rem,6vw,72px)]">
               2,525 Kilometers{" "}

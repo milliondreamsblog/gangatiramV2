@@ -26,7 +26,7 @@ export default function OpengraphImage() {
             2,525 Kilometers of Heritage
           </div>
           <div style={{ display: "flex", fontSize: 32, opacity: 0.75 }}>
-            75 places · 240 photographs · one river, source to sea
+            75 places · 75 photographs · one river, source to sea
           </div>
         </div>
         <div style={{ display: "flex", fontSize: 26, opacity: 0.7 }}>
