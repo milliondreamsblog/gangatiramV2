@@ -27,3 +27,7 @@ npm run dev        # http://localhost:3000
 Zero-config on Vercel. `npm run build` locally to verify; production deploys from `main`.
 
 *Walk with the river.*
+
+## Payment setup
+
+See [the QR update and operating checklist](research/payments/README.md) for recipient details, required environment variables, and manual payment verification.

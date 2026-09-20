@@ -1,9 +1,7 @@
 import sharp from "sharp";
+import { paymentProofError } from "@/lib/payment";
 import { getSql, json, badRequest, fieldStr } from "@/lib/server/db";
 import { sendOrderEmail, sendOrderWhatsApp } from "@/lib/server/notify";
-
-const MAX_SCREENSHOT_BYTES = 8 * 1024 * 1024; // pre-compression input cap
-const ALLOWED_MIME = /^(image\/(png|jpe?g|webp|heic|heif)|application\/pdf)$/i;
 
 /**
  * Order flow, durability-first:
@@ -39,12 +37,8 @@ export async function POST(request: Request): Promise<Response> {
   if (!(screenshot instanceof File) || screenshot.size === 0) {
     return badRequest("Payment screenshot is required.");
   }
-  if (screenshot.size > MAX_SCREENSHOT_BYTES) {
-    return badRequest("Screenshot must be under 8 MB.");
-  }
-  if (!ALLOWED_MIME.test(screenshot.type)) {
-    return badRequest("Screenshot must be an image or a PDF.");
-  }
+  const proofError = paymentProofError(screenshot);
+  if (proofError) return badRequest(proofError);
 
   // Compress images; PDFs pass through untouched.
   let bytes = Buffer.from(await screenshot.arrayBuffer());

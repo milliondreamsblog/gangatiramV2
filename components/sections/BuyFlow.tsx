@@ -2,18 +2,13 @@
 
 import { useState, type FormEvent } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowUpRight, Check, Copy, Maximize2, X } from "lucide-react";
 import { hoverFeedback } from "@/lib/feedback";
+import { PaymentQr } from "@/components/shared/PaymentQr";
+import { BOOK_PRICE, SHIPPING_PRICE, ORDER_TOTAL, UPI_ID, UPI_PAYEE, upiPaymentLink, paymentProofError, SCREENSHOT_ACCEPT } from "@/lib/payment";
 
-const BOOK_PRICE = 999;
-const SHIPPING_PRICE = 0;
-const ORDER_TOTAL = BOOK_PRICE + SHIPPING_PRICE;
-const UPI_ID = "9830181700@sbi";
-const UPI_PAYEE = "Rakesh Mahapatra";
-const UPI_BANK = "State Bank of India";
-const UPI_DEEP_LINK =
-  `upi://pay?pa=${UPI_ID}&pn=${encodeURIComponent(UPI_PAYEE)}` +
-  `&am=${ORDER_TOTAL}&cu=INR&tn=${encodeURIComponent("Ganga Tiram book")}`;
+const UPI_DEEP_LINK = upiPaymentLink(ORDER_TOTAL, "Ganga Tiram book");
 
 const inr = (n: number) => `₹${n.toLocaleString("en-IN")}`;
 
@@ -35,7 +30,7 @@ export function BuyFlow() {
       setCopied(true);
       setTimeout(() => setCopied(false), 1800);
     } catch {
-      /* clipboard unavailable */
+      setError(`Could not copy the UPI ID. Please copy ${UPI_ID} manually.`);
     }
   };
 
@@ -46,6 +41,11 @@ export function BuyFlow() {
     const shot = data.get("screenshot");
     if (!(shot instanceof File) || shot.size === 0) {
       setError("Please attach your payment screenshot.");
+      return;
+    }
+    const proofError = paymentProofError(shot);
+    if (proofError) {
+      setError(proofError);
       return;
     }
     setSubmitting(true);
@@ -76,12 +76,12 @@ export function BuyFlow() {
           Your payment screenshot and delivery details are saved. We verify the payment and
           send your tracking details within 24 hours.
         </p>
-        <a
+        <Link
           href="/"
           className="mt-8 rounded-full bg-black px-7 py-3 text-sm font-medium text-white transition-transform hover:scale-[1.02]"
         >
           Return home
-        </a>
+        </Link>
       </div>
     );
   }
@@ -126,10 +126,10 @@ export function BuyFlow() {
               aria-label="Enlarge the payment QR code"
               className="group relative w-[180px] shrink-0 overflow-hidden rounded-xl border border-black/10"
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/book/payment-qr.png" alt={`UPI QR code to pay ${UPI_PAYEE}`} className="w-full" />
-              <span className="absolute bottom-2 right-2 grid size-7 place-items-center rounded-full bg-black/70 text-white opacity-80 transition-opacity group-hover:opacity-100">
+              <PaymentQr />
+              <span className="flex items-center justify-center gap-2 border-t border-black/10 py-2 text-xs text-black/60">
                 <Maximize2 size={13} />
+                Enlarge QR
               </span>
             </button>
             <div className="flex flex-col gap-3">
@@ -139,7 +139,7 @@ export function BuyFlow() {
               </p>
               <div className="rounded-xl bg-[#f7f7f7] p-4 text-sm">
                 <p className="text-black/50">
-                  Paying <span className="font-medium text-black">{UPI_PAYEE}</span> · {UPI_BANK}
+                  Paying <span className="font-medium text-black">{UPI_PAYEE}</span>
                 </p>
                 <button
                   type="button"
@@ -219,7 +219,7 @@ export function BuyFlow() {
               type="file"
               name="screenshot"
               required
-              accept="image/png,image/jpeg,image/webp,image/heic,image/heif,application/pdf"
+              accept={SCREENSHOT_ACCEPT}
               onChange={(e) => setFileName(e.target.files?.[0]?.name ?? "")}
               className="absolute inset-0 cursor-pointer opacity-0"
             />
@@ -262,9 +262,9 @@ export function BuyFlow() {
           onClick={() => setQrZoom(false)}
           className="fixed inset-0 z-50 grid place-items-center bg-black/70 p-6 backdrop-blur-sm"
         >
-          <div className="relative max-w-[420px] overflow-hidden rounded-2xl bg-white p-4">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/book/payment-qr.png" alt={`UPI QR code to pay ${UPI_PAYEE}`} className="w-full" />
+          <div className="relative w-full max-w-[420px] overflow-hidden rounded-2xl bg-white p-4 pt-14" onClick={(event) => event.stopPropagation()}>
+            <PaymentQr />
+            <p className="mt-3 text-center text-sm">Pay {inr(ORDER_TOTAL)} to {UPI_PAYEE}</p>
             <button
               type="button"
               onClick={() => setQrZoom(false)}

@@ -1,10 +1,7 @@
 import sharp from "sharp";
+import { paymentProofError, MAX_NAMES } from "@/lib/payment";
 import { getSql, json, badRequest, fieldStr } from "@/lib/server/db";
 import { sendLampEmail } from "@/lib/server/notify";
-
-const MAX_SCREENSHOT_BYTES = 8 * 1024 * 1024;
-const ALLOWED_MIME = /^(image\/(png|jpe?g|webp|heic|heif)|application\/pdf)$/i;
-const MAX_NAMES = 21;
 
 /**
  * Dev Deepawali diya offering — same durability order as the book flow:
@@ -22,11 +19,12 @@ export async function POST(request: Request): Promise<Response> {
   let names: string[] = [];
   try {
     const parsed = JSON.parse(fieldStr(form.get("names"), 4000) || "[]");
-    if (Array.isArray(parsed)) {
-      names = parsed
-        .filter((n): n is string => typeof n === "string")
-        .map((n) => n.trim().replace(/\s+/g, " ").slice(0, 80))
-        .filter((n) => n.length >= 2);
+    if (!Array.isArray(parsed) || parsed.some((name) => typeof name !== "string")) {
+      return badRequest("Every diya needs a valid name.");
+    }
+    names = parsed.map((name: string) => name.trim().replace(/\s+/g, " "));
+    if (names.some((name) => name.length < 2 || name.length > 80)) {
+      return badRequest("Every diya needs a name between 2 and 80 characters.");
     }
   } catch {
     return badRequest("Could not read the names.");
@@ -47,12 +45,8 @@ export async function POST(request: Request): Promise<Response> {
   if (!(screenshot instanceof File) || screenshot.size === 0) {
     return badRequest("Payment screenshot is required.");
   }
-  if (screenshot.size > MAX_SCREENSHOT_BYTES) {
-    return badRequest("Screenshot must be under 8 MB.");
-  }
-  if (!ALLOWED_MIME.test(screenshot.type)) {
-    return badRequest("Screenshot must be an image or a PDF.");
-  }
+  const proofError = paymentProofError(screenshot);
+  if (proofError) return badRequest(proofError);
 
   let bytes = Buffer.from(await screenshot.arrayBuffer());
   let mime = screenshot.type;
@@ -73,23 +67,22 @@ export async function POST(request: Request): Promise<Response> {
     }
   }
 
-  const ids: number[] = [];
+  let ids: number[];
   try {
     const sql = getSql();
     const hex = "\\x" + bytes.toString("hex");
-    for (const name of names) {
-      const rows = (await sql`
-        INSERT INTO lamp_offerings (name_on_lamp, dedication, email, whatsapp, screenshot_filename, screenshot_mime, screenshot)
-        VALUES (${name}, ${dedication || null}, ${email}, ${whatsapp || null}, ${filename}, ${mime}, ${hex})
-        RETURNING id
-      `) as { id: number }[];
-      ids.push(rows[0].id);
-    }
+    // One statement is atomic: every name is stored, or none is.
+    const rows = (await sql`
+      INSERT INTO lamp_offerings (name_on_lamp, dedication, email, whatsapp, screenshot_filename, screenshot_mime, screenshot)
+      SELECT name, ${dedication || null}, ${email}, ${whatsapp || null}, ${filename}, ${mime}, ${hex}
+      FROM unnest(${names}::text[]) WITH ORDINALITY AS offerings(name, position)
+      ORDER BY position
+      RETURNING id
+    `) as { id: number }[];
+    ids = rows.map((row) => row.id);
   } catch (error) {
     console.error("lamp insert failed", error);
-    if (!ids.length) {
-      return json({ ok: false, error: "Could not save your offering. Please try again." }, 500);
-    }
+    return json({ ok: false, error: "Could not save your offering. Please try again." }, 500);
   }
 
   const emailSent = await sendLampEmail(

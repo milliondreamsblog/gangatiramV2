@@ -3,6 +3,8 @@
 import { useState, type FormEvent } from "react";
 import { ArrowUpRight, Check, Copy, Maximize2, Plus, X } from "lucide-react";
 import { hoverFeedback } from "@/lib/feedback";
+import { PaymentQr } from "@/components/shared/PaymentQr";
+import { LAMP_PRICE, MAX_NAMES, UPI_ID, UPI_PAYEE, upiPaymentLink, paymentProofError, SCREENSHOT_ACCEPT } from "@/lib/payment";
 import { Flame } from "./Flame";
 import { DiyaCard } from "./DiyaCard";
 
@@ -13,12 +15,6 @@ import { DiyaCard } from "./DiyaCard";
  * "screenshot" is the visitor's own Diya Card, updating as they type.)
  * Checkout mechanics mirror the proven book BuyFlow.
  */
-
-const LAMP_PRICE = 10;
-const MAX_NAMES = 21;
-const UPI_ID = "9830181700@sbi";
-const UPI_PAYEE = "Rakesh Mahapatra";
-const UPI_BANK = "State Bank of India";
 
 const inr = (n: number) => `₹${n.toLocaleString("en-IN")}`;
 
@@ -38,9 +34,7 @@ export function LampOffer() {
   const [done, setDone] = useState<{ ids: number[]; names: string[] } | null>(null);
 
   const total = LAMP_PRICE * names.length;
-  const upiDeepLink =
-    `upi://pay?pa=${UPI_ID}&pn=${encodeURIComponent(UPI_PAYEE)}` +
-    `&am=${total}&cu=INR&tn=${encodeURIComponent("Ganga Tiram diya")}`;
+  const upiDeepLink = upiPaymentLink(total, "Ganga Tiram diya");
 
   const setName = (i: number, v: string) =>
     setNames((ns) => ns.map((n, j) => (j === i ? v : n)));
@@ -53,7 +47,7 @@ export function LampOffer() {
       setCopied(true);
       setTimeout(() => setCopied(false), 1800);
     } catch {
-      /* clipboard unavailable */
+      setError(`Could not copy the UPI ID. Please copy ${UPI_ID} manually.`);
     }
   };
 
@@ -69,6 +63,11 @@ export function LampOffer() {
     const shot = data.get("screenshot");
     if (!(shot instanceof File) || shot.size === 0) {
       setError("Please attach your payment screenshot.");
+      return;
+    }
+    const proofError = paymentProofError(shot);
+    if (proofError) {
+      setError(proofError);
       return;
     }
     data.set("names", JSON.stringify(trimmed));
@@ -208,18 +207,18 @@ export function LampOffer() {
                         type="button"
                         onClick={() => setQrZoom(true)}
                         aria-label="Enlarge the payment QR code"
-                        className="group relative w-[130px] shrink-0 overflow-hidden rounded-lg border border-black/10 bg-white"
+                        className="group relative w-[180px] shrink-0 overflow-hidden rounded-lg border border-black/10 bg-white"
                       >
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src="/book/payment-qr.png" alt={`UPI QR code to pay ${UPI_PAYEE}`} className="w-full" />
-                        <span className="absolute bottom-1.5 right-1.5 grid size-6 place-items-center rounded-full bg-black/70 text-white opacity-80 transition-opacity group-hover:opacity-100">
+                        <PaymentQr />
+                        <span className="flex items-center justify-center gap-2 border-t border-black/10 py-2 text-xs text-black/60">
                           <Maximize2 size={11} />
+                          Enlarge QR
                         </span>
                       </button>
                       <div className="flex flex-col gap-2.5 text-sm">
                         <p className="leading-relaxed text-black/60">
                           Scan and pay <span className="font-medium text-black">{inr(total)}</span> to{" "}
-                          <span className="font-medium text-black">{UPI_PAYEE}</span> · {UPI_BANK}.
+                          <span className="font-medium text-black">{UPI_PAYEE}</span>.
                           Screenshot the confirmation for step 4.
                         </p>
                         <button
@@ -256,7 +255,7 @@ export function LampOffer() {
                           type="file"
                           name="screenshot"
                           required
-                          accept="image/png,image/jpeg,image/webp,image/heic,image/heif,application/pdf"
+                          accept={SCREENSHOT_ACCEPT}
                           onChange={(e) => setFileName(e.target.files?.[0]?.name ?? "")}
                           className="absolute inset-0 cursor-pointer opacity-0"
                         />
@@ -319,9 +318,9 @@ export function LampOffer() {
           onClick={() => setQrZoom(false)}
           className="fixed inset-0 z-50 grid place-items-center bg-black/70 p-6 backdrop-blur-sm"
         >
-          <div className="relative max-w-[420px] overflow-hidden rounded-2xl bg-white p-4">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/book/payment-qr.png" alt={`UPI QR code to pay ${UPI_PAYEE}`} className="w-full" />
+          <div className="relative w-full max-w-[420px] overflow-hidden rounded-2xl bg-white p-4 pt-14" onClick={(event) => event.stopPropagation()}>
+            <PaymentQr />
+            <p className="mt-3 text-center text-sm">Pay {inr(total)} to {UPI_PAYEE}</p>
             <button
               type="button"
               onClick={() => setQrZoom(false)}

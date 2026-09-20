@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "checks": [
+    "book recipient and INR 999 link",
+    "diya INR 10 -> INR 20 link",
+    "mobile links visible",
+    "no horizontal overflow at 390px",
+    "QR zoom opens and closes",
+    "no runtime page errors"
+  ],
+  "realPaymentsMade": false
+}

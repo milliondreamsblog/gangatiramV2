@@ -1,3 +1,5 @@
+import { ORDER_TOTAL, LAMP_PRICE, UPI_ID, UPI_PAYEE } from "@/lib/payment";
+
 /**
  * Order notifications — email (Resend) and WhatsApp (CallMeBot).
  * Both are env-gated and fail soft: a missing key or a provider outage never
@@ -32,6 +34,7 @@ export async function sendOrderEmail(
   try {
     const res = await fetch("https://api.resend.com/emails", {
       method: "POST",
+      signal: AbortSignal.timeout(15000),
       headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
       body: JSON.stringify({
         from: "Ganga Tiram Orders <onboarding@resend.dev>",
@@ -47,8 +50,9 @@ export async function sendOrderEmail(
           `Pincode  ${order.pincode}`,
           `State    ${order.state}`,
           `Country  ${order.country}`,
-          `Amount   ₹999 (free shipping) — paid by UPI`,
+          `Amount   ₹${ORDER_TOTAL} (free shipping) — UPI proof submitted; verification pending`,
           ``,
+          `Payee    ${UPI_PAYEE} (${UPI_ID})`,
           `Payment screenshot attached. Verify it, then ship and send tracking within 24h.`,
           `Admin: https://gangatiram.in/admin`,
         ].join("\n"),
@@ -74,7 +78,7 @@ export async function sendOrderWhatsApp(order: OrderInfo): Promise<boolean> {
   if (!phone || !apikey) return false;
 
   try {
-    const text = `Ganga Tiram: new book order #${order.orderId} — ${order.name} (${order.phone}), ${order.state} (${order.pincode}). ₹999 paid by UPI. Check Gmail for the payment proof.`;
+    const text = `Ganga Tiram: new book order #${order.orderId} — ${order.name} (${order.phone}), ${order.state} (${order.pincode}). ₹${ORDER_TOTAL} UPI proof submitted; verification pending. Check Gmail for the payment proof.`;
     const url =
       `https://api.callmebot.com/whatsapp.php?phone=${encodeURIComponent(phone)}` +
       `&apikey=${encodeURIComponent(apikey)}&text=${encodeURIComponent(text)}`;
@@ -97,6 +101,7 @@ export async function sendLampEmail(
   try {
     const res = await fetch("https://api.resend.com/emails", {
       method: "POST",
+      signal: AbortSignal.timeout(15000),
       headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
       body: JSON.stringify({
         from: "Ganga Tiram Diyas <onboarding@resend.dev>",
@@ -105,12 +110,13 @@ export async function sendLampEmail(
         text: [
           `New Dev Deepawali diya offering on gangatiram.in`,
           ``,
-          `Diyas    ${info.names.length} × ₹10 = ₹${info.names.length * 10}`,
+          `Diyas    ${info.names.length} × ₹${LAMP_PRICE} = ₹${info.names.length * LAMP_PRICE}`,
           `Names    ${info.names.join(" · ")}`,
           info.dedication ? `Dedication  ${info.dedication}` : ``,
           `Email    ${info.email}`,
           `WhatsApp ${info.whatsapp || "—"}`,
           ``,
+          `Payee    ${UPI_PAYEE} (${UPI_ID})`,
           `Payment screenshot attached. Statuses: received → lit → clip sent.`,
           `Admin: https://gangatiram.in/admin`,
         ].filter(Boolean).join("\n"),
