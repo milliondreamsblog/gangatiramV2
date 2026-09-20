@@ -4,7 +4,7 @@ The home of **Ganga Tiram** — 2,525 kilometres of heritage, told through 75 sa
 
 ## What lives here
 
-- **The book** — a pilgrimage travelogue: 300 pages, 75 photographs, 75 places in river order. Catalogue on the homepage, full UPI purchase flow at `/buy`.
+- **The book** — a pilgrimage travelogue: 220 pages, 75 photographs, 75 places in river order. Catalogue on the homepage, full UPI purchase flow at `/buy`.
 - **The FACE mission** — four wings, real numbers: 84 ghats archived in 4K, 150 painters funded, 50 looms running, 5,000 kg of plastic off her banks monthly.
 - **Dev Deepawali** — `/dev-deepawali`, the community's first online gathering, with live countdown and email + WhatsApp joining.
 - **Admin** — `/admin`, order/volunteer/contribution management backed by Neon Postgres.

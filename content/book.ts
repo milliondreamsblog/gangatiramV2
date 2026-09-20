@@ -18,7 +18,7 @@ export const bookViews = [
 
 export const bookSpecs = [
   { label: "What it is", value: "A pilgrimage travelogue — journey, stories, photographs" },
-  { label: "Pages", value: "300" },
+  { label: "Pages", value: "220" },
   { label: "Photographs", value: "75" },
   { label: "Places", value: "75, in river order" },
   { label: "Route", value: "Gomukh → Gangasagar, 2,525 km" },

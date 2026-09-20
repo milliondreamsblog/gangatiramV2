@@ -98,7 +98,7 @@ export function BuyFlow() {
             <div className="grow">
               <p className="text-xs uppercase tracking-[0.14em] text-black/45">Book order</p>
               <p className="mt-1 text-xl font-medium tracking-[-0.01em]">Ganga Tiram</p>
-              <p className="text-sm text-black/50">300 pages · 75 photographs · 75 places</p>
+              <p className="text-sm text-black/50">220 pages · 75 photographs · 75 places</p>
             </div>
           </div>
           <dl className="mt-5 border-t border-black/10 text-[15px]">
