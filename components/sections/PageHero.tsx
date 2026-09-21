@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useRef } from "react";
+import { useRef, useSyncExternalStore } from "react";
 import {
   motion,
   useReducedMotion,
@@ -14,6 +14,8 @@ import { LiveClock } from "@/components/LiveClock";
 import { clockCities } from "@/content/site";
 import { cn } from "@/lib/utils";
 import heroBg from "@/public/hero/hero-bg.png";
+
+const subscribeToHydration = () => () => {};
 
 type PageHeroProps =
   | { variant: "home" }
@@ -117,7 +119,9 @@ function PhotoHero({
 
 function HomeHero() {
   const sectionRef = useRef<HTMLElement>(null);
-  const reduced = useReducedMotion() ?? false;
+  const prefersReduced = useReducedMotion();
+  const hydrated = useSyncExternalStore(subscribeToHydration, () => true, () => false);
+  const reduced = hydrated && Boolean(prefersReduced);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end start"],
