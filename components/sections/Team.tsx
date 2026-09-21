@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import {
   motion,
   useInView,
@@ -14,6 +14,8 @@ import { teamHeading, teamParagraphs, teamMembers } from "@/content/team";
 import { bookACallHref, talkToFounderHref } from "@/content/site";
 import { hoverFeedback } from "@/lib/feedback";
 import { cn } from "@/lib/utils";
+
+const subscribeToHydration = () => () => {};
 
 /**
  * Decorative desk props scattered around the centered text — MacBook, Magic
@@ -140,7 +142,9 @@ export function Team() {
   // scroll tracker drives their slow parallax drift across the whole pass.
   const wrapperRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
-  const reduced = useReducedMotion() ?? false;
+  const prefersReduced = useReducedMotion();
+  const hydrated = useSyncExternalStore(subscribeToHydration, () => true, () => false);
+  const reduced = hydrated && Boolean(prefersReduced);
   const shown = useInView(sectionRef, { once: true, amount: 0.5 });
   const { scrollYProgress } = useScroll({
     target: wrapperRef,
