@@ -20,7 +20,7 @@ export function FaceTabs() {
   const wing = faceWings[active];
 
   return (
-    <section id="work" className="scroll-mt-20 bg-[#f8f8f8] px-5 py-16 md:px-10 md:py-24">
+    <section id="work" className="scroll-mt-20 bg-[#f8f8f8] px-4 py-16 md:px-10 md:py-24">
       <Container padded={false}>
         <div className="mb-10 flex flex-col gap-2 md:mb-12 md:flex-row md:items-baseline md:justify-between">
           <h2 className="text-3xl font-medium tracking-[-0.02em] md:text-5xl">
@@ -29,7 +29,52 @@ export function FaceTabs() {
           <p className="max-w-[360px] text-sm text-ink-faint">{faceIntro}</p>
         </div>
 
-        <div className="flex flex-col gap-8 lg:flex-row lg:items-stretch">
+        {/* Phones use the measured Bricx portfolio pattern: every wing is visible
+            as a stacked card with a 361:258 image and its Ganga caption below. */}
+        <div className="grid gap-8 sm:grid-cols-2 sm:gap-x-4 sm:gap-y-10 lg:hidden">
+          {faceWings.map((item) => (
+            <a
+              key={item.letter}
+              href={item.ctaHref}
+              onMouseEnter={() => hoverFeedback("project")}
+              className="group block rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
+            >
+              <div className="relative aspect-[361/258] overflow-hidden rounded-lg bg-black/5">
+                <Image
+                  src={item.image}
+                  alt={item.name}
+                  fill
+                  sizes="calc(100vw - 32px)"
+                  className="photo-grade object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                />
+              </div>
+
+              <div className="mt-3 flex items-start gap-2.5">
+                <span
+                  aria-hidden
+                  className="grid size-10 shrink-0 place-items-center rounded-lg bg-black text-sm font-medium text-white"
+                >
+                  {item.letter}
+                </span>
+                <div className="min-w-0 pt-0.5">
+                  <h3 className="text-lg font-medium leading-[1.2] tracking-[-0.02em] text-[#262626]">
+                    {item.name}
+                  </h3>
+                  <p className="mt-1 text-base leading-[1.2] tracking-[-0.025em] text-[#262626]/60">
+                    {item.claim}
+                  </p>
+                  <p className="mt-3 text-sm leading-6 text-[#262626]/60">{item.body}</p>
+                  <span className="mt-3 inline-flex min-h-10 items-center gap-2 rounded-full bg-white px-4 text-sm font-medium text-black">
+                    {item.ctaLabel}
+                    <ArrowUpRight size={15} />
+                  </span>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+
+        <div className="hidden gap-8 lg:flex lg:flex-row lg:items-stretch">
           {/* Tab rail */}
           <div
             role="tablist"
