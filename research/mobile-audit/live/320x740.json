@@ -1,0 +1,1152 @@
+{
+  "label": "320x740",
+  "status": 200,
+  "title": "Bricx | Design Studio for Fast-Growing AI SaaS",
+  "url": "https://bricxlabs.com/",
+  "viewport": {
+    "width": 320,
+    "height": 740,
+    "devicePixelRatio": 1,
+    "documentWidth": 320,
+    "documentHeight": 12283,
+    "bodyWidth": 320,
+    "metaViewport": "width=device-width, initial-scale=1"
+  },
+  "documentOverflow": false,
+  "overflowCandidates": [],
+  "sectionHeadings": [
+    {
+      "level": "h1",
+      "text": "Award-winning design studio for venture-backed AI startups",
+      "rect": {
+        "x": 20,
+        "y": 420.1,
+        "width": 280,
+        "height": 158.4,
+        "right": 300
+      },
+      "fontSize": "36px",
+      "lineHeight": "39.6px"
+    },
+    {
+      "level": "h2",
+      "text": "Impeccable taste for ambitious brands",
+      "rect": {
+        "x": 20,
+        "y": 1391.6,
+        "width": 280,
+        "height": 108,
+        "right": 300
+      },
+      "fontSize": "30px",
+      "lineHeight": "36px"
+    },
+    {
+      "level": "h2",
+      "text": "The full-stack partner forall creative needs",
+      "rect": {
+        "x": 20,
+        "y": 2768,
+        "width": 280,
+        "height": 108,
+        "right": 300
+      },
+      "fontSize": "30px",
+      "lineHeight": "36px"
+    },
+    {
+      "level": "h2",
+      "text": "Don’t Take Our Word.Take Theirs.",
+      "rect": {
+        "x": 20,
+        "y": 4083.1,
+        "width": 280,
+        "height": 108,
+        "right": 300
+      },
+      "fontSize": "30px",
+      "lineHeight": "36px"
+    },
+    {
+      "level": "h2",
+      "text": "One week, with the #1 rated team.",
+      "rect": {
+        "x": 44,
+        "y": 5103.4,
+        "width": 232,
+        "height": 61.6,
+        "right": 276
+      },
+      "fontSize": "28px",
+      "lineHeight": "30.8px"
+    },
+    {
+      "level": "h2",
+      "text": "The humansbehind the cursor",
+      "rect": {
+        "x": 20,
+        "y": 5525.8,
+        "width": 242.9,
+        "height": 72,
+        "right": 262.9
+      },
+      "fontSize": "30px",
+      "lineHeight": "36px"
+    },
+    {
+      "level": "h2",
+      "text": "All your Questions, Answered.",
+      "rect": {
+        "x": 20,
+        "y": 6291.8,
+        "width": 280,
+        "height": 116.6,
+        "right": 300
+      },
+      "fontSize": "36px",
+      "lineHeight": "38.88px"
+    },
+    {
+      "level": "h2",
+      "text": "Work Samples",
+      "rect": {
+        "x": 44.8,
+        "y": 8126.8,
+        "width": 230.5,
+        "height": 43.2,
+        "right": 275.3
+      },
+      "fontSize": "36px",
+      "lineHeight": "43.2px"
+    }
+  ],
+  "interactiveCount": 117,
+  "smallTargetCount": 79,
+  "smallTargets": [
+    {
+      "selector": "a.relative.order-first.flex",
+      "label": "Bricx home",
+      "rect": {
+        "x": 20,
+        "y": 28,
+        "width": 22,
+        "height": 20,
+        "right": 42
+      },
+      "href": "https://bricxlabs.com/#top"
+    },
+    {
+      "selector": "a.inline-flex.h-7.items-center",
+      "label": "Top UX Company 2026 by ClutchTop UX Company 2026 by ClutchTop Enterprise UX Comp",
+      "rect": {
+        "x": 20,
+        "y": 372.1,
+        "width": 256.3,
+        "height": 28,
+        "right": 276.3
+      },
+      "href": "https://clutch.co/profile/bricx#reviews"
+    },
+    {
+      "selector": "a.w-fit.text-ink-strong.underline",
+      "label": "Explore Product Design",
+      "rect": {
+        "x": 20,
+        "y": 3622.3,
+        "width": 191.6,
+        "height": 25.2,
+        "right": 211.6
+      },
+      "href": "https://bricxlabs.com/services/product-design-agency"
+    },
+    {
+      "selector": "a.w-fit.text-ink-strong.underline",
+      "label": "Explore Web Design",
+      "rect": {
+        "x": 20,
+        "y": 4361.7,
+        "width": 164.8,
+        "height": 25.2,
+        "right": 184.8
+      },
+      "href": "https://bricxlabs.com/services/b2b-website-design-agency"
+    },
+    {
+      "selector": "a.w-fit.text-ink-strong.underline",
+      "label": "Explore Brand Design",
+      "rect": {
+        "x": 20,
+        "y": 4386.2,
+        "width": 176.1,
+        "height": 25.2,
+        "right": 196.1
+      },
+      "href": "https://bricxlabs.com/services/brand-identity-design-services"
+    },
+    {
+      "selector": "a.w-fit.text-ink-strong.underline",
+      "label": "Explore Motion & Videos",
+      "rect": {
+        "x": 20,
+        "y": 4536.7,
+        "width": 199.6,
+        "height": 25.2,
+        "right": 219.6
+      },
+      "href": "https://bricxlabs.com/services/product-launch-video"
+    },
+    {
+      "selector": "a.w-fit.text-ink-strong.underline",
+      "label": "Explore Engineering",
+      "rect": {
+        "x": 20,
+        "y": 4586.4,
+        "width": 163.5,
+        "height": 25.2,
+        "right": 183.5
+      },
+      "href": "https://bricxlabs.com/services/frontend-development-services"
+    },
+    {
+      "selector": "a.absolute.right-5.top-5",
+      "label": "Mehak Aggarwal, Founder @Sybill — read the review on Clutch",
+      "rect": {
+        "x": 251,
+        "y": 4244.1,
+        "width": 28,
+        "height": 28,
+        "right": 279
+      },
+      "href": "https://clutch.co/profile/bricx"
+    },
+    {
+      "selector": "a.absolute.right-5.top-5",
+      "label": "Samanyou Garg, CEO @Writesonic — read the review on Clutch",
+      "rect": {
+        "x": 547,
+        "y": 4244.1,
+        "width": 28,
+        "height": 28,
+        "right": 575
+      },
+      "href": "https://clutch.co/go-to-review/6b240ee1-f01d-4547-ab54-11ead8f17b43/312766"
+    },
+    {
+      "selector": "a.absolute.right-5.top-5",
+      "label": "Asad Rehman, Co-Founder @Ltv.AI — read the review on Clutch",
+      "rect": {
+        "x": 843,
+        "y": 4244.1,
+        "width": 28,
+        "height": 28,
+        "right": 871
+      },
+      "href": "https://clutch.co/profile/bricx"
+    },
+    {
+      "selector": "a.absolute.right-5.top-5",
+      "label": "Hugo Pochet, CEO @Mailpool — read the review on Clutch",
+      "rect": {
+        "x": 1139,
+        "y": 4244.1,
+        "width": 28,
+        "height": 28,
+        "right": 1167
+      },
+      "href": "https://clutch.co/go-to-review/6b240ee1-f01d-4547-ab54-11ead8f17b43/478417"
+    },
+    {
+      "selector": "a.absolute.right-5.top-5",
+      "label": "Chirag Kulkarni, CEO @Hobbes — read the review on Clutch",
+      "rect": {
+        "x": 1435,
+        "y": 4244.1,
+        "width": 28,
+        "height": 28,
+        "right": 1463
+      },
+      "href": "https://clutch.co/go-to-review/6b240ee1-f01d-4547-ab54-11ead8f17b43/413314"
+    },
+    {
+      "selector": "a.absolute.right-5.top-5",
+      "label": "Simon Kronenberg, Co-founder @D-Software — read the review on Clutch",
+      "rect": {
+        "x": 1731,
+        "y": 4244.1,
+        "width": 28,
+        "height": 28,
+        "right": 1759
+      },
+      "href": "https://clutch.co/go-to-review/6b240ee1-f01d-4547-ab54-11ead8f17b43/480534"
+    },
+    {
+      "selector": "a.absolute.right-5.top-5",
+      "label": "Jesse Xu, CTO @Podqi — read the review on Clutch",
+      "rect": {
+        "x": 2027,
+        "y": 4244.1,
+        "width": 28,
+        "height": 28,
+        "right": 2055
+      },
+      "href": "https://clutch.co/profile/bricx?page=2#review-478678"
+    },
+    {
+      "selector": "a.absolute.right-5.top-5",
+      "label": "Namanyay Goel, CEO @GigaCatalyst — read the review on Clutch",
+      "rect": {
+        "x": 2323,
+        "y": 4244.1,
+        "width": 28,
+        "height": 28,
+        "right": 2351
+      },
+      "href": "https://clutch.co/profile/bricx"
+    },
+    {
+      "selector": "a.absolute.right-5.top-5",
+      "label": "Luka Pecavar, Founder @Manyreach — read the review on Clutch",
+      "rect": {
+        "x": 2619,
+        "y": 4244.1,
+        "width": 28,
+        "height": 28,
+        "right": 2647
+      },
+      "href": "https://clutch.co/go-to-review/6b240ee1-f01d-4547-ab54-11ead8f17b43/273121"
+    },
+    {
+      "selector": "a.absolute.right-5.top-5",
+      "label": "Kriss Smolka, Founder @Funn Media — read the review on Clutch",
+      "rect": {
+        "x": 2915,
+        "y": 4244.1,
+        "width": 28,
+        "height": 28,
+        "right": 2943
+      },
+      "href": "https://clutch.co/profile/bricx"
+    },
+    {
+      "selector": "a.absolute.right-5.top-5",
+      "label": "Priyanshu Tanwar, Head of Product @Upsurge Labs — read the review on Clutch",
+      "rect": {
+        "x": 3211,
+        "y": 4244.1,
+        "width": 28,
+        "height": 28,
+        "right": 3239
+      },
+      "href": "https://clutch.co/go-to-review/6b240ee1-f01d-4547-ab54-11ead8f17b43/295758"
+    },
+    {
+      "selector": "a.absolute.right-5.top-5",
+      "label": "Mike Nikles, Founder @Webstone Technologies — read the review on Clutch",
+      "rect": {
+        "x": 3507,
+        "y": 4244.1,
+        "width": 28,
+        "height": 28,
+        "right": 3535
+      },
+      "href": "https://clutch.co/go-to-review/6b240ee1-f01d-4547-ab54-11ead8f17b43/327625"
+    },
+    {
+      "selector": "a.absolute.right-5.top-5",
+      "label": "Emmett Cooke, Director @Pixelflow — read the review on Clutch",
+      "rect": {
+        "x": 3803,
+        "y": 4244.1,
+        "width": 28,
+        "height": 28,
+        "right": 3831
+      },
+      "href": "https://clutch.co/go-to-review/6b240ee1-f01d-4547-ab54-11ead8f17b43/377480"
+    },
+    {
+      "selector": "a.absolute.right-5.top-5",
+      "label": "Frederic Jean-Bart, CEO @Performance Partners — read the review on Clutch",
+      "rect": {
+        "x": 4099,
+        "y": 4244.1,
+        "width": 28,
+        "height": 28,
+        "right": 4127
+      },
+      "href": "https://clutch.co/go-to-review/6b240ee1-f01d-4547-ab54-11ead8f17b43/376358"
+    },
+    {
+      "selector": "a.absolute.right-5.top-5",
+      "label": "Jorge Villafuerte, Director of Technology @Avantpage — read the review on Clutch",
+      "rect": {
+        "x": 4395,
+        "y": 4244.1,
+        "width": 28,
+        "height": 28,
+        "right": 4423
+      },
+      "href": "https://clutch.co/go-to-review/6b240ee1-f01d-4547-ab54-11ead8f17b43/295017"
+    },
+    {
+      "selector": "a.absolute.right-5.top-5",
+      "label": "Valerio Di Palo, Founder @AI SuitUp — read the review on Clutch",
+      "rect": {
+        "x": 4691,
+        "y": 4244.1,
+        "width": 28,
+        "height": 28,
+        "right": 4719
+      },
+      "href": "https://clutch.co/go-to-review/6b240ee1-f01d-4547-ab54-11ead8f17b43/395396"
+    },
+    {
+      "selector": "a.absolute.right-5.top-5",
+      "label": "Balaji Kummari, CTO @ScaleJobs — read the review on Clutch",
+      "rect": {
+        "x": 4987,
+        "y": 4244.1,
+        "width": 28,
+        "height": 28,
+        "right": 5015
+      },
+      "href": "https://clutch.co/go-to-review/6b240ee1-f01d-4547-ab54-11ead8f17b43/378679"
+    },
+    {
+      "selector": "a.absolute.right-5.top-5",
+      "label": "Hanafi Issahnane, Co-Founder @Inflowpay — read the review on Clutch",
+      "rect": {
+        "x": 5283,
+        "y": 4244.1,
+        "width": 28,
+        "height": 28,
+        "right": 5311
+      },
+      "href": "https://clutch.co/profile/bricx"
+    },
+    {
+      "selector": "a.absolute.right-5.top-5",
+      "label": "Mehak Aggarwal, Founder @Sybill — read the review on Clutch",
+      "rect": {
+        "x": 5579,
+        "y": 4244.1,
+        "width": 28,
+        "height": 28,
+        "right": 5607
+      },
+      "href": "https://clutch.co/profile/bricx"
+    },
+    {
+      "selector": "a.absolute.right-5.top-5",
+      "label": "Samanyou Garg, CEO @Writesonic — read the review on Clutch",
+      "rect": {
+        "x": 5875,
+        "y": 4244.1,
+        "width": 28,
+        "height": 28,
+        "right": 5903
+      },
+      "href": "https://clutch.co/go-to-review/6b240ee1-f01d-4547-ab54-11ead8f17b43/312766"
+    },
+    {
+      "selector": "a.absolute.right-5.top-5",
+      "label": "Asad Rehman, Co-Founder @Ltv.AI — read the review on Clutch",
+      "rect": {
+        "x": 6171,
+        "y": 4244.1,
+        "width": 28,
+        "height": 28,
+        "right": 6199
+      },
+      "href": "https://clutch.co/profile/bricx"
+    },
+    {
+      "selector": "a.absolute.right-5.top-5",
+      "label": "Hugo Pochet, CEO @Mailpool — read the review on Clutch",
+      "rect": {
+        "x": 6467,
+        "y": 4244.1,
+        "width": 28,
+        "height": 28,
+        "right": 6495
+      },
+      "href": "https://clutch.co/go-to-review/6b240ee1-f01d-4547-ab54-11ead8f17b43/478417"
+    },
+    {
+      "selector": "a.absolute.right-5.top-5",
+      "label": "Chirag Kulkarni, CEO @Hobbes — read the review on Clutch",
+      "rect": {
+        "x": 6763,
+        "y": 4244.1,
+        "width": 28,
+        "height": 28,
+        "right": 6791
+      },
+      "href": "https://clutch.co/go-to-review/6b240ee1-f01d-4547-ab54-11ead8f17b43/413314"
+    },
+    {
+      "selector": "a.absolute.right-5.top-5",
+      "label": "Simon Kronenberg, Co-founder @D-Software — read the review on Clutch",
+      "rect": {
+        "x": 7059,
+        "y": 4244.1,
+        "width": 28,
+        "height": 28,
+        "right": 7087
+      },
+      "href": "https://clutch.co/go-to-review/6b240ee1-f01d-4547-ab54-11ead8f17b43/480534"
+    },
+    {
+      "selector": "a.absolute.right-5.top-5",
+      "label": "Jesse Xu, CTO @Podqi — read the review on Clutch",
+      "rect": {
+        "x": 7355,
+        "y": 4244.1,
+        "width": 28,
+        "height": 28,
+        "right": 7383
+      },
+      "href": "https://clutch.co/profile/bricx?page=2#review-478678"
+    },
+    {
+      "selector": "a.absolute.right-5.top-5",
+      "label": "Namanyay Goel, CEO @GigaCatalyst — read the review on Clutch",
+      "rect": {
+        "x": 7651,
+        "y": 4244.1,
+        "width": 28,
+        "height": 28,
+        "right": 7679
+      },
+      "href": "https://clutch.co/profile/bricx"
+    },
+    {
+      "selector": "a.absolute.right-5.top-5",
+      "label": "Luka Pecavar, Founder @Manyreach — read the review on Clutch",
+      "rect": {
+        "x": 7947,
+        "y": 4244.1,
+        "width": 28,
+        "height": 28,
+        "right": 7975
+      },
+      "href": "https://clutch.co/go-to-review/6b240ee1-f01d-4547-ab54-11ead8f17b43/273121"
+    },
+    {
+      "selector": "a.absolute.right-5.top-5",
+      "label": "Kriss Smolka, Founder @Funn Media — read the review on Clutch",
+      "rect": {
+        "x": 8243,
+        "y": 4244.1,
+        "width": 28,
+        "height": 28,
+        "right": 8271
+      },
+      "href": "https://clutch.co/profile/bricx"
+    },
+    {
+      "selector": "a.absolute.right-5.top-5",
+      "label": "Priyanshu Tanwar, Head of Product @Upsurge Labs — read the review on Clutch",
+      "rect": {
+        "x": 8539,
+        "y": 4244.1,
+        "width": 28,
+        "height": 28,
+        "right": 8567
+      },
+      "href": "https://clutch.co/go-to-review/6b240ee1-f01d-4547-ab54-11ead8f17b43/295758"
+    },
+    {
+      "selector": "a.absolute.right-5.top-5",
+      "label": "Mike Nikles, Founder @Webstone Technologies — read the review on Clutch",
+      "rect": {
+        "x": 8835,
+        "y": 4244.1,
+        "width": 28,
+        "height": 28,
+        "right": 8863
+      },
+      "href": "https://clutch.co/go-to-review/6b240ee1-f01d-4547-ab54-11ead8f17b43/327625"
+    },
+    {
+      "selector": "a.absolute.right-5.top-5",
+      "label": "Emmett Cooke, Director @Pixelflow — read the review on Clutch",
+      "rect": {
+        "x": 9131,
+        "y": 4244.1,
+        "width": 28,
+        "height": 28,
+        "right": 9159
+      },
+      "href": "https://clutch.co/go-to-review/6b240ee1-f01d-4547-ab54-11ead8f17b43/377480"
+    },
+    {
+      "selector": "a.absolute.right-5.top-5",
+      "label": "Frederic Jean-Bart, CEO @Performance Partners — read the review on Clutch",
+      "rect": {
+        "x": 9427,
+        "y": 4244.1,
+        "width": 28,
+        "height": 28,
+        "right": 9455
+      },
+      "href": "https://clutch.co/go-to-review/6b240ee1-f01d-4547-ab54-11ead8f17b43/376358"
+    },
+    {
+      "selector": "a.absolute.right-5.top-5",
+      "label": "Jorge Villafuerte, Director of Technology @Avantpage — read the review on Clutch",
+      "rect": {
+        "x": 9723,
+        "y": 4244.1,
+        "width": 28,
+        "height": 28,
+        "right": 9751
+      },
+      "href": "https://clutch.co/go-to-review/6b240ee1-f01d-4547-ab54-11ead8f17b43/295017"
+    },
+    {
+      "selector": "a.absolute.right-5.top-5",
+      "label": "Valerio Di Palo, Founder @AI SuitUp — read the review on Clutch",
+      "rect": {
+        "x": 10019,
+        "y": 4244.1,
+        "width": 28,
+        "height": 28,
+        "right": 10047
+      },
+      "href": "https://clutch.co/go-to-review/6b240ee1-f01d-4547-ab54-11ead8f17b43/395396"
+    },
+    {
+      "selector": "a.absolute.right-5.top-5",
+      "label": "Balaji Kummari, CTO @ScaleJobs — read the review on Clutch",
+      "rect": {
+        "x": 10315,
+        "y": 4244.1,
+        "width": 28,
+        "height": 28,
+        "right": 10343
+      },
+      "href": "https://clutch.co/go-to-review/6b240ee1-f01d-4547-ab54-11ead8f17b43/378679"
+    },
+    {
+      "selector": "a.absolute.right-5.top-5",
+      "label": "Hanafi Issahnane, Co-Founder @Inflowpay — read the review on Clutch",
+      "rect": {
+        "x": 10611,
+        "y": 4244.1,
+        "width": 28,
+        "height": 28,
+        "right": 10639
+      },
+      "href": "https://clutch.co/profile/bricx"
+    },
+    {
+      "selector": "button.group.relative.rounded-full",
+      "label": "Show Siddharth",
+      "rect": {
+        "x": 20,
+        "y": 5959.8,
+        "width": 36,
+        "height": 36,
+        "right": 56
+      },
+      "href": null
+    },
+    {
+      "selector": "button.group.relative.rounded-full",
+      "label": "Show Divij",
+      "rect": {
+        "x": 46,
+        "y": 5959.8,
+        "width": 36,
+        "height": 36,
+        "right": 82
+      },
+      "href": null
+    },
+    {
+      "selector": "button.group.relative.rounded-full",
+      "label": "Show Rajdeep",
+      "rect": {
+        "x": 72,
+        "y": 5959.8,
+        "width": 36,
+        "height": 36,
+        "right": 108
+      },
+      "href": null
+    },
+    {
+      "selector": "button.group.relative.rounded-full",
+      "label": "Show Lakshay",
+      "rect": {
+        "x": 98,
+        "y": 5959.8,
+        "width": 36,
+        "height": 36,
+        "right": 134
+      },
+      "href": null
+    },
+    {
+      "selector": "button.group.relative.rounded-full",
+      "label": "Show Shubham",
+      "rect": {
+        "x": 124,
+        "y": 5959.8,
+        "width": 36,
+        "height": 36,
+        "right": 160
+      },
+      "href": null
+    },
+    {
+      "selector": "button.group.relative.rounded-full",
+      "label": "Show Aadrika",
+      "rect": {
+        "x": 150,
+        "y": 5959.8,
+        "width": 36,
+        "height": 36,
+        "right": 186
+      },
+      "href": null
+    },
+    {
+      "selector": "button.group.relative.rounded-full",
+      "label": "Show Deeksha",
+      "rect": {
+        "x": 176,
+        "y": 5959.8,
+        "width": 36,
+        "height": 36,
+        "right": 212
+      },
+      "href": null
+    },
+    {
+      "selector": "button.group.relative.rounded-full",
+      "label": "Show Tanmay",
+      "rect": {
+        "x": 202,
+        "y": 5959.8,
+        "width": 36,
+        "height": 36,
+        "right": 238
+      },
+      "href": null
+    },
+    {
+      "selector": "button.group.relative.rounded-full",
+      "label": "Show Suvineet",
+      "rect": {
+        "x": 228,
+        "y": 5959.8,
+        "width": 36,
+        "height": 36,
+        "right": 264
+      },
+      "href": null
+    },
+    {
+      "selector": "button.group.relative.rounded-full",
+      "label": "Show Vamsi",
+      "rect": {
+        "x": 254,
+        "y": 5959.8,
+        "width": 36,
+        "height": 36,
+        "right": 290
+      },
+      "href": null
+    },
+    {
+      "selector": "button.group.relative.rounded-full",
+      "label": "Show Navaneeth",
+      "rect": {
+        "x": 280,
+        "y": 5959.8,
+        "width": 36,
+        "height": 36,
+        "right": 316
+      },
+      "href": null
+    },
+    {
+      "selector": "a.text-sm.transition-colors",
+      "label": "Website design",
+      "rect": {
+        "x": 20,
+        "y": 11582.5,
+        "width": 101.5,
+        "height": 17,
+        "right": 121.5
+      },
+      "href": "https://bricxlabs.com/services/b2b-website-design-agency"
+    },
+    {
+      "selector": "a.text-sm.transition-colors",
+      "label": "Product design",
+      "rect": {
+        "x": 20,
+        "y": 11618.5,
+        "width": 100.1,
+        "height": 17,
+        "right": 120.1
+      },
+      "href": "https://bricxlabs.com/services/product-design-agency"
+    },
+    {
+      "selector": "a.text-sm.transition-colors",
+      "label": "Brand identity",
+      "rect": {
+        "x": 20,
+        "y": 11654.5,
+        "width": 92.2,
+        "height": 17,
+        "right": 112.2
+      },
+      "href": "https://bricxlabs.com/services/brand-identity-design-services"
+    },
+    {
+      "selector": "a.text-sm.transition-colors",
+      "label": "Launch video",
+      "rect": {
+        "x": 20,
+        "y": 11690.5,
+        "width": 88.9,
+        "height": 17,
+        "right": 108.9
+      },
+      "href": "https://bricxlabs.com/services/product-launch-video"
+    },
+    {
+      "selector": "a.text-sm.transition-colors",
+      "label": "Frontend engineering",
+      "rect": {
+        "x": 20,
+        "y": 11726.5,
+        "width": 78.7,
+        "height": 41,
+        "right": 98.7
+      },
+      "href": "https://bricxlabs.com/services/frontend-development-services"
+    },
+    {
+      "selector": "a.text-sm.transition-colors",
+      "label": "AI MVP design",
+      "rect": {
+        "x": 20,
+        "y": 11786.5,
+        "width": 96.9,
+        "height": 17,
+        "right": 116.9
+      },
+      "href": "https://bricxlabs.com/services/ai-mvp-design"
+    },
+    {
+      "selector": "a.text-sm.transition-colors",
+      "label": "Website redesign",
+      "rect": {
+        "x": 20,
+        "y": 11822.5,
+        "width": 114.7,
+        "height": 17,
+        "right": 134.7
+      },
+      "href": "https://bricxlabs.com/services/website-redesign-services"
+    },
+    {
+      "selector": "a.text-sm.transition-colors",
+      "label": "Product redesign",
+      "rect": {
+        "x": 20,
+        "y": 11858.5,
+        "width": 113.3,
+        "height": 17,
+        "right": 133.3
+      },
+      "href": "https://bricxlabs.com/services/product-redesign"
+    },
+    {
+      "selector": "a.text-sm.transition-colors",
+      "label": "UX audit",
+      "rect": {
+        "x": 20,
+        "y": 11894.5,
+        "width": 56.6,
+        "height": 17,
+        "right": 76.6
+      },
+      "href": "https://bricxlabs.com/services/ux-audit-services"
+    },
+    {
+      "selector": "a.text-sm.transition-colors",
+      "label": "Webflow development",
+      "rect": {
+        "x": 20,
+        "y": 11930.5,
+        "width": 85.9,
+        "height": 41,
+        "right": 105.9
+      },
+      "href": "https://bricxlabs.com/services/webflow-agency"
+    },
+    {
+      "selector": "a.text-sm.transition-colors",
+      "label": "Framer development",
+      "rect": {
+        "x": 20,
+        "y": 11990.5,
+        "width": 85.9,
+        "height": 41,
+        "right": 105.9
+      },
+      "href": "https://bricxlabs.com/services/framer-agency"
+    },
+    {
+      "selector": "a.text-sm.transition-colors",
+      "label": "Design system",
+      "rect": {
+        "x": 20,
+        "y": 12050.5,
+        "width": 97.4,
+        "height": 17,
+        "right": 117.4
+      },
+      "href": "https://bricxlabs.com/services/design-system"
+    },
+    {
+      "selector": "a.text-sm.transition-colors",
+      "label": "Design team extension",
+      "rect": {
+        "x": 20,
+        "y": 12086.5,
+        "width": 82.7,
+        "height": 41,
+        "right": 102.7
+      },
+      "href": "https://bricxlabs.com/services/design-team-extension"
+    },
+    {
+      "selector": "a.text-sm.transition-colors",
+      "label": "Custom software development",
+      "rect": {
+        "x": 20,
+        "y": 12146.5,
+        "width": 112.7,
+        "height": 41,
+        "right": 132.7
+      },
+      "href": "https://bricxlabs.com/services/custom-software-development"
+    },
+    {
+      "selector": "a.text-sm.transition-colors",
+      "label": "Case Studies",
+      "rect": {
+        "x": 180,
+        "y": 11582.5,
+        "width": 86.9,
+        "height": 17,
+        "right": 266.9
+      },
+      "href": "https://bricxlabs.com/case-studies"
+    },
+    {
+      "selector": "a.text-sm.transition-colors",
+      "label": "FAQ",
+      "rect": {
+        "x": 180,
+        "y": 11618.5,
+        "width": 26.9,
+        "height": 17,
+        "right": 206.9
+      },
+      "href": "https://bricxlabs.com/#faq"
+    },
+    {
+      "selector": "a.text-sm.transition-colors",
+      "label": "Blogs",
+      "rect": {
+        "x": 180,
+        "y": 11654.5,
+        "width": 36.9,
+        "height": 17,
+        "right": 216.9
+      },
+      "href": "https://bricxlabs.com/blogs"
+    },
+    {
+      "selector": "a.text-sm.transition-colors",
+      "label": "Top UX Agencies",
+      "rect": {
+        "x": 180,
+        "y": 11690.5,
+        "width": 114.4,
+        "height": 17,
+        "right": 294.4
+      },
+      "href": "https://bricxlabs.com/ux-agencies"
+    },
+    {
+      "selector": "a.text-sm.transition-colors",
+      "label": "Book a Call",
+      "rect": {
+        "x": 180,
+        "y": 11815.8,
+        "width": 74.3,
+        "height": 17,
+        "right": 254.3
+      },
+      "href": "https://bricxlabs.com/strategy-call"
+    },
+    {
+      "selector": "a.text-sm.transition-colors",
+      "label": "X",
+      "rect": {
+        "x": 180,
+        "y": 11851.8,
+        "width": 9.6,
+        "height": 17,
+        "right": 189.6
+      },
+      "href": "https://x.com/siddharthvij_"
+    },
+    {
+      "selector": "a.text-sm.transition-colors",
+      "label": "Dribbble",
+      "rect": {
+        "x": 180,
+        "y": 11887.8,
+        "width": 56.2,
+        "height": 17,
+        "right": 236.2
+      },
+      "href": "https://dribbble.com/bricxlabs"
+    },
+    {
+      "selector": "a.text-sm.transition-colors",
+      "label": "LinkedIn",
+      "rect": {
+        "x": 180,
+        "y": 11923.8,
+        "width": 55.7,
+        "height": 17,
+        "right": 235.7
+      },
+      "href": "https://www.linkedin.com/in/siddharthvij7"
+    },
+    {
+      "selector": "a.text-sm.transition-colors",
+      "label": "Privacy Policy",
+      "rect": {
+        "x": 180,
+        "y": 12049.1,
+        "width": 92.6,
+        "height": 17,
+        "right": 272.6
+      },
+      "href": "https://bricxlabs.com/legal/privacy-policy"
+    },
+    {
+      "selector": "a.text-sm.transition-colors",
+      "label": "Refund Policy",
+      "rect": {
+        "x": 180,
+        "y": 12085.1,
+        "width": 90.8,
+        "height": 17,
+        "right": 270.8
+      },
+      "href": "https://bricxlabs.com/legal/refund-policy"
+    },
+    {
+      "selector": "a.text-sm.transition-colors",
+      "label": "Terms & Conditions",
+      "rect": {
+        "x": 180,
+        "y": 12121.1,
+        "width": 70.9,
+        "height": 41,
+        "right": 250.9
+      },
+      "href": "https://bricxlabs.com/legal/terms-and-conditions"
+    }
+  ],
+  "imageCount": 159,
+  "brokenImages": [],
+  "eagerBelowFoldImages": [
+    {
+      "alt": "Hobbes logo",
+      "rect": {
+        "x": 20,
+        "y": 1737.2,
+        "width": 40,
+        "height": 40,
+        "right": 60
+      },
+      "naturalWidth": 40,
+      "naturalHeight": 40,
+      "loading": "auto",
+      "complete": true,
+      "currentSrc": "https://bricxlabs.com/work/logos/hobbes.svg"
+    },
+    {
+      "alt": "Digit logo",
+      "rect": {
+        "x": 20,
+        "y": 2024.3,
+        "width": 40,
+        "height": 40,
+        "right": 60
+      },
+      "naturalWidth": 40,
+      "naturalHeight": 40,
+      "loading": "auto",
+      "complete": true,
+      "currentSrc": "https://bricxlabs.com/work/logos/digit.webp"
+    },
+    {
+      "alt": "Thrust logo",
+      "rect": {
+        "x": 20,
+        "y": 2311.4,
+        "width": 40,
+        "height": 40,
+        "right": 60
+      },
+      "naturalWidth": 40,
+      "naturalHeight": 40,
+      "loading": "auto",
+      "complete": true,
+      "currentSrc": "https://bricxlabs.com/work/logos/thrust.svg"
+    },
+    {
+      "alt": "Camb AI logo",
+      "rect": {
+        "x": 20,
+        "y": 2598.5,
+        "width": 40,
+        "height": 40,
+        "right": 60
+      },
+      "naturalWidth": 40,
+      "naturalHeight": 40,
+      "loading": "auto",
+      "complete": true,
+      "currentSrc": "https://bricxlabs.com/work/logos/camb.svg"
+    }
+  ],
+  "bodyTextSample": "Book a call Top UX Company 2026 by Clutch Top Enterprise UX Company 2026 by Clutch Top UX Strategy Company 2026 by Clutch Rated 4.9/5 On Clutch Top UX Company 2026 by Clutch. Top Enterprise UX Company 2026 by Clutch. Top UX Strategy Company 2026 by Clutch. Rated 4.9/5 On Clutch Award-winning design studio for venture-backed AI startups Talk to Founder Book a call SAN FRANCISCO[ 05:47:27 ] DELHI[ 18:17:27 ] Trusted by SF’s top AI & SaaS companies Impeccable taste for ambitious brands Hobbes Agent",
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [
+    {
+      "url": "https://www.google-analytics.com/g/collect?v=2&tid=G-Y39JZY2MHF&gtm=45je69g1v9170901302z89208836126za20gzb9208836126zd9208836126xf1&_p=1789908440974&gcd=13l3l3l3l1l1&npa=0&dma=0&cid=1032911502.1789908443&frm=0&ngs=1&pscdl=noapi&rcb=8&sr=320x740&uaa=x86&uab=64&uafvl=Google%2520Chrome%3B153.0.8010.50%7CNot_A%2520Brand%3B8.0.0.0%7CChromium%3B153.0.8010.50&uam=&uamb=0&uap=Windows&uapv=19.0.0&uaw=0&ul=en-us&_s=1&tag_exp=115938465~115938468~118897920~118897930~120213116~120385422~120469145~120469153&sid=1789908443&sct=1&seg=0&dl=https%3A%2F%2Fbricxlabs.com%2F&dt=Bricx%20%7C%20Design%20Studio%20for%20Fast-Growing%20AI%20SaaS&en=page_view&_fv=1&_nsi=1&_ss=1&tfd=7274",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://px.ads.linkedin.com/wa/?medium=fetch&fmt=g",
+      "error": "net::ERR_ABORTED"
+    }
+  ]
+}

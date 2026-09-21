@@ -1,0 +1,622 @@
+{
+  "label": "768x1024",
+  "status": 200,
+  "title": "Bricx | Design Studio for Fast-Growing AI SaaS",
+  "url": "https://bricxlabs.com/",
+  "viewport": {
+    "width": 768,
+    "height": 1024,
+    "devicePixelRatio": 1,
+    "documentWidth": 768,
+    "documentHeight": 16351,
+    "bodyWidth": 768,
+    "metaViewport": "width=device-width, initial-scale=1"
+  },
+  "documentOverflow": false,
+  "overflowCandidates": [],
+  "sectionHeadings": [
+    {
+      "level": "h1",
+      "text": "Award-winning design studio for venture-backed AI startups",
+      "rect": {
+        "x": 40,
+        "y": 700.3,
+        "width": 391.1,
+        "height": 202.7,
+        "right": 431.1
+      },
+      "fontSize": "46.08px",
+      "lineHeight": "50.688px"
+    },
+    {
+      "level": "h2",
+      "text": "Impeccable taste for ambitious brands",
+      "rect": {
+        "x": 40,
+        "y": 1718.3,
+        "width": 456.6,
+        "height": 96,
+        "right": 496.6
+      },
+      "fontSize": "48px",
+      "lineHeight": "48px"
+    },
+    {
+      "level": "h2",
+      "text": "The full-stack partner forall creative needs",
+      "rect": {
+        "x": 40,
+        "y": 2678.7,
+        "width": 421.6,
+        "height": 151.2,
+        "right": 461.6
+      },
+      "fontSize": "48px",
+      "lineHeight": "50.4px"
+    },
+    {
+      "level": "h2",
+      "text": "Don’t Take Our Word.Take Theirs.",
+      "rect": {
+        "x": 40,
+        "y": 4129.4,
+        "width": 688,
+        "height": 100.8,
+        "right": 728
+      },
+      "fontSize": "48px",
+      "lineHeight": "50.4px"
+    },
+    {
+      "level": "h2",
+      "text": "One week, with the #1 rated team.",
+      "rect": {
+        "x": 104,
+        "y": 5472.9,
+        "width": 560,
+        "height": 30.8,
+        "right": 664
+      },
+      "fontSize": "28px",
+      "lineHeight": "30.8px"
+    },
+    {
+      "level": "h2",
+      "text": "The humansbehind the cursor",
+      "rect": {
+        "x": 104,
+        "y": 5912.4,
+        "width": 388.7,
+        "height": 100.8,
+        "right": 492.7
+      },
+      "fontSize": "48px",
+      "lineHeight": "50.4px"
+    },
+    {
+      "level": "h2",
+      "text": "All your Questions, Answered.",
+      "rect": {
+        "x": 40,
+        "y": 6669.9,
+        "width": 500,
+        "height": 103.7,
+        "right": 540
+      },
+      "fontSize": "48px",
+      "lineHeight": "51.84px"
+    },
+    {
+      "level": "h2",
+      "text": "Work Samples",
+      "rect": {
+        "x": 268.8,
+        "y": 8039.1,
+        "width": 230.5,
+        "height": 43.2,
+        "right": 499.3
+      },
+      "fontSize": "36px",
+      "lineHeight": "43.2px"
+    }
+  ],
+  "interactiveCount": 119,
+  "smallTargetCount": 37,
+  "smallTargets": [
+    {
+      "selector": "a.flex.min-h-11.cursor-pointer",
+      "label": "Portfolio",
+      "rect": {
+        "x": 40,
+        "y": 17,
+        "width": 79,
+        "height": 30,
+        "right": 119
+      },
+      "href": "https://bricxlabs.com/case-studies"
+    },
+    {
+      "selector": "button.flex.min-h-11.cursor-pointer",
+      "label": "Services",
+      "rect": {
+        "x": 121,
+        "y": 17,
+        "width": 81.2,
+        "height": 30,
+        "right": 202.2
+      },
+      "href": null
+    },
+    {
+      "selector": "a.flex.min-h-11.cursor-pointer",
+      "label": "Designs",
+      "rect": {
+        "x": 204.2,
+        "y": 17,
+        "width": 77.1,
+        "height": 30,
+        "right": 281.3
+      },
+      "href": "https://bricxlabs.com/#work-samples"
+    },
+    {
+      "selector": "a.relative.order-first.flex",
+      "label": "Bricx home",
+      "rect": {
+        "x": 373,
+        "y": 22,
+        "width": 22,
+        "height": 20,
+        "right": 395
+      },
+      "href": "https://bricxlabs.com/#top"
+    },
+    {
+      "selector": "a.grid.size-8.place-items-center",
+      "label": "Chat on WhatsApp",
+      "rect": {
+        "x": 599,
+        "y": 16,
+        "width": 32,
+        "height": 32,
+        "right": 631
+      },
+      "href": "https://api.whatsapp.com/send?phone=918178563140"
+    },
+    {
+      "selector": "a.group.flex.h-8",
+      "label": "Book a call",
+      "rect": {
+        "x": 633,
+        "y": 16,
+        "width": 95,
+        "height": 32,
+        "right": 728
+      },
+      "href": "https://bricxlabs.com/strategy-call"
+    },
+    {
+      "selector": "a.inline-flex.h-7.items-center",
+      "label": "Top UX Company 2026 by ClutchTop UX Company 2026 by ClutchTop Enterprise UX Comp",
+      "rect": {
+        "x": 40,
+        "y": 652.3,
+        "width": 256.3,
+        "height": 28,
+        "right": 296.3
+      },
+      "href": "https://clutch.co/profile/bricx#reviews"
+    },
+    {
+      "selector": "a.w-fit.text-ink-strong.underline",
+      "label": "Explore Product Design",
+      "rect": {
+        "x": 374.8,
+        "y": 3434,
+        "width": 191.6,
+        "height": 25.2,
+        "right": 566.5
+      },
+      "href": "https://bricxlabs.com/services/product-design-agency"
+    },
+    {
+      "selector": "a.w-fit.text-ink-strong.underline",
+      "label": "Explore Web Design",
+      "rect": {
+        "x": 374.8,
+        "y": 4065.7,
+        "width": 164.8,
+        "height": 25.2,
+        "right": 539.6
+      },
+      "href": "https://bricxlabs.com/services/b2b-website-design-agency"
+    },
+    {
+      "selector": "a.w-fit.text-ink-strong.underline",
+      "label": "Explore Brand Design",
+      "rect": {
+        "x": 374.8,
+        "y": 4156.1,
+        "width": 176.1,
+        "height": 25.2,
+        "right": 550.9
+      },
+      "href": "https://bricxlabs.com/services/brand-identity-design-services"
+    },
+    {
+      "selector": "a.w-fit.text-ink-strong.underline",
+      "label": "Explore Motion & Videos",
+      "rect": {
+        "x": 374.8,
+        "y": 4271.6,
+        "width": 199.6,
+        "height": 25.2,
+        "right": 574.5
+      },
+      "href": "https://bricxlabs.com/services/product-launch-video"
+    },
+    {
+      "selector": "a.w-fit.text-ink-strong.underline",
+      "label": "Explore Engineering",
+      "rect": {
+        "x": 374.8,
+        "y": 4387.2,
+        "width": 163.5,
+        "height": 25.2,
+        "right": 538.3
+      },
+      "href": "https://bricxlabs.com/services/frontend-development-services"
+    },
+    {
+      "selector": "a.text-sm.transition-colors",
+      "label": "Website design",
+      "rect": {
+        "x": 32,
+        "y": 15583.3,
+        "width": 101.5,
+        "height": 17,
+        "right": 133.5
+      },
+      "href": "https://bricxlabs.com/services/b2b-website-design-agency"
+    },
+    {
+      "selector": "a.text-sm.transition-colors",
+      "label": "Product design",
+      "rect": {
+        "x": 32,
+        "y": 15619.3,
+        "width": 100.1,
+        "height": 17,
+        "right": 132.1
+      },
+      "href": "https://bricxlabs.com/services/product-design-agency"
+    },
+    {
+      "selector": "a.text-sm.transition-colors",
+      "label": "Brand identity",
+      "rect": {
+        "x": 32,
+        "y": 15655.3,
+        "width": 92.2,
+        "height": 17,
+        "right": 124.2
+      },
+      "href": "https://bricxlabs.com/services/brand-identity-design-services"
+    },
+    {
+      "selector": "a.text-sm.transition-colors",
+      "label": "Launch video",
+      "rect": {
+        "x": 32,
+        "y": 15691.3,
+        "width": 88.9,
+        "height": 17,
+        "right": 120.9
+      },
+      "href": "https://bricxlabs.com/services/product-launch-video"
+    },
+    {
+      "selector": "a.text-sm.transition-colors",
+      "label": "Frontend engineering",
+      "rect": {
+        "x": 32,
+        "y": 15727.3,
+        "width": 78.7,
+        "height": 41,
+        "right": 110.7
+      },
+      "href": "https://bricxlabs.com/services/frontend-development-services"
+    },
+    {
+      "selector": "a.text-sm.transition-colors",
+      "label": "AI MVP design",
+      "rect": {
+        "x": 32,
+        "y": 15787.3,
+        "width": 96.9,
+        "height": 17,
+        "right": 128.9
+      },
+      "href": "https://bricxlabs.com/services/ai-mvp-design"
+    },
+    {
+      "selector": "a.text-sm.transition-colors",
+      "label": "Website redesign",
+      "rect": {
+        "x": 32,
+        "y": 15823.3,
+        "width": 114.7,
+        "height": 17,
+        "right": 146.7
+      },
+      "href": "https://bricxlabs.com/services/website-redesign-services"
+    },
+    {
+      "selector": "a.text-sm.transition-colors",
+      "label": "Product redesign",
+      "rect": {
+        "x": 32,
+        "y": 15859.3,
+        "width": 113.3,
+        "height": 17,
+        "right": 145.3
+      },
+      "href": "https://bricxlabs.com/services/product-redesign"
+    },
+    {
+      "selector": "a.text-sm.transition-colors",
+      "label": "UX audit",
+      "rect": {
+        "x": 32,
+        "y": 15895.3,
+        "width": 56.6,
+        "height": 17,
+        "right": 88.6
+      },
+      "href": "https://bricxlabs.com/services/ux-audit-services"
+    },
+    {
+      "selector": "a.text-sm.transition-colors",
+      "label": "Webflow development",
+      "rect": {
+        "x": 32,
+        "y": 15931.3,
+        "width": 85.9,
+        "height": 41,
+        "right": 117.9
+      },
+      "href": "https://bricxlabs.com/services/webflow-agency"
+    },
+    {
+      "selector": "a.text-sm.transition-colors",
+      "label": "Framer development",
+      "rect": {
+        "x": 32,
+        "y": 15991.3,
+        "width": 85.9,
+        "height": 41,
+        "right": 117.9
+      },
+      "href": "https://bricxlabs.com/services/framer-agency"
+    },
+    {
+      "selector": "a.text-sm.transition-colors",
+      "label": "Design system",
+      "rect": {
+        "x": 32,
+        "y": 16051.3,
+        "width": 97.4,
+        "height": 17,
+        "right": 129.4
+      },
+      "href": "https://bricxlabs.com/services/design-system"
+    },
+    {
+      "selector": "a.text-sm.transition-colors",
+      "label": "Design team extension",
+      "rect": {
+        "x": 32,
+        "y": 16087.3,
+        "width": 82.7,
+        "height": 41,
+        "right": 114.7
+      },
+      "href": "https://bricxlabs.com/services/design-team-extension"
+    },
+    {
+      "selector": "a.text-sm.transition-colors",
+      "label": "Custom software development",
+      "rect": {
+        "x": 32,
+        "y": 16147.3,
+        "width": 112.7,
+        "height": 41,
+        "right": 144.7
+      },
+      "href": "https://bricxlabs.com/services/custom-software-development"
+    },
+    {
+      "selector": "a.text-sm.transition-colors",
+      "label": "Case Studies",
+      "rect": {
+        "x": 224,
+        "y": 15583.3,
+        "width": 86.9,
+        "height": 17,
+        "right": 310.9
+      },
+      "href": "https://bricxlabs.com/case-studies"
+    },
+    {
+      "selector": "a.text-sm.transition-colors",
+      "label": "FAQ",
+      "rect": {
+        "x": 224,
+        "y": 15619.3,
+        "width": 26.9,
+        "height": 17,
+        "right": 250.9
+      },
+      "href": "https://bricxlabs.com/#faq"
+    },
+    {
+      "selector": "a.text-sm.transition-colors",
+      "label": "Blogs",
+      "rect": {
+        "x": 224,
+        "y": 15655.3,
+        "width": 36.9,
+        "height": 17,
+        "right": 260.9
+      },
+      "href": "https://bricxlabs.com/blogs"
+    },
+    {
+      "selector": "a.text-sm.transition-colors",
+      "label": "Top UX Agencies",
+      "rect": {
+        "x": 224,
+        "y": 15691.3,
+        "width": 114.4,
+        "height": 17,
+        "right": 338.4
+      },
+      "href": "https://bricxlabs.com/ux-agencies"
+    },
+    {
+      "selector": "a.text-sm.transition-colors",
+      "label": "Book a Call",
+      "rect": {
+        "x": 416,
+        "y": 15583.3,
+        "width": 74.3,
+        "height": 17,
+        "right": 490.3
+      },
+      "href": "https://bricxlabs.com/strategy-call"
+    },
+    {
+      "selector": "a.text-sm.transition-colors",
+      "label": "X",
+      "rect": {
+        "x": 416,
+        "y": 15619.3,
+        "width": 9.6,
+        "height": 17,
+        "right": 425.6
+      },
+      "href": "https://x.com/siddharthvij_"
+    },
+    {
+      "selector": "a.text-sm.transition-colors",
+      "label": "Dribbble",
+      "rect": {
+        "x": 416,
+        "y": 15655.3,
+        "width": 56.2,
+        "height": 17,
+        "right": 472.2
+      },
+      "href": "https://dribbble.com/bricxlabs"
+    },
+    {
+      "selector": "a.text-sm.transition-colors",
+      "label": "LinkedIn",
+      "rect": {
+        "x": 416,
+        "y": 15691.3,
+        "width": 55.7,
+        "height": 17,
+        "right": 471.7
+      },
+      "href": "https://www.linkedin.com/in/siddharthvij7"
+    },
+    {
+      "selector": "a.text-sm.transition-colors",
+      "label": "Privacy Policy",
+      "rect": {
+        "x": 608,
+        "y": 15583.3,
+        "width": 92.6,
+        "height": 17,
+        "right": 700.6
+      },
+      "href": "https://bricxlabs.com/legal/privacy-policy"
+    },
+    {
+      "selector": "a.text-sm.transition-colors",
+      "label": "Refund Policy",
+      "rect": {
+        "x": 608,
+        "y": 15619.3,
+        "width": 90.8,
+        "height": 17,
+        "right": 698.8
+      },
+      "href": "https://bricxlabs.com/legal/refund-policy"
+    },
+    {
+      "selector": "a.text-sm.transition-colors",
+      "label": "Terms & Conditions",
+      "rect": {
+        "x": 608,
+        "y": 15655.3,
+        "width": 70.9,
+        "height": 41,
+        "right": 678.9
+      },
+      "href": "https://bricxlabs.com/legal/terms-and-conditions"
+    }
+  ],
+  "imageCount": 123,
+  "brokenImages": [],
+  "eagerBelowFoldImages": [
+    {
+      "alt": "Thrust logo",
+      "rect": {
+        "x": 68,
+        "y": 2206.7,
+        "width": 40,
+        "height": 40,
+        "right": 108
+      },
+      "naturalWidth": 40,
+      "naturalHeight": 40,
+      "loading": "auto",
+      "complete": true,
+      "currentSrc": "https://bricxlabs.com/work/logos/thrust.svg"
+    },
+    {
+      "alt": "Camb AI logo",
+      "rect": {
+        "x": 418,
+        "y": 2206.7,
+        "width": 40,
+        "height": 40,
+        "right": 458
+      },
+      "naturalWidth": 40,
+      "naturalHeight": 40,
+      "loading": "auto",
+      "complete": true,
+      "currentSrc": "https://bricxlabs.com/work/logos/camb.svg"
+    }
+  ],
+  "bodyTextSample": "Portfolio Services Designs Book a call Top UX Company 2026 by Clutch Top Enterprise UX Company 2026 by Clutch Top UX Strategy Company 2026 by Clutch Rated 4.9/5 On Clutch Top UX Company 2026 by Clutch. Top Enterprise UX Company 2026 by Clutch. Top UX Strategy Company 2026 by Clutch. Rated 4.9/5 On Clutch Award-winning design studio for venture-backed AI startups Talk to Founder Book a call SAN FRANCISCO[ 05:48:23 ] DELHI[ 18:18:23 ] Trusted by SF’s top AI & SaaS companies And many more Impeccabl",
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [
+    {
+      "url": "https://assets.bricxlabs.com/hero-bg.mp4",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://www.google-analytics.com/g/collect?v=2&tid=G-Y39JZY2MHF&gtm=45je69h0h2v9170901302z89208836126za20gzb9208836126zd9208836126xf1&_p=1789908499572&gcd=13l3l3l3l1l1&npa=0&dma=0&cid=1264993747.1789908501&frm=0&ngs=1&pscdl=noapi&rcb=6&sr=768x1024&uaa=x86&uab=64&uafvl=Google%2520Chrome%3B153.0.8010.50%7CNot_A%2520Brand%3B8.0.0.0%7CChromium%3B153.0.8010.50&uam=&uamb=0&uap=Windows&uapv=19.0.0&uaw=0&ul=en-us&_s=1&tag_exp=115938465~115938468~118897920~118897930~120213116~120385422~120469145~120469153&sid=1789908500&sct=1&seg=0&dl=https%3A%2F%2Fbricxlabs.com%2F&dt=Bricx%20%7C%20Design%20Studio%20for%20Fast-Growing%20AI%20SaaS&en=page_view&_fv=1&_nsi=1&_ss=1&tfd=4490",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://px.ads.linkedin.com/wa/?medium=fetch&fmt=g",
+      "error": "net::ERR_ABORTED"
+    }
+  ]
+}
