@@ -9,10 +9,12 @@ const cell =
 
 export function TrustedBy() {
   return (
-    <section className="bg-white px-5 py-14 md:px-10">
-      <Container padded={false} className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+    <section className="bg-white px-4 py-14 md:px-10">
+      <Container padded={false} className="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-3 lg:grid-cols-6">
         {/* Label cell */}
-        <div className={`${cell} col-span-2 min-h-20 justify-start sm:col-span-1 sm:p-6`}>
+        <div
+          className={`${cell} col-span-2 min-h-[110px] w-[min(216px,100%)] justify-start p-6 sm:col-span-1 sm:aspect-[173/88] sm:min-h-0 sm:w-auto`}
+        >
           <p className="text-sm leading-[1.4] text-ink-faint">
             {trustedByHeading[0]}
             <br />
@@ -25,7 +27,7 @@ export function TrustedBy() {
           <div
             key={logo.name}
             onMouseEnter={() => hoverFeedback("logo")}
-            className={`${cell} group aspect-[173/88] bg-surface p-4 hover:bg-[#efefef] sm:p-6`}
+            className={`${cell} group h-28 bg-surface p-4 hover:bg-[#efefef] sm:h-auto sm:aspect-[173/88] sm:p-6`}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
@@ -38,7 +40,9 @@ export function TrustedBy() {
         ))}
 
         {/* And many more */}
-        <div className={`${cell} aspect-[173/88] border border-[#f0f0f0] p-4 sm:p-6`}>
+        <div
+          className={`${cell} col-span-2 min-h-[110px] w-[min(216px,100%)] justify-start border border-[#f0f0f0] p-6 sm:col-span-1 sm:aspect-[173/88] sm:min-h-0 sm:w-auto`}
+        >
           <p className="text-sm text-ink-faint">Told across 75 places</p>
         </div>
       </Container>
