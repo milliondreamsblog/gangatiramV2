@@ -51,7 +51,7 @@ export function Navbar({ variant = "overlay" }: { variant?: "overlay" | "solid" 
             : "absolute inset-x-0 top-0 z-30",
       )}
     >
-      <nav className="mx-auto flex w-full max-w-[1800px] items-center justify-between px-5 py-4 md:px-10">
+      <nav className="mx-auto flex w-full max-w-[1800px] items-center justify-between px-4 py-4 md:px-10">
         {/* Left: nav (desktop) — categories open the full-screen mega menu */}
         <div className="hidden items-center gap-0.5 md:flex">
           {navMenus.map((m) =>
@@ -59,6 +59,7 @@ export function Navbar({ variant = "overlay" }: { variant?: "overlay" | "solid" 
               <button
                 key={m.label}
                 type="button"
+                aria-haspopup="dialog"
                 aria-expanded={menu === m.label}
                 onClick={() => setMenu((v) => (v === m.label ? null : m.label))}
                 className={pill}
@@ -124,6 +125,8 @@ export function Navbar({ variant = "overlay" }: { variant?: "overlay" | "solid" 
         <button
           type="button"
           aria-label="Open menu"
+          aria-haspopup="dialog"
+          aria-expanded={Boolean(menu)}
           onClick={() => setMenu(firstMega)}
           className={cn(
             "grid size-11 place-items-center rounded-full backdrop-blur-md md:hidden",
