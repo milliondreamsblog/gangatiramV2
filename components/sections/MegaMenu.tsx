@@ -18,6 +18,15 @@ const EXIT_MS = 320;
 /** Shared soft entrance for bars and rows (paired with an inline animationDelay). */
 const ENTER = "mm-anim animate-[mm-row-in_760ms_cubic-bezier(0.22,1,0.36,1)_both]";
 
+const FOCUSABLE = [
+  "a[href]",
+  "button:not([disabled])",
+  "input:not([disabled])",
+  "select:not([disabled])",
+  "textarea:not([disabled])",
+  "[tabindex]:not([tabindex='-1'])",
+].join(",");
+
 /**
  * MegaMenu — Figma node 1158:1481. A full-screen, blurred nav takeover: category
  * pills + logomark + CTA along the top, the active category's items as big
@@ -44,6 +53,7 @@ export function MegaMenu({
   const [closing, setClosing] = useState(false);
   const closingRef = useRef(false);
   const timerRef = useRef<number | null>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
 
   // Fade the backdrop out, then let the parent unmount us.
   const requestClose = useCallback(() => {
@@ -60,8 +70,54 @@ export function MegaMenu({
   }, [requestClose]);
 
   useEffect(() => {
-    const raf = requestAnimationFrame(() => setShown(true));
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && requestCloseRef.current();
+    const previouslyFocused = document.activeElement as HTMLElement | null;
+    const dialog = dialogRef.current;
+    const pageRoots = Array.from(document.body.children)
+      .filter(
+        (element): element is HTMLElement =>
+          element instanceof HTMLElement && element !== dialog && !element.contains(dialog),
+      )
+      .map((element) => [element, element.inert] as const);
+
+    pageRoots.forEach(([element]) => {
+      element.inert = true;
+    });
+
+    const showRaf = requestAnimationFrame(() => setShown(true));
+    const focusRaf = requestAnimationFrame(() => {
+      const first = Array.from(dialog?.querySelectorAll<HTMLElement>(FOCUSABLE) ?? []).find(
+        (element) => element.getClientRects().length > 0,
+      );
+      (first ?? dialog)?.focus();
+    });
+
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        requestCloseRef.current();
+        return;
+      }
+      if (e.key !== "Tab" || !dialog) return;
+
+      const focusable = Array.from(dialog.querySelectorAll<HTMLElement>(FOCUSABLE)).filter(
+        (element) => element.getClientRects().length > 0,
+      );
+      if (focusable.length === 0) {
+        e.preventDefault();
+        dialog.focus();
+        return;
+      }
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      const active = document.activeElement;
+      if (e.shiftKey && (active === first || !dialog.contains(active))) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && (active === last || !dialog.contains(active))) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
     document.addEventListener("keydown", onKey);
 
     // Freeze the background: pause Lenis (it drives scroll via rAF and ignores
@@ -82,13 +138,18 @@ export function MegaMenu({
     window.addEventListener("touchmove", blockScroll, { passive: false, capture: true });
 
     return () => {
-      cancelAnimationFrame(raf);
+      cancelAnimationFrame(showRaf);
+      cancelAnimationFrame(focusRaf);
       if (timerRef.current) clearTimeout(timerRef.current);
       document.removeEventListener("keydown", onKey);
       window.removeEventListener("wheel", blockScroll, { capture: true });
       window.removeEventListener("touchmove", blockScroll, { capture: true });
       lenis?.start();
       document.documentElement.style.overflow = prevOverflow;
+      pageRoots.forEach(([element, wasInert]) => {
+        element.inert = wasInert;
+      });
+      previouslyFocused?.focus();
     };
   }, []);
 
@@ -107,9 +168,11 @@ export function MegaMenu({
 
   const menu = (
     <div
+      ref={dialogRef}
       role="dialog"
       aria-modal="true"
       aria-label={`${activeLabel} menu`}
+      tabIndex={-1}
       onClick={onBackdropClick}
       className={cn(
         "fixed inset-0 z-50 flex flex-col items-center gap-6 bg-black/65 px-5 pb-6 pt-4 text-white backdrop-blur-2xl transition-opacity ease-out md:px-10",
