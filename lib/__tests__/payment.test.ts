@@ -11,6 +11,13 @@ describe("UPI payment destination", () => {
       am: amount.toFixed(2), cu: "INR", tn: "Ganga Tiram offering",
     });
   });
+  it("keeps the VPA and payee exactly as scanned — no %40, no + for spaces", () => {
+    const link = upiPaymentLink(20, "Diya GT901");
+    expect(link).toContain("pa=9830181700@axl");
+    expect(link).toContain("pn=B%20M%20ADVISORY");
+    expect(link).toContain("tn=Diya%20GT901");
+    expect(link).not.toContain("+");
+  });
 });
 describe("payment proof validation", () => {
   it.each(["image/png", "image/jpeg", "image/webp", "image/heic", "image/heif", "application/pdf"])("accepts a small %s proof", (type) => {

@@ -11,12 +11,13 @@ export const ORDER_TOTAL = BOOK_PRICE + SHIPPING_PRICE;
 export const LAMP_PRICE = 10;
 export const MAX_NAMES = 21;
 
+/**
+ * Appends to the scanned payload verbatim rather than via URLSearchParams,
+ * which would rewrite "@" as %40 and spaces as "+" — forms some UPI apps
+ * don't decode, showing "B+M+ADVISORY" or failing to resolve the VPA.
+ */
 export function upiPaymentLink(amount: number, note: string): string {
-  const link = new URL(UPI_QR_PAYLOAD);
-  link.searchParams.set("am", amount.toFixed(2));
-  link.searchParams.set("cu", "INR");
-  link.searchParams.set("tn", note);
-  return link.toString();
+  return `${UPI_QR_PAYLOAD}&am=${amount.toFixed(2)}&cu=INR&tn=${encodeURIComponent(note)}`;
 }
 
 // Leave room for multipart fields below Vercel's 4.5 MB request limit.
