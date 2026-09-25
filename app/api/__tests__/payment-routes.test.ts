@@ -12,6 +12,7 @@ vi.mock("@/lib/server/notify", () => ({
 }));
 import { POST as order } from "@/app/api/order/route";
 import { POST as lamp } from "@/app/api/lamp/route";
+import { POST as confirm } from "@/app/api/lamp/confirm/route";
 import { MAX_SCREENSHOT_BYTES } from "@/lib/payment";
 
 function request(kind: "order" | "lamp", names: unknown = ["Asha", "Mira"], bytes = 12, type = "application/pdf") {
@@ -84,5 +85,63 @@ describe("payment submissions", () => {
     expect(mocks.sql).toHaveBeenCalledTimes(1);
     expect(mocks.lampEmail).not.toHaveBeenCalled();
     error.mockRestore();
+  });
+});
+
+function quickRequest(fields: Record<string, string>) {
+  const form = new FormData();
+  for (const [key, value] of Object.entries(fields)) form.set(key, value);
+  return new Request("http://localhost/api/lamp", { method: "POST", body: form });
+}
+describe("QR checkout (/diya)", () => {
+  const quick = { names: JSON.stringify(["Asha"]), gotra: "Bharadwaj", whatsapp: "98765 43210", pay_later: "1" };
+  it("saves an unpaid offering before payment, without email or screenshot, and sends no alert", async () => {
+    mocks.sql.mockResolvedValueOnce([{ id: 60 }]);
+    const response = await lamp(quickRequest(quick));
+    expect(await response.json()).toEqual({ ok: true, ids: [60], names: ["Asha"] });
+    const params = mocks.sql.mock.calls[0].slice(1);
+    expect(params).toContain("awaiting_payment");
+    expect(params).toContain("Bharadwaj");
+    expect(params).toContain("+919876543210");
+    expect(mocks.sql).toHaveBeenCalledTimes(1);
+    expect(mocks.lampEmail).not.toHaveBeenCalled();
+  });
+  it("still requires a screenshot when pay_later is not set", async () => {
+    const withoutPayLater = Object.fromEntries(Object.entries(quick).filter(([key]) => key !== "pay_later"));
+    expect((await lamp(quickRequest(withoutPayLater))).status).toBe(400);
+    expect(mocks.sql).not.toHaveBeenCalled();
+  });
+  it.each([["no contact", { whatsapp: "" }], ["bad number", { whatsapp: "12345" }]])("rejects %s", async (_, patch) => {
+    expect((await lamp(quickRequest({ ...quick, ...patch }))).status).toBe(400);
+    expect(mocks.sql).not.toHaveBeenCalled();
+  });
+  it("confirms only rows matching the WhatsApp number, then alerts", async () => {
+    mocks.sql
+      .mockResolvedValueOnce([{ id: 61, name_on_lamp: "Mira", gotra: null, dedication: null, email: null },
+                              { id: 60, name_on_lamp: "Asha", gotra: null, dedication: null, email: null }])
+      .mockResolvedValueOnce([]);
+    mocks.lampEmail.mockResolvedValue(true);
+    const response = await confirm(new Request("http://localhost/api/lamp/confirm", {
+      method: "POST",
+      body: (() => { const f = new FormData(); f.set("ids", "[60,61]"); f.set("whatsapp", "9876543210"); return f; })(),
+    }));
+    expect(await response.json()).toEqual({ ok: true, ids: [60, 61] });
+    const [statement, ...params] = mocks.sql.mock.calls[0];
+    expect(statement.join("")).toContain("status = 'awaiting_payment'");
+    expect(params).toContain("+919876543210");
+    expect(mocks.lampEmail.mock.calls[0][0]).toMatchObject({ firstId: 60, names: ["Asha", "Mira"] });
+    expect(mocks.lampEmail.mock.calls[0][1]).toBeNull();
+  });
+  it("treats an already-confirmed offering as done without a second alert", async () => {
+    mocks.sql.mockResolvedValueOnce([]);
+    const f = new FormData(); f.set("ids", "[60]"); f.set("whatsapp", "9876543210");
+    const response = await confirm(new Request("http://localhost/api/lamp/confirm", { method: "POST", body: f }));
+    expect(await response.json()).toEqual({ ok: true, ids: [] });
+    expect(mocks.lampEmail).not.toHaveBeenCalled();
+  });
+  it.each([["[]"], ["[0]"], ["nope"]])("rejects bad ids %j", async (ids) => {
+    const f = new FormData(); f.set("ids", ids); f.set("whatsapp", "9876543210");
+    expect((await confirm(new Request("http://localhost/api/lamp/confirm", { method: "POST", body: f }))).status).toBe(400);
+    expect(mocks.sql).not.toHaveBeenCalled();
   });
 });
