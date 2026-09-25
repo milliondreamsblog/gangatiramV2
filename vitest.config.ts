@@ -30,5 +30,13 @@ function staticImageDataPlugin(): Plugin {
 export default defineConfig({
   plugins: [staticImageDataPlugin()],
   resolve: { alias: { "@": path.resolve(__dirname) } },
-  test: { environment: "node", globals: true, include: ["**/*.test.ts", "**/*.test.tsx"] },
+  test: {
+    environment: "node",
+    globals: true,
+    include: ["**/*.test.ts", "**/*.test.tsx"],
+    // Harness scratch dirs hold stale full copies of the app. Their test files
+    // resolve "@/..." through the alias above — i.e. against the real source —
+    // so they run outdated fixtures against current code and fail spuriously.
+    exclude: ["**/node_modules/**", "**/dist/**", "**/.next/**", ".kilo/**", ".codex/**", ".claude/**"],
+  },
 });
