@@ -39,8 +39,9 @@ type Contribution = {
 type Lamp = {
   id: number;
   name_on_lamp: string;
+  gotra: string | null;
   dedication: string | null;
-  email: string;
+  email: string | null;
   whatsapp: string | null;
   screenshot_filename: string | null;
   status: string | null;
@@ -55,18 +56,20 @@ const ORDER_TOTAL = 999;
 const LAMP_PRICE = 10;
 const PAGE_SIZE = 20;
 const STATUSES = ["new", "verified", "shipped"] as const;
-const LAMP_STATUSES = ["received", "lit", "clip_sent"] as const;
+const LAMP_STATUSES = ["awaiting_payment", "received", "lit", "clip_sent"] as const;
 
 const STATUS_STYLE: Record<string, string> = {
   new: "bg-amber-100 text-amber-800",
   verified: "bg-sky-100 text-sky-800",
   shipped: "bg-emerald-100 text-emerald-800",
+  awaiting_payment: "bg-black/5 text-black/50",
   received: "bg-amber-100 text-amber-800",
   lit: "bg-orange-100 text-orange-800",
   clip_sent: "bg-emerald-100 text-emerald-800",
 };
 
 const LAMP_STATUS_LABEL: Record<string, string> = {
+  awaiting_payment: "not paid yet",
   received: "received",
   lit: "lit on ghat",
   clip_sent: "clip sent",
@@ -212,7 +215,7 @@ export function AdminPanel() {
     const q = query.trim().toLowerCase();
     if (!q) return lamps;
     return lamps.filter((l) =>
-      [String(l.id), l.name_on_lamp, l.dedication ?? "", l.email, l.whatsapp ?? "", l.status ?? "received"]
+      [String(l.id), `gt${l.id}`, l.name_on_lamp, l.gotra ?? "", l.dedication ?? "", l.email ?? "", l.whatsapp ?? "", l.status ?? "received"]
         .join(" ")
         .toLowerCase()
         .includes(q)
@@ -223,9 +226,11 @@ export function AdminPanel() {
   const lampSafePage = Math.min(page, lampPages);
   const lampPageRows = lampFiltered.slice((lampSafePage - 1) * PAGE_SIZE, lampSafePage * PAGE_SIZE);
   const lampPendingCount = lamps.filter((l) => (l.status ?? "received") === "received").length;
+  const lampUnpaidCount = lamps.filter((l) => l.status === "awaiting_payment").length;
+  const lampPaidCount = lamps.length - lampUnpaidCount;
 
   const exportLampCsv = () => {
-    const header = ["id", "name_on_lamp", "dedication", "email", "whatsapp", "status", "email_sent", "created_at"];
+    const header = ["id", "name_on_lamp", "gotra", "dedication", "email", "whatsapp", "status", "email_sent", "created_at"];
     const esc = (v: unknown) => `"${String(v ?? "").replace(/"/g, '""')}"`;
     const csv = [
       header.join(","),
@@ -476,7 +481,7 @@ export function AdminPanel() {
                   );
                 })}
                 {!pageRows.length && (
-                  <tr><td colSpan={11} className="px-4 py-10 text-center text-black/45">
+                  <tr><td colSpan={12} className="px-4 py-10 text-center text-black/45">
                     {query ? "No orders match the search." : "No orders yet — the table is clean and waiting for #1."}
                   </td></tr>
                 )}
@@ -514,18 +519,22 @@ export function AdminPanel() {
       {tab === "lamps" && (
         <>
           {/* Stats */}
-          <div className="mb-6 grid grid-cols-1 gap-3 sm:grid-cols-3">
+          <div className="mb-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
             <div className="rounded-2xl bg-white p-5">
-              <p className="text-xs uppercase tracking-[0.12em] text-black/45">Total diyas</p>
-              <p className="mt-1 font-serif text-3xl tracking-tight">{lamps.length}</p>
+              <p className="text-xs uppercase tracking-[0.12em] text-black/45">Paid diyas</p>
+              <p className="mt-1 font-serif text-3xl tracking-tight">{lampPaidCount}</p>
             </div>
             <div className="rounded-2xl bg-white p-5">
-              <p className="text-xs uppercase tracking-[0.12em] text-black/45">Total value</p>
-              <p className="mt-1 font-serif text-3xl tracking-tight">{inr(lamps.length * LAMP_PRICE)}</p>
+              <p className="text-xs uppercase tracking-[0.12em] text-black/45">Paid value</p>
+              <p className="mt-1 font-serif text-3xl tracking-tight">{inr(lampPaidCount * LAMP_PRICE)}</p>
             </div>
             <div className="rounded-2xl bg-white p-5">
               <p className="text-xs uppercase tracking-[0.12em] text-black/45">Awaiting verification</p>
               <p className="mt-1 font-serif text-3xl tracking-tight">{lampPendingCount}</p>
+            </div>
+            <div className="rounded-2xl bg-white p-5">
+              <p className="text-xs uppercase tracking-[0.12em] text-black/45">Not paid yet</p>
+              <p className="mt-1 font-serif text-3xl tracking-tight">{lampUnpaidCount}</p>
             </div>
           </div>
 
@@ -553,7 +562,7 @@ export function AdminPanel() {
             <table className="w-full min-w-[1100px] text-left text-sm">
               <thead className="border-b border-black/10 text-xs uppercase tracking-[0.1em] text-black/45">
                 <tr>
-                  {["#", "Name on diya", "Dedication", "Email", "WhatsApp", "Status", "Alerts", "Proof", "Card", "Placed", ""].map((h, i) => (
+                  {["#", "Name on diya", "Gotra", "Dedication", "Email", "WhatsApp", "Status", "Alerts", "Proof", "Card", "Placed", ""].map((h, i) => (
                     <th key={i} className="px-4 py-3 font-medium">{h}</th>
                   ))}
                 </tr>
@@ -563,10 +572,14 @@ export function AdminPanel() {
                   const status = l.status ?? "received";
                   return (
                     <tr key={l.id} className="border-b border-black/5 align-top">
-                      <td className="px-4 py-3 font-medium">{l.id}</td>
+                      <td className="whitespace-nowrap px-4 py-3 font-medium">
+                        {l.id}
+                        <span className="block text-xs font-normal text-black/40">GT{l.id}</span>
+                      </td>
                       <td className="px-4 py-3">{l.name_on_lamp}</td>
+                      <td className="px-4 py-3">{l.gotra ?? <span className="text-black/40">Kashyap (default)</span>}</td>
                       <td className="max-w-[220px] px-4 py-3 text-black/70">{l.dedication}</td>
-                      <td className="px-4 py-3">{l.email}</td>
+                      <td className="px-4 py-3">{l.email ?? "—"}</td>
                       <td className="px-4 py-3">{l.whatsapp}</td>
                       <td className="px-4 py-3">
                         <select
@@ -593,14 +606,20 @@ export function AdminPanel() {
                         </span>
                       </td>
                       <td className="px-4 py-3">
-                        <a
-                          href={`/api/admin/screenshot?id=${l.id}&kind=lamp`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="font-medium underline underline-offset-4"
-                        >
-                          View
-                        </a>
+                        {l.screenshot_filename ? (
+                          <a
+                            href={`/api/admin/screenshot?id=${l.id}&kind=lamp`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-medium underline underline-offset-4"
+                          >
+                            View
+                          </a>
+                        ) : (
+                          <span title="No screenshot — match GT reference on the UPI statement" className="text-black/40">
+                            UPI note
+                          </span>
+                        )}
                       </td>
                       <td className="px-4 py-3">
                         <a
@@ -643,7 +662,7 @@ export function AdminPanel() {
                   );
                 })}
                 {!lampPageRows.length && (
-                  <tr><td colSpan={11} className="px-4 py-10 text-center text-black/45">
+                  <tr><td colSpan={12} className="px-4 py-10 text-center text-black/45">
                     {query ? "No diyas match the search." : "No diya offerings yet — the ghat is waiting for its first name."}
                   </td></tr>
                 )}

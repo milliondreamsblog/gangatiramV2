@@ -20,7 +20,7 @@ export async function GET(request: Request): Promise<Response> {
         FROM contributions ORDER BY created_at DESC LIMIT 500
       `,
       sql`
-        SELECT id, name_on_lamp, dedication, email, whatsapp, screenshot_filename, status, email_sent, whatsapp_sent, created_at
+        SELECT id, name_on_lamp, gotra, dedication, email, whatsapp, screenshot_filename, status, email_sent, whatsapp_sent, created_at
         FROM lamp_offerings ORDER BY created_at DESC LIMIT 1000
       `,
     ]);

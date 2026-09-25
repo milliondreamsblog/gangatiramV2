@@ -1,9 +1,9 @@
 import { getSql, json, badRequest } from "@/lib/server/db";
 import { isAuthed, unauthorized } from "@/lib/server/auth";
 
-const STATUSES = ["received", "lit", "clip_sent"] as const;
+const STATUSES = ["awaiting_payment", "received", "lit", "clip_sent"] as const;
 
-/** Move a diya through the offering flow: received → lit → clip_sent. */
+/** Move a diya through the offering flow: (awaiting_payment →) received → lit → clip_sent. */
 export async function POST(request: Request): Promise<Response> {
   if (!isAuthed(request)) return unauthorized();
 
