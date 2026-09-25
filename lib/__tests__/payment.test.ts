@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { MAX_SCREENSHOT_BYTES, paymentProofError, upiPaymentLink } from "@/lib/payment";
+import { MAX_SCREENSHOT_BYTES, normalizeWhatsapp, paymentProofError, upiPaymentLink } from "@/lib/payment";
 describe("UPI payment destination", () => {
   it.each([999, 10, 30, 210])("keeps the merchant and pre-fills INR %s", (amount) => {
     const link = new URL(upiPaymentLink(amount, "Ganga Tiram offering"));
@@ -28,5 +28,20 @@ describe("payment proof validation", () => {
     expect(paymentProofError({ size: MAX_SCREENSHOT_BYTES, type: "image/png" })).toMatch(/4 MB/);
     expect(paymentProofError({ size: 1024, type: "text/html" })).toMatch(/image or a PDF/);
     expect(paymentProofError({ size: MAX_SCREENSHOT_BYTES - 1, type: "image/png" })).toBeNull();
+  });
+});
+describe("WhatsApp number normalisation", () => {
+  it.each([
+    ["9876543210", "+919876543210"],
+    ["98765 43210", "+919876543210"],
+    ["09876543210", "+919876543210"],
+    ["+91 98765-43210", "+919876543210"],
+    ["919876543210", "+919876543210"],
+    ["+44 7700 900123", "+447700900123"],
+  ])("normalises %j", (input, expected) => {
+    expect(normalizeWhatsapp(input)).toBe(expected);
+  });
+  it.each(["", "12345", "1234567890", "abc"])("rejects %j", (input) => {
+    expect(normalizeWhatsapp(input)).toBeNull();
   });
 });

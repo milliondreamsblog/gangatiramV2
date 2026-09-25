@@ -11,6 +11,24 @@ export const ORDER_TOTAL = BOOK_PRICE + SHIPPING_PRICE;
 export const LAMP_PRICE = 10;
 export const MAX_NAMES = 21;
 
+/** Reference a payer types (or the UPI note carries) so a statement line maps to an offering. */
+export const lampRef = (firstId: number) => `GT${firstId}`;
+
+/**
+ * WhatsApp numbers are stored as +<digits>. Bare 10-digit Indian mobiles (and
+ * the 0- / 91-prefixed forms people paste) become +91XXXXXXXXXX; other
+ * 11–15 digit numbers are kept as international. Anything else is null.
+ */
+export function normalizeWhatsapp(input: string): string | null {
+  const digits = input.replace(/\D/g, "");
+  const indian = digits.length === 10 ? digits
+    : digits.length === 11 && digits.startsWith("0") ? digits.slice(1)
+    : digits.length === 12 && digits.startsWith("91") ? digits.slice(2)
+    : null;
+  if (indian) return /^[6-9]/.test(indian) ? `+91${indian}` : null;
+  return digits.length >= 11 && digits.length <= 15 ? `+${digits}` : null;
+}
+
 /**
  * Appends to the scanned payload verbatim rather than via URLSearchParams,
  * which would rewrite "@" as %40 and spaces as "+" — forms some UPI apps
