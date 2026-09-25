@@ -1,12 +1,17 @@
-import sharp from "sharp";
-import { paymentProofError, MAX_NAMES } from "@/lib/payment";
+import { paymentProofError, normalizeWhatsapp, MAX_NAMES } from "@/lib/payment";
 import { getSql, json, badRequest, fieldStr } from "@/lib/server/db";
+import { compressProof, toBytea, type Proof } from "@/lib/server/proof";
 import { sendLampEmail } from "@/lib/server/notify";
 
 /**
  * Dev Deepawali diya offering — same durability order as the book flow:
  * validate → compress proof → INSERT (one row per name, shared proof) →
  * notify fail-soft → record alert flags.
+ *
+ * Two entry points share this route:
+ *   - /dev-deepawali sends the screenshot up front → status "received".
+ *   - /diya (the QR page) saves *before* the UPI app opens, with no proof →
+ *     status "awaiting_payment"; /api/lamp/confirm moves it on once paid.
  */
 export async function POST(request: Request): Promise<Response> {
   let form: FormData;
@@ -35,46 +40,40 @@ export async function POST(request: Request): Promise<Response> {
   }
 
   const dedication = fieldStr(form.get("dedication"), 300);
+  const gotra = fieldStr(form.get("gotra"), 80);
   const email = fieldStr(form.get("email"), 200);
-  const whatsapp = fieldStr(form.get("whatsapp"), 30);
+  const rawWhatsapp = fieldStr(form.get("whatsapp"), 30);
+  const whatsapp = rawWhatsapp ? normalizeWhatsapp(rawWhatsapp) : null;
   const screenshot = form.get("screenshot");
 
-  if (!/.+@.+\..+/.test(email)) {
-    return badRequest("A working email is required — your clip is sent there.");
+  if (rawWhatsapp && !whatsapp) {
+    return badRequest("That WhatsApp number doesn't look right — 10 digits, please.");
   }
-  if (!(screenshot instanceof File) || screenshot.size === 0) {
-    return badRequest("Payment screenshot is required.");
+  if (email && !/.+@.+\..+/.test(email)) {
+    return badRequest("That email doesn't look right.");
   }
-  const proofError = paymentProofError(screenshot);
-  if (proofError) return badRequest(proofError);
+  if (!email && !whatsapp) {
+    return badRequest("A WhatsApp number is required — your clip is sent there.");
+  }
 
-  let bytes = Buffer.from(await screenshot.arrayBuffer());
-  let mime = screenshot.type;
-  let filename = screenshot.name.slice(0, 300);
-  if (/^image\//i.test(mime)) {
-    try {
-      bytes = Buffer.from(
-        await sharp(bytes)
-          .rotate()
-          .resize({ width: 1000, height: 1000, fit: "inside", withoutEnlargement: true })
-          .jpeg({ quality: 72, mozjpeg: true })
-          .toBuffer()
-      );
-      mime = "image/jpeg";
-      filename = filename.replace(/\.\w+$/, "") + ".jpg";
-    } catch (error) {
-      console.error("lamp screenshot compression failed, storing original", error);
-    }
+  let proof: Proof | null = null;
+  if (screenshot instanceof File && screenshot.size > 0) {
+    const proofError = paymentProofError(screenshot);
+    if (proofError) return badRequest(proofError);
+    proof = await compressProof(screenshot, "lamp");
+  } else if (form.get("pay_later") !== "1") {
+    return badRequest("Payment screenshot is required.");
   }
 
   let ids: number[];
   try {
     const sql = getSql();
-    const hex = "\\x" + bytes.toString("hex");
     // One statement is atomic: every name is stored, or none is.
     const rows = (await sql`
-      INSERT INTO lamp_offerings (name_on_lamp, dedication, email, whatsapp, screenshot_filename, screenshot_mime, screenshot)
-      SELECT name, ${dedication || null}, ${email}, ${whatsapp || null}, ${filename}, ${mime}, ${hex}
+      INSERT INTO lamp_offerings (name_on_lamp, dedication, gotra, email, whatsapp, status, screenshot_filename, screenshot_mime, screenshot)
+      SELECT name, ${dedication || null}, ${gotra || null}, ${email || null}, ${whatsapp},
+             ${proof ? "received" : "awaiting_payment"},
+             ${proof?.filename ?? null}, ${proof?.mime ?? null}, ${proof ? toBytea(proof.buffer) : null}
       FROM unnest(${names}::text[]) WITH ORDINALITY AS offerings(name, position)
       ORDER BY position
       RETURNING id
@@ -85,15 +84,16 @@ export async function POST(request: Request): Promise<Response> {
     return json({ ok: false, error: "Could not save your offering. Please try again." }, 500);
   }
 
-  const emailSent = await sendLampEmail(
-    { firstId: ids[0], names, dedication, email, whatsapp },
-    { buffer: bytes, mime, filename }
-  );
-  try {
-    const sql = getSql();
-    await sql`UPDATE lamp_offerings SET email_sent = ${emailSent} WHERE id = ANY(${ids})`;
-  } catch (error) {
-    console.error("lamp flag update failed", error);
+  // Unpaid offerings alert on /api/lamp/confirm instead, so abandoned
+  // checkouts never reach the inbox.
+  if (proof) {
+    const emailSent = await sendLampEmail({ firstId: ids[0], names, dedication, gotra, email, whatsapp }, proof);
+    try {
+      const sql = getSql();
+      await sql`UPDATE lamp_offerings SET email_sent = ${emailSent} WHERE id = ANY(${ids})`;
+    } catch (error) {
+      console.error("lamp flag update failed", error);
+    }
   }
 
   return json({ ok: true, ids, names });
