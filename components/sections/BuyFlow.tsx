@@ -188,6 +188,19 @@ export function BuyFlow() {
           />
         </label>
         <label className="flex flex-col gap-1.5 text-sm font-medium">
+          Email
+          <input
+            name="email"
+            type="email"
+            required
+            inputMode="email"
+            maxLength={200}
+            autoComplete="email"
+            placeholder="Your order confirmation goes here"
+            className={FIELD}
+          />
+        </label>
+        <label className="flex flex-col gap-1.5 text-sm font-medium">
           Address
           <textarea
             name="address"

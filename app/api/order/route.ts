@@ -1,7 +1,7 @@
 import sharp from "sharp";
 import { paymentProofError } from "@/lib/payment";
 import { getSql, json, badRequest, fieldStr } from "@/lib/server/db";
-import { sendOrderEmail, sendOrderWhatsApp } from "@/lib/server/notify";
+import { sendOrderEmail, sendOrderWhatsApp, sendCustomerThankYou } from "@/lib/server/notify";
 
 /**
  * Order flow, durability-first:
@@ -22,6 +22,7 @@ export async function POST(request: Request): Promise<Response> {
 
   const name = fieldStr(form.get("name"), 200);
   const phone = fieldStr(form.get("phone"), 20);
+  const email = fieldStr(form.get("email"), 200);
   const address = fieldStr(form.get("address"));
   const pincode = fieldStr(form.get("pincode"), 20);
   const country = fieldStr(form.get("country"), 100);
@@ -33,6 +34,9 @@ export async function POST(request: Request): Promise<Response> {
   }
   if (!/^\d{10,15}$/.test(phone.replace(/[^\d]/g, ""))) {
     return badRequest("A working phone number is required — we use it for delivery updates.");
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+    return badRequest("A working email is required — we send your order confirmation there.");
   }
   if (!(screenshot instanceof File) || screenshot.size === 0) {
     return badRequest("Payment screenshot is required.");
@@ -65,8 +69,8 @@ export async function POST(request: Request): Promise<Response> {
   try {
     const sql = getSql();
     const rows = (await sql`
-      INSERT INTO book_orders (name, phone, address, pincode, country, state, screenshot_filename, screenshot_mime, screenshot)
-      VALUES (${name}, ${phone}, ${address}, ${pincode}, ${country}, ${state}, ${filename}, ${mime}, ${"\\x" + bytes.toString("hex")})
+      INSERT INTO book_orders (name, phone, email, address, pincode, country, state, screenshot_filename, screenshot_mime, screenshot)
+      VALUES (${name}, ${phone}, ${email}, ${address}, ${pincode}, ${country}, ${state}, ${filename}, ${mime}, ${"\\x" + bytes.toString("hex")})
       RETURNING id
     `) as { id: number }[];
     orderId = rows[0].id;
@@ -75,15 +79,18 @@ export async function POST(request: Request): Promise<Response> {
     return json({ ok: false, error: "Could not save your order. Please try again." }, 500);
   }
 
-  // Notifications — fail-soft, flags recorded for the admin panel.
-  const order = { orderId, name, phone, address, pincode, state, country };
-  const [emailSent, whatsappSent] = await Promise.all([
+  // Notifications — fail-soft, flags recorded for the admin panel. The buyer's
+  // thank-you rides along here: the order is already stored, so a bounced
+  // thank-you costs a flag, never the sale.
+  const order = { orderId, name, phone, email, address, pincode, state, country };
+  const [emailSent, whatsappSent, thankyouSent] = await Promise.all([
     sendOrderEmail(order, { buffer: bytes, mime, filename }),
     sendOrderWhatsApp(order),
+    sendCustomerThankYou(order),
   ]);
   try {
     const sql = getSql();
-    await sql`UPDATE book_orders SET email_sent = ${emailSent}, whatsapp_sent = ${whatsappSent} WHERE id = ${orderId}`;
+    await sql`UPDATE book_orders SET email_sent = ${emailSent}, whatsapp_sent = ${whatsappSent}, thankyou_sent = ${thankyouSent} WHERE id = ${orderId}`;
   } catch (error) {
     console.error("notification flag update failed", error);
   }
