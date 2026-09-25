@@ -49,5 +49,8 @@ next-env.d.ts
 # Codex harness scratch
 .codex/
 
+# Kilo harness worktrees (local only)
+.kilo/
+
 # Licensed SF Pro Rounded source (only the subset .woff2 in public/ ships)
 /SF Pro Rounded/
