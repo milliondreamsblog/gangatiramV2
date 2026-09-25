@@ -4,15 +4,16 @@ export const dynamic = "force-dynamic";
 
 /**
  * Public feed for the lamp page: how many diyas are pledged, and the most
- * recent names — shown as chips and on the procession belt. Names appear on
+ * recent names — shown as chips and on the procession belt. Unpaid /diya
+ * checkouts (awaiting_payment) stay off the ghat until the payer confirms. Names appear on
  * the ghat by design, so listing them here is the point, not a leak.
  */
 export async function GET(): Promise<Response> {
   try {
     const sql = getSql();
     const [countRows, nameRows] = await Promise.all([
-      sql`SELECT count(*)::int AS count FROM lamp_offerings`,
-      sql`SELECT id, name_on_lamp FROM lamp_offerings ORDER BY id DESC LIMIT 14`,
+      sql`SELECT count(*)::int AS count FROM lamp_offerings WHERE status <> 'awaiting_payment'`,
+      sql`SELECT id, name_on_lamp FROM lamp_offerings WHERE status <> 'awaiting_payment' ORDER BY id DESC LIMIT 14`,
     ]);
     return new Response(
       JSON.stringify({
