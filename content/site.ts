@@ -8,6 +8,7 @@ export const contactEmail = "";
 /** PLACEHOLDER — paste the real WhatsApp group invite link before deploy. */
 export const whatsappHref = "https://chat.whatsapp.com/DEAiLhWV0Yh3pHhUe8XqwS";
 export const instagramHref = "#instagram";
+export const linkedinHref = "https://www.linkedin.com/in/akshat-darshi-88742b252/";
 
 /** Primary CTA — the first online gathering. */
 export const bookACallHref = "/dev-deepawali";
