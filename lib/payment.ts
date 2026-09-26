@@ -29,15 +29,6 @@ export function normalizeWhatsapp(input: string): string | null {
   return digits.length >= 11 && digits.length <= 15 ? `+${digits}` : null;
 }
 
-/**
- * Appends to the scanned payload verbatim rather than via URLSearchParams,
- * which would rewrite "@" as %40 and spaces as "+" — forms some UPI apps
- * don't decode, showing "B+M+ADVISORY" or failing to resolve the VPA.
- */
-export function upiPaymentLink(amount: number, note: string): string {
-  return `${UPI_QR_PAYLOAD}&am=${amount.toFixed(2)}&cu=INR&tn=${encodeURIComponent(note)}`;
-}
-
 // Leave room for multipart fields below Vercel's 4.5 MB request limit.
 export const MAX_SCREENSHOT_BYTES = 4 * 1024 * 1024;
 export const SCREENSHOT_ACCEPT = "image/png,image/jpeg,image/webp,image/heic,image/heif,application/pdf";
