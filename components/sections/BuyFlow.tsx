@@ -3,12 +3,10 @@
 import { useState, type FormEvent } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, Check, Copy, Maximize2, X } from "lucide-react";
+import { Check, Copy, Maximize2, X } from "lucide-react";
 import { hoverFeedback } from "@/lib/feedback";
 import { PaymentQr } from "@/components/shared/PaymentQr";
-import { BOOK_PRICE, SHIPPING_PRICE, ORDER_TOTAL, UPI_ID, UPI_PAYEE, upiPaymentLink, paymentProofError, SCREENSHOT_ACCEPT } from "@/lib/payment";
-
-const UPI_DEEP_LINK = upiPaymentLink(ORDER_TOTAL, "Ganga Tiram book");
+import { BOOK_PRICE, SHIPPING_PRICE, ORDER_TOTAL, UPI_ID, UPI_PAYEE, paymentProofError, SCREENSHOT_ACCEPT } from "@/lib/payment";
 
 const inr = (n: number) => `₹${n.toLocaleString("en-IN")}`;
 
@@ -151,13 +149,6 @@ export function BuyFlow() {
                   {copied ? <Check size={14} /> : <Copy size={14} />}
                 </button>
               </div>
-              <a
-                href={UPI_DEEP_LINK}
-                className="inline-flex items-center gap-1.5 text-sm font-medium underline-offset-4 hover:underline md:hidden"
-              >
-                Open in a UPI app
-                <ArrowUpRight size={14} />
-              </a>
             </div>
           </div>
         </div>

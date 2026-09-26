@@ -4,7 +4,7 @@ import { useState, type FormEvent } from "react";
 import { ArrowUpRight, Check, Copy, Maximize2, Plus, X } from "lucide-react";
 import { hoverFeedback } from "@/lib/feedback";
 import { PaymentQr } from "@/components/shared/PaymentQr";
-import { LAMP_PRICE, MAX_NAMES, UPI_ID, UPI_PAYEE, upiPaymentLink, paymentProofError, SCREENSHOT_ACCEPT } from "@/lib/payment";
+import { LAMP_PRICE, MAX_NAMES, UPI_ID, UPI_PAYEE, paymentProofError, SCREENSHOT_ACCEPT } from "@/lib/payment";
 import { Flame } from "./Flame";
 import { DiyaCard } from "./DiyaCard";
 
@@ -34,7 +34,6 @@ export function LampOffer() {
   const [done, setDone] = useState<{ ids: number[]; names: string[] } | null>(null);
 
   const total = LAMP_PRICE * names.length;
-  const upiDeepLink = upiPaymentLink(total, "Ganga Tiram diya");
 
   const setName = (i: number, v: string) =>
     setNames((ns) => ns.map((n, j) => (j === i ? v : n)));
@@ -230,13 +229,6 @@ export function LampOffer() {
                           {UPI_ID}
                           {copied ? <Check size={14} /> : <Copy size={14} />}
                         </button>
-                        <a
-                          href={upiDeepLink}
-                          className="inline-flex items-center gap-1.5 font-medium underline-offset-4 hover:underline md:hidden"
-                        >
-                          Open in a UPI app — {inr(total)} pre-filled
-                          <ArrowUpRight size={14} />
-                        </a>
                       </div>
                     </div>
                   </div>
