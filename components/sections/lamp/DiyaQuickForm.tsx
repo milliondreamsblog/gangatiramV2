@@ -14,16 +14,17 @@ import {
   lampRef,
   normalizeWhatsapp,
   paymentProofError,
-  upiPaymentLink,
 } from "@/lib/payment";
 import { Flame } from "./Flame";
 
 /**
  * The QR-poster checkout, built for a phone in one hand at the ghat:
  *   1. names, gotra, WhatsApp — nothing else
- *   2. "Pay ₹X" saves the offering (awaiting_payment) *first*, then opens the
- *      UPI app with the amount and a GT reference pre-filled
- *   3. back from the app: "I've paid" (screenshot optional) → received
+ *   2. "Continue" saves the offering (awaiting_payment) *first*, then shows
+ *      the UPI ID to copy and the QR to scan
+ *   3. "I've paid" (screenshot optional) → received
+ * No upi://pay links: UPI apps block link-started payments to this account,
+ * so paying is always the payer's own action — paste the ID or scan the QR.
  * The pending offering lives in localStorage, because Android often reloads
  * the tab while the UPI app is in front.
  */
@@ -41,8 +42,6 @@ const SHARE_TEXT =
 
 type Pending = { ids: number[]; names: string[]; whatsapp: string; total: number };
 
-const onPhone = () => /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-const payLink = (p: Pending) => upiPaymentLink(p.total, `Diya ${lampRef(p.ids[0])}`);
 const cleanName = (n: string) => n.trim().replace(/\s+/g, " ");
 
 export function DiyaQuickForm() {
@@ -54,7 +53,7 @@ export function DiyaQuickForm() {
   const [proof, setProof] = useState<File | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
-  const [copied, setCopied] = useState(false);
+  const [copied, setCopied] = useState<"upi" | "note" | null>(null);
 
   // Resume a checkout the UPI app switch interrupted.
   useEffect(() => {
@@ -115,9 +114,6 @@ export function DiyaQuickForm() {
       setPending(next);
       setStage("pay");
       window.scrollTo({ top: 0 });
-      // Still inside the tap's user activation, so the browser lets the UPI
-      // app open. If it doesn't, the pay screen has the same link as a button.
-      if (onPhone()) window.location.href = payLink(next);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
     } finally {
@@ -175,13 +171,13 @@ export function DiyaQuickForm() {
     setStage("form");
   };
 
-  const copyUpi = async () => {
+  const copy = async (what: "upi" | "note", text: string) => {
     try {
-      await navigator.clipboard.writeText(UPI_ID);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1800);
+      await navigator.clipboard.writeText(text);
+      setCopied(what);
+      setTimeout(() => setCopied((c) => (c === what ? null : c)), 2500);
     } catch {
-      setError(`Could not copy. The UPI ID is ${UPI_ID}`);
+      setError(`Could not copy. Type it in: ${text}`);
     }
   };
 
@@ -255,69 +251,70 @@ export function DiyaQuickForm() {
         </h2>
         <p className="mt-1.5 text-sm leading-relaxed text-black/55">{pending.names.join(" · ")}</p>
 
-        <a
-          href={payLink(pending)}
-          onMouseEnter={() => hoverFeedback("cta")}
-          className="mt-5 flex min-h-14 items-center justify-center gap-2 rounded-full bg-black px-6 text-base font-medium text-white md:hidden"
-        >
-          Pay {inr(pending.total)} in UPI app
-          <ArrowUpRight size={18} />
-        </a>
-        <button
-          type="button"
-          onClick={confirmPaid}
-          disabled={submitting}
-          className="mt-3 flex min-h-14 items-center justify-center gap-2 rounded-full border-2 border-black bg-white px-6 text-base font-medium disabled:opacity-60"
-        >
-          <Check size={18} />
-          {submitting ? "Saving…" : `I've paid ${inr(pending.total)}`}
-        </button>
+        <div className="mt-5 flex flex-col gap-3">
+          {/* 1 — UPI ID: first on a phone, where the QR can't be scanned from its own screen */}
+          <div className="rounded-2xl bg-[#f7f5f0] p-4">
+            <p className="text-base font-medium">Pay to UPI ID</p>
+            <p className="mt-2 break-all font-serif text-[26px] leading-tight tracking-tight">{UPI_ID}</p>
+            <p className="mt-1 text-xs text-black/50">{UPI_PAYEE}</p>
+            <button
+              type="button"
+              onClick={() => copy("upi", UPI_ID)}
+              onMouseEnter={() => hoverFeedback("cta")}
+              className="mt-3 flex min-h-13 w-full items-center justify-center gap-2 rounded-full bg-black px-6 text-base font-medium text-white"
+            >
+              {copied === "upi" ? <Check size={18} /> : <Copy size={18} />}
+              {copied === "upi" ? "Copied. Now open your UPI app" : "Copy UPI ID"}
+            </button>
+            <ol className="mt-4 flex flex-col gap-2 text-sm leading-relaxed text-black/65">
+              <li>
+                <span className="font-medium text-black">1.</span> Open GPay, PhonePe, Paytm or any UPI app
+              </li>
+              <li>
+                <span className="font-medium text-black">2.</span> Tap <span className="font-medium text-black">Pay to UPI ID</span> and paste
+              </li>
+              <li>
+                <span className="font-medium text-black">3.</span> Enter <span className="font-medium text-black">{inr(pending.total)}</span>. In the note, write{" "}
+                <button
+                  type="button"
+                  onClick={() => copy("note", ref)}
+                  className="inline-flex items-center gap-1 rounded-md bg-white px-1.5 py-0.5 font-medium text-black"
+                >
+                  {ref}
+                  {copied === "note" ? <Check size={12} /> : <Copy size={12} />}
+                </button>
+              </li>
+            </ol>
+          </div>
 
-        {error && (
-          <p role="alert" className="mt-3 rounded-xl bg-red-50 px-4 py-3 text-sm font-medium text-red-800">
-            {error}
-          </p>
-        )}
+          <div className="flex items-center gap-3 text-xs uppercase tracking-[0.12em] text-black/40 md:hidden">
+            <span className="h-px grow bg-black/10" />
+            or
+            <span className="h-px grow bg-black/10" />
+          </div>
 
-        {/* Fallback — always visible: iPhones and some apps won't open upi:// links */}
-        <div className="mt-6 rounded-2xl bg-[#f7f5f0] p-4">
-          <p className="text-sm font-medium">
-            <span className="md:hidden">UPI app didn&rsquo;t open? </span>Pay by UPI ID or QR
-          </p>
-          <p className="mt-1 text-sm leading-relaxed text-black/60">
-            Enter <span className="font-medium text-black">{inr(pending.total)}</span> and write{" "}
-            <span className="font-medium text-black">{ref}</span> in the note.
-          </p>
-          <button
-            type="button"
-            onClick={copyUpi}
-            aria-label={`Copy UPI ID ${UPI_ID}`}
-            className="mt-3 flex min-h-12 w-full items-center justify-between rounded-xl bg-white px-4 text-base font-medium"
-          >
-            {UPI_ID}
-            <span className="inline-flex items-center gap-1.5 text-sm text-black/55">
-              {copied ? <Check size={15} /> : <Copy size={15} />}
-              {copied ? "Copied" : "Copy"}
-            </span>
-          </button>
-          <p className="mt-1.5 text-xs text-black/45">Paying {UPI_PAYEE}</p>
-
-          <div className="mt-4 flex items-center gap-4">
-            <div className="w-[140px] shrink-0 overflow-hidden rounded-xl border border-black/10 md:w-[200px]">
+          {/* 2 — QR: first on a laptop, where the phone scans the screen */}
+          <div className="rounded-2xl bg-[#f7f5f0] p-4 md:order-first">
+            <p className="text-base font-medium">Scan the QR</p>
+            <div className="mx-auto mt-3 w-full max-w-[240px] overflow-hidden rounded-xl border border-black/10 bg-white">
               <PaymentQr />
             </div>
-            <div className="flex flex-col gap-2 text-sm text-black/60">
-              <p className="hidden md:block">Scan with any UPI app on your phone.</p>
-              <p className="md:hidden">On this phone? Save the QR, then open it from the gallery in your UPI app.</p>
-              <a
-                href={PAYMENT_QR_IMAGE}
-                download="ganga-tiram-upi-qr.jpeg"
-                className="inline-flex w-fit items-center gap-1.5 rounded-full bg-white px-3.5 py-2 font-medium text-black"
-              >
-                <Download size={14} />
-                Save QR
-              </a>
-            </div>
+            <p className="mt-3 text-center text-sm leading-relaxed text-black/60">
+              <span className="md:hidden">
+                Paying from this phone? Save the QR, then in your UPI app tap{" "}
+                <span className="font-medium text-black">Scan → Gallery</span>.
+              </span>
+              <span className="hidden md:inline">Scan with any UPI app on your phone.</span>{" "}
+              Enter <span className="font-medium text-black">{inr(pending.total)}</span>.
+            </p>
+            <a
+              href={PAYMENT_QR_IMAGE}
+              download="ganga-tiram-upi-qr.jpeg"
+              className="mx-auto mt-3 flex min-h-12 w-fit items-center gap-2 rounded-full border border-black/15 bg-white px-5 text-sm font-medium text-black md:hidden"
+            >
+              <Download size={15} />
+              Save QR to gallery
+            </a>
           </div>
         </div>
 
@@ -342,6 +339,12 @@ export function DiyaQuickForm() {
           </span>
         </label>
 
+        {error && (
+          <p role="alert" className="mt-4 rounded-xl bg-red-50 px-4 py-3 text-sm font-medium text-red-800">
+            {error}
+          </p>
+        )}
+
         <button
           type="button"
           onClick={startOver}
@@ -349,6 +352,22 @@ export function DiyaQuickForm() {
         >
           Wrong name or number? Start over
         </button>
+
+        {/* Done bar — pinned to the thumb, like the form's pay bar */}
+        <div className="fixed inset-x-0 bottom-0 z-40 border-t border-black/10 bg-white/95 px-4 pt-3 pb-[max(env(safe-area-inset-bottom),0.75rem)] backdrop-blur">
+          <button
+            type="button"
+            onClick={confirmPaid}
+            disabled={submitting}
+            className="mx-auto flex min-h-14 w-full max-w-[520px] items-center justify-center gap-2 rounded-full bg-black px-6 text-base font-medium text-white disabled:opacity-60"
+          >
+            <Check size={18} />
+            {submitting ? "Saving…" : `I've paid ${inr(pending.total)}`}
+          </button>
+          <p className="mx-auto mt-1.5 max-w-[520px] text-center text-[11px] text-black/45">
+            Tap after the payment goes through in your UPI app
+          </p>
+        </div>
       </div>
     );
   }
@@ -465,12 +484,12 @@ export function DiyaQuickForm() {
             onMouseEnter={() => hoverFeedback("cta")}
             className="flex min-h-14 grow items-center justify-center gap-2 rounded-full bg-black px-6 text-base font-medium text-white disabled:opacity-60"
           >
-            {submitting ? "Saving your names…" : `Pay ${inr(total)}`}
+            {submitting ? "Saving your names…" : `Continue to pay ${inr(total)}`}
             {!submitting && <ArrowUpRight size={18} />}
           </button>
         </div>
         <p className="mx-auto mt-1.5 max-w-[520px] text-center text-[11px] text-black/45">
-          Opens GPay, PhonePe, Paytm or any UPI app
+          Next: pay by UPI ID or QR from any UPI app
         </p>
       </div>
     </form>
