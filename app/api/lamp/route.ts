@@ -46,14 +46,17 @@ export async function POST(request: Request): Promise<Response> {
   const whatsapp = rawWhatsapp ? normalizeWhatsapp(rawWhatsapp) : null;
   const screenshot = form.get("screenshot");
 
-  if (rawWhatsapp && !whatsapp) {
-    return badRequest("That WhatsApp number doesn't look right — 10 digits, please.");
+  // Both forms ask for name, gotra and a contact number; email and dedication
+  // are only still accepted from pages cached before that change.
+  if (!whatsapp) {
+    return badRequest(
+      rawWhatsapp
+        ? "That contact number doesn't look right — 10 digits, please."
+        : "A contact number is required — your clip is sent there on WhatsApp."
+    );
   }
   if (email && !/.+@.+\..+/.test(email)) {
     return badRequest("That email doesn't look right.");
-  }
-  if (!email && !whatsapp) {
-    return badRequest("A WhatsApp number is required — your clip is sent there.");
   }
 
   let proof: Proof | null = null;

@@ -19,7 +19,7 @@ function request(kind: "order" | "lamp", names: unknown = ["Asha", "Mira"], byte
   const form = new FormData();
   const fields = kind === "order"
     ? { name: "Test Buyer", phone: "9999999999", email: "buyer@example.com", address: "Test address", pincode: "700001", country: "India", state: "West Bengal" }
-    : { names: JSON.stringify(names), email: "test@example.com" };
+    : { names: JSON.stringify(names), gotra: "Bharadwaj", whatsapp: "98765 43210" };
   for (const [key, value] of Object.entries(fields)) form.set(key, value);
   form.set("screenshot", new File([new Uint8Array(bytes)], "proof.pdf", { type }));
   return new Request("http://localhost/api/" + kind, { method: "POST", body: form });
@@ -74,7 +74,18 @@ describe("payment submissions", () => {
     expect(statement.join("")).toContain("unnest(");
     expect(params).toContainEqual(["Asha", "Mira"]);
     expect(params).toContain(String.fromCharCode(92) + "x" + "00".repeat(12));
+    expect(params).toContain("Bharadwaj");
+    expect(params).toContain("+919876543210");
+    expect(params).toContain("received");
     expect(mocks.sql).toHaveBeenCalledTimes(2);
+  });
+  it("requires a contact number even when an email is given", async () => {
+    const req = request("lamp");
+    const form = await req.formData();
+    form.delete("whatsapp");
+    form.set("email", "test@example.com");
+    expect((await lamp(new Request("http://localhost/api/lamp", { method: "POST", body: form }))).status).toBe(400);
+    expect(mocks.sql).not.toHaveBeenCalled();
   });
   it("reports failure without notifications if the complete offering cannot save", async () => {
     const error = vi.spyOn(console, "error").mockImplementation(() => {});
