@@ -19,10 +19,10 @@ import { Flame } from "./Flame";
 
 /**
  * The QR-poster checkout, built for a phone in one hand at the ghat:
- *   1. names, gotra, WhatsApp — nothing else
+ *   1. name, gotra, contact number — nothing else
  *   2. "Continue" saves the offering (awaiting_payment) *first*, then shows
  *      the UPI ID to copy and the QR to scan
- *   3. "I've paid" (screenshot optional) → received
+ *   3. upload the payment screenshot, "I've paid" → received
  * No upi://pay links: UPI apps block link-started payments to this account,
  * so paying is always the payer's own action — paste the ID or scan the QR.
  * The pending offering lives in localStorage, because Android often reloads
@@ -86,7 +86,7 @@ export function DiyaQuickForm() {
     }
     const wa = normalizeWhatsapp(whatsapp);
     if (!wa) {
-      setError("Enter your 10-digit WhatsApp number. The video is sent there.");
+      setError("Enter your 10-digit contact number. The video is sent there on WhatsApp.");
       return;
     }
     const data = new FormData();
@@ -123,17 +123,19 @@ export function DiyaQuickForm() {
 
   const confirmPaid = async () => {
     if (!pending) return;
+    if (!proof) {
+      setError("Upload the screenshot of your payment first.");
+      return;
+    }
+    const proofError = paymentProofError(proof);
+    if (proofError) {
+      setError(proofError);
+      return;
+    }
     const data = new FormData();
     data.set("ids", JSON.stringify(pending.ids));
     data.set("whatsapp", pending.whatsapp);
-    if (proof) {
-      const proofError = paymentProofError(proof);
-      if (proofError) {
-        setError(proofError);
-        return;
-      }
-      data.set("screenshot", proof);
-    }
+    data.set("screenshot", proof);
     setSubmitting(true);
     setError("");
     try {
@@ -318,15 +320,17 @@ export function DiyaQuickForm() {
           </div>
         </div>
 
-        {/* Screenshot — optional, speeds up matching */}
+        {/* Screenshot — the proof we match against the UPI statement */}
         <label className="mt-4 block">
-          <span className="text-sm font-medium">Payment screenshot</span>
-          <span className="ml-1.5 text-sm text-black/45">(optional)</span>
+          <span className="text-base font-medium">Upload the payment screenshot</span>
           <span className="relative mt-2 flex min-h-16 cursor-pointer items-center justify-center gap-2 rounded-xl border border-dashed border-black/25 bg-white px-4 text-center text-sm">
             <input
               type="file"
               accept={SCREENSHOT_ACCEPT}
-              onChange={(e) => setProof(e.target.files?.[0] ?? null)}
+              onChange={(e) => {
+                setError("");
+                setProof(e.target.files?.[0] ?? null);
+              }}
               className="absolute inset-0 cursor-pointer opacity-0"
             />
             {proof ? (
@@ -334,7 +338,7 @@ export function DiyaQuickForm() {
                 <Check size={15} /> {proof.name}
               </span>
             ) : (
-              <span className="text-black/55">Add it if you have it. It helps us match your payment faster.</span>
+              <span className="text-black/55">After paying, add the UPI confirmation screenshot here.</span>
             )}
           </span>
         </label>
@@ -365,7 +369,7 @@ export function DiyaQuickForm() {
             {submitting ? "Saving…" : `I've paid ${inr(pending.total)}`}
           </button>
           <p className="mx-auto mt-1.5 max-w-[520px] text-center text-[11px] text-black/45">
-            Tap after the payment goes through in your UPI app
+            {proof ? "Screenshot added. Tap to finish" : "Pay, upload the screenshot above, then tap"}
           </p>
         </div>
       </div>
@@ -438,7 +442,7 @@ export function DiyaQuickForm() {
       </label>
 
       <label className="flex flex-col gap-2">
-        <span className="text-base font-medium">WhatsApp number</span>
+        <span className="text-base font-medium">Contact number</span>
         <span className="flex items-stretch overflow-hidden rounded-xl border border-black/15 bg-white focus-within:border-black/60">
           <span className="grid place-items-center border-r border-black/10 bg-[#f7f5f0] px-3.5 text-base text-black/60">
             +91
@@ -459,7 +463,8 @@ export function DiyaQuickForm() {
           />
         </span>
         <span className="text-sm leading-relaxed text-black/50">
-          The video of your diya on the ghat comes here, within three days of the night.
+          Use your WhatsApp number. The video of your diya on the ghat comes here, within
+          three days of the night.
         </span>
       </label>
 
@@ -489,7 +494,7 @@ export function DiyaQuickForm() {
           </button>
         </div>
         <p className="mx-auto mt-1.5 max-w-[520px] text-center text-[11px] text-black/45">
-          Next: pay by UPI ID or QR from any UPI app
+          Next: scan the QR or copy the UPI ID, pay, upload the screenshot
         </p>
       </div>
     </form>
