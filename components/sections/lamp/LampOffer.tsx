@@ -4,7 +4,15 @@ import { useState, type FormEvent } from "react";
 import { ArrowUpRight, Check, Copy, Maximize2, Plus, X } from "lucide-react";
 import { hoverFeedback } from "@/lib/feedback";
 import { PaymentQr } from "@/components/shared/PaymentQr";
-import { LAMP_PRICE, MAX_NAMES, UPI_ID, UPI_PAYEE, paymentProofError, SCREENSHOT_ACCEPT } from "@/lib/payment";
+import {
+  LAMP_PRICE,
+  MAX_NAMES,
+  UPI_ID,
+  UPI_PAYEE,
+  normalizeWhatsapp,
+  paymentProofError,
+  SCREENSHOT_ACCEPT,
+} from "@/lib/payment";
 import { Flame } from "./Flame";
 import { DiyaCard } from "./DiyaCard";
 
@@ -13,7 +21,8 @@ import { DiyaCard } from "./DiyaCard";
  * warm gradient. (Layout: Bricx Website v7, node 581:6367 "Services we
  * offer" — item rail + screenshot on an orange gradient panel. Here the
  * "screenshot" is the visitor's own Diya Card, updating as they type.)
- * Checkout mechanics mirror the proven book BuyFlow.
+ * Same fields and payment as /diya: name, gotra, contact number, then scan
+ * the QR or copy the UPI ID, pay, and upload the screenshot.
  */
 
 const inr = (n: number) => `₹${n.toLocaleString("en-IN")}`;
@@ -23,8 +32,7 @@ const FIELD =
 
 export function LampOffer() {
   const [names, setNames] = useState<string[]>([""]);
-  const [dedication, setDedication] = useState("");
-  const [email, setEmail] = useState("");
+  const [gotra, setGotra] = useState("");
   const [whatsapp, setWhatsapp] = useState("");
   const [fileName, setFileName] = useState("");
   const [submitting, setSubmitting] = useState(false);
@@ -58,6 +66,11 @@ export function LampOffer() {
       setError("Every diya needs a name — fill or remove the empty rows.");
       return;
     }
+    const wa = normalizeWhatsapp(whatsapp);
+    if (!wa) {
+      setError("Enter your 10-digit contact number. The video is sent there on WhatsApp.");
+      return;
+    }
     const data = new FormData(form);
     const shot = data.get("screenshot");
     if (!(shot instanceof File) || shot.size === 0) {
@@ -70,9 +83,8 @@ export function LampOffer() {
       return;
     }
     data.set("names", JSON.stringify(trimmed));
-    data.set("dedication", dedication);
-    data.set("email", email);
-    data.set("whatsapp", whatsapp);
+    data.set("gotra", gotra.trim());
+    data.set("whatsapp", wa);
     setSubmitting(true);
     setError("");
     try {
@@ -113,7 +125,9 @@ export function LampOffer() {
                 <div className="flex gap-4">
                   <span className="text-sm text-black/40">01</span>
                   <div className="grow">
-                    <h3 className="text-lg font-medium tracking-[-0.01em]">The names</h3>
+                    <h3 className="text-lg font-medium tracking-[-0.01em]">
+                      {names.length === 1 ? "Name on the diya" : "Names on the diyas"}
+                    </h3>
                     <p className="mt-1 text-sm leading-relaxed text-black/55">
                       One diya per name — yours, your mother&rsquo;s, someone you carry.
                     </p>
@@ -154,41 +168,50 @@ export function LampOffer() {
                 </div>
               </div>
 
-              {/* Step 2 — where the clip goes */}
+              {/* Step 2 — gotra and contact number */}
               <div className="border-t border-black/10 py-6">
                 <div className="flex gap-4">
                   <span className="text-sm text-black/40">02</span>
                   <div className="grow">
-                    <h3 className="text-lg font-medium tracking-[-0.01em]">Where your clip goes</h3>
-                    <p className="mt-1 text-sm leading-relaxed text-black/55">
-                      Within three days of the night, the video of your diya burning reaches you here.
-                    </p>
-                    <div className="mt-4 grid grid-cols-1 gap-2.5 sm:grid-cols-2">
-                      <input
-                        type="email"
-                        required
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        maxLength={200}
-                        placeholder="Email"
-                        className={FIELD}
-                      />
-                      <input
-                        value={whatsapp}
-                        onChange={(e) => setWhatsapp(e.target.value)}
-                        maxLength={30}
-                        inputMode="tel"
-                        placeholder="WhatsApp (optional)"
-                        className={FIELD}
-                      />
+                    <h3 className="text-lg font-medium tracking-[-0.01em]">Gotra and contact number</h3>
+                    <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-2.5">
+                      <label className="flex flex-col gap-1.5">
+                        <span className="text-sm font-medium">
+                          Gotra <span className="font-normal text-black/45">(optional)</span>
+                        </span>
+                        <input
+                          value={gotra}
+                          onChange={(e) => setGotra(e.target.value)}
+                          maxLength={80}
+                          autoCapitalize="words"
+                          placeholder="e.g. Bharadwaj"
+                          className={FIELD}
+                        />
+                      </label>
+                      <label className="flex flex-col gap-1.5">
+                        <span className="text-sm font-medium">Contact number</span>
+                        <span className="flex min-h-12 items-stretch overflow-hidden rounded-xl border border-black/15 bg-white transition-colors focus-within:border-black/50">
+                          <span className="grid place-items-center border-r border-black/10 bg-[#f7f7f7] px-3 text-[15px] text-black/60">
+                            +91
+                          </span>
+                          <input
+                            value={whatsapp}
+                            onChange={(e) => setWhatsapp(e.target.value)}
+                            type="tel"
+                            inputMode="numeric"
+                            autoComplete="tel-national"
+                            maxLength={16}
+                            placeholder="98765 43210"
+                            className="w-full bg-transparent px-4 text-[15px] outline-none"
+                          />
+                        </span>
+                      </label>
                     </div>
-                    <input
-                      value={dedication}
-                      onChange={(e) => setDedication(e.target.value)}
-                      maxLength={300}
-                      placeholder="A line spoken for them (optional)"
-                      className={`${FIELD} mt-2.5`}
-                    />
+                    <p className="mt-2.5 text-sm leading-relaxed text-black/55">
+                      Don&rsquo;t know your gotra? Leave it blank. The priest will use Kashyap
+                      gotra, as is the custom. Give your WhatsApp number: the video of your
+                      diya reaches you there within three days of the night.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -216,7 +239,8 @@ export function LampOffer() {
                       </button>
                       <div className="flex flex-col gap-2.5 text-sm">
                         <p className="leading-relaxed text-black/60">
-                          Scan and pay <span className="font-medium text-black">{inr(total)}</span> to{" "}
+                          Scan the QR, or copy the UPI ID into any UPI app, and pay{" "}
+                          <span className="font-medium text-black">{inr(total)}</span> to{" "}
                           <span className="font-medium text-black">{UPI_PAYEE}</span>.
                           Screenshot the confirmation for step 4.
                         </p>
@@ -240,7 +264,7 @@ export function LampOffer() {
                 <div className="flex gap-4">
                   <span className="text-sm text-black/40">04</span>
                   <div className="grow">
-                    <h3 className="text-lg font-medium tracking-[-0.01em]">The proof</h3>
+                    <h3 className="text-lg font-medium tracking-[-0.01em]">Upload the payment screenshot</h3>
                     <label className="mt-4 block">
                       <span className="relative flex min-h-24 cursor-pointer flex-col items-center justify-center gap-1 rounded-xl border border-dashed border-black/25 bg-[#fafafa] px-4 text-center transition-colors hover:border-black/50">
                         <input
@@ -290,7 +314,7 @@ export function LampOffer() {
             {/* Right — the Diya Card, staged live on the warm gradient */}
             <div className="lg:sticky lg:top-24 lg:self-start">
               <div className="flex flex-col items-center rounded-2xl bg-[linear-gradient(150deg,#ffe8cf_0%,#ffb066_48%,#f97316_100%)] px-6 py-10 md:py-14">
-                <DiyaCard name={names[0]?.trim() || null} dedication={dedication.trim() || null} />
+                <DiyaCard name={names[0]?.trim() || null} />
                 <p className="mt-6 max-w-[300px] text-center text-sm leading-relaxed text-black/60">
                   Your Diya Card — it arrives with your clip, made to be shared.
                   {names.length > 1 && ` One card per name — ${names.length} in this offering.`}
