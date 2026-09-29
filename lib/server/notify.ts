@@ -205,7 +205,7 @@ ${contact ? `<br>${esc(contact)}` : ""}
 
 export async function sendLampEmail(
   info: { firstId: number; names: string[]; dedication: string; gotra: string; email: string; whatsapp: string | null },
-  screenshot: { buffer: Buffer; mime: string; filename: string } | null
+  screenshot: { buffer: Buffer; mime: string; filename: string }
 ): Promise<boolean> {
   const key = process.env.RESEND_API_KEY;
   const to = process.env.ORDER_NOTIFY_EMAIL;
@@ -232,19 +232,15 @@ export async function sendLampEmail(
           ``,
           `Payee    ${UPI_PAYEE} (${UPI_ID})`,
           `Reference ${lampRef(info.firstId)} (look for it in the UPI note)`,
-          screenshot
-            ? `Payment screenshot attached. Statuses: received → lit → clip sent.`
-            : `No screenshot — the payer tapped "I've paid". Match the amount and ${lampRef(info.firstId)} on the UPI statement.`,
+          `Payment screenshot attached. Statuses: received → lit → clip sent.`,
           `Admin: https://gangatiram.in/admin`,
         ].filter(Boolean).join("\n"),
-        ...(screenshot && {
-          attachments: [
-            {
-              filename: screenshot.filename || `diya-${info.firstId}-proof.jpg`,
-              content: screenshot.buffer.toString("base64"),
-            },
-          ],
-        }),
+        attachments: [
+          {
+            filename: screenshot.filename || `diya-${info.firstId}-proof.jpg`,
+            content: screenshot.buffer.toString("base64"),
+          },
+        ],
       }),
     });
     if (!res.ok) console.error("lamp email rejected", res.status, await res.text().catch(() => ""));

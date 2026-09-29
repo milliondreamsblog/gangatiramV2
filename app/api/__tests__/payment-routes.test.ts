@@ -126,27 +126,37 @@ describe("QR checkout (/diya)", () => {
     expect((await lamp(quickRequest({ ...quick, ...patch }))).status).toBe(400);
     expect(mocks.sql).not.toHaveBeenCalled();
   });
-  it("confirms only rows matching the WhatsApp number, then alerts", async () => {
+  function confirmRequest(ids: string, withProof = true) {
+    const f = new FormData();
+    f.set("ids", ids);
+    f.set("whatsapp", "9876543210");
+    if (withProof) f.set("screenshot", new File([new Uint8Array(12)], "proof.pdf", { type: "application/pdf" }));
+    return new Request("http://localhost/api/lamp/confirm", { method: "POST", body: f });
+  }
+  it("confirms only rows matching the WhatsApp number, stores the screenshot, then alerts", async () => {
     mocks.sql
       .mockResolvedValueOnce([{ id: 61, name_on_lamp: "Mira", gotra: null, dedication: null, email: null },
                               { id: 60, name_on_lamp: "Asha", gotra: null, dedication: null, email: null }])
       .mockResolvedValueOnce([]);
     mocks.lampEmail.mockResolvedValue(true);
-    const response = await confirm(new Request("http://localhost/api/lamp/confirm", {
-      method: "POST",
-      body: (() => { const f = new FormData(); f.set("ids", "[60,61]"); f.set("whatsapp", "9876543210"); return f; })(),
-    }));
+    const response = await confirm(confirmRequest("[60,61]"));
     expect(await response.json()).toEqual({ ok: true, ids: [60, 61] });
     const [statement, ...params] = mocks.sql.mock.calls[0];
     expect(statement.join("")).toContain("status = 'awaiting_payment'");
     expect(params).toContain("+919876543210");
+    expect(params).toContain(String.fromCharCode(92) + "x" + "00".repeat(12));
     expect(mocks.lampEmail.mock.calls[0][0]).toMatchObject({ firstId: 60, names: ["Asha", "Mira"] });
-    expect(mocks.lampEmail.mock.calls[0][1]).toBeNull();
+    expect(mocks.lampEmail.mock.calls[0][1]).toMatchObject({ mime: "application/pdf", filename: "proof.pdf" });
+  });
+  it("will not confirm a payment without the screenshot", async () => {
+    const response = await confirm(confirmRequest("[60]", false));
+    expect(response.status).toBe(400);
+    expect(mocks.sql).not.toHaveBeenCalled();
+    expect(mocks.lampEmail).not.toHaveBeenCalled();
   });
   it("treats an already-confirmed offering as done without a second alert", async () => {
     mocks.sql.mockResolvedValueOnce([]);
-    const f = new FormData(); f.set("ids", "[60]"); f.set("whatsapp", "9876543210");
-    const response = await confirm(new Request("http://localhost/api/lamp/confirm", { method: "POST", body: f }));
+    const response = await confirm(confirmRequest("[60]"));
     expect(await response.json()).toEqual({ ok: true, ids: [] });
     expect(mocks.lampEmail).not.toHaveBeenCalled();
   });
